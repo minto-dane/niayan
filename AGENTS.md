@@ -8,6 +8,16 @@
 2026-09-08の最新指示は、Debian 13 Trixieを維持しながらAPT/dpkgを完全置換し、Niaを唯一のパッケージ管理主体にすること。Ubuntu・Kicksecure・公的ハードニング資料を参照し、操作性を維持する。現在のISO 09は旧APT経路の比較基準であり、完全置換は未完。最新判断は`distribution/docs/decisions/0002-native-package-authority.ja.md`、移行工程は`distribution/native/`、セキュリティ基準は`distribution/hardening/`。開発Distrobox/ビルダーのAPT使用は稼働NiaOSの管理主体と別。依存削除・偽Provides・常時成功callback・任意scriptのhost root実行で完成にしない。上流ソースへ独自パッチを当てず、7コンポーネントのAPI・永続形式・検査を強引に変更しない。7リポジトリは独立維持する。旧Forky供給lockや独自UKI等の未受入機能をTrixieで検証済みとしない。
 
 ## 最初に読むもの
+
+最新の管理インターフェース判断は`distribution/docs/decisions/0003-management-interface.ja.md`。
+Niaが所有する管理機能はinstallp等の採用コマンド体系だけを公開し、公開nia/niactl等の
+代替入口を作らない。内部SDKとworkerは別。systemd等の独立した外部工具は元のコマンドを
+維持し、互換ラッパーを作らない。emgr/epkgのnative緊急修正を同じcatalog/writerへ接続する
+設計変更は許可済み。自作コードと説明は中立名称を使い、原本メタデータ・ライセンス・
+hash付き過去証跡は改変しない。現在の11入口のうちepkgのテンプレート作成とemgrの
+成果物表示は動作する。稼働管理器への接続・対話作成・応答互換性の受入は未完。
+追加調査と各コマンドの採用境界は`distribution/native/command-review.ja.md`を参照。
+
 `STATUS.ja.md` → `capsulecore/docs/consent.ja.md` → `assurance/docs/engineering/specs/production-closure.ja.md`。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 

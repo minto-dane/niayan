@@ -4,6 +4,17 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+公開操作は[管理コマンドの最新判断](distribution/docs/decisions/0003-management-interface.ja.md)へ変更した。
+外部のsystemd等は元の操作体系を維持する。Niaの11コマンドの引数解析と、
+原本DEBに対応するアップロード緊急度・DSA/CVEの修正ソース版識別を追加した。
+元DEBを改変しないnative緊急修正成果物の作成・読取をepkg/emgrへ接続した。
+今回のimage/native/hardening試験は76件成功（native 56、hardening 4、image 16）。
+[追加調査](distribution/native/command-review.ja.md)では作成・比較・媒体コピー・検索・
+ライセンス・権限・診断等の抜けを整理した。台帳121名称は全コマンドの採用完了を意味しない。
+公開管理器、emgrの適用・削除・保留、署名検証、対話画面の実接続、
+旧公開niaの配布廃止と新ISO受入は未完。名称の修正は自作ソース・説明が対象で、
+過去の原本メタデータや証跡は維持した。Adaの数学的入力は変更していない。
+
 APT/dpkgを恒久採用する方針を利用者の明示指示で変更した。
 [最新判断](distribution/docs/decisions/0002-native-package-authority.ja.md)に従い、Niaを唯一のwriterにする。
 下記のISO 09とその証跡はAPT基準版の実績であり、完全置換の成功を意味しない。
@@ -24,7 +35,7 @@ Secure Boot再起動で全30検査とservice自動起動が成功した。元デ
 [証跡](distribution/evidence/hardening/desktop-01/README.ja.md)。
 これは旧APT基準版に対する隔離された試験であり、新しいNia-only ISOの受入ではない。
 
-今回のソース検査は24工程が成功し、前後のsource subjectは
+前回のソース検査は24工程が成功し、前後のsource subjectは
 `1bc2cabd078faad3fae822713fca2f8d06ee74436f2fe458700549e54203bd4f`で一致した。
 image/native/hardening工具の25試験も成功。7コンポーネントのAdaソースとGPRは変更しておらず、
 以前の形式証明を新しいPython工具やAppArmor設定の証明と扱わない。
