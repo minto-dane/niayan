@@ -2,6 +2,33 @@
 
 2026-09-08。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
 
+## 最新依頼: Niaへの完全置換とハードニング
+
+APT/dpkgを恒久採用する方針を利用者の明示指示で変更した。
+[最新判断](distribution/docs/decisions/0002-native-package-authority.ja.md)に従い、Niaを唯一のwriterにする。
+下記のISO 09とその証跡はAPT基準版の実績であり、完全置換の成功を意味しない。
+
+完成ISOから抽出した2,239パッケージのstatusと8,959個のcontrolファイルを検査・hash照合した。
+1,493パッケージに計2,263個の保持された効果ファイルがある。管理器関連11パッケージの
+仮除外で元の依存12条件が未充足になる。原本DEBの全effect/phase変換、実root/catalog公開、
+Nia自動更新とGUI、更新・障害復旧の受入は未完。[工程](distribution/native/README.ja.md)。
+
+[ハードニング基準と検査工具](distribution/hardening/README.ja.md)を追加した。
+既存Niaの全18 ELFでPIE/NX stack/RELRO/NOW/非RWX LOADを実確認した。
+新しいrootfs設定の本番組込み・起動早期適用・実機受入は別工程として扱う。
+
+ハードニングのLive BIOS/UEFI/Secure Boot 3試験が成功し、日本語入力・保存、Firefox起動、
+DNS、user namespaceを確認した。Nia観測器のAppArmor profileと制限付きloaderを追加し、
+読取・書込・network・execの拒否を実測した。別の試験ディスク差分では、設定保存後の
+Secure Boot再起動で全30検査とservice自動起動が成功した。元ディスクのhashは不変。
+[証跡](distribution/evidence/hardening/desktop-01/README.ja.md)。
+これは旧APT基準版に対する隔離された試験であり、新しいNia-only ISOの受入ではない。
+
+今回のソース検査は24工程が成功し、前後のsource subjectは
+`1bc2cabd078faad3fae822713fca2f8d06ee74436f2fe458700549e54203bd4f`で一致した。
+image/native/hardening工具の25試験も成功。7コンポーネントのAdaソースとGPRは変更しておらず、
+以前の形式証明を新しいPython工具やAppArmor設定の証明と扱わない。
+
 コンポーネント受入時（workspace commit `baba69f`）のsource subjectは`2d5b48e6fa437795af02df4943ea1b365ddad62185a88a5d394d201a45958c3d`。固定コンテナでのnative受入と、全7コンポーネントの厳格なSPARK flow・全体証明を完了した。
 
 その後、利用者の指示によりDebian 13の実配布構築へ進んだ。新しいビルド工具・パッケージングは[配布構築手順](distribution/image/README.ja.md)、従来の独自カタログモデルとの関係は[設計判断](distribution/docs/decisions/0001-debian13.ja.md)。コンポーネントの証明と、次のISO受入を別々に記録する。
