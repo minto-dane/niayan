@@ -1,0 +1,25 @@
+# Nia OS — AIエージェントへの引き継ぎ
+
+**開発ソース／本番未認定。起動可能な完成OSではありません。**
+Ada本体のコンパイル・実行とGNATproveは未実施。Python試験や模擬D-Busの成功を形式証明・実デスクトップ試験に置き換えないでください。
+
+## 固定した製品方針
+Debian 14 Forkyの認証済み固定成果物をDEB入力として利用。Niaカタログが唯一のinstalled-state正本。永続領域XFS、ESPはFAT32。7リポジトリは独立維持し、`distribution/`は配布構成。通常文書は現仕様、理由と変更履歴はADRに置く。
+
+## 最初に読むもの
+`STATUS.ja.md` → `capsulecore/docs/consent.ja.md` → `assurance/docs/engineering/specs/production-closure.ja.md`。
+今回の試験結果は`assurance/evidence/consent-integration/`。旧evidenceを現行のPASSとして引用しない。
+
+## 次の作業順
+1. 隔離した非特権環境にGNAT/GPRbuild/GNATproveを導入し、各repoの`make compile-all test flow prove`。FFI・codec・永続化の実行試験を先に直す。
+2. Capsule起動器のpidfd/cgroup/LSM本人確認から、`Capsule_Consent_Channel`→Engine→Store→Access_UIを接続。SDKの外部関数を「常にTrue/OK」で埋めない。
+3. 各資源のnative portal/brokerを実接続。Portalが資源を渡す前にintentを保存。返された資源をユーザー同意と正確に結び付け、取消・失効を実際の遮断まで試験。
+4. root bootstrap/catalog-WAL、DEBの必要効果、独立復旧起動、installer/署名鍵、遠隔HA/fencing、DB復元、独立trust anchor、安全なGCを完成させる。いずれもコンパイル調整とは別の未完です。
+
+## 守る境界
+アクセス失敗の監視を権限昇格にしない。生のhost HOME/bus/devicesを公開しない。署名、UI同意、診断、原本の再構成はいずれも単独では実行許可でない。結果不明を未実行にせず、履歴欠落を空の正常状態にしない。revocation完了には資源遮断の観測が必要。コアが疑わしい時は独立rescueへ移る。
+
+## 検査・引き継ぎ
+`python3 assurance/ci/engineering.py check`、`lint`、`run-engineering-checks.py --mode source`。
+今回のnativeプローブは`capsulecore/ci/test-consent.sh`（専用private D-Bus、実UIなし）。
+変更時はADR・要求・危険・故障・テスト台帳、code inventoryを更新。固定vendorは手編集せず確認付き工具を使う。秘密鍵をZIPへ入れない。未実装は未実装と記録し、完全性を宣言するために検査を弱めない。

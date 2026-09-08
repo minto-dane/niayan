@@ -1,0 +1,5707 @@
+{
+  "schema": 1,
+  "created_utc": "2026-09-06T02:28:49.658612+00:00",
+  "critical_caveat": "These are preparation-time source audits, independent reference computations and native-library/ABI probes. The Ada implementation and Ada tests were NOT compiled/executed. GNATprove was NOT run. No production qualification follows.",
+  "native_libsodium_version": "1.0.18",
+  "extracted_guard_combinations": 1024,
+  "check_count": 1139,
+  "passed": 1139,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "assurance/ci/cross-repository.sh shell syntax",
+      "pass": true,
+      "scope": "actual /bin/sh syntax check"
+    },
+    {
+      "name": "assurance/ci/verify.sh shell syntax",
+      "pass": true,
+      "scope": "actual /bin/sh syntax check"
+    },
+    {
+      "name": "pkgcore/ci/journal-test.sh shell syntax",
+      "pass": true,
+      "scope": "actual /bin/sh syntax check"
+    },
+    {
+      "name": "pkgcore/ci/verify.sh shell syntax",
+      "pass": true,
+      "scope": "actual /bin/sh syntax check"
+    },
+    {
+      "name": "statecore/ci/verify.sh shell syntax",
+      "pass": true,
+      "scope": "actual /bin/sh syntax check"
+    },
+    {
+      "name": "pkgcore Makefile dry run",
+      "pass": true,
+      "scope": "actual make dry run; NOT Ada compilation"
+    },
+    {
+      "name": "pkgcore pre-build manifest check",
+      "pass": true,
+      "scope": "actual sha256sum invoked by make"
+    },
+    {
+      "name": "statecore Makefile dry run",
+      "pass": true,
+      "scope": "actual make dry run; NOT Ada compilation"
+    },
+    {
+      "name": "statecore pre-build manifest check",
+      "pass": true,
+      "scope": "actual sha256sum invoked by make"
+    },
+    {
+      "name": "assurance Makefile dry run",
+      "pass": true,
+      "scope": "actual make dry run; NOT Ada compilation"
+    },
+    {
+      "name": "assurance pre-build manifest check",
+      "pass": true,
+      "scope": "actual sha256sum invoked by make"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_golden.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_golden.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_hex.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_hex.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_paths.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_paths.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_release.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_release.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_replay.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_types.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_cli.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_cli.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_durable.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_durable.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_file_io.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_file_io.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_ingress.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_ingress.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_signatures.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/runtime/mc_signatures.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_authorization.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_authorization.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_codec.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_codec.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_compatibility.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_compatibility.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_golden.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_golden.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_hex.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_hex.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_paths.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_paths.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_protocol.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_protocol.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_release.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_release.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_replay.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_replay.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_requests.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_requests.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_sha256.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_sha256.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_types.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "pkgcore/src/mc_types.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_cli.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_cli.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_durable.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_durable.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_file_io.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_file_io.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_ingress.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_ingress.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_signatures.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/runtime/mc_signatures.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_authorization.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_authorization.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_codec.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_codec.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_compatibility.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_compatibility.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_golden.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_golden.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_hex.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_hex.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_paths.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_paths.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_protocol.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_protocol.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_release.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_release.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_replay.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_replay.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_requests.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_requests.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_sha256.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_sha256.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_types.adb locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "statecore/src/mc_types.ads locked digest",
+      "pass": true,
+      "scope": "actual source hash check"
+    },
+    {
+      "name": "sodium init",
+      "pass": true,
+      "scope": "actual libsodium call"
+    },
+    {
+      "name": "signed fixture authenticates",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "fixture contract matches Ada expected input",
+      "pass": true,
+      "scope": "actual fixture/source consistency audit"
+    },
+    {
+      "name": "header bit mutation 0",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 1",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 2",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 3",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 4",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 5",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 6",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 7",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 8",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 9",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 10",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 11",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 12",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 13",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 14",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 15",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 16",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 17",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 18",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 19",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 20",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 21",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 22",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 23",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 24",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 25",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 26",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 27",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 28",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 29",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 30",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 31",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 32",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 33",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 34",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 35",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 36",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 37",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 38",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 39",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 40",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 41",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 42",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 43",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 44",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 45",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 46",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 47",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 48",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 49",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 50",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 51",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 52",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 53",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 54",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 55",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 56",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 57",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 58",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 59",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 60",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 61",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 62",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 63",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 64",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 65",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 66",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 67",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 68",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 69",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 70",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 71",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 72",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 73",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 74",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 75",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 76",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 77",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 78",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 79",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 80",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 81",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 82",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 83",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 84",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 85",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 86",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 87",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 88",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 89",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 90",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 91",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 92",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 93",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 94",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 95",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 96",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 97",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 98",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 99",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 100",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 101",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 102",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 103",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 104",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 105",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 106",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 107",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 108",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 109",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 110",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 111",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 112",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 113",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 114",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 115",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 116",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 117",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 118",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 119",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 120",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 121",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 122",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 123",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 124",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 125",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 126",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 127",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 128",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 129",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 130",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 131",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 132",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 133",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 134",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 135",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 136",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 137",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 138",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 139",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 140",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 141",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 142",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 143",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 144",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 145",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 146",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 147",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 148",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 149",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 150",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 151",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 152",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 153",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 154",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 155",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 156",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 157",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 158",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header bit mutation 159",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 0",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 1",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 2",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 3",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 4",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 5",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 6",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 7",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 8",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 9",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 10",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 11",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 12",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 13",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 14",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 15",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 16",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 17",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 18",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 19",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 20",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 21",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 22",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 23",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 24",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 25",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 26",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 27",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 28",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 29",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 30",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 31",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 32",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 33",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 34",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 35",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 36",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 37",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 38",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 39",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 40",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 41",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 42",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 43",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 44",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 45",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 46",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 47",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 48",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 49",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 50",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 51",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 52",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 53",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 54",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 55",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 56",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 57",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 58",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 59",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 60",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 61",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 62",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 63",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 64",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 65",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 66",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 67",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 68",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 69",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 70",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 71",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 72",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 73",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 74",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 75",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 76",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 77",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 78",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 79",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 80",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 81",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 82",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 83",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 84",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 85",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 86",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 87",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 88",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 89",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 90",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 91",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 92",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 93",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 94",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 95",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 96",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 97",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 98",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 99",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 100",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 101",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 102",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 103",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 104",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 105",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 106",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 107",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 108",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 109",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 110",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 111",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 112",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 113",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 114",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 115",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 116",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 117",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 118",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 119",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 120",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 121",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 122",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 123",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 124",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 125",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 126",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 127",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 128",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 129",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 130",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 131",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 132",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 133",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 134",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 135",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 136",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 137",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 138",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 139",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 140",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 141",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 142",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 143",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 144",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 145",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 146",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 147",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 148",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 149",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 150",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 151",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 152",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 153",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 154",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 155",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 156",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 157",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 158",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "body bit mutation 159",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 0",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 1",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 2",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 3",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 4",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 5",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 6",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 7",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 8",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 9",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 10",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 11",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 12",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 13",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 14",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 15",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 16",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 17",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 18",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 19",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 20",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 21",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 22",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 23",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 24",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 25",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 26",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 27",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 28",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 29",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 30",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 31",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 32",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 33",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 34",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 35",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 36",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 37",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 38",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 39",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 40",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 41",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 42",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 43",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 44",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 45",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 46",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 47",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 48",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 49",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 50",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 51",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 52",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 53",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 54",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 55",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 56",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 57",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 58",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 59",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 60",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 61",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 62",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "signature bit mutation 63",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 0",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 1",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 2",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 3",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 4",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 5",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 6",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 7",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 8",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 9",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 10",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 11",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 12",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 13",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 14",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 15",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 16",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 17",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 18",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 19",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 20",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 21",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 22",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 23",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 24",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 25",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 26",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 27",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 28",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 29",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 30",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "key bit mutation 31",
+      "pass": true,
+      "scope": "native libsodium + independent frame checks"
+    },
+    {
+      "name": "header truncation 0",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 1",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 2",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 3",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 4",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 5",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 6",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 7",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 8",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 9",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 10",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 11",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 12",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 13",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 14",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 15",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 16",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 17",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 18",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 19",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 20",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 21",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 22",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 23",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 24",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 25",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 26",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 27",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 28",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 29",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 30",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 31",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 32",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 33",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 34",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 35",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 36",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 37",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 38",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 39",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 40",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 41",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 42",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 43",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 44",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 45",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 46",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 47",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 48",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 49",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 50",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 51",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 52",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 53",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 54",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 55",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 56",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 57",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 58",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 59",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 60",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 61",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 62",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 63",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 64",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 65",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 66",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 67",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 68",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 69",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 70",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 71",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 72",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 73",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 74",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 75",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 76",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 77",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 78",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 79",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 80",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 81",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 82",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 83",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 84",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 85",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 86",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 87",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 88",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 89",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 90",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 91",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 92",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 93",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 94",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 95",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 96",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 97",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 98",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 99",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 100",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 101",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 102",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 103",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 104",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 105",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 106",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 107",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 108",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 109",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 110",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 111",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 112",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 113",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 114",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 115",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 116",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 117",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 118",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 119",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 120",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 121",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 122",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 123",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 124",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 125",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 126",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 127",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 128",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 129",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 130",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 131",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 132",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 133",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 134",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 135",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 136",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 137",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 138",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 139",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 140",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 141",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 142",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 143",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 144",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 145",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 146",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 147",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 148",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 149",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 150",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 151",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 152",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 153",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 154",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 155",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 156",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 157",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 158",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "header truncation 159",
+      "pass": true,
+      "scope": "independent reference/native check"
+    },
+    {
+      "name": "golden hex bytes agree",
+      "pass": true,
+      "scope": "actual fixture check"
+    },
+    {
+      "name": "SHA constant counts",
+      "pass": true,
+      "scope": "source constant audit"
+    },
+    {
+      "name": "reference SHA length 0",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 1",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 2",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 3",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 55",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 56",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 57",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 63",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 64",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 65",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 127",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 128",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 129",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 255",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 256",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 1024",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA length 4096",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "reference SHA million a",
+      "pass": true,
+      "scope": "independent algorithm with constants extracted from Ada; NOT Ada execution"
+    },
+    {
+      "name": "extracted write guards complete Boolean truth tables",
+      "pass": true,
+      "scope": "restricted expression evaluation; NOT execution or proof of Ada control flow"
+    },
+    {
+      "name": "statx dir ABI call",
+      "pass": true,
+      "scope": "actual native syscall"
+    },
+    {
+      "name": "statx offsets match uid/mode",
+      "pass": true,
+      "scope": "actual native ABI check"
+    },
+    {
+      "name": "native append readback",
+      "pass": true,
+      "scope": "native reference operation; NOT Ada journal execution"
+    },
+    {
+      "name": "close-on-exec set",
+      "pass": true,
+      "scope": "actual native flag check"
+    },
+    {
+      "name": "second writer lock refused",
+      "pass": true,
+      "scope": "actual native flock behaviour"
+    },
+    {
+      "name": "statx regular ABI call",
+      "pass": true,
+      "scope": "actual native syscall"
+    },
+    {
+      "name": "statx file offsets",
+      "pass": true,
+      "scope": "actual native ABI check"
+    },
+    {
+      "name": "nofollow rejects link",
+      "pass": true,
+      "scope": "actual native filesystem check"
+    },
+    {
+      "name": "assurance/tests/test_support.adb declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.adb declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.adb declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/tests/run_ingress_tests.adb declaration Run_Ingress_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_ingress_tests.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_ingress_tests.adb declaration MC_Replay",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_ingress_tests.adb declaration MC_Replay",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_ingress_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/tests/test_support.ads declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.ads declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.ads declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/test_support.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration Run_Contract_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration MC_Replay",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration MC_Replay",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration MC_Protocol",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb declaration B",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/tests/run_contract_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/app/contract_lock.adb declaration Name",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/contract_lock.adb declaration Expected",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/contract_lock.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/app/assure.adb declaration Assure",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/assure.adb declaration Check_Listing",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/assure.adb declaration Ada",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/assure.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/app/contract_lock.ads declaration Item_Index",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/contract_lock.ads declaration Name",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/contract_lock.ads declaration Expected",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/app/contract_lock.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_paths.ads declaration Safe_Component",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_paths.ads declaration Safe_Relative",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_paths.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration U16",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration U32",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration U64",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration Put16",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration Put32",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads declaration Put64",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration R",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Compress",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Initialize",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Length",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Update",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Finish",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb declaration Hash",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb declaration Valid_Identity",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_release.adb declaration Qualified",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_release.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_golden.adb declaration Header",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_golden.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Frame_Header",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Message_Kind",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Header",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads declaration Valid_Identity",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_protocol.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Context",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Initialize",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Length",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Update",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Finish",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Hash",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Words",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads declaration Context",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_sha256.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_golden.ads declaration Header",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_golden.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration U16",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration U32",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration U64",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration Put16",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration Put32",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb declaration Put64",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_codec.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_authorization.ads declaration Kind_Set",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.ads declaration Scope",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.ads declaration Within_Scope",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads declaration Window",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads declaration Decision",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads declaration Check",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads declaration Record_Request",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_hex.adb declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_hex.adb declaration Nibble",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_hex.adb declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_hex.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_authorization.adb declaration Within_Scope",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_authorization.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.adb declaration Compatible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_release.ads declaration Evidence_Item",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_release.ads declaration Evidence_State",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_release.ads declaration Evidence_Set",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_release.ads declaration Qualified",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_release.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration MC_Protocol",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb declaration Header_Binds",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Bytes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Digest",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Identity",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Counter",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Nonzero_Counter",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Outcome",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Is_Zero",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads declaration Same_Bytes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_types.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.adb declaration Is_Zero",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.adb declaration Same_Bytes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_types.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_replay.adb declaration Check",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.adb declaration Record_Request",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_replay.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Request_Bytes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Requested_Action",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Request",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads declaration Header_Binds",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_requests.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_hex.ads declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_hex.ads declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_hex.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_paths.adb declaration Safe_Component",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_paths.adb declaration Safe_Relative",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_paths.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.ads declaration Contract_Descriptor",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.ads declaration Compatible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/src/mc_compatibility.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration Run_Integration_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration MC_Requests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration Pkg_Transactions",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration Pkg_Transactions",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration State_Changes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration State_Changes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration P",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb declaration C",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/integration/run_integration_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration System",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Open",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Openat",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Close",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Flock",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Fsync",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Lseek",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Pread",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Write",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Euid",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration C_Statx",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Stat_Buffer",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration LE32",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration LE64",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Stat",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Open_Private_Directory",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Open_File",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Open_Journal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Open_Readonly",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Size",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Read_At",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Append",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Close",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb declaration Close",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.ads declaration Read_File",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.ads declaration Read_Text",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Public_Key",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Signature",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Verified_Message",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Verify",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Authenticated",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Content",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads declaration Verified_Message",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb declaration IO",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb declaration Ada",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb declaration Read_File",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb declaration Read_Text",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_file_io.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.ads declaration Handle_Common",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.ads declaration Check_Request",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.adb declaration Handle_Common",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_cli.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.adb declaration MC_Replay",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.adb declaration Check_Request",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_ingress.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Interfaces",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Sodium_Init",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Verify_Detached",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Verify",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Authenticated",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb declaration Content",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_signatures.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Directory_Handle",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration File_Handle",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Open_Private_Directory",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Open_Journal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Open_Readonly",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Size",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Read_At",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Append",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Close",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Close",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration Directory_Handle",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads declaration File_Handle",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "assurance/runtime/mc_durable.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/tests/test_support.adb declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.adb declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.adb declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/tests/run_journal_io_tests.adb declaration Run_Journal_IO_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_journal_io_tests.adb declaration Pkg_Journal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_journal_io_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/tests/run_rpm_tests.adb declaration Run_RPM_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_rpm_tests.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_rpm_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Run_Pkg_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Pkg_Journal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Pkg_Journal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Pkg_Recovery",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Pkg_Inventory",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Pkg_Versions",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Compare",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb declaration Initialized",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/run_pkg_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/tests/test_support.ads declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.ads declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.ads declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/tests/test_support.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/app/pkgctl.adb declaration Pkgctl",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/app/pkgctl.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.adb declaration Digit",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.adb declaration Alpha",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.adb declaration Special",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.adb declaration Compare",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.ads declaration Ordering",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.ads declaration Compare",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_versions.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads declaration Index_Entry",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads declaration Entry_Array",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads declaration Metadata",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads declaration Inspect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads declaration Find",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Package_ID",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Selection",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Package_Record",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Package_Table",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Relation",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Model",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Plan_Status",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads declaration Check",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_admission.adb declaration Admissible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_admission.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Word",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Fits",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Is_Hook",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Find",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Read_Header",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb declaration Inspect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_rpm.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb declaration Byte",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb declaration Extend",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.adb declaration Well_Formed",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.adb declaration Write_Authorized",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.adb declaration Step",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Encoded_Record",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Log_Record",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Head",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Encode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Decode",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads declaration Extend",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_journal.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Phase",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Command",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Effect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Transaction",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Evidence",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Well_Formed",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Write_Authorized",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads declaration Step",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_transactions.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_admission.ads declaration Facts",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_admission.ads declaration Admissible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_admission.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.adb declaration Decide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.adb declaration Check",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_inventory.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.ads declaration Observed_State",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.ads declaration Recovery_Action",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.ads declaration Recovery_Evidence",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.ads declaration Decide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/src/pkg_recovery.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.adb declaration Scan",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.adb declaration Check_Anchor",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.adb declaration Append",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.ads declaration Scan",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.ads declaration Check_Anchor",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.ads declaration Append",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "pkgcore/runtime/pkg_journal_io.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/tests/test_support.adb declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.adb declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.adb declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/tests/test_support.ads declaration Expect",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.ads declaration Report",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.ads declaration Count",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/test_support.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration Run_State_Tests",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Topology",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Changes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Changes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Changes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Boot",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb declaration State_Service",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/tests/run_state_tests.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/app/statectl.adb declaration Statectl",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/app/statectl.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_boot.adb declaration Admissible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.adb declaration Choose",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.adb declaration Consume_Trial",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Boot_Candidate",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Boot_State",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Selection",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Admissible",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Choose",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads declaration Consume_Trial",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_boot.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_changes.adb declaration Authorized",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.adb declaration Advance",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Node_Index",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Node",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Node_Array",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Snapshot",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Policy",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Topology_Status",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Valid_Configuration",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Voting_Total",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Confirmed_Votes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads declaration Can_Drain",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_config.ads declaration Configuration",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.ads declaration Parse",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Phase",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Event",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Action",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Change",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Observation",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Authorized",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads declaration Advance",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_changes.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_config.adb declaration Key",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.adb declaration Decimal",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.adb declaration Identify",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.adb declaration Parse",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_config.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_service.ads declaration Service_Contract",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.ads declaration Observation",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.ads declaration Assessment",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.ads declaration Assess",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.ads no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_service.adb declaration Wide",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.adb declaration Assess",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_service.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "statecore/src/state_topology.adb declaration Valid_Configuration",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.adb declaration Voting_Total",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.adb declaration Confirmed_Votes",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.adb declaration Can_Drain",
+      "pass": true,
+      "scope": "heuristic lexical audit; NOT compiler syntax/type check"
+    },
+    {
+      "name": "statecore/src/state_topology.adb no silent proof escape",
+      "pass": true,
+      "scope": "heuristic source scan"
+    },
+    {
+      "name": "pkgctl source contains qualification rejection",
+      "pass": true,
+      "scope": "source scan only; CLI NOT executed"
+    },
+    {
+      "name": "statectl source contains qualification rejection",
+      "pass": true,
+      "scope": "source scan only; CLI NOT executed"
+    }
+  ]
+}

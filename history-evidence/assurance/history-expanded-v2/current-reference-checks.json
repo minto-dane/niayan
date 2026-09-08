@@ -1,0 +1,154 @@
+{
+  "release": "expanded-v2",
+  "evidence_scope": "Independent reference models, cryptographic fixtures and isolated native ABI checks. NO ADA EXECUTION.",
+  "ada_build": "NOT_RUN",
+  "ada_tests": "NOT_RUN",
+  "gnatprove": "NOT_RUN",
+  "live_cluster": "NOT_RUN",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "native_library_paths": {
+    "sodium": "libsodium.so.23",
+    "archive": "libarchive.so.13",
+    "curl": "libcurl.so.4",
+    "xml2": "libxml2.so.2"
+  },
+  "checks": [
+    {
+      "name": "wire-v2-golden-size-and-fields",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "wire-all-kind-reference",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "wire-reference-truncation",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "wire-reference-v1-rejection",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "ed25519-reference-golden",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "ed25519-reference-header-tamper-160",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "body-hash-reference-tamper-192",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-sodium-init",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-sodium-golden-signature",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-sodium-domain-confusion-rejected",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "wal-reference-chain-32",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "wal-reference-corruption-7168",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "budget-exhaustive-reference",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": "5312 combinations; independent arithmetic model, not State_Budget execution"
+    },
+    {
+      "name": "native-openat2-profile",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-no-symlink-traversal",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": "errno=40"
+    },
+    {
+      "name": "native-beneath-no-parent-escape",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": "errno=18"
+    },
+    {
+      "name": "native-statx-layout",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-statx-mount-id",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-lock-contends-across-descriptors",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-fd-xattr-roundtrip",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": ""
+    },
+    {
+      "name": "native-explicit-ftruncate-after-write",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": "Native fsync/ftruncate size observation only; NOT recovery-tail preservation or Ada execution"
+    },
+    {
+      "name": "recovery-cutpoint-reference-model",
+      "status": "PASS",
+      "scope": "REFERENCE_OR_NATIVE_NOT_ADA",
+      "detail": "8 cutpoints; assumes prescribed durable write order, NOT an Ada or power-cut test"
+    }
+  ],
+  "summary": {
+    "passed": 22,
+    "failed": 0
+  },
+  "scratch_tree": "/mnt/data/work-v2-tools/mc-v2-reference-6jtbxgro"
+}

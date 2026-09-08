@@ -1,0 +1,325 @@
+{
+  "edition": "assured-operations-2026-09-06",
+  "ada_executed": false,
+  "gnatprove_executed": false,
+  "checks": [
+    {
+      "name": "assurance-contract-check",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "assurance-compile-all-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "assurance-test-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "assurance-flow-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "assurance-prove-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "assurance-gpr-main-source-presence",
+      "result": "PASS",
+      "kind": "source"
+    },
+    {
+      "name": "assurance-source-reject-tamper",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "assurance-source-reject-missing",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "assurance-source-reject-unknown",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "assurance-source-reject-symlink",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "assurance-source-reject-special-file",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "pkgcore-contract-check",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "pkgcore-compile-all-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "pkgcore-test-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "pkgcore-flow-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "pkgcore-prove-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "pkgcore-gpr-main-source-presence",
+      "result": "PASS",
+      "kind": "source"
+    },
+    {
+      "name": "pkgcore-source-reject-tamper",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "pkgcore-source-reject-missing",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "pkgcore-source-reject-unknown",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "pkgcore-source-reject-symlink",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "pkgcore-source-reject-special-file",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "statecore-contract-check",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "statecore-compile-all-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "statecore-test-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "statecore-flow-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "statecore-prove-dry-run",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "statecore-gpr-main-source-presence",
+      "result": "PASS",
+      "kind": "source"
+    },
+    {
+      "name": "statecore-source-reject-tamper",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "statecore-source-reject-missing",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "statecore-source-reject-unknown",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "statecore-source-reject-symlink",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "statecore-source-reject-special-file",
+      "result": "PASS",
+      "kind": "negative-source-test"
+    },
+    {
+      "name": "shell-assurance-ci-verify.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-assurance-ci-control-io-test.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-assurance-ci-cross-repository.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-assurance-ci-check-contract.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-statecore-ci-verify.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-statecore-ci-check-contract.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-statecore-ci-healing-io-test.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-pkgcore-ci-verify.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-pkgcore-ci-journal-test.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-pkgcore-ci-file-engine-test.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "shell-pkgcore-ci-check-contract.sh",
+      "result": "PASS",
+      "kind": "source-or-build-entry"
+    },
+    {
+      "name": "control-public-fixture-manifest",
+      "result": "PASS",
+      "kind": "source"
+    },
+    {
+      "name": "new-gate-limit-auth-and-unqualified-source-markers",
+      "result": "PASS",
+      "kind": "source-marker-presence"
+    }
+  ],
+  "count": 46,
+  "toolchain_attempts": [
+    {
+      "name": "assurance-compile-all-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "assurance-compile-all-attempt.log"
+    },
+    {
+      "name": "assurance-test-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "assurance-test-attempt.log"
+    },
+    {
+      "name": "assurance-flow-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "assurance-flow-attempt.log"
+    },
+    {
+      "name": "assurance-prove-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "assurance-prove-attempt.log"
+    },
+    {
+      "name": "pkgcore-compile-all-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "pkgcore-compile-all-attempt.log"
+    },
+    {
+      "name": "pkgcore-test-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "pkgcore-test-attempt.log"
+    },
+    {
+      "name": "pkgcore-flow-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "pkgcore-flow-attempt.log"
+    },
+    {
+      "name": "pkgcore-prove-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "pkgcore-prove-attempt.log"
+    },
+    {
+      "name": "statecore-compile-all-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "statecore-compile-all-attempt.log"
+    },
+    {
+      "name": "statecore-test-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "statecore-test-attempt.log"
+    },
+    {
+      "name": "statecore-flow-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "statecore-flow-attempt.log"
+    },
+    {
+      "name": "statecore-prove-attempt",
+      "exit": 2,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "statecore-prove-attempt.log"
+    },
+    {
+      "name": "ada-frontend-attempt",
+      "exit": 1,
+      "status": "BLOCKED_TOOLCHAIN",
+      "log": "ada-frontend-attempt.log"
+    }
+  ],
+  "tools": {
+    "gcc": "/usr/bin/gcc",
+    "gnatmake": null,
+    "gnatprove": null,
+    "gprbuild": null
+  },
+  "harness_sha256": "b2d4dc9cfcb5422c83bb99e35ae3f80d1dd6f54685fce3cb110ed3d7c7ba1633"
+}

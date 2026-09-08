@@ -1,0 +1,117 @@
+{
+  "kind": "DISTRO_SOURCE_AND_OFFLINE_SYNTAX_CHECKS",
+  "ada_executed": false,
+  "gnatprove_run": false,
+  "unit_activated": false,
+  "rpm_built": false,
+  "passed": 24,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "fixed-path-kernel-reader-no-stream-size-dependence",
+      "status": "PASS"
+    },
+    {
+      "name": "boot-id-reading-uses-bounded-kernel-api",
+      "status": "PASS"
+    },
+    {
+      "name": "local-observation-keeps-unverified-scope",
+      "status": "PASS"
+    },
+    {
+      "name": "host-context-and-tristate-required",
+      "status": "PASS"
+    },
+    {
+      "name": "service-restart-owner-and-explicit-budget-rendering",
+      "status": "PASS"
+    },
+    {
+      "name": "service-graph-reverse-dependency-closure-and-conflicts",
+      "status": "PASS"
+    },
+    {
+      "name": "durable-network-publish-before-dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "network-no-permissive-defaults-for-auth-or-anchor",
+      "status": "PASS"
+    },
+    {
+      "name": "network-fresh-negative-clears-stability",
+      "status": "PASS"
+    },
+    {
+      "name": "network-pending-results-never-blind-retry",
+      "status": "PASS"
+    },
+    {
+      "name": "nm-narrow-unique-owner-local-no-interactive-or-autostart",
+      "status": "PASS"
+    },
+    {
+      "name": "nm-activation-requires-prestaged-wired-and-checkpoint-coverage",
+      "status": "PASS"
+    },
+    {
+      "name": "boot-eligibility-checks-expiry-and-runtime-instance",
+      "status": "PASS"
+    },
+    {
+      "name": "composition-inventory-and-cohort-checks-present",
+      "status": "PASS"
+    },
+    {
+      "name": "qualification-real-signature-verification-and-compiled-profile",
+      "status": "PASS"
+    },
+    {
+      "name": "qualification-subject-and-independence-checks-present",
+      "status": "PASS"
+    },
+    {
+      "name": "compiled-release-not-marked-qualified",
+      "status": "PASS"
+    },
+    {
+      "name": "all-new-Ada-test-entrypoints-registered",
+      "status": "PASS"
+    },
+    {
+      "name": "RPM-specs-build-test-without-trust-enrollment-or-service-activation",
+      "status": "PASS"
+    },
+    {
+      "name": "component-map-declares-real-gaps",
+      "status": "PASS"
+    },
+    {
+      "name": "114-shared-files-and-new-profile-identical",
+      "status": "PASS"
+    },
+    {
+      "name": "build-and-reference-helper-python-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "systemd-offline-independent-bounded-profile-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "systemd-exact-observer-units-isolated-syntax-no-activation",
+      "status": "PASS"
+    }
+  ],
+  "unexecuted": [
+    {
+      "test": "RPM spec native parser",
+      "status": "NOT_RUN_TOOL_UNAVAILABLE"
+    },
+    {
+      "test": "RPM binary build/install/remove",
+      "status": "NOT_RUN_ADA_TOOLCHAIN_UNAVAILABLE"
+    }
+  ]
+}

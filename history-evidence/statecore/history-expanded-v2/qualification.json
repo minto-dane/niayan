@@ -1,0 +1,51 @@
+{
+  "schema": 2,
+  "release": "expanded-v2",
+  "created_utc": "2026-09-06T04:03:06.477324+00:00",
+  "production_qualified": false,
+  "ada_compile": "NOT_RUN_USER_HANDOFF",
+  "ada_tests": "WRITTEN_NOT_RUN",
+  "gnatprove": "NOT_RUN_USER_HANDOFF",
+  "live_systemd_pacemaker_etcd_tests": "NOT_RUN",
+  "physical_powercut_and_fencing_tests": "NOT_RUN",
+  "source_set_manifest_sha256": "7f9f6128d27cccd3391aece16f0e83d664379b1412cc19a757e1ac9e2edab441",
+  "source_set_definition": "Root SOURCE-SET.sha256 covers Ada, GPR, shell/Makefile/toolchain metadata, fixtures and locked vendor files. Docs/evidence excluded to avoid circular hashes. Root MANIFEST.sha256 covers the entire delivered tree except itself.",
+  "evidence": {
+    "reference_and_native_checks": {
+      "passed": 22,
+      "failed": 0
+    },
+    "reference_scope": "Independent reference models, cryptographic fixtures and isolated native ABI checks. NO ADA EXECUTION.",
+    "source_and_shell_checks": {
+      "passed": 45,
+      "failed": 0
+    },
+    "source_scope": "Static/source/shell checks; no Ada parser, compiler, tests or GNATprove was run."
+  },
+  "implemented_execution_code": [
+    "descriptor-relative bounded file operations and CAS",
+    "durable file-change/commit/restore/reconcile and partial-tail repair",
+    "signed durable request admission and ambiguity handling",
+    "bounded RPM ingestion/signature verification/payload-to-header checking",
+    "systemd and Pacemaker pinned-command observation/effect adapters",
+    "etcd mTLS CAS maintenance-budget coordination SDK",
+    "protected policy/keys/witness and schema-versioned connectors"
+  ],
+  "substantive_remaining_boundaries": [
+    "native RPMDB ownership import/write and full-distribution package/effect semantics",
+    "site-authenticated topology, reservation, physical fencing and semantic-health observers",
+    "complete fleet rollout service and deployment/operations integration",
+    "bootloader/UKI/EFI/TPM/initramfs/GPU-driver write adapters",
+    "application-specific data migrations and backup/restore services",
+    "full corruption/offline disaster recovery, compaction and anti-rollback anchors",
+    "functional proof coverage of native I/O orchestration and independent production acceptance"
+  ],
+  "runtime_target": "Linux x86-64 glibc; kernel/filesystem/native libraries are trusted assumptions, not formally verified by this project",
+  "implementation_languages": {
+    "pure_core": "Ada 2022 / SPARK source; proof obligations not discharged",
+    "runtime": "Ada with SPARK_Mode Off; Linux/native FFI boundaries explicitly documented",
+    "build": "Make/GPR and POSIX shell"
+  },
+  "evidence_is_not_attestation": true,
+  "component": "statecore"
+}

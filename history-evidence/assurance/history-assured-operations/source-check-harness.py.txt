@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: MIT
+# Source/build-entry checks, not Ada compilation or proof.
+from pathlib import Path
+import subprocess,hashlib,json,shutil,tempfile,os,re
+R=Path('/mnt/data/mcore-harden-work');E=R/'assurance/evidence';rows=[];blocked=[]
+def run(name,args,cwd,success=True):
+    q=subprocess.run(args,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=25)
+    (E/(name+'.log')).write_text('$ '+' '.join(args)+'\n'+q.stdout+'\nexit='+str(q.returncode)+'\n')
+    if success:
+        assert q.returncode==0,(name,q.stdout)
+        rows.append(dict(name=name,result='PASS',kind='source-or-build-entry'))
+    else:
+        blocked.append(dict(name=name,exit=q.returncode,status='BLOCKED_TOOLCHAIN' if q.returncode else 'UNEXPECTED_AVAILABLE',log=name+'.log'))
+    return q
+for repo in ('assurance','pkgcore','statecore'):
+    run(repo+'-contract-check',['./ci/check-contract.sh'],R/repo)
+    for target in ('compile-all','test','flow','prove'):
+        run(repo+'-'+target+'-dry-run',['make','-n',target],R/repo)
+    for target in ('compile-all','test','flow','prove'):
+        run(repo+'-'+target+'-attempt',['make',target],R/repo,False)
+    # All explicitly declared main units are present in resolved source directories.
+    for gpr in (R/repo).glob('*.gpr'):
+        text=gpr.read_text();sd=re.search(r'for Source_Dirs use \((.*?)\);',text,re.S)
+        main=re.search(r'for Main use \((.*?)\);',text,re.S)
+        if not main:continue
+        dirs=re.findall(r'"([^"]+)"',sd.group(1));mains=re.findall(r'"([^"]+)"',main.group(1))
+        for m in mains:assert any((R/repo/d/m).is_file() for d in dirs),(repo,gpr,m)
+    rows.append(dict(name=repo+'-gpr-main-source-presence',result='PASS',kind='source'))
+    tmp=Path(tempfile.mkdtemp(prefix='source-negative-',dir='/mnt/data/mcore-tools'))
+    tr=tmp/repo;tr.mkdir();(tr/'ci').mkdir();shutil.copy2(R/repo/'ci/check-contract.sh',tr/'ci/check-contract.sh')
+    if repo=='assurance':
+        base=tr
+        for d in ('src','runtime'):shutil.copytree(R/repo/d,tr/d)
+        shutil.copy2(R/repo/'contracts.source.sha256',tr/'contracts.source.sha256')
+    else:
+        (tr/'vendor').mkdir();shutil.copytree(R/repo/'vendor/contracts',tr/'vendor/contracts');base=tr/'vendor/contracts'
+    target=base/'src/mc_types.ads';original=target.read_bytes()
+    def rejected(kind,change,restore):
+        change();q=subprocess.run(['./ci/check-contract.sh'],cwd=tr,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=25)
+        (E/(repo+'-source-negative-'+kind+'.log')).write_text(q.stdout+'\nexit='+str(q.returncode)+'\n')
+        try:assert q.returncode!=0,(repo,kind)
+        finally:restore()
+        rows.append(dict(name=repo+'-source-reject-'+kind,result='PASS',kind='negative-source-test'))
+    rejected('tamper',lambda:target.write_bytes(original+b'--tamper\n'),lambda:target.write_bytes(original))
+    rejected('missing',lambda:target.unlink(),lambda:target.write_bytes(original))
+    extra=base/'src/unknown.txt';rejected('unknown',lambda:extra.write_text('x'),lambda:extra.unlink())
+    link=base/'src/untrusted.ads';rejected('symlink',lambda:link.symlink_to('mc_types.ads'),lambda:link.unlink())
+    fifo=base/'runtime/untrusted.pipe';rejected('special-file',lambda:os.mkfifo(fifo),lambda:fifo.unlink())
+    # Delete only the freshly created isolated test tree, never source/production data.
+    shutil.rmtree(tmp)
+for p in R.rglob('*.sh'):
+    if '/evidence/' in str(p):continue
+    run('shell-'+str(p.relative_to(R)).replace('/','-'),['sh','-n',str(p)],R)
+# The exact reference-model fixture hash set must still correspond to current locked source.
+for p in (R/'assurance/tests/fixtures/control-v1/manifest.sha256',):
+    for line in p.read_text().splitlines():
+        sha,name=line.split('  ',1);assert hashlib.sha256((p.parent/name).read_bytes()).hexdigest()==sha
+rows.append(dict(name='control-public-fixture-manifest',result='PASS',kind='source'))
+# Static integration checks are narrowly named, NOT semantic correctness proofs.
+assert 'MC_Control_IO.Check' in (R/'assurance/runtime/mc_gate.adb').read_text()
+assert 'Valid_Value_Length(Used)' in (R/'statecore/runtime/state_etcd.adb').read_text()
+assert 'if Status=Conflict then' in (R/'assurance/runtime/mc_atomic.adb').read_text()
+assert 'Authorize_Change (P,E,Before,After,Status)' in (R/'statecore/runtime/state_disaster_store.adb').read_text()
+assert 'Build_Qualified : constant Boolean := False' in (R/'assurance/src/mc_release.ads').read_text()
+rows.append(dict(name='new-gate-limit-auth-and-unqualified-source-markers',result='PASS',kind='source-marker-presence'))
+# Direct compiler invocation records the actual missing frontend, separately.
+q=run('ada-frontend-attempt',['gcc','-c','-gnat2022',str(R/'assurance/src/mc_types.ads'),'-o','/mnt/data/mcore-tools/ada-probe.o'],R,False)
+report={'edition':'assured-operations-2026-09-06','ada_executed':False,'gnatprove_executed':False,'checks':rows,'count':len(rows),'toolchain_attempts':blocked,'tools':{t:shutil.which(t) for t in ('gcc','gnatmake','gnatprove','gprbuild')},'harness_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+(E/'source-checks.json').write_text(json.dumps(report,indent=2)+'\n');(E/'source-check-harness.py.txt').write_bytes(Path(__file__).read_bytes())
+print('source checks',len(rows),'blocked attempts',len(blocked))
+print(json.dumps(report['tools']))

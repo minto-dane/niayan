@@ -1,0 +1,15 @@
+{
+  "edition": "coordination-integrity-source-2026-09-06",
+  "repository": "pkgcore",
+  "qualified": false,
+  "compiler_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "ada_tests": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "gnatprove": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "powercut_tests": "NOT_RUN",
+  "live_etcd_tests": "NOT_RUN",
+  "live_cluster_tests": "NOT_RUN",
+  "physical_fencing_tests": "NOT_RUN",
+  "source_profile_sha256": "28ea419b365a2df6df6a76e9922b139b14b7b1aeb6270f85e3d6d9ea2728479b",
+  "current_evidence": "assurance/evidence/independent-checks.json; assurance/evidence/source-checks.json",
+  "evidence_note": "Independent references and shell checks are not Ada execution or proof. See assurance/evidence/METHODS.ja.md. Qualified site observers, guarded deployment and native integration are still required."
+}

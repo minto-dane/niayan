@@ -1,0 +1,218 @@
+"""Independent reference/fixture checks. NOT execution of Ada, NOT a proof.
+No external requests or host-service/cluster changes. Temporary files only.
+Usage: python coordination-reference.py.txt SOURCE_ROOT OUTPUT_JSON
+"""
+import base64,copy,hashlib,itertools,json,os,struct,sys,tempfile,fcntl
+from pathlib import Path
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+ROOT=Path(sys.argv[1]).resolve(); OUT=Path(sys.argv[2]).resolve()
+F=ROOT/'assurance/fixtures/stop-v1'; report=[]
+sha=lambda b:hashlib.sha256(b).digest()
+U63=2**63-1;U64=2**64-1
+
+def check(name,group,fn):
+    try:
+        fn();report.append(dict(name=name,group=group,status='PASS'))
+    except Exception as e:
+        report.append(dict(name=name,group=group,status='FAIL',error=repr(e)))
+
+def require(v):
+    if not v:raise AssertionError('condition not met')
+
+def rejects(fn):
+    try:fn()
+    except (AssertionError,ValueError,KeyError,TypeError,IndexError):return
+    raise AssertionError('unexpected acceptance')
+
+def u(b,p,n=8):return int.from_bytes(b[p-1:p-1+n],'big')
+def field(b,p,n):return b[p-1:p-1+n]
+def canonical(b,length,magic,ranges):
+    require(len(b)==length and b[:8]==magic and b[-32:]==sha(b[:-32]))
+    rebuilt=bytearray(length);rebuilt[:8]=magic
+    for start,size in ranges:rebuilt[start-1:start-1+size]=field(b,start,size)
+    rebuilt[-32:]=sha(rebuilt[:-32]);require(bytes(rebuilt)==b)
+
+def policy(b):
+    n=u(b,209,1);require(1<=n<=32)
+    canonical(b,4608,b'MCBARP01',[(9,200),(209,1)]+[(257+i*128,116) for i in range(n)])
+    for off,size in [(9,16),(25,16),(41,16),(57,32),(89,32),(121,32),(153,32)]:require(any(field(b,off,size)))
+    require(all(0<u(b,p)<=U63 for p in (185,193,201)))
+    members=[]
+    for i in range(n):
+        o=257+i*128;m=dict(node=field(b,o,16),resource=field(b,o+16,16),boot=field(b,o+32,16),stop=field(b,o+48,32),fence=field(b,o+80,32),paths=u(b,o+112,4))
+        require(all(any(m[k]) for k in ('node','resource','boot','stop','fence')) and m['paths']>0)
+        members.append(m)
+    require(len({(m['node'],m['resource']) for m in members})==n)
+    require(not {m['stop'] for m in members}&{m['fence'] for m in members})
+    for x,y in itertools.combinations(members,2):
+        if x['node']==y['node']:require(x['boot']==y['boot'] and x['stop']==y['stop'])
+    return dict(hash=sha(b),contract=field(b,57,32),epoch=u(b,185),guard=u(b,193),age=u(b,201),receiver=field(b,41,16),members=members)
+
+def evidence(b):
+    canonical(b,320,b'MCBARE01',[(9,241)])
+    require(u(b,245,1)<3 and u(b,246,1)<2 and all(u(b,i,1)<2 for i in (247,248,249)))
+    require(all(u(b,i)<=U63 for i in range(169,241,8)))
+    return dict(hash=sha(b),policy=field(b,9,32),receipt=field(b,41,32),audit=field(b,73,32),node=field(b,105,16),resource=field(b,121,16),boot=field(b,137,16),receiver=field(b,153,16),seq=u(b,169),observed=u(b,177),expires=u(b,185),epoch=u(b,193),guard=u(b,201),dispatched=u(b,209),completed=u(b,217),inflight=u(b,225),unknown=u(b,233),paths=u(b,241,4),kind=u(b,245,1),source=u(b,246,1),latched=bool(u(b,247,1)),closed=bool(u(b,248,1)),retired=bool(u(b,249,1)))
+P=policy((F/'policy.bin').read_bytes());ES=[evidence((F/f'node-{i}.bin').read_bytes()) for i in (1,2,3)]
+
+def verified(file,sigfile):
+    b=(F/file).read_bytes();e=evidence(b);require(e['policy']==P['hash'])
+    m=next(m for m in P['members'] if (m['node'],m['resource'],m['boot'])==(e['node'],e['resource'],e['boot']))
+    key=m['stop'] if e['source']==0 else m['fence'];domain=b'MISSION-CORE-STOP-ACK-v1'
+    Ed25519PublicKey.from_public_bytes(key).verify((F/sigfile).read_bytes(),len(domain).to_bytes(2,'big')+domain+b)
+    return e
+
+def crypto_reject(file,sigfile):
+    try:verified(file,sigfile)
+    except Exception:return
+    raise AssertionError('bad signature or encoding accepted')
+
+def empty():return dict(blocked=False,sealed=False,last=0,revision=0,r=[dict(seq=[0,0],kind=None,observed=0,expires=0,completed=0,paths=0) for _ in range(3)])
+
+def observe(s,e,now,sig=True):
+    t=copy.deepcopy(s);require(sig and not s['blocked'] and s['revision']<U63 and now>=s['last'])
+    require(e['policy']==P['hash'] and e['receiver']==P['receiver'] and e['epoch']==P['epoch'] and e['guard']==P['guard'])
+    require(any(e['receipt']) and any(e['audit']) and e['seq']>0)
+    require(e['observed']<=now<e['expires'] and 0<e['expires']-e['observed']<=P['age'] and now-e['observed']<=P['age'])
+    i=next(i for i,m in enumerate(P['members']) if (m['node'],m['resource'],m['boot'])==(e['node'],e['resource'],e['boot']))
+    rr=t['r'][i];require(e['seq']>rr['seq'][e['source']] and e['observed']>=rr['observed'])
+    rr['seq'][e['source']]=e['seq']
+    if e['kind']==0:
+        require(e['source']==0)
+        if not (e['latched'] and e['closed'] and e['unknown']==e['inflight']==0 and e['dispatched']==e['completed']):
+            rr['kind']='uncertain';t['blocked']=True
+        else:
+            require(rr['kind']!='isolated' and e['completed']>=rr['completed']);rr['kind']='ack'
+        rr['completed']=e['completed']
+    elif e['kind']==1:
+        require(e['source']==1)
+        if not(e['retired'] and e['paths']&P['members'][i]['paths']==P['members'][i]['paths']):
+            rr['kind']='uncertain';t['blocked']=True
+        else:rr['kind']='isolated'
+    else:rr['kind']='uncertain';t['blocked']=True
+    rr.update(observed=e['observed'],expires=e['expires'],paths=e['paths'])
+    t['last']=now;t['revision']+=1;return t
+
+def ready(s,now):
+    return not s['blocked'] and now>=s['last'] and all(r['kind'] in ('ack','isolated') and r['observed']<=now<r['expires'] and r['expires']-r['observed']<=P['age'] and (r['kind']!='isolated' or r['paths']&P['members'][i]['paths']==P['members'][i]['paths']) for i,r in enumerate(s['r']))
+def full():
+    s=empty()
+    for e in ES:s=observe(s,e,200)
+    require(ready(s,200));s['sealed']=True;return s
+
+def uint(v,maximum=U64):
+    require(type(v) in (str,int));text=str(v);require(text.isascii() and text.isdecimal() and (len(text)==1 or text[0]!='0'));v=int(text);require(0<=v<=maximum);return v
+
+def unb64(s):
+    require(type(s)==str);b=base64.b64decode(s,validate=True);require(base64.b64encode(b).decode()==s);return b
+
+def read_model(x,cluster=U64,floor=8):
+    require(cluster>0 and floor>0 and isinstance(x,dict) and not set(x)&{'error','code','succeeded','responses'})
+    h=x['header'];require(uint(h['cluster_id'])==cluster and uint(h['member_id'])>0 and uint(h['raft_term'])>0 and uint(h['revision'],U63)>=floor)
+    require(x.get('more',False) is False)
+    count=uint(x.get('count',0),U63);k=x.get('kvs',[]);require(type(k)==list)
+    if count==0:require(not k);return None
+    require(count==len(k)==1);k=k[0];require(unb64(k['key'])==b'/mc/a')
+    require(0<uint(k['create_revision'],U63)<=uint(k['mod_revision'],U63)<=uint(h['revision'],U63) and uint(k['version'],U63)>0 and uint(k.get('lease',0))==0)
+    value=unb64(unb64(k['value']).decode());require(1<=len(value)<=16384);return value
+
+def write_model(x):
+    try:
+        # This abstract RPC model returns UNKNOWN after any bad write response.
+        require(isinstance(x,dict) and not set(x)&{'error','code','kvs','count'})
+        h=x['header'];require(uint(h['cluster_id'])==U64 and uint(h['member_id'])>0 and uint(h['raft_term'])>0 and uint(h['revision'],U63)>=8)
+        v=x.get('succeeded',False);require(type(v)==bool);rs=x.get('responses',[]);require(type(rs)==list)
+        if not v:require(rs==[]);return 'COMPARE_FALSE'
+        require(len(rs)==1 and set(rs[0])=={'Response'} and set(rs[0]['Response'])=={'ResponsePut'})
+        p=rs[0]['Response']['ResponsePut'];require(set(p)=={'header'} and uint(p['header']['revision'],U63)==uint(h['revision'],U63)>7)
+        return 'SUCCESS'
+    except (ValueError,KeyError,TypeError,AssertionError):return 'UNKNOWN'
+H=dict(cluster_id=U64,member_id=2,raft_term=4,revision=9)
+R=dict(header=H,count=1,kvs=[dict(key='L21jL2E=',create_revision=1,mod_revision=7,version=3,value='QVFJRA==')])
+W=dict(header=H,succeeded=True,responses=[{'Response':{'ResponsePut':{'header':{'revision':9}}}}])
+
+def all_participants():
+    for mask in range(8):
+        s=empty()
+        for i,e in enumerate(ES):
+            if mask&(1<<i):s=observe(s,e,200)
+        require(ready(s,200)==(mask==7))
+check('every-participant-not-majority-8-subsets','reference',all_participants)
+check('same-resource-on-three-nodes','reference',lambda:require(len({m['resource'] for m in P['members']})==1 and ready(full(),200)))
+check('seal-expires-no-auto-extension','reference',lambda:require(not ready(full(),1000)))
+for fieldname,val in [('unknown',1),('inflight',1),('latched',False),('closed',False),('dispatched',8)]:
+    def regression(k=fieldname,v=val):
+        s=full();e={**ES[0],k:v,'seq':2};s=observe(s,e,201);require(s['blocked'] and not ready(s,201));rejects(lambda:observe(s,{**ES[0],'seq':3},202))
+    check('authenticated-regression-'+fieldname,'reference',regression)
+for fieldname,val in [('guard',9),('epoch',7),('receiver',bytes(16)),('observed',201),('expires',200)]:
+    check('reject-'+fieldname,'reference',lambda k=fieldname,v=val:rejects(lambda:observe(empty(),{**ES[0],k:v},200)))
+check('replay-cannot-refresh-observation','reference',lambda:rejects(lambda:observe(full(),ES[0],201)))
+check('unsigned-observation-cannot-transition','reference',lambda:rejects(lambda:observe(empty(),ES[0],200,False)))
+def fence_case():
+    s=empty();e=evidence((F/'fence-1.bin').read_bytes());s=observe(s,e,200)
+    for e in ES[1:]:s=observe(s,e,200)
+    require(ready(s,200));rejects(lambda:observe(s,ES[0],201))
+    e=evidence((F/'fence-1.bin').read_bytes());e.update(paths=1,seq=2);s=observe(s,e,201);require(s['blocked'])
+check('independent-fence-and-regression','reference',fence_case)
+
+def atomic_orderings():
+    # Abstract linearizable store. Enumerate all orderings, not a real etcd test.
+    for ordering in itertools.permutations(('revoke','cas_a','cas_b')):
+        guard='active';revision=7;wins=[]
+        for op in ordering:
+            if op=='revoke':guard='held';continue
+            if guard=='active' and revision==7:revision+=1;wins.append(op)
+        require(len(wins)<=1)
+        if ordering[0]=='revoke':require(not wins)
+    # Same value with a different revision does not revive a stale capability.
+    require(not ('active'=='active' and 11==10))
+check('atomic-guard-target-6-orderings-and-ABA','reference',atomic_orderings)
+check('range-valid-double-base64-uint64','reference',lambda:require(read_model(R)==bytes([1,2,3])))
+check('range-absent-bound-header','reference',lambda:require(read_model({'header':H}) is None))
+for name,mut in [('contradictory-count',lambda x:x.update(count=0)),('lease',lambda x:x['kvs'][0].update(lease=1)),('wrong-cluster',lambda x:x['header'].update(cluster_id=1)),('old-revision',lambda x:x['header'].update(revision=7)),('more',lambda x:x.update(more=True)),('newer-kv',lambda x:x['kvs'][0].update(mod_revision=10))]:
+    def badrange(m=mut):x=copy.deepcopy(R);m(x);rejects(lambda:read_model(x))
+    check('range-'+name,'reference',badrange)
+check('uint64-maximum-and-overflow','reference',lambda:(require(uint(str(U64))==U64),rejects(lambda:uint(U64+1)),rejects(lambda:uint('01')),rejects(lambda:uint(True))))
+check('txn-native-etcdctl-json-success','reference',lambda:require(write_model(W)=='SUCCESS'))
+check('txn-empty-compare-failure','reference',lambda:require(write_model({'header':H})=='COMPARE_FALSE'))
+for name,mut in [('no-put',lambda x:x.update(responses=[])),('gateway-dialect',lambda x:x.update(responses=[{'response_put':{'header':{'revision':9}}}])),('wrong-cluster',lambda x:x['header'].update(cluster_id=1)),('mismatch-inner-revision',lambda x:x['responses'][0]['Response']['ResponsePut']['header'].update(revision=8)),('extra-operation',lambda x:x['responses'].append(copy.deepcopy(x['responses'][0]))),('error',lambda x:x.update(error='failure'))]:
+    def badwrite(m=mut):x=copy.deepcopy(W);m(x);require(write_model(x)=='UNKNOWN')
+    check('txn-unknown-'+name,'reference',badwrite)
+def retained(points,minimum,span):
+    if not points:return False
+    unique={p:min(t for q,t in points if q==p) for p,_ in points}
+    return len(unique)>=minimum and max(unique.values())-min(unique.values())>=span
+check('retention-distinct-data-positions','reference',lambda:require(not retained([(30,103),(30,104)],2,0)))
+check('retention-copy-cannot-widen-history','reference',lambda:require(not retained([(10,100),(10,200),(20,102)],2,10)))
+check('retention-minimum-time-coverage','reference',lambda:(require(not retained([(30,103),(40,104)],2,2)),require(retained([(30,103),(40,104)],2,1))))
+for i in (1,2,3):check(f'node-signature-{i}','crypto',lambda i=i:verified(f'node-{i}.bin',f'node-{i}.sig'))
+check('independent-fence-signature','crypto',lambda:verified('fence-1.bin','fence-1.sig'))
+for name,sig in [('wrong-domain','wrong-domain.sig'),('wrong-role','wrong-role.sig')]:check(name,'crypto',lambda sig=sig:crypto_reject('node-1.bin',sig))
+for name in ('evidence-reserved.bin','evidence-boolean.bin'):
+    check('signed-noncanonical-'+name,'crypto',lambda n=name:crypto_reject(n,n+'.sig'))
+check('signature-valid-stale-guard-denied','crypto',lambda:rejects(lambda:observe(empty(),verified('old-guard-evidence.bin','old-guard-evidence.sig'),200)))
+check('policy-reserved-rehashed','reference',lambda:rejects(lambda:policy((F/'policy-reserved.bin').read_bytes())))
+
+def filesystem_probe():
+    with tempfile.TemporaryDirectory(prefix='mc-local-probe-') as d:
+        os.chmod(d,0o700);p=Path(d);fd=os.open(p/'lock',os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+        try:
+            fcntl.flock(fd,fcntl.LOCK_EX|fcntl.LOCK_NB)
+            second=os.open(p/'lock',os.O_RDWR|os.O_NOFOLLOW)
+            try:
+                try:fcntl.flock(second,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                except BlockingIOError:pass
+                else:raise AssertionError('lock unexpectedly granted')
+            finally:os.close(second)
+            out=os.open(p/'candidate',os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+            os.write(out,b'candidate');os.fsync(out);os.close(out);os.rename(p/'candidate',p/'active')
+            directory=os.open(p,os.O_RDONLY|os.O_DIRECTORY);os.fsync(directory);os.close(directory)
+            require((p/'active').read_bytes()==b'candidate')
+        finally:os.close(fd)
+check('temporary-flock-rename-fsync-probe-no-powercut','linux_probe',filesystem_probe)
+meta=json.loads((F/'vectors.json').read_text())
+check('fixture-digests','source_data',lambda:require(all(sha((F/name).read_bytes()).hex()==value for name,value in meta['files'].items())))
+check('fixture-current-contract-profile','source_data',lambda:require(P['contract'].hex()==(ROOT/'assurance/contract-profile.hex').read_text().strip()))
+result={"kind":"INDEPENDENT_REFERENCE_AND_FIXTURE_CHECKS","ada_executed":False,"gnatprove_run":False,"live_etcd":False,"powercut_test":False,"counts":{g:sum(x['group']==g for x in report) for g in sorted({x['group'] for x in report})},"passed":sum(x['status']=='PASS' for x in report),"failed":sum(x['status']=='FAIL' for x in report),"checks":report}
+OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k!='checks'}));sys.exit(bool(result['failed']))

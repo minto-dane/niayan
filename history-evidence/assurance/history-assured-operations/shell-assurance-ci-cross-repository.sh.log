@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mcore-harden-work/assurance/ci/cross-repository.sh
+
+exit=0

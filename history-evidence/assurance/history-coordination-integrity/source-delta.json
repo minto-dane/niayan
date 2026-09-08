@@ -1,0 +1,32 @@
+{
+  "basis": "relative .ads/.adb excluding vendor/evidence; includes tests and generated source",
+  "files": 288,
+  "lines": 15854,
+  "added": [
+    "assurance/runtime/mc_stop_barrier_auth.adb",
+    "assurance/runtime/mc_stop_barrier_auth.ads",
+    "assurance/src/mc_stop_barrier.adb",
+    "assurance/src/mc_stop_barrier.ads",
+    "assurance/tests/run_stop_barrier_tests.adb",
+    "assurance/tests/run_stop_vector_tests.adb",
+    "pkgcore/runtime/pkg_quiescent_engine.adb",
+    "pkgcore/runtime/pkg_quiescent_engine.ads",
+    "statecore/runtime/state_barrier_store.adb",
+    "statecore/runtime/state_barrier_store.ads",
+    "statecore/src/state_etcd_wire.adb",
+    "statecore/src/state_etcd_wire.ads",
+    "statecore/tests/run_etcd_wire_tests.adb"
+  ],
+  "changed": [
+    "assurance/app/contract_lock.adb",
+    "assurance/app/contract_lock.ads",
+    "assurance/runtime/mc_cli.adb",
+    "assurance/src/mc_contract_profile.ads",
+    "pkgcore/src/pkg_retention_batch.adb",
+    "pkgcore/src/pkg_retention_batch.ads",
+    "pkgcore/tests/run_retention_batch_tests.adb",
+    "statecore/runtime/state_etcd.adb",
+    "statecore/runtime/state_etcd.ads"
+  ],
+  "removed": []
+}

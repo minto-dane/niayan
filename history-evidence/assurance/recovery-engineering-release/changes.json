@@ -1,0 +1,27 @@
+{
+  "baseline": "mission-core-distro-foundation-source-2026-09-06.zip",
+  "baseline_sha256": "453605ac25ddc350ebb5e50c9b449d7a2346c1bca09ecef3df69ffd48d24e22e",
+  "added_ada": [
+    "assurance/tests/run_recovery_storage_tests.adb",
+    "pkgcore/app/pkg_recoveryctl.adb",
+    "pkgcore/runtime/pkg_recovery_audit.adb",
+    "pkgcore/runtime/pkg_recovery_audit.ads",
+    "pkgcore/src/pkg_file_replay.adb",
+    "pkgcore/src/pkg_file_replay.ads",
+    "pkgcore/tests/run_file_replay_tests.adb"
+  ],
+  "changed_ada": [
+    "assurance/app/contract_lock.adb",
+    "assurance/runtime/mc_atomic.adb",
+    "assurance/runtime/mc_fs.adb",
+    "assurance/runtime/mc_fs.ads",
+    "assurance/runtime/mc_log.adb",
+    "assurance/runtime/mc_log.ads",
+    "assurance/runtime/mc_store.adb",
+    "assurance/src/mc_contract_profile.ads",
+    "pkgcore/runtime/pkg_file_engine.adb",
+    "pkgcore/src/pkg_file_plan.adb",
+    "pkgcore/tests/run_file_engine_tests.adb"
+  ],
+  "removed_ada": []
+}

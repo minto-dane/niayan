@@ -1,0 +1,26 @@
+name: Workspace validation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Build pinned Debian development environment
+        run: docker build -f dev/Containerfile -t niaos-dev .
+      - name: Compile, link and test as the checkout owner
+        run: |
+          docker run --rm --network=none --user "$(id -u):$(id -g)" \
+            -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus reproducible
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: integration-evidence
+          path: |
+            assurance/evidence/engineering-*/
+            assurance/evidence/reproducibility-*/

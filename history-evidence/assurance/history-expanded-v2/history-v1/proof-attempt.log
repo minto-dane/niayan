@@ -1,0 +1,40 @@
+$ make prove
+exit=2
+cd . && sha256sum --check contracts.source.sha256
+runtime/mc_cli.adb: OK
+runtime/mc_cli.ads: OK
+runtime/mc_durable.adb: OK
+runtime/mc_durable.ads: OK
+runtime/mc_file_io.adb: OK
+runtime/mc_file_io.ads: OK
+runtime/mc_ingress.adb: OK
+runtime/mc_ingress.ads: OK
+runtime/mc_signatures.adb: OK
+runtime/mc_signatures.ads: OK
+src/mc_authorization.adb: OK
+src/mc_authorization.ads: OK
+src/mc_codec.adb: OK
+src/mc_codec.ads: OK
+src/mc_compatibility.adb: OK
+src/mc_compatibility.ads: OK
+src/mc_golden.adb: OK
+src/mc_golden.ads: OK
+src/mc_hex.adb: OK
+src/mc_hex.ads: OK
+src/mc_paths.adb: OK
+src/mc_paths.ads: OK
+src/mc_protocol.adb: OK
+src/mc_protocol.ads: OK
+src/mc_release.adb: OK
+src/mc_release.ads: OK
+src/mc_replay.adb: OK
+src/mc_replay.ads: OK
+src/mc_requests.adb: OK
+src/mc_requests.ads: OK
+src/mc_sha256.adb: OK
+src/mc_sha256.ads: OK
+src/mc_types.adb: OK
+src/mc_types.ads: OK
+GNATprove missing; proof NOT RUN
+make: *** [Makefile:24: prove] Error 78
+

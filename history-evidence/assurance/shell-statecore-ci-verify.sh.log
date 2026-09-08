@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-distro/work/statecore/ci/verify.sh
+
+exit=0

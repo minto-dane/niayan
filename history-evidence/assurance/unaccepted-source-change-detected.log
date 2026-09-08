@@ -1,0 +1,4 @@
+candidate_shared_profile=ec3ea8b8825a0995167b3f140feda6039c2007436527d2a23a6062da05b0a06f
+source_only_check=true; runtime_or_proof_qualification=false
+
+exit=1

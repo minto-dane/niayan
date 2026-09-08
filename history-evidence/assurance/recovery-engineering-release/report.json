@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "edition": "recovery-engineering-source-2026-09-06",
+  "created_utc": "2026-09-06T20:05:02.497099+00:00",
+  "input_archive": "mission-core-distro-foundation-source-2026-09-06.zip",
+  "input_sha256": "453605ac25ddc350ebb5e50c9b449d7a2346c1bca09ecef3df69ffd48d24e22e",
+  "source_subject": "bb1f97e34ceb743adce2012fcdfebd23673ed42b719c48fe13d376844f452ee7",
+  "shared_contract_profile": "11d93fa63ac31d5db9c885c961d00324f6a1f489b627b6b63a5a6f4c3d6ad940",
+  "source_run": "engineering-hft01u2a/report.json",
+  "results": {
+    "python_development_and_reference_tests": {
+      "passed": 60,
+      "failed": 0,
+      "scope": "Python tooling and finite reference only, NOT Ada"
+    },
+    "syntax_only": {
+      "passed": 18,
+      "failed": 0
+    },
+    "local_document_links": {
+      "passed": 385,
+      "failed": 0
+    },
+    "three_repository_contract_checks": {
+      "passed": 3,
+      "failed": 0
+    },
+    "traceability": {
+      "format": 1,
+      "checks": "traceability-and-source-inventory",
+      "result": "pass",
+      "requirements": 32,
+      "decisions": 20,
+      "hazards": 18,
+      "fault_cases": 26,
+      "canonical_ada_files": 276,
+      "registered_ada_tests": 33,
+      "source_subject": "bb1f97e34ceb743adce2012fcdfebd23673ed42b719c48fe13d376844f452ee7",
+      "ada_executed": false,
+      "formal_proof": false,
+      "production_approval": false
+    }
+  },
+  "ada_compile": "NOT_RUN",
+  "ada_execution": "NOT_RUN",
+  "gnatprove_flow": "NOT_RUN",
+  "gnatprove_proof": "NOT_RUN",
+  "hardware_power_cut": "NOT_RUN",
+  "real_cluster_partition": "NOT_RUN",
+  "production_qualified": false,
+  "inventory": {
+    "new_adr": 20,
+    "requirements": 32,
+    "hazards": 18,
+    "fault_scenarios_planned_not_run": 26,
+    "runbooks": 12,
+    "registered_ada_test_mains": 33,
+    "canonical_ada_src_runtime_app": 276,
+    "added_ada_files_including_tests": 7,
+    "changed_ada_files_including_generated": 11
+  },
+  "limits": [
+    "No full host/RPMDB ownership integration",
+    "No globally atomic or serializable OS/cluster transaction",
+    "Site authorization, independent observation/anchor, physical fencing, application backup/restore, boot integration remain partial",
+    "SPARK source contracts are not completed proofs; runtime I/O is SPARK_Mode Off",
+    "Read-only recovery audit does not inspect live payload/recovery blobs/authentication/quiescence"
+  ]
+}

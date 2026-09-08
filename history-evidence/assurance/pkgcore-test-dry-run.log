@@ -1,0 +1,14 @@
+$ make -n test
+command -v gprbuild >/dev/null || { echo 'gprbuild is required; NOT QUALIFIED' >&2; exit 78; }
+./ci/check-contract.sh
+gprbuild -p -P tests.gpr
+./build/test-bin/run_composition_tests
+./build/test-bin/run_pkg_tests
+./build/test-bin/run_rpm_tests
+./ci/journal-test.sh
+./build/test-bin/run_v2_pkg_tests
+./ci/file-engine-test.sh
+./build/test-bin/run_repair_tests
+./build/test-bin/run_retention_batch_tests
+
+exit=0

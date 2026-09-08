@@ -1,0 +1,349 @@
+{
+  "kind": "SOURCE_AND_BUILD_ENTRY_CHECKS",
+  "compiler_passed": false,
+  "proof_passed": false,
+  "passed": 62,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "assurance-shared-manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-dry-run-compile-all",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-dry-run-test",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-dry-run-flow",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-dry-run-prove",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-tamper",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-missing",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-extra",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-symlink",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-manifest-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-reject-socket",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-shared-manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-dry-run-compile-all",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-dry-run-test",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-dry-run-flow",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-dry-run-prove",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-tamper",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-missing",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-extra",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-symlink",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-manifest-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-reject-socket",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-shared-manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-dry-run-compile-all",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-dry-run-test",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-dry-run-flow",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-dry-run-prove",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-tamper",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-missing",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-extra",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-symlink",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-manifest-fifo",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-reject-socket",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-assurance/ci/check-contract.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-assurance/ci/control-io-test.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-assurance/ci/cross-repository.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-assurance/ci/verify.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-pkgcore/ci/check-contract.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-pkgcore/ci/file-engine-test.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-pkgcore/ci/journal-test.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-pkgcore/ci/verify.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-statecore/ci/check-contract.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-statecore/ci/healing-io-test.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "shell-statecore/ci/verify.sh",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-gpr-main-files-present",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-gpr-main-files-present",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-gpr-main-files-present",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-hash-definition",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-same-profile",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-same-profile",
+      "status": "PASS"
+    },
+    {
+      "name": "actual-etcd-adapter-calls-strict-codec-and-builder",
+      "status": "PASS"
+    },
+    {
+      "name": "guard-atomic-request-construction",
+      "status": "PASS"
+    },
+    {
+      "name": "native-etcdctl-not-gateway-oneof",
+      "status": "PASS"
+    },
+    {
+      "name": "barrier-store-live-signature-and-cas",
+      "status": "PASS"
+    },
+    {
+      "name": "quiescent-package-wrapper-uses-real-engine",
+      "status": "PASS"
+    },
+    {
+      "name": "quiescent-package-wrapper-rechecks-after-observation",
+      "status": "PASS"
+    },
+    {
+      "name": "old-unauthenticated-entry-remains-refused",
+      "status": "PASS"
+    },
+    {
+      "name": "new-vector-mains-and-cross-executable-calls",
+      "status": "PASS"
+    },
+    {
+      "name": "no-new-project-install-target",
+      "status": "PASS"
+    }
+  ],
+  "unexecuted_build_and_proof_attempts": [
+    {
+      "repo": "assurance",
+      "target": "compile-all",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "assurance-compile-all-attempt.log"
+    },
+    {
+      "repo": "assurance",
+      "target": "test",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "assurance-test-attempt.log"
+    },
+    {
+      "repo": "assurance",
+      "target": "flow",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "assurance-flow-attempt.log"
+    },
+    {
+      "repo": "assurance",
+      "target": "prove",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "assurance-prove-attempt.log"
+    },
+    {
+      "repo": "pkgcore",
+      "target": "compile-all",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "pkgcore-compile-all-attempt.log"
+    },
+    {
+      "repo": "pkgcore",
+      "target": "test",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "pkgcore-test-attempt.log"
+    },
+    {
+      "repo": "pkgcore",
+      "target": "flow",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "pkgcore-flow-attempt.log"
+    },
+    {
+      "repo": "pkgcore",
+      "target": "prove",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "pkgcore-prove-attempt.log"
+    },
+    {
+      "repo": "statecore",
+      "target": "compile-all",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "statecore-compile-all-attempt.log"
+    },
+    {
+      "repo": "statecore",
+      "target": "test",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "statecore-test-attempt.log"
+    },
+    {
+      "repo": "statecore",
+      "target": "flow",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "statecore-flow-attempt.log"
+    },
+    {
+      "repo": "statecore",
+      "target": "prove",
+      "exit": 2,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "statecore-prove-attempt.log"
+    },
+    {
+      "target": "Ada frontend",
+      "exit": 1,
+      "status": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+      "log": "ada-frontend-attempt.log"
+    }
+  ]
+}

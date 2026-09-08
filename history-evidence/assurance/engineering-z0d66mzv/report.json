@@ -1,0 +1,231 @@
+{
+  "format": 1,
+  "mode": "source",
+  "created_utc": "2026-09-06T23:32:39.733763+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-w5_h6ixf",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 8828,
+      "seconds": 4.727,
+      "log_sha256": "3424492decbf1863f55730ae8735b376ea78766c6219c6336246cb3d9cf4961e",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "controlcore/tests/reference",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4879,
+      "seconds": 0.603,
+      "log_sha256": "6da559879077988c823a858d482045b172362cf400fb55c1a18465ee2fdbcba3",
+      "name": "manager-reference-tests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "configcore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3229,
+      "seconds": 0.64,
+      "log_sha256": "5f930b1b51ce5c23c4ae0e8bf8301ba588b3a1112496d1140b2de01b3e8aefa9",
+      "name": "configuration-reference-tests",
+      "layer": "reference-and-limited-native-probe"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "distribution/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4184,
+      "seconds": 0.767,
+      "log_sha256": "220f83616046d92083e88c516137d8d9d4a8ce3d4f0ee9ca837ae8a937a38811",
+      "name": "distribution-tool-tests",
+      "layer": "actual-build-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/unified-audit.py"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 162018,
+      "seconds": 0.671,
+      "log_sha256": "6457be03e1bb28f577be20ad93b23237c0c0ebace330dbc41c3caebc58c87291",
+      "name": "unified-architecture-audit",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 121559,
+      "seconds": 0.768,
+      "log_sha256": "84487442c2ad6c2e74740f2d4573598082c185ba81d0977b27e18f9208d9908f",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.018,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.019,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "statecore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "controlcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/configcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "configcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/manager-profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-suse-config/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 129,
+      "seconds": 0.633,
+      "log_sha256": "74b21976046f2f119058122d9f76174892c0c0ec39e925252b2ff3c4bb1f6c35",
+      "name": "manager-implementation-profile",
+      "layer": "source"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "faaaac3df60883d231956ec1a46e9b41db329f4302f45bfcbae32b807c8866fa",
+  "source_subject_after": "faaaac3df60883d231956ec1a46e9b41db329f4302f45bfcbae32b807c8866fa",
+  "result": "pass-for-requested-layer-only",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-06T23:32:48.921207+00:00"
+}

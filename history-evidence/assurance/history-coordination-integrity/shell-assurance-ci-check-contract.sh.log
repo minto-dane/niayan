@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-coordination/assurance/ci/check-contract.sh
+
+exit=0

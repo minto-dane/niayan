@@ -1,0 +1,3 @@
+$ /usr/bin/systemd-analyze --man=no verify /mnt/data/mission-core-distro/work/assurance/fixtures/systemd/mission-profile-syntax.service
+
+exit=0

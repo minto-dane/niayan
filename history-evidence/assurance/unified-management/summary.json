@@ -1,0 +1,38 @@
+{
+  "format": 1,
+  "edition": "unified-management-2026-09-06",
+  "created_utc": "2026-09-06T22:22:59.197329+00:00",
+  "production_qualified": false,
+  "ada_execution": "not-run",
+  "gnatprove": "not-run",
+  "rpmbuild": "not-run",
+  "source_subject": "5e62a3f48b234266b37f91cf4ea38db685fa81ab0e17e7da46941021cd4d432f",
+  "source_run_report": "assurance/evidence/engineering-becdv8lt/report.json",
+  "python_engineering_tests": 74,
+  "python_manager_reference_tests": 44,
+  "test_scope": "Python tooling, independent finite/reference calculations, artificial Ed25519 fixtures and isolated filesystem operations; NOT Ada implementation execution",
+  "source_run_result": "pass-for-requested-layer-only",
+  "repositories": [
+    "assurance",
+    "pkgcore",
+    "statecore",
+    "controlcore"
+  ],
+  "limits": {
+    "maximum_plan_steps": 64,
+    "maximum_retained_workflows": 128,
+    "maximum_manager_log_records": 65536
+  },
+  "remaining_major_integration": [
+    "native RPMDB and host / ownership",
+    "all RPM scriptlet/trigger semantics",
+    "ISO installer and secure boot writer",
+    "remote fleet transport and HA manager election",
+    "physical fencing/data ownership enforcement",
+    "qualified site observers",
+    "real DB backup/restore/migration backends",
+    "independent manager anti-rollback anchor",
+    "safe whole-store compaction/GC",
+    "target power-loss/partition/recovery qualification"
+  ]
+}

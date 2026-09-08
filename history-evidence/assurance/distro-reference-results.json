@@ -1,0 +1,178 @@
+{
+  "kind": "DISTRO_INDEPENDENT_REFERENCE_AND_FIXTURE_CHECKS",
+  "ada_executed": false,
+  "gnatprove_run": false,
+  "network_changed": false,
+  "firmware_changed": false,
+  "live_cluster": false,
+  "passed": 32,
+  "failed": 0,
+  "counts": {
+    "crypto_fixture": 8,
+    "linux_readonly": 3,
+    "reference": 20,
+    "source_data": 1
+  },
+  "checks": [
+    {
+      "name": "all-31-synthetic-signatures-and-exact-subjects",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "expired-and-not-yet-valid-claims",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "different-binaries-source-platform-policy-contract",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "missing-any-required-claim-is-not-qualified",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "authority-domains-and-principals-independent",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong-role-and-untrusted-key",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "qualification-lifetime-is-bounded",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "rehashed-reserved-unknown-item-and-wrong-size",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "qualification-domain-separation",
+      "group": "crypto_fixture",
+      "status": "PASS"
+    },
+    {
+      "name": "qualification-fixture-manifest-and-current-profile",
+      "group": "source_data",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-stop-golden-state-reconstruction",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "host-all-required-unknown-or-violated-denied",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "host-probe-alone-cannot-authorize-and-does-not-stop-service",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "service-closure-ordering-and-cycles",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "budgets-preserve-host-reserve-no-overflow",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "unit-executable-rejects-shell-specifiers-parent-components",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "network-cannot-apply-before-checkpoint",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "pending-external-actions-not-repeated-after-lost-response",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-samples-dwell-and-correlated-commit",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "negative-observation-invalidates-stability-including-commit-pending",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "network-stale-receiver-sequence-and-backward-clock",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "network-sample-gap-and-checkpoint-expiry",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "checkpoint-loss-cannot-invent-restoration",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "abstract-crash-prefix-never-dispatches-before-durable-anchor",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "network-canonical-reserved-range-and-phase",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "boot-needs-same-instance-and-explicit-unexpired-evidence",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "boot-untrusted-fallback-is-sticky-hold",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "complete-exact-artifact-cohort",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "missing-boot-parts-foreign-cohorts-and-uncovered-effects-denied",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "real-procfs-zero-st_size-nonempty-boot-id",
+      "group": "linux_readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "real-openat2-fixed-path-bounded-eof-extra-byte",
+      "group": "linux_readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "real-read-only-observation-not-host-authorization",
+      "group": "linux_readonly",
+      "status": "PASS"
+    }
+  ]
+}

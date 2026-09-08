@@ -1,0 +1,315 @@
+{
+  "format": 1,
+  "mode": "proof",
+  "created_utc": "2026-09-07T03:09:09.677575+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-xibn36ed",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 8826,
+      "seconds": 5.015,
+      "log_sha256": "27bb53104cc036ffdf1ad9cbd6730984274b09a50e1d6a1ea40aad26e07f2ad8",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "controlcore/tests/reference",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4879,
+      "seconds": 0.674,
+      "log_sha256": "80a06539e85ee89862218d3df632db6c4b490556d45027ee504ed11bc6ba82db",
+      "name": "manager-reference-tests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "configcore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3229,
+      "seconds": 0.649,
+      "log_sha256": "db566a2a9fbb5ce7aaf8c8db4adcda991361b550c695adf74de56083c7aef25b",
+      "name": "configuration-reference-tests",
+      "layer": "reference-and-limited-native-probe"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "resolvercore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 5949,
+      "seconds": 0.697,
+      "log_sha256": "21618cd71ed5c30e70e9ba69010883056382e547d0561d496e48c831a27fe018",
+      "name": "resolution-reference-tests",
+      "layer": "reference-and-untrusted-proposal-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 146,
+      "seconds": 0.686,
+      "log_sha256": "8da6b4ad4a01820b0fb0725218407ed2381d484ac6a8d3353d57098c545b4da6",
+      "name": "resolver-source-profile",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/check-neutral.py"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 1527,
+      "seconds": 0.661,
+      "log_sha256": "9924a0e4760c31c44af6d27b6aeb0921e82fce58ec82e233c686c8eaa7aad157",
+      "name": "resolver-neutral-boundary",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/check-resolver.py"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 124,
+      "seconds": 0.643,
+      "log_sha256": "e196e6e8df6f3edb40e4bfcc582d86e93b04f295b306fa3556b3402602e82d88",
+      "name": "native-resolver-lock",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "distribution/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4525,
+      "seconds": 0.772,
+      "log_sha256": "f0d22b7987827f157a56e4c4270760bcd698e605e4325a02fc1bc9e46db2da76",
+      "name": "distribution-tool-tests",
+      "layer": "actual-build-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/unified-audit.py"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 177582,
+      "seconds": 0.78,
+      "log_sha256": "fb7df8a452f6886e7b35c38884f0ebe6434a7a84b470007b085f7be739c0679c",
+      "name": "unified-architecture-audit",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 132285,
+      "seconds": 0.732,
+      "log_sha256": "262547c3db45c09e78dddc512302d8a4c283d33de44e251978a0465e0c3ecc51",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.016,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.016,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.015,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "statecore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.015,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "controlcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/configcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.015,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "configcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.016,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "resolvercore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/manager-profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-qualified-build-work/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 129,
+      "seconds": 0.642,
+      "log_sha256": "7ff69c872238a035ecfd571ae815856c66978836a62fc71bbc1490637c79ffb0",
+      "name": "manager-implementation-profile",
+      "layer": "source"
+    },
+    {
+      "name": "gnatprove",
+      "result": "not-run",
+      "layer": "proof",
+      "reason": "GNATprove unavailable"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "9a8191a9b983affb880b43d38258b1b5525e7d6ea20cc57f92d5ca391c9a99ab",
+  "source_subject_after": "9a8191a9b983affb880b43d38258b1b5525e7d6ea20cc57f92d5ca391c9a99ab",
+  "result": "incomplete-or-failed",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-07T03:09:22.102863+00:00"
+}

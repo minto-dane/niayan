@@ -1,0 +1,121 @@
+{
+  "edition": "assured-operations-2026-09-06",
+  "ada_executed": false,
+  "gnatprove_executed": false,
+  "scope": "independent Python specification calculations, Ed25519 fixtures and isolated Linux syscall probes; NOT Ada tests, crash persistence proof or qualification",
+  "tests": [
+    {
+      "name": "canonical-frame-widths",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "canonical-frame-hashes",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "two-independent-ed25519-signatures",
+      "kind": "crypto-reference",
+      "result": "PASS"
+    },
+    {
+      "name": "domain-substitution-refused",
+      "kind": "crypto-reference",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong-role-key-refused",
+      "kind": "crypto-reference",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered-proposal-refused",
+      "kind": "crypto-reference",
+      "result": "PASS"
+    },
+    {
+      "name": "reserved-fields-refused-despite-rehashed-frame",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "truncation-refused",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "latch-all-nine-transitions-and-negative-approvals",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "interlock-27-operation-cells",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "checkpoint-six-durable-cut-reference-states",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "checkpoint-no-replay-or-trust-regression",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "backup-chain-closure-cycle-gap-lineage",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "retention-whole-batch-not-independent-items",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "bounded-wallclock-conservative-acceptance",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "disaster-old-writers-epoch-cache-revision-guards",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "etcd-double-base64-previous-and-new-boundaries",
+      "kind": "reference",
+      "result": "PASS"
+    },
+    {
+      "name": "linux-noreplace-conflict-staging-cleanup",
+      "kind": "linux-probe",
+      "result": "PASS"
+    },
+    {
+      "name": "linux-exclusive-lock-second-process-denied",
+      "kind": "linux-probe",
+      "result": "PASS"
+    },
+    {
+      "name": "linux-final-symlink-nofollow-denied",
+      "kind": "linux-probe",
+      "result": "PASS"
+    },
+    {
+      "name": "linux-private-file-and-directory-fsync",
+      "kind": "linux-probe",
+      "result": "PASS"
+    }
+  ],
+  "counts": {
+    "crypto-reference": 4,
+    "linux-probe": 4,
+    "reference": 13
+  },
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "harness_sha256": "be447fa06d1903f1da614255285033c44f6508dad2293231917b414a97f32176",
+  "probe_directory": "/mnt/data/mcore-tools/mcore-isolated-probes-2yaj6lm6"
+}

@@ -1,0 +1,14 @@
+{
+  "edition": "assured-operations-source-2026-09-06",
+  "source_set_sha256": "158364739bf70354ceea8387b9434eb87c3fb9cd3e0e8ecd50762da675931648",
+  "source_files": 617,
+  "shared_contract_files": 104,
+  "verified_by_gnatprove": false,
+  "ada_compiled": false,
+  "ada_tests_executed": false,
+  "production_qualified": false,
+  "independent_reference_crypto_checks": 17,
+  "isolated_linux_probes": 4,
+  "source_and_entry_checks": 46,
+  "distribution_integrity_is_not_signature_or_provenance": true
+}

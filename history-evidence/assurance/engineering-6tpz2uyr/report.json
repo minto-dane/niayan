@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "mode": "source",
+  "created_utc": "2026-09-06T20:00:57.601312+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-_otayz1o",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 7332,
+      "seconds": 3.992,
+      "log_sha256": "f53a3d693854494bedd47862a9a472c97ccbdfe41241e6fd6457dd921e10c952",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.017,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.014,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.014,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "statecore-contract",
+      "layer": "source"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "91ce334e8ba11cc178e5bde5f85374c30c13c3f3987d2d926efb1ffb1d06bb8c",
+  "source_subject_after": "91ce334e8ba11cc178e5bde5f85374c30c13c3f3987d2d926efb1ffb1d06bb8c",
+  "result": "pass-for-requested-layer-only",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-06T20:01:01.807212+00:00"
+}

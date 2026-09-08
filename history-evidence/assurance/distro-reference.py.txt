@@ -1,0 +1,265 @@
+"""Independent reference/fixture and read-only Linux checks, NOT Ada execution.
+No host settings, services, network or firmware are changed.
+Usage: python3 distro-reference.py.txt SOURCE_ROOT OUTPUT_JSON
+"""
+from pathlib import Path
+import copy,ctypes,errno,hashlib,itertools,json,os,platform,re,struct,sys,uuid
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+R=Path(sys.argv[1]).resolve(); OUT=Path(sys.argv[2]).resolve(); checks=[]
+sha=lambda x:hashlib.sha256(x).digest(); U63=2**63-1
+
+def require(v):
+    if not v:raise AssertionError('condition not met')
+def rejects(fn):
+    try:fn()
+    except (AssertionError,ValueError,KeyError,IndexError):return
+    raise AssertionError('unexpected acceptance')
+def check(name,group,fn):
+    try:fn();checks.append(dict(name=name,group=group,status='PASS'))
+    except Exception as e:checks.append(dict(name=name,group=group,status='FAIL',error=repr(e)))
+def tagged(domain,data):return len(domain).to_bytes(2,'big')+domain+data
+def u(b,p):return int.from_bytes(b[p:p+8],'big')
+
+def decode_claim(b,nitems):
+    require(len(b)==320 and b[:8]==b'MCQUAL01' and b[8]<nitems and b[9]<3)
+    require(b[10:16]==b'\0'*6 and b[264:288]==b'\0'*24 and b[288:]==sha(b[:288]))
+    require(all(u(b,p)<=U63 for p in (240,248,256)))
+    return dict(item=b[8],result=b[9],issuer=b[16:48],source=b[48:80],binary=b[80:112],contract=b[112:144],platform=b[144:176],report=b[176:208],policy=b[208:240],before=u(b,240),expires=u(b,248),epoch=u(b,256))
+Q=R/'assurance/fixtures/qualification-v1'; meta=json.loads((Q/'vectors.json').read_text());items=meta['items'];profile=bytes.fromhex((R/'assurance/contract-profile.hex').read_text().strip())
+frames=[(Q/(name.lower()+'.bin')).read_bytes() for name in items];sigs=[(Q/(name.lower()+'.sig')).read_bytes() for name in items]
+claims=[decode_claim(b,len(items)) for b in frames]
+auth=[dict(key=(Q/(name+'.pub')).read_bytes(),principal=i+1,domain=i+1,role=name) for i,name in enumerate(['builder','reviewer','operator'])]
+subject=dict(source=b'\1'*32,binary=b'\2'*32,contract=profile,platform=b'\3'*32,policy=b'\4'*32)
+
+def qualification(bs=frames,ss=sigs,authorities=auth,now=100,expected=subject,maxlife=1000):
+    require(len(bs)==len(items)==len(ss));roles={}
+    for i,(b,sig) in enumerate(zip(bs,ss)):
+        c=decode_claim(b,len(items));require(c['item']==i and c['result']==2 and any(c['report']))
+        a=next((a for a in authorities if a['key']==c['issuer']),None);require(a is not None)
+        Ed25519PublicKey.from_public_bytes(a['key']).verify(sig,tagged(b'MISSION-CORE-QUALIFICATION-v1',b))
+        require(all(c[k]==v for k,v in expected.items()) and c['epoch']==1)
+        require(c['before']<=now<c['expires'] and 0<c['expires']-c['before']<=maxlife)
+        name=items[i]
+        role={'Compiler_Build':'builder','Independent_Review':'reviewer','Operational_Approval':'operator'}.get(name)
+        if role:require(a['role']==role);roles[role]=a
+    require(len(roles)==3 and len({a['principal'] for a in roles.values()})==3 and len({a['domain'] for a in roles.values()})==3)
+def denied_qualification(**kw):
+    try:qualification(**kw)
+    except Exception:return
+    raise AssertionError('unqualified subject accepted')
+check('all-31-synthetic-signatures-and-exact-subjects','crypto_fixture',qualification)
+check('expired-and-not-yet-valid-claims','crypto_fixture',lambda:(denied_qualification(now=1000),denied_qualification(now=9)))
+check('different-binaries-source-platform-policy-contract','crypto_fixture',lambda:[denied_qualification(expected={**subject,k:bytes([9])*32}) for k in subject])
+check('missing-any-required-claim-is-not-qualified','crypto_fixture',lambda:[denied_qualification(bs=frames[:i]+frames[i+1:],ss=sigs[:i]+sigs[i+1:]) for i in range(len(items))])
+check('authority-domains-and-principals-independent','crypto_fixture',lambda:(denied_qualification(authorities=[auth[0],{**auth[1],'domain':1},auth[2]]),denied_qualification(authorities=[auth[0],auth[1],{**auth[2],'principal':1}])))
+check('wrong-role-and-untrusted-key','crypto_fixture',lambda:(denied_qualification(authorities=[{**auth[0],'role':'operator'},auth[1],auth[2]]),denied_qualification(authorities=auth[1:])))
+check('qualification-lifetime-is-bounded','crypto_fixture',lambda:denied_qualification(maxlife=500))
+def noncanonical_claim():
+    b=bytearray(frames[0]);b[279]=1;b[288:]=sha(b[:288]);rejects(lambda:decode_claim(b,len(items)))
+    b=bytearray(frames[0]);b[8]=255;b[288:]=sha(b[:288]);rejects(lambda:decode_claim(b,len(items)))
+    for n in (0,319,321):rejects(lambda n=n:decode_claim((frames[0]+b'\0')[:n],len(items)))
+check('rehashed-reserved-unknown-item-and-wrong-size','reference',noncanonical_claim)
+def domain_separation():
+    try:Ed25519PublicKey.from_public_bytes(auth[0]['key']).verify(sigs[0],tagged(b'MISSION-CORE-STOP-ACK-v1',frames[0]))
+    except Exception:return
+    raise AssertionError('wrong domain accepted')
+check('qualification-domain-separation','crypto_fixture',domain_separation)
+check('qualification-fixture-manifest-and-current-profile','source_data',lambda:require(all(sha((Q/k).read_bytes()).hex()==v for k,v in meta['files'].items()) and meta['contract_profile']==profile.hex() and meta['production_qualification'] is False))
+
+# Independent stop-state construction, not mere self-hashing of a stored file.
+def stop_golden():
+    F=R/'assurance/fixtures/stop-v1';p=(F/'policy.bin').read_bytes();b=bytearray(4608);b[:8]=b'MCBARS01';b[8:40]=sha(p);b[40:88]=p[8:56]
+    for pos,value in [(88,4),(96,200)]:b[pos:pos+8]=value.to_bytes(8,'big')
+    b[104]=1;b[105]=3
+    for i in range(3):
+        e=(F/f'node-{i+1}.bin').read_bytes();o=256+i*128;b[o]=1
+        for dest,src in [(o+8,168),(o+24,176),(o+32,184),(o+104,216)]:b[dest:dest+8]=e[src:src+8]
+        b[o+40:o+72]=sha(e);b[o+72:o+104]=e[72:104];b[o+112:o+116]=e[240:244]
+    b[-32:]=sha(b[:-32]);require(b==(F/'sealed-state.bin').read_bytes())
+check('independent-stop-golden-state-reconstruction','reference',stop_golden)
+
+# Abstract tri-state host predicate; does not read production policy or attest host.
+def admit(facts,required,context,op):
+    if op in ('inspect','continue'):return True,False
+    return context and all(facts.get(k)=='SATISFIED' for k in required),context
+check('host-all-required-unknown-or-violated-denied','reference',lambda:[require(not admit({j:('SATISFIED' if j!=i else value) for j in range(32)},set(range(32)),True,'write')[0]) for i in range(32) for value in ('UNKNOWN','VIOLATED')])
+check('host-probe-alone-cannot-authorize-and-does-not-stop-service','reference',lambda:(require(not admit({i:'SATISFIED' for i in range(32)},set(range(32)),False,'write')[0]),require(admit({},set(),False,'continue')==(True,False))))
+
+# Service closure/order/resource invariants at fixed catalogue scale.
+def sort_services(n,req,after,selected):
+    result=[];pending=set(selected)
+    while pending:
+        free=sorted(i for i in pending if not ((req[i]|after[i])&pending))
+        require(free)
+        for i in free:pending.remove(i);result.append(i)
+    return result
+def closure(selected,edges):
+    s=set(selected)
+    for _ in range(len(edges)):
+        s|=set().union(*(edges[i] for i in list(s))) if s else set()
+    return s
+
+def graph_test():
+    req=[set(),{0},{1},set()];aft=[set(),set(),set(),{2}]
+    chosen=closure({2},req);require(chosen=={0,1,2})
+    order=sort_services(4,req,aft,chosen);require(order==[0,1,2] and list(reversed(order))==[2,1,0])
+    require(closure({3},req)=={3}) # ordering is not hard dependency
+    req[0]={2};rejects(lambda:sort_services(4,req,aft,{0,1,2}))
+check('service-closure-ordering-and-cycles','reference',graph_test)
+def budget(cap,res,amounts):
+    require(0<=res<cap<=U63);left=cap-res
+    for x in amounts:require(0<x<=left);left-=x
+    return left
+check('budgets-preserve-host-reserve-no-overflow','reference',lambda:(require(budget(U63,1,[U63-2])==1),rejects(lambda:budget(100,10,[50,41])),rejects(lambda:budget(U63,1,[U63-1,1]))))
+def path_allowed(p):
+    return 2<=len(p)<=512 and p[0]=='/' and not p.endswith('/') and re.fullmatch(r'[a-zA-Z0-9/_\-.]+',p) and all(c not in ('','.','..') and not c.startswith('..') for c in p.split('/')[1:])
+check('unit-executable-rejects-shell-specifiers-parent-components','reference',lambda:require(all(not path_allowed(p) for p in ('/usr/bin/%n','/usr/bin/x\nExecStart=/x','/usr/bin/../foo','/usr//bin/x','/usr/bin/a b','/usr/bin/$SHELL')) and path_allowed('/usr/bin/true')))
+
+# Independent bounded network transition model (no NetworkManager execution).
+def net_initial():return dict(phase='prepared',revision=0,seq=0,last=0,op=0,effect_at=0,expiry=900,samples=0,last_sample=0,since=0)
+def net(s,event,now,seq=None,healthy=True,armed=True,correlated=True):
+    t=copy.deepcopy(s);require(now>=s['last'] and s['revision']<U63);seq=seq or s['seq']+1;require(seq>s['seq']);effect=None
+    require(s['phase'] not in ('committed','restored'))
+    if event=='create':require(s['phase']=='prepared' and now<990);t['phase']='checkpoint_pending';effect='create'
+    elif event=='checkpoint':require(s['phase']=='checkpoint_pending' and correlated and armed and now<890);t['phase']='checkpoint_ready'
+    elif event=='apply':require(s['phase']=='checkpoint_ready' and armed and s['expiry']-now>10 and s['expiry']-now-10>=20);t['phase']='apply_pending';effect='apply'
+    elif event=='applied':require(s['phase']=='apply_pending' and correlated and now<s['expiry']);t['phase']='verifying';t['samples']=0
+    elif event=='path':
+        require(s['phase'] in ('verifying','commit_pending') and now>s['last_sample'] and now>=s['effect_at'] and now<s['expiry'])
+        if not healthy or not armed:
+            t.update(samples=0,last_sample=now,since=now)
+            if s['phase']=='commit_pending':t['phase']='reconcile'
+        else:
+            require(s['phase']=='verifying')
+            if s['samples']==0 or now-s['last_sample']>15:t.update(samples=1,since=now)
+            else:t['samples']=min(255,s['samples']+1)
+            t['last_sample']=now
+    elif event=='commit':
+        require(s['phase']=='verifying' and healthy and armed and s['samples']>=3 and now-s['last_sample']<=15 and s['last_sample']-s['since']>=20 and s['expiry']-now>10)
+        t['phase']='commit_pending';effect='destroy'
+    elif event=='committed':require(s['phase']=='commit_pending' and healthy and correlated);t['phase']='committed'
+    elif event in ('rollback','deadline'):
+        if event=='deadline':require(now>=s['expiry'])
+        if s['phase'] in ('commit_pending','checkpoint_pending','reconcile'):t['phase']='reconcile';t['samples']=0
+        else:require(s['phase'] in ('checkpoint_ready','apply_pending','verifying'));t['phase']='rollback_pending';effect='rollback';t['samples']=0
+    elif event=='restored':require(s['phase'] in ('rollback_pending','reconcile','apply_pending','verifying') and healthy and now>=s['effect_at']);t['phase']='restored'
+    else:raise AssertionError('unknown event')
+    if effect:t.update(op=s['revision']+1,effect_at=now)
+    t.update(revision=s['revision']+1,seq=seq,last=now);return t,effect
+def net_verifying():
+    s=net_initial()
+    for event,now in [('create',10),('checkpoint',20),('apply',30),('applied',40)]:s,_=net(s,event,now)
+    return s
+def net_healthy():
+    s=net_verifying()
+    for now in (50,60,70):s,_=net(s,'path',now)
+    return s
+check('network-cannot-apply-before-checkpoint','reference',lambda:rejects(lambda:net(net_initial(),'apply',10)))
+def no_replay():
+    s,e=net(net_initial(),'create',10);require(e=='create');rejects(lambda:net(s,'create',11))
+    s,e=net(net_healthy(),'commit',71)
+    require(e=='destroy');rejects(lambda:net(s,'commit',72));t,e=net(s,'deadline',1000);require(t['phase']=='reconcile' and e is None)
+check('pending-external-actions-not-repeated-after-lost-response','reference',no_replay)
+def confirmation():
+    s=net_verifying();rejects(lambda:net(s,'commit',41));s,_=net(s,'path',50);rejects(lambda:net(s,'commit',51))
+    s,_=net(s,'path',60);rejects(lambda:net(s,'commit',61));s,_=net(s,'path',70);s,e=net(s,'commit',71);require(e=='destroy');s,_=net(s,'committed',80);require(s['phase']=='committed')
+check('independent-samples-dwell-and-correlated-commit','reference',confirmation)
+def negative_path():
+    s=net_healthy();s,_=net(s,'path',71,healthy=False);require(s['samples']==0);rejects(lambda:net(s,'commit',72));s,_=net(s,'path',73);require(s['samples']==1)
+    s,_=net(net_healthy(),'commit',71);s,e=net(s,'path',72,healthy=False);require(s['phase']=='reconcile' and e is None)
+check('negative-observation-invalidates-stability-including-commit-pending','reference',negative_path)
+check('network-stale-receiver-sequence-and-backward-clock','reference',lambda:(rejects(lambda:net(net_healthy(),'path',71,seq=1)),rejects(lambda:net(net_healthy(),'path',69))))
+def gap_expiry():
+    s=net_healthy();s,_=net(s,'path',86);require(s['samples']==1);rejects(lambda:net(s,'commit',87))
+    s=net_verifying();s['expiry']=100;rejects(lambda:net(s,'path',100))
+check('network-sample-gap-and-checkpoint-expiry','reference',gap_expiry)
+check('checkpoint-loss-cannot-invent-restoration','reference',lambda:rejects(lambda:net(net_verifying(),'restored',100,healthy=False)))
+def publication_prefixes():
+    # Dispatcher invariant: exact durable intent + independent accepted anchor.
+    steps=['intent','audit','anchor','dispatch','receipt']
+    for length in range(6):
+        prefix=steps[:length];allowed='intent' in prefix and 'audit' in prefix and 'anchor' in prefix
+        require(('dispatch' not in prefix) or allowed)
+        if 'dispatch' in prefix and 'receipt' not in prefix:require(prefix.count('dispatch')==1)
+    for durable,audit,anchor in itertools.product((False,True),repeat=3):require((durable and audit and anchor)==(sum([durable,audit,anchor])==3))
+check('abstract-crash-prefix-never-dispatches-before-durable-anchor','reference',publication_prefixes)
+def network_codec():
+    b=bytearray(512);b[:8]=b'MCNETS01';b[8:40]=b'\1'*32;b[-32:]=sha(b[:-32])
+    def valid(x):
+        require(len(x)==512 and x[:8]==b'MCNETS01' and x[40]<10 and x[-32:]==sha(x[:-32]))
+        require(x[42:48]==b'\0'*6 and x[184:480]==b'\0'*296)
+        require(all(u(x,p)<=U63 for p in (48,56,64,136,160,168,176)))
+    valid(b)
+    for pos,value in [(449,1),(40,255)]:
+        bad=bytearray(b);bad[pos]=value;bad[-32:]=sha(bad[:-32]);rejects(lambda:valid(bad))
+    bad=bytearray(b);bad[48:56]=(2**63).to_bytes(8,'big');bad[-32:]=sha(bad[:-32]);rejects(lambda:valid(bad))
+check('network-canonical-reserved-range-and-phase','reference',network_codec)
+
+# Abstract boot stability and artifact cohort checks.
+def boot_observe(s,now,instance=1,good=True,expires=None,fallback=True):
+    require(s['phase'] not in ('held','recovery') and now>s['last'])
+    t=copy.deepcopy(s);t['last']=now;t['expires']=expires if expires is not None else now+40
+    if not good:t.update(phase='recovery' if fallback else 'held',n=0)
+    else:
+        if s['n']==0 or s['instance']!=instance or now-s['last']>15:t.update(n=1,since=now)
+        else:t['n']+=1
+        t['instance']=instance;t['phase']='eligible' if t['n']>=3 and now-t['since']>=20 else 'stabilizing'
+    return t
+def boot_ready():
+    s=dict(phase='unseen',last=0,n=0,instance=0,since=0,expires=0)
+    for now in (10,20,30):s=boot_observe(s,now)
+    return s
+def bless(s,now):return s['phase']=='eligible' and now>=s['last'] and now-s['last']<=15 and now<s['expires']
+check('boot-needs-same-instance-and-explicit-unexpired-evidence','reference',lambda:(require(bless(boot_ready(),31)),require(not bless(boot_ready(),70)),require(not bless(boot_observe(boot_ready(),31,instance=2),32))))
+def boot_bad():
+    s=boot_observe(boot_ready(),31,good=False,fallback=False);require(s['phase']=='held');rejects(lambda:boot_observe(s,32));s=boot_observe(boot_ready(),31,good=False);require(s['phase']=='recovery')
+check('boot-untrusted-fallback-is-sticky-hold','reference',boot_bad)
+def cohort(artifacts):
+    require(len({a['object'] for a in artifacts})==len(artifacts))
+    require(all(a['distro']==1 and a['snapshot']==1 and a['signed'] and a['covered'] and a['pinned'] for a in artifacts))
+    for role in ('kernel','initramfs','manager','libc'):require(sum(a['role']==role for a in artifacts)==1)
+    require(any(a['role']=='recovery' for a in artifacts) and any(a['role']=='loader' for a in artifacts))
+    k=next(a for a in artifacts if a['role']=='kernel')
+    require(all(a['target']==k['object'] and a['abi']==k['abi'] for a in artifacts if a['role'] in ('module','initramfs')))
+    require(all(any(b['role']=='module' and b['driver']==a['driver'] for b in artifacts) for a in artifacts if a['role']=='driver'))
+arts=[dict(role=r,object=i+1,distro=1,snapshot=1,signed=True,covered=True,pinned=True,abi=7,target=1,driver=8) for i,r in enumerate(('kernel','initramfs','loader','recovery','manager','libc','module','driver'))]
+check('complete-exact-artifact-cohort','reference',lambda:cohort(arts))
+def bad_cohort():
+    for role in ('kernel','initramfs','loader','recovery','manager','libc'):rejects(lambda role=role:cohort([a for a in arts if a['role']!=role]))
+    for index,field,value in [(6,'target',2),(6,'abi',8),(7,'driver',9),(2,'distro',2),(3,'pinned',False),(1,'covered',False)]:
+        a=copy.deepcopy(arts);a[index][field]=value;rejects(lambda:cohort(a))
+check('missing-boot-parts-foreign-cohorts-and-uncovered-effects-denied','reference',bad_cohort)
+
+# These Linux checks actually read kernel paths, not Ada and not a host attestation.
+def procfs():
+    p=Path('/proc/sys/kernel/random/boot_id');st=p.stat();b=p.read_bytes()
+    require(st.st_size==0 and len(b)==37 and b[-1:]==b'\n' and uuid.UUID(b[:-1].decode()).int!=0)
+check('real-procfs-zero-st_size-nonempty-boot-id','linux_readonly',procfs)
+def kernel_read_probe():
+    require(platform.machine()=='x86_64')
+    class How(ctypes.Structure):_fields_=[('flags',ctypes.c_uint64),('mode',ctypes.c_uint64),('resolve',ctypes.c_uint64)]
+    libc=ctypes.CDLL(None,use_errno=True);libc.syscall.restype=ctypes.c_long
+    root=os.open('/',os.O_RDONLY|os.O_DIRECTORY|os.O_CLOEXEC|os.O_NOFOLLOW)
+    try:
+        how=How(os.O_RDONLY|os.O_CLOEXEC|os.O_NOFOLLOW|os.O_NONBLOCK,0,14)
+        def read(cap):
+            fd=libc.syscall(ctypes.c_long(437),ctypes.c_int(root),ctypes.c_char_p(b'proc/sys/kernel/random/boot_id'),ctypes.byref(how),ctypes.c_size_t(ctypes.sizeof(how)))
+            require(fd>=0)
+            try:
+                data=b''
+                while True:
+                    chunk=os.read(fd,cap-len(data)+1)
+                    if not chunk:return data
+                    if len(data)+len(chunk)>cap:raise ValueError('bounded exhaustion')
+                    data+=chunk
+            finally:os.close(fd)
+        require(len(read(37))==37);rejects(lambda:read(36))
+    finally:os.close(root)
+check('real-openat2-fixed-path-bounded-eof-extra-byte','linux_readonly',kernel_read_probe)
+def namespace_observation():
+    before=Path('/proc/sys/kernel/random/boot_id').read_bytes();pid1=Path('/proc/1/comm').read_bytes();after=Path('/proc/sys/kernel/random/boot_id').read_bytes();require(before==after and 0<len(pid1)<=4096)
+    # No assertion that container PID1 is systemd or Secure Boot is enabled.
+check('real-read-only-observation-not-host-authorization','linux_readonly',namespace_observation)
+
+result=dict(kind='DISTRO_INDEPENDENT_REFERENCE_AND_FIXTURE_CHECKS',ada_executed=False,gnatprove_run=False,network_changed=False,firmware_changed=False,live_cluster=False,passed=sum(c['status']=='PASS' for c in checks),failed=sum(c['status']=='FAIL' for c in checks),counts={g:sum(c['group']==g for c in checks) for g in sorted({c['group'] for c in checks})},checks=checks)
+OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='checks'}));sys.exit(bool(result['failed']))

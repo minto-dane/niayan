@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-v2/pkgcore/ci/journal-test.sh
+
+exit_status=0

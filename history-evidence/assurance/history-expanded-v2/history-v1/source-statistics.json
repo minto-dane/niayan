@@ -1,0 +1,9 @@
+{
+  "canonical_ada_source_files": 78,
+  "canonical_ada_source_lines": 3244,
+  "vendored_contract_copies": 2,
+  "independent_codebases": 3,
+  "ada_build_status": "NOT_RUN",
+  "gnatprove_status": "NOT_RUN",
+  "production_qualified": false
+}

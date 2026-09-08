@@ -1,0 +1,42 @@
+{
+  "edition": "distro-foundation-source-2026-09-06",
+  "qualified": false,
+  "bootable_distribution_image": false,
+  "compiler_build": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "ada_tests": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "gnatprove": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "rpm_build": "NOT_RUN",
+  "live_networkmanager": "NOT_RUN",
+  "live_systemd_activation": "NOT_RUN",
+  "secure_boot_trial": "NOT_RUN",
+  "powercut_tests": "NOT_RUN",
+  "live_cluster_tests": "NOT_RUN",
+  "physical_fencing_tests": "NOT_RUN",
+  "source_profile_sha256": "4456e174f112533e103adfb3050dd58e006f9e5f39772e911a087bb7e20ff8b0",
+  "current_evidence": {
+    "prior-reference-regression.json": {
+      "passed": 50,
+      "failed": 0
+    },
+    "source-checks.json": {
+      "passed": 62,
+      "failed": 0
+    },
+    "distro-reference-results.json": {
+      "passed": 32,
+      "failed": 0
+    },
+    "distro-source-results.json": {
+      "passed": 24,
+      "failed": 0
+    },
+    "maintenance-tool-results.json": {
+      "passed": 9,
+      "failed": 0
+    }
+  },
+  "evidence_note": "All PASS entries are reference/fixture/source/build-maintenance or limited read-only Linux/offline syntax checks, NOT Ada execution or proof. History directories are not counted. Maintenance checks include rerunning checks in a copied tree, not new independent guarantees.",
+  "repository": "statecore",
+  "source_set_manifest_sha256": "ef5ef6b93b156396747a698d6963330fb8e27d8143ca6505c517b489b099f1b8",
+  "source_set_scope": "All regular files under three repositories except evidence/. Full distribution files are separately covered by MANIFEST.sha256."
+}

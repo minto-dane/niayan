@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-distro/work/statecore/ci/healing-io-test.sh
+
+exit=0

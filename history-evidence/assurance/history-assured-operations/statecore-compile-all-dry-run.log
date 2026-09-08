@@ -1,0 +1,6 @@
+$ make -n compile-all
+command -v gprbuild >/dev/null || { echo 'gprbuild is required; NOT QUALIFIED' >&2; exit 78; }
+./ci/check-contract.sh
+gprbuild -p -c -u -P statecore.gpr
+
+exit=0

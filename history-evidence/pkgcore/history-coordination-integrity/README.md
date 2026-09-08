@@ -1,0 +1,1 @@
+Current qualification.json is authoritative for this edition. Previous evidence lives under history-resilience-v3/ and older history directories. Current independent/source reports are in the assurance repository. No old PASS is evidence of this edition compiling or proving.

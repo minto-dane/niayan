@@ -1,0 +1,19 @@
+{
+  "pkgcore": {
+    "unique_ada_files": 63,
+    "lines_including_tests_comments_blank_generated": 3438
+  },
+  "statecore": {
+    "unique_ada_files": 71,
+    "lines_including_tests_comments_blank_generated": 4126
+  },
+  "assurance": {
+    "unique_ada_files": 102,
+    "lines_including_tests_comments_blank_generated": 4878
+  },
+  "total": {
+    "unique_ada_files": 236,
+    "lines_including_tests_comments_blank_generated": 12442
+  },
+  "shared_fixed_ada_files": 92
+}

@@ -1,0 +1,5 @@
+$ gcc -c -gnat2022 /tmp/mc-compiler-probe-dcgh136u/probe.adb
+exit=1
+gcc: fatal error: cannot execute ‘gnat1’: posix_spawnp: No such file or directory
+compilation terminated.
+

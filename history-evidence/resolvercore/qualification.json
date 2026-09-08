@@ -1,0 +1,10 @@
+{
+  "format": 1,
+  "source_profile": "f7138e82a842d53eab801d0941b934a892ebb8a4421e9404abcbc5cc2e2be1a6",
+  "ada_compile": "not-run",
+  "ada_execution": "not-run",
+  "gnatprove": "not-run",
+  "production_qualified": false,
+  "native_solver_runs": "not-run",
+  "reason": "toolchain absent; integration/semantic proof and native source coverage not complete"
+}

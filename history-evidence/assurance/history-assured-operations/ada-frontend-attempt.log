@@ -1,0 +1,5 @@
+$ gcc -c -gnat2022 /mnt/data/mcore-harden-work/assurance/src/mc_types.ads -o /mnt/data/mcore-tools/ada-probe.o
+gcc: fatal error: cannot execute ‘gnat1’: posix_spawnp: No such file or directory
+compilation terminated.
+
+exit=1

@@ -1,0 +1,23 @@
+{
+  "method": "Physical lines including comments/blanks, Ada .ads/.adb only; excludes vendor copies, includes generated Contract_Lock and tests. Not a quality/completeness metric.",
+  "by_repository": {
+    "assurance": {
+      "ada_files_excluding_vendor": 92,
+      "physical_lines_including_comments_and_blanks": 4440
+    },
+    "pkgcore": {
+      "ada_files_excluding_vendor": 53,
+      "physical_lines_including_comments_and_blanks": 2956
+    },
+    "statecore": {
+      "ada_files_excluding_vendor": 36,
+      "physical_lines_including_comments_and_blanks": 1733
+    },
+    "total": {
+      "ada_files_excluding_vendor": 181,
+      "physical_lines_including_comments_and_blanks": 9129
+    }
+  },
+  "source_set_files": 391,
+  "source_set_manifest_sha256": "7f9f6128d27cccd3391aece16f0e83d664379b1412cc19a757e1ac9e2edab441"
+}

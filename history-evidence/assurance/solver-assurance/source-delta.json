@@ -1,0 +1,37 @@
+{
+  "input_zip": "mission-core-suse-config-integrity-source-2026-09-06.zip",
+  "input_sha256": "1a8d9e02806ffd5149bd7b3bf9a6c72d598c9c6777afbacf547d17d9fedfe8c8",
+  "scope": "canonical Ada src/runtime/app excluding fixed vendor copies and tests",
+  "added": [
+    "controlcore/runtime/ctl_resolution.adb",
+    "controlcore/runtime/ctl_resolution.ads",
+    "pkgcore/runtime/pkg_resolution_engine.adb",
+    "pkgcore/runtime/pkg_resolution_engine.ads",
+    "pkgcore/src/pkg_rpm_resolution.adb",
+    "pkgcore/src/pkg_rpm_resolution.ads",
+    "resolvercore/app/resolverctl.adb",
+    "resolvercore/runtime/resolver_io.adb",
+    "resolvercore/runtime/resolver_io.ads",
+    "resolvercore/src/resolver_admission.adb",
+    "resolvercore/src/resolver_admission.ads",
+    "resolvercore/src/resolver_builder.adb",
+    "resolvercore/src/resolver_builder.ads",
+    "resolvercore/src/resolver_cnf.adb",
+    "resolvercore/src/resolver_cnf.ads",
+    "resolvercore/src/resolver_lrat.adb",
+    "resolvercore/src/resolver_lrat.ads",
+    "resolvercore/src/resolver_model.adb",
+    "resolvercore/src/resolver_model.ads",
+    "resolvercore/src/resolver_proof.adb",
+    "resolvercore/src/resolver_proof.ads",
+    "resolvercore/src/resolver_verify.adb",
+    "resolvercore/src/resolver_verify.ads",
+    "resolvercore/src/resolver_wire.adb",
+    "resolvercore/src/resolver_wire.ads"
+  ],
+  "changed": [
+    "controlcore/app/missionctl.adb",
+    "controlcore/src/ctl_profile.ads"
+  ],
+  "removed": []
+}

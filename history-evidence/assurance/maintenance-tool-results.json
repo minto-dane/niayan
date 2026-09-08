@@ -1,0 +1,44 @@
+{
+  "kind": "BUILD_TOOL_MAINTENANCE_CHECKS",
+  "ada_executed": false,
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "contract-refresh-readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "contract-refresh-needs-explicit-ack",
+      "status": "PASS"
+    },
+    {
+      "name": "contract-refresh-explicit-same-input",
+      "status": "PASS"
+    },
+    {
+      "name": "public-fixture-reproduction",
+      "status": "PASS"
+    },
+    {
+      "name": "regenerated-fixture-references",
+      "status": "PASS"
+    },
+    {
+      "name": "assurance-regenerated-lock",
+      "status": "PASS"
+    },
+    {
+      "name": "pkgcore-regenerated-lock",
+      "status": "PASS"
+    },
+    {
+      "name": "statecore-regenerated-lock",
+      "status": "PASS"
+    },
+    {
+      "name": "unaccepted-source-change-detected",
+      "status": "PASS"
+    }
+  ]
+}

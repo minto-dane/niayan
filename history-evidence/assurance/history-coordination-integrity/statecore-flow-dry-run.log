@@ -1,0 +1,7 @@
+$ make -n flow
+./ci/check-contract.sh
+command -v gnatprove >/dev/null || { echo 'GNATprove missing; proof NOT RUN' >&2; exit 78; }
+mkdir -p build/proof-obj
+gnatprove -P proof.gpr -U --mode=flow --checks-as-errors=on --warnings=error
+
+exit=0

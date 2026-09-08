@@ -1,0 +1,173 @@
+{
+  "format": 1,
+  "mode": "source",
+  "created_utc": "2026-09-06T22:19:32.450513+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-_dyq4lsy",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 8673,
+      "seconds": 4.792,
+      "log_sha256": "6381488eb9862040bbc26843c82d74594f5c6b848a6202e25afe91ca582eff69",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "controlcore/tests/reference",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4879,
+      "seconds": 0.962,
+      "log_sha256": "40b4130d11d62d60fa1f1801f036e27c499468de5cf59dc89eedab8f5cc073f0",
+      "name": "manager-reference-tests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "assurance/ci/unified-audit.py"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 141658,
+      "seconds": 1.206,
+      "log_sha256": "84e9666c9ae24e9518836c77dd9bdbd9350a35c8172b8d3254eca43ca6c43741",
+      "name": "unified-architecture-audit",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 109020,
+      "seconds": 1.149,
+      "log_sha256": "906c0d4d5338ccd12e21daeb6326ffa6906acec73e5e2f47057930685d21ab40",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3817,
+      "seconds": 0.027,
+      "log_sha256": "21836c16133602bae7320c9e27975579ef23a96461aee8fb4228d0e9845b8b8f",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3817,
+      "seconds": 0.037,
+      "log_sha256": "21836c16133602bae7320c9e27975579ef23a96461aee8fb4228d0e9845b8b8f",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3817,
+      "seconds": 0.022,
+      "log_sha256": "21836c16133602bae7320c9e27975579ef23a96461aee8fb4228d0e9845b8b8f",
+      "name": "statecore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3817,
+      "seconds": 0.031,
+      "log_sha256": "21836c16133602bae7320c9e27975579ef23a96461aee8fb4228d0e9845b8b8f",
+      "name": "controlcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "ci/manager-profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-unified-work/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 129,
+      "seconds": 0.813,
+      "log_sha256": "da00f2089b543030d655dfb22ab1a281a6fdf70874c060432d576b81decb8d49",
+      "name": "manager-implementation-profile",
+      "layer": "source"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "d0a85dbc783f1689b2c2c55dae765ca314866c06710f4df4d2c5dabdb935f4c0",
+  "source_subject_after": "d0a85dbc783f1689b2c2c55dae765ca314866c06710f4df4d2c5dabdb935f4c0",
+  "result": "pass-for-requested-layer-only",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-06T22:19:41.729074+00:00"
+}

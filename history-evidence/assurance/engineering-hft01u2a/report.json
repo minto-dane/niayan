@@ -1,0 +1,108 @@
+{
+  "format": 1,
+  "mode": "source",
+  "created_utc": "2026-09-06T20:03:30.298224+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-ezbz5gxh",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 7332,
+      "seconds": 3.987,
+      "log_sha256": "6e0e007beeba83d5e0d7d6d8706536ddb9449e4179f0450861dbe2719116f071",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 75904,
+      "seconds": 0.704,
+      "log_sha256": "e01a1a4b13c2ae4ae663cc8a0798bc480eb3f15fbd34163ae953b79b5f2b6e0e",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.016,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.015,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-recovery-engineering/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 2963,
+      "seconds": 0.014,
+      "log_sha256": "fe984cab19594dfc6f1d3a00e0091c0cd5237913d416b9c6faef84ed19c69981",
+      "name": "statecore-contract",
+      "layer": "source"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "bb1f97e34ceb743adce2012fcdfebd23673ed42b719c48fe13d376844f452ee7",
+  "source_subject_after": "bb1f97e34ceb743adce2012fcdfebd23673ed42b719c48fe13d376844f452ee7",
+  "result": "pass-for-requested-layer-only",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-06T20:03:35.196357+00:00"
+}

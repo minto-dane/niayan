@@ -1,0 +1,4 @@
+Nia OS consent-integration source edition 2026-09-07
+UNQUALIFIED SOURCE. Not an installable OS or complete sandbox/permission service.
+Python/native protocol tests: 532 unique, not Ada or desktop qualification.
+Ada build/test/GNATprove: NOT RUN. See STATUS.ja.md and AGENTS.md.

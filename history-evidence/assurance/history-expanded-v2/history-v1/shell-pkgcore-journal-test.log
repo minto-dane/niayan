@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mc-source/pkgcore/ci/journal-test.sh
+exit=0
+

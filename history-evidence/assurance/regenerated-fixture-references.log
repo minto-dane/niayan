@@ -1,0 +1,3 @@
+{"kind": "DISTRO_INDEPENDENT_REFERENCE_AND_FIXTURE_CHECKS", "ada_executed": false, "gnatprove_run": false, "network_changed": false, "firmware_changed": false, "live_cluster": false, "passed": 32, "failed": 0, "counts": {"crypto_fixture": 8, "linux_readonly": 3, "reference": 20, "source_data": 1}}
+
+exit=0

@@ -1,0 +1,83 @@
+"""Distro source wiring, fixture population and offline unit syntax checks.
+Not compilation, Ada execution, proof, RPM build or real unit activation.
+Usage: python3 distro-source-check.py.txt SOURCE_ROOT OUTPUT_JSON
+"""
+from pathlib import Path
+import hashlib,json,re,shutil,subprocess,sys,tempfile
+R=Path(sys.argv[1]).resolve();OUT=Path(sys.argv[2]).resolve();logs=OUT.parent;logs.mkdir(parents=True,exist_ok=True);checks=[];notrun=[]
+def require(v):
+ if not v:raise AssertionError('condition not met')
+def check(name,fn):
+ try:fn();checks.append(dict(name=name,status='PASS'))
+ except Exception as e:checks.append(dict(name=name,status='FAIL',error=repr(e)))
+def text(path):return (R/path).read_text()
+def contains(path,*tokens):require(all(t in text(path) for t in tokens))
+def order(path,*tokens):
+ s=text(path);pos=-1
+ for t in tokens:pos=s.index(t,pos+1)
+def run(cmd,label,cwd=R):
+ p=subprocess.run(cmd,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=40)
+ (logs/(label+'.log')).write_text('$ '+' '.join(map(str,cmd))+'\n'+p.stdout+'\nexit='+str(p.returncode)+'\n')
+ require(p.returncode==0)
+check('fixed-path-kernel-reader-no-stream-size-dependence',lambda:(contains('assurance/runtime/mc_kernel_read.adb','Openat2_Call','Resolve => 14','Interruptions < 16','Data\'Length-Used+1'),require('Stream_IO.Size' not in text('assurance/runtime/mc_kernel_read.adb'))))
+check('boot-id-reading-uses-bounded-kernel-api',lambda:contains('assurance/runtime/mc_clock.adb','MC_Kernel_Read.Read','MC_Kernel_Read.Boot_ID'))
+check('local-observation-keeps-unverified-scope',lambda:contains('statecore/app/hostctl.adb','authenticated=false','production_qualified=false','admission=NOT_PERFORMED'))
+check('host-context-and-tristate-required',lambda:contains('statecore/src/state_host_admission.adb','E.Authenticated','E.Contract','Unknown','Violated','E.Boot_ID'))
+check('service-restart-owner-and-explicit-budget-rendering',lambda:contains('statecore/src/state_service_catalogue.adb','C.Host_Memory-C.Reserved_Memory','Restart_Owner = Systemd_Owner','MemoryMax=','TasksMax=','CPUQuota=','NoNewPrivileges=yes'))
+check('service-graph-reverse-dependency-closure-and-conflicts',lambda:contains('statecore/src/state_service_catalogue.adb','Running (I) and then C.Requires (I,J)','P.Stop_Order','C.Conflicts (I,J) /= C.Conflicts (J,I)','return Ordering (C)'))
+check('durable-network-publish-before-dispatch',lambda:order('statecore/runtime/state_network_controller.adb','Store.Publish (Directory,H,D','Check_Anchor (D','Authorize_Dispatch (After','Dispatch (After'))
+check('network-no-permissive-defaults-for-auth-or-anchor',lambda:contains('statecore/runtime/state_network_controller.ads','with procedure Authorize_Transition','with procedure Authorize_Dispatch','with procedure Check_Anchor','with procedure Advance_Anchor','with procedure Dispatch'))
+check('network-fresh-negative-clears-stability',lambda:contains('statecore/src/state_network_change.adb','if not Healthy or else not E.Autonomous_Rollback_Armed','T.Samples := 0; T.Last_Healthy','S.Current = Commit_Pending then T.Current := Reconcile_Only'))
+check('network-pending-results-never-blind-retry',lambda:contains('statecore/src/state_network_change.adb','S.Current /= Prepared','S.Current /= Checkpoint_Ready','S.Current in Commit_Pending | Reconcile_Only | Checkpoint_Pending'))
+check('nm-narrow-unique-owner-local-no-interactive-or-autostart',lambda:contains('statecore/runtime/state_nm_checkpoint.adb','--system','--auto-start=no','--allow-interactive-authorization=no','Valid_Manager','Timeout_Seconds not in 1 .. 300','Count not in 1 .. Devices\'Length'))
+check('nm-activation-requires-prestaged-wired-and-checkpoint-coverage',lambda:contains('statecore/runtime/state_nm_checkpoint.adb','not Wired_Profile_Verified or else not Within_Recorded_Checkpoint','/org/freedesktop/NetworkManager/Settings/','ActivateConnection'))
+check('boot-eligibility-checks-expiry-and-runtime-instance',lambda:contains('statecore/src/state_boot_assessment.adb','Now < S.Evidence_Expires','E.Runtime_Instance_Set /= S.Instance_Set','E.Fallback_Still_Trusted and then E.Fallback_Data_Compatible'))
+check('composition-inventory-and-cohort-checks-present',lambda:contains('pkgcore/src/pkg_system_composition.adb','Complete_Inventory','Target_Kernel','Driver_ABI','Service_Manager','Secure_Boot_Path_Checked'))
+check('qualification-real-signature-verification-and-compiled-profile',lambda:contains('assurance/runtime/mc_qualification_auth.adb','MC_Authentic.Verify','P.Contract /= MC_Contract_Profile.Fingerprint','MC_Qualification.Evaluate'))
+check('qualification-subject-and-independence-checks-present',lambda:contains('assurance/src/mc_qualification.adb','C (I).Binary_Set /= P.Binary_Set','C (I).Platform /= P.Platform','C (I).Source_Set /= P.Source_Set','P.Keys (Build).Principal /= P.Keys (Review).Principal','P.Keys (Build).Domain /= P.Keys (Review).Domain'))
+check('compiled-release-not-marked-qualified',lambda:contains('assurance/src/mc_release.ads','Build_Qualified : constant Boolean := False'))
+
+def suite_sources():
+ for repo,main in [('statecore','run_platform_tests'),('statecore','run_host_io_tests'),('pkgcore','run_composition_tests'),('assurance','run_qualification_tests')]:
+  require((R/repo/'tests'/(main+'.adb')).is_file());require(main+'.adb' in text(repo+'/tests.gpr'));require(main in text(repo+'/Makefile'))
+check('all-new-Ada-test-entrypoints-registered',suite_sources)
+def no_auto_install():
+ for repo in ('pkgcore','statecore','assurance'):
+  s=text(repo+'/packaging/rpm/mission-'+repo+'.spec');require('ExclusiveArch: x86_64' in s and '%check\nmake test' in s and 'make compile-all' in s)
+  require(not re.search(r'^%(post|preun|postun|pre|trigger|verifyscript)\b',s,re.M))
+  install=s.split('%install\n')[1].split('%files\n')[0]
+  require('fixtures/' not in install and not re.search(r'(systemctl|setenforce|mokutil|/etc/os-release|rpm --initdb)',install))
+check('RPM-specs-build-test-without-trust-enrollment-or-service-activation',no_auto_install)
+check('component-map-declares-real-gaps',lambda:require(not json.loads(text('assurance/platform/component-map.json'))['bootable_image_produced'] and not json.loads(text('assurance/platform/component-map.json'))['production_qualified']))
+def shared():
+ a=R/'assurance';m=json.loads((a/'contracts.lock.json').read_text());require(len(m['files'])==114)
+ for repo in ('pkgcore','statecore'):
+  d=R/repo/'vendor/contracts'
+  for e in m['files']:require((d/e['path']).read_bytes()==(a/e['path']).read_bytes())
+ require(hashlib.sha256(b'MISSION-CORE-SHARED-SOURCE-PROFILE-v1\n'+(a/'contract-profile.source.sha256').read_bytes()).hexdigest()==(a/'contract-profile.hex').read_text().strip())
+check('114-shared-files-and-new-profile-identical',shared)
+
+def helper_syntax():
+ for f in list((R/'assurance/ci').glob('*.py'))+list((R/'assurance/evidence').glob('distro-*.py.txt')):
+  compile(f.read_text(),str(f),'exec')
+check('build-and-reference-helper-python-syntax',helper_syntax)
+
+sysd=shutil.which('systemd-analyze')
+if sysd:
+ check('systemd-offline-independent-bounded-profile-syntax',lambda:run([sysd,'--man=no','verify',str(R/'assurance/fixtures/systemd/mission-profile-syntax.service')],'systemd-profile-syntax'))
+ def observer_units():
+  with tempfile.TemporaryDirectory(prefix='mc-offline-units-') as tmp:
+   root=Path(tmp);d=root/'usr/lib/systemd/system';d.mkdir(parents=True);(root/'usr/bin').mkdir(parents=True)
+   # Required executable-path stub is NEVER executed. This proves syntax only.
+   shutil.copyfile('/usr/bin/true',root/'usr/bin/mc-hostctl');(root/'usr/bin/mc-hostctl').chmod(0o755)
+   for f in (R/'statecore/deploy/systemd').iterdir():shutil.copyfile(f,d/f.name)
+   for name in ('sysinit','basic','local-fs','shutdown','timers'):(d/(name+'.target')).write_text('[Unit]\nDescription=Isolated syntax target\nDefaultDependencies=no\n')
+   run([sysd,'--man=no','--generators=no','--root='+tmp,'verify','/usr/lib/systemd/system/mission-host-observer.service','/usr/lib/systemd/system/mission-host-observer.timer'],'systemd-observer-syntax')
+ check('systemd-exact-observer-units-isolated-syntax-no-activation',observer_units)
+else:notrun.append(dict(test='systemd unit syntax',status='NOT_RUN_TOOL_UNAVAILABLE'))
+if not shutil.which('rpmspec'):notrun.append(dict(test='RPM spec native parser',status='NOT_RUN_TOOL_UNAVAILABLE'))
+else:
+ for repo in ('assurance','pkgcore','statecore'):check(repo+'-native-rpm-spec-parse',lambda repo=repo:run(['rpmspec','--parse',str(R/repo/'packaging/rpm'/('mission-'+repo+'.spec'))],repo+'-rpmspec'))
+notrun.append(dict(test='RPM binary build/install/remove',status='NOT_RUN_ADA_TOOLCHAIN_UNAVAILABLE'))
+result=dict(kind='DISTRO_SOURCE_AND_OFFLINE_SYNTAX_CHECKS',ada_executed=False,gnatprove_run=False,unit_activated=False,rpm_built=False,passed=sum(c['status']=='PASS' for c in checks),failed=sum(c['status']=='FAIL' for c in checks),checks=checks,unexecuted=notrun)
+OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('checks','unexecuted')}));sys.exit(bool(result['failed']))

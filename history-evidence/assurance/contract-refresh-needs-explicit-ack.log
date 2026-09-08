@@ -1,0 +1,5 @@
+usage: refresh-contract.py [-h] [--write] [--acknowledge-interface-change]
+                           [--sync-sibling-vendors]
+refresh-contract.py: error: --write requires --acknowledge-interface-change
+
+exit=2

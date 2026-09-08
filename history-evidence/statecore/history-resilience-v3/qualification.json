@@ -1,0 +1,36 @@
+{
+  "edition": "resilience-source-2026-09-06",
+  "release_status": "UNQUALIFIED_SOURCE",
+  "ada_build": "NOT_RUN_MISSING_TOOLCHAIN",
+  "ada_execution_tests": "NOT_RUN",
+  "gnatprove": "NOT_RUN",
+  "compiler_verified": "NOT_ESTABLISHED",
+  "runtime_boundaries": "Ada SPARK_Mode Off; no proof claim",
+  "live_cluster": "NOT_RUN",
+  "systemd_service_effects_tested": "NOT_RUN",
+  "etcd_network_tested": "NOT_RUN",
+  "physical_fencing": "NOT_IMPLEMENTED_IN_THIS_BUNDLE",
+  "power_loss_test": "NOT_RUN",
+  "host_root_rpmdb_migration": "NOT_IMPLEMENTED",
+  "full_site_control_plane": "NOT_IMPLEMENTED",
+  "current_scoped_checks": [
+    {
+      "name": "reference-checks",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "name": "native-primitive-probes",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "name": "source-checks",
+      "passed": 35,
+      "failed": 0
+    }
+  ],
+  "shared_source_profile": "49ef0f52ea9fcb8476d38dd3120ea5faa075f37f37072a934c3cbd3f44e02359",
+  "scope_warning": "PASS refers only to explicitly scoped source/reference/native primitive checks, not Ada implementation correctness or deployment qualification.",
+  "repository": "statecore"
+}

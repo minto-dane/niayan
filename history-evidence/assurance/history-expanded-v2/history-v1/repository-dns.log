@@ -1,0 +1,3 @@
+$ getent ahosts deb.debian.org
+exit=2
+

@@ -1,0 +1,309 @@
+{
+  "format": 1,
+  "mode": "source",
+  "created_utc": "2026-09-07T03:05:38.719123+00:00",
+  "production_approval": false,
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-r_hlzpew",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 8826,
+      "seconds": 4.831,
+      "log_sha256": "345fd1571fa906bcfb63861cc19e11a4191503e1d21acd165a345fef8b3f0305",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "controlcore/tests/reference",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4879,
+      "seconds": 0.667,
+      "log_sha256": "80a06539e85ee89862218d3df632db6c4b490556d45027ee504ed11bc6ba82db",
+      "name": "manager-reference-tests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "configcore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3229,
+      "seconds": 0.598,
+      "log_sha256": "5f930b1b51ce5c23c4ae0e8bf8301ba588b3a1112496d1140b2de01b3e8aefa9",
+      "name": "configuration-reference-tests",
+      "layer": "reference-and-limited-native-probe"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "resolvercore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 5310,
+      "seconds": 1.807,
+      "log_sha256": "8141d66caa926949939f6339e57a8f510a9273dbcd536f7cd7437dd42a9b56ae",
+      "name": "resolution-reference-tests",
+      "layer": "reference-and-untrusted-proposal-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "ci/profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 146,
+      "seconds": 0.594,
+      "log_sha256": "8da6b4ad4a01820b0fb0725218407ed2381d484ac6a8d3353d57098c545b4da6",
+      "name": "resolver-source-profile",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "ci/check-neutral.py"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 1527,
+      "seconds": 0.607,
+      "log_sha256": "9924a0e4760c31c44af6d27b6aeb0921e82fce58ec82e233c686c8eaa7aad157",
+      "name": "resolver-neutral-boundary",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "ci/check-resolver.py"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 124,
+      "seconds": 0.567,
+      "log_sha256": "e196e6e8df6f3edb40e4bfcc582d86e93b04f295b306fa3556b3402602e82d88",
+      "name": "native-resolver-lock",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "distribution/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4525,
+      "seconds": 0.796,
+      "log_sha256": "607948b01f7c5c670595a63f75f7267176ca6eb7178752cec65f5ab410610d26",
+      "name": "distribution-tool-tests",
+      "layer": "actual-build-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "assurance/ci/unified-audit.py"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 177582,
+      "seconds": 0.734,
+      "log_sha256": "52bb37d750efd12a6ab64ce0d465c18484230efb8ccc4628ea9d0f2a511bc428",
+      "name": "unified-architecture-audit",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 132285,
+      "seconds": 0.811,
+      "log_sha256": "262547c3db45c09e78dddc512302d8a4c283d33de44e251978a0465e0c3ecc51",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.018,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.02,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "statecore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.019,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "controlcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/configcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.022,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "configcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/resolvercore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.024,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "resolvercore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "ci/manager-profile.py"
+      ],
+      "cwd": "/mnt/data/mission-core-solver-integrity/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 129,
+      "seconds": 0.655,
+      "log_sha256": "7ff69c872238a035ecfd571ae815856c66978836a62fc71bbc1490637c79ffb0",
+      "name": "manager-implementation-profile",
+      "layer": "source"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "2fe3759d881916121321acaf330c6c321708be3c5ae581679203f8ef1066992f",
+  "source_subject_after": "2fe3759d881916121321acaf330c6c321708be3c5ae581679203f8ef1066992f",
+  "result": "pass-for-requested-layer-only",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-07T03:05:51.833206+00:00"
+}

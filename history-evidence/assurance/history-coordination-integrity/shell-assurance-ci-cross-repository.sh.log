@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-coordination/assurance/ci/cross-repository.sh
+
+exit=0

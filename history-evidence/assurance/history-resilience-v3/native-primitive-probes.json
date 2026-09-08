@@ -1,0 +1,37 @@
+{
+  "edition": "resilience-source-2026-09-06",
+  "ada_compiled": false,
+  "ada_tests_executed": false,
+  "gnatprove_executed": false,
+  "live_cluster_tested": false,
+  "power_loss_tested": false,
+  "formal_proof_established": false,
+  "checks": [
+    {
+      "name": "linux-private-fsync-rename",
+      "status": "PASS",
+      "scope": "native Python os syscalls, NOT MC_FS execution or power-loss proof",
+      "detail": "private file write/fsync/rename/directory-fsync/readback only"
+    },
+    {
+      "name": "linux-exclusive-lock",
+      "status": "PASS",
+      "scope": "private scratch flock probe, NOT MC_Log",
+      "detail": "competing lock refused"
+    },
+    {
+      "name": "linux-symlink-refusal",
+      "status": "PASS",
+      "scope": "private Linux primitive probe, not complete path resolver validation",
+      "detail": "O_NOFOLLOW refused symlink"
+    },
+    {
+      "name": "linux-partial-tail-preserve-before-truncate",
+      "status": "PASS",
+      "scope": "private native I/O sequence, NOT Ada recovery proof",
+      "detail": "preserve suffix then exact truncate; no simulated full machine crash"
+    }
+  ],
+  "passed": 4,
+  "failed": 0
+}

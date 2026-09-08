@@ -1,0 +1,11 @@
+{
+  "format": 1,
+  "edition": "unified-management-2026-09-06",
+  "production_qualified": false,
+  "ada_compile": "not-run",
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "current_evidence": "assurance/evidence/unified-management/summary.json",
+  "source_only": true,
+  "site_integration_complete": false
+}

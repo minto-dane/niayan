@@ -1,0 +1,120 @@
+{
+  "edition": "resilience-source-2026-09-06",
+  "ada_compiled": false,
+  "ada_tests_executed": false,
+  "gnatprove_executed": false,
+  "live_cluster_tested": false,
+  "power_loss_tested": false,
+  "formal_proof_established": false,
+  "checks": [
+    {
+      "name": "health-golden-canonical",
+      "status": "PASS",
+      "scope": "independent Python decoder, NOT Ada execution",
+      "detail": {
+        "frame_bytes": 256,
+        "sequence": 8
+      }
+    },
+    {
+      "name": "health-ed25519-positive",
+      "status": "PASS",
+      "scope": "independent crypto verification, NOT MC_Authentic execution",
+      "detail": "Ed25519 verification by cryptography"
+    },
+    {
+      "name": "health-domain-and-key-separation",
+      "status": "PASS",
+      "scope": "independent cryptographic negative fixtures",
+      "detail": {
+        "rejected": 3
+      }
+    },
+    {
+      "name": "health-every-byte-tamper",
+      "status": "PASS",
+      "scope": "independent checksum/schema decoder, NOT implementation equivalence",
+      "detail": {
+        "single_byte_mutations_rejected": 256
+      }
+    },
+    {
+      "name": "health-canonical-negative-fixtures",
+      "status": "PASS",
+      "scope": "independent decoder; malformed bodies include recomputed hashes",
+      "detail": [
+        "health-reserved.bin",
+        "health-unknown-kind.bin",
+        "health-invalid-boolean.bin",
+        "health-truncated.bin"
+      ]
+    },
+    {
+      "name": "freshness-reference-boundaries",
+      "status": "PASS",
+      "scope": "independent policy reference, not Ada execution",
+      "detail": "boot, sequence, future, expiry, bounded lifetime"
+    },
+    {
+      "name": "joint-weighted-quorum-monotonicity",
+      "status": "PASS",
+      "scope": "exhaustive bounded reference policy enumeration, no real membership changes",
+      "detail": {
+        "snapshots": 1280,
+        "old_new_asymmetric": 384
+      }
+    },
+    {
+      "name": "replica-and-correlated-failure-budget",
+      "status": "PASS",
+      "scope": "bounded reference model, not State_Cluster_Safety runtime",
+      "detail": "replica/domain/extra-node distinctions"
+    },
+    {
+      "name": "competing-reservation-cas-reference",
+      "status": "PASS",
+      "scope": "reference interleaving, not network or etcd test",
+      "detail": "second stale proposal rejected by reference CAS; real etcd not contacted"
+    },
+    {
+      "name": "persistent-budget-reboot-reference",
+      "status": "PASS",
+      "scope": "reference state model, NOT real journal execution",
+      "detail": "reboot preserves window/cumulative debt; stable recovery only clears consecutive"
+    },
+    {
+      "name": "backoff-odd-cap-and-large-count-reference",
+      "status": "PASS",
+      "scope": "independent arithmetic/reference enumeration",
+      "detail": {
+        "bounded_backoff_cases": 40400
+      }
+    },
+    {
+      "name": "failover-evidence-conjunction-reference",
+      "status": "PASS",
+      "scope": "pure reference truth table, no physical fencing",
+      "detail": "lease timeout alone never constitutes confirmed fencing or data safety"
+    },
+    {
+      "name": "lease-expiry-not-release-reference",
+      "status": "PASS",
+      "scope": "reference invariant only",
+      "detail": "reservation remains until qualified rejoin/isolation"
+    },
+    {
+      "name": "canary-soak-and-regression-reference",
+      "status": "PASS",
+      "scope": "reference state transitions, not rollout SDK execution",
+      "detail": "soak before admission, subsequent canary regression pauses without inventing an occupied slot"
+    },
+    {
+      "name": "repair-exclusion-policy-reference",
+      "status": "PASS",
+      "scope": "reference policy only; no files repaired by Ada",
+      "detail": "automatic repair requires every positive condition and no protected negative condition"
+    }
+  ],
+  "passed": 15,
+  "failed": 0
+}

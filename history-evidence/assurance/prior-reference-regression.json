@@ -1,0 +1,267 @@
+{
+  "kind": "INDEPENDENT_REFERENCE_AND_FIXTURE_CHECKS",
+  "ada_executed": false,
+  "gnatprove_run": false,
+  "live_etcd": false,
+  "powercut_test": false,
+  "counts": {
+    "crypto": 9,
+    "linux_probe": 1,
+    "reference": 38,
+    "source_data": 2
+  },
+  "passed": 50,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "every-participant-not-majority-8-subsets",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "same-resource-on-three-nodes",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "seal-expires-no-auto-extension",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated-regression-unknown",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated-regression-inflight",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated-regression-latched",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated-regression-closed",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated-regression-dispatched",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-guard",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-epoch",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-receiver",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-observed",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "reject-expires",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "replay-cannot-refresh-observation",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "unsigned-observation-cannot-transition",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-fence-and-regression",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "atomic-guard-target-6-orderings-and-ABA",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-valid-double-base64-uint64",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-absent-bound-header",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-contradictory-count",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-lease",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-wrong-cluster",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-old-revision",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-more",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "range-newer-kv",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "uint64-maximum-and-overflow",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-native-etcdctl-json-success",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-empty-compare-failure",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-no-put",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-gateway-dialect",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-wrong-cluster",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-mismatch-inner-revision",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-extra-operation",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "txn-unknown-error",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "retention-distinct-data-positions",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "retention-copy-cannot-widen-history",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "retention-minimum-time-coverage",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "node-signature-1",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "node-signature-2",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "node-signature-3",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "independent-fence-signature",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong-domain",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong-role",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-noncanonical-evidence-reserved.bin",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-noncanonical-evidence-boolean.bin",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "signature-valid-stale-guard-denied",
+      "group": "crypto",
+      "status": "PASS"
+    },
+    {
+      "name": "policy-reserved-rehashed",
+      "group": "reference",
+      "status": "PASS"
+    },
+    {
+      "name": "temporary-flock-rename-fsync-probe-no-powercut",
+      "group": "linux_probe",
+      "status": "PASS"
+    },
+    {
+      "name": "fixture-digests",
+      "group": "source_data",
+      "status": "PASS"
+    },
+    {
+      "name": "fixture-current-contract-profile",
+      "group": "source_data",
+      "status": "PASS"
+    }
+  ]
+}

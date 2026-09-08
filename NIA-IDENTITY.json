@@ -1,0 +1,10 @@
+{
+  "name": "Nia OS",
+  "normative_root": "distribution/docs",
+  "profile": "distribution/profiles/nia-os.json",
+  "origin": "Mission Core source lineage",
+  "upstream_archive_sha256": "2eaf780e5a6a25eb8656621bd50e71a6376d11a29ea58ce3cabd646f3060a5ba",
+  "internal_identifiers_renamed": false,
+  "qualified": false,
+  "source_edition": "consent-integration-2026-09-07"
+}

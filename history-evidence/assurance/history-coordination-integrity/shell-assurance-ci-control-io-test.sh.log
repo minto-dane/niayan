@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-coordination/assurance/ci/control-io-test.sh
+
+exit=0

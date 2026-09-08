@@ -1,0 +1,67 @@
+{
+  "created_utc": "2026-09-06T22:22:59.197608+00:00",
+  "gprbuild": null,
+  "gnatprove": null,
+  "gcc": "/usr/bin/gcc",
+  "kernel": "6.18.35",
+  "machine": "x86_64",
+  "commands": [
+    {
+      "repository": "assurance",
+      "argv": [
+        "make",
+        "compile-all"
+      ],
+      "returncode": 2,
+      "classification": "NOT_RUN-tool-precondition-failed",
+      "log": "assurance-compile-precondition.log"
+    },
+    {
+      "repository": "pkgcore",
+      "argv": [
+        "make",
+        "compile-all"
+      ],
+      "returncode": 2,
+      "classification": "NOT_RUN-tool-precondition-failed",
+      "log": "pkgcore-compile-precondition.log"
+    },
+    {
+      "repository": "statecore",
+      "argv": [
+        "make",
+        "compile-all"
+      ],
+      "returncode": 2,
+      "classification": "NOT_RUN-tool-precondition-failed",
+      "log": "statecore-compile-precondition.log"
+    },
+    {
+      "repository": "controlcore",
+      "argv": [
+        "make",
+        "compile-all"
+      ],
+      "returncode": 2,
+      "classification": "NOT_RUN-tool-precondition-failed",
+      "log": "controlcore-compile-precondition.log"
+    },
+    {
+      "argv": [
+        "gprbuild",
+        "--version"
+      ],
+      "classification": "NOT_RUN-executable-unavailable"
+    },
+    {
+      "argv": [
+        "gnatprove",
+        "--version"
+      ],
+      "classification": "NOT_RUN-executable-unavailable"
+    }
+  ],
+  "ada_compilation_executed": false,
+  "ada_tests_executed": false,
+  "formal_proof_executed": false
+}

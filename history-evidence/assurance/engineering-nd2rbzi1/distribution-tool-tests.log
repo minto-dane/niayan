@@ -1,0 +1,55 @@
+test_cross_family_repository (test_distro_inputs.Inputs.test_cross_family_repository) ... ok
+test_cross_profile (test_distro_inputs.Inputs.test_cross_profile) ... ok
+test_duplicate_json (test_distro_inputs.Inputs.test_duplicate_json) ... ok
+test_duplicate_package_path (test_distro_inputs.Inputs.test_duplicate_package_path) ... ok
+test_duplicate_signature_role (test_distro_inputs.Inputs.test_duplicate_signature_role) ... ok
+test_expired (test_distro_inputs.Inputs.test_expired) ... ok
+test_extra_file (test_distro_inputs.Inputs.test_extra_file) ... ok
+test_fifo (test_distro_inputs.Inputs.test_fifo) ... ok
+test_floats_refused (test_distro_inputs.Inputs.test_floats_refused) ... ok
+test_future (test_distro_inputs.Inputs.test_future) ... ok
+test_historical_profile_cannot_be_readmitted (test_distro_inputs.Inputs.test_historical_profile_cannot_be_readmitted) ... ok
+test_host_ownership_change_refused (test_distro_inputs.Inputs.test_host_ownership_change_refused) ... ok
+test_metadata_count (test_distro_inputs.Inputs.test_metadata_count) ... ok
+test_metadata_entity (test_distro_inputs.Inputs.test_metadata_entity) ... ok
+test_metadata_external_path (test_distro_inputs.Inputs.test_metadata_external_path) ... ok
+test_metadata_hash (test_distro_inputs.Inputs.test_metadata_hash) ... ok
+test_metadata_mismatch (test_distro_inputs.Inputs.test_metadata_mismatch) ... ok
+test_metadata_parent_path (test_distro_inputs.Inputs.test_metadata_parent_path) ... ok
+test_missing_file (test_distro_inputs.Inputs.test_missing_file) ... ok
+test_no_false_boolean_format (test_distro_inputs.Inputs.test_no_false_boolean_format) ... ok
+test_no_independent_source (test_distro_inputs.Inputs.test_no_independent_source) ... ok
+test_nonregular_json_refused (test_distro_inputs.Inputs.test_nonregular_json_refused) ... ok
+test_only_public_leap_active (test_distro_inputs.Inputs.test_only_public_leap_active) ... ok
+test_output_no_overwrite (test_distro_inputs.Inputs.test_output_no_overwrite) ... ok
+test_package_bytes_change (test_distro_inputs.Inputs.test_package_bytes_change) ... ok
+test_payload_modified_without_signature (test_distro_inputs.Inputs.test_payload_modified_without_signature) ... ok
+test_profile_security_drift (test_distro_inputs.Inputs.test_profile_security_drift) ... ok
+test_qualification_claim_refused_even_if_signed (test_distro_inputs.Inputs.test_qualification_claim_refused_even_if_signed) ... ok
+test_release_downgrade (test_distro_inputs.Inputs.test_release_downgrade) ... ok
+test_render_no_boot_activation (test_distro_inputs.Inputs.test_render_no_boot_activation) ... ok
+test_same_authority_domain (test_distro_inputs.Inputs.test_same_authority_domain) ... ok
+test_same_authority_identity (test_distro_inputs.Inputs.test_same_authority_identity) ... ok
+test_same_authority_key (test_distro_inputs.Inputs.test_same_authority_key) ... ok
+test_signature_byte_changed (test_distro_inputs.Inputs.test_signature_byte_changed) ... ok
+test_signed_weakened_profile_refused (test_distro_inputs.Inputs.test_signed_weakened_profile_refused) ... ok
+test_subscription_claim_refused (test_distro_inputs.Inputs.test_subscription_claim_refused) ... ok
+test_subscription_repository_even_if_mislabeled (test_distro_inputs.Inputs.test_subscription_repository_even_if_mislabeled) ... ok
+test_symlink (test_distro_inputs.Inputs.test_symlink) ... ok
+test_symlink_directory (test_distro_inputs.Inputs.test_symlink_directory) ... ok
+test_test_trust_forbidden_in_cli_mode (test_distro_inputs.Inputs.test_test_trust_forbidden_in_cli_mode) ... ok
+test_unadmitted_source_host (test_distro_inputs.Inputs.test_unadmitted_source_host) ... ok
+test_unknown_envelope_field (test_distro_inputs.Inputs.test_unknown_envelope_field) ... ok
+test_unknown_profile (test_distro_inputs.Inputs.test_unknown_profile) ... ok
+test_unknown_profile_field_refused (test_distro_inputs.Inputs.test_unknown_profile_field_refused) ... ok
+test_url_credentials (test_distro_inputs.Inputs.test_url_credentials) ... ok
+test_url_plaintext (test_distro_inputs.Inputs.test_url_plaintext) ... ok
+test_valid_input_not_qualified (test_distro_inputs.Inputs.test_valid_input_not_qualified) ... ok
+test_wrong_contract (test_distro_inputs.Inputs.test_wrong_contract) ... ok
+test_wrong_family_label_refused_even_if_consistent (test_distro_inputs.Inputs.test_wrong_family_label_refused_even_if_consistent) ... ok
+test_wrong_source (test_distro_inputs.Inputs.test_wrong_source) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 0.110s
+
+OK

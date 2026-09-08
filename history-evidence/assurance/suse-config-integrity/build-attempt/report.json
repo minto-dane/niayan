@@ -1,0 +1,261 @@
+{
+  "format": 1,
+  "mode": "build",
+  "created_utc": "2026-09-06T23:33:13.513278+00:00",
+  "production_approval": false,
+  "ada_execution": "requested-not-completed",
+  "formal_proof": "not-run",
+  "temporary_io_tree": "/tmp/mission-engineering-tests-t2z9aijz",
+  "checks": [
+    {
+      "name": "traceability",
+      "result": "pass",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "assurance/tests/engineering",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 8828,
+      "seconds": 4.898,
+      "log_sha256": "6bb815f4035b8ae76b3c89a8f00d97f4ff6d402e5e6ca1da110815e289e2fbcf",
+      "name": "engineering-unittests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "controlcore/tests/reference",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4879,
+      "seconds": 0.617,
+      "log_sha256": "537ecd7cdd913094877f260fc26bc940d5a5e455ea05af02072d15f2de620ab6",
+      "name": "manager-reference-tests",
+      "layer": "source-and-reference"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "configcore/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3229,
+      "seconds": 0.607,
+      "log_sha256": "db566a2a9fbb5ce7aaf8c8db4adcda991361b550c695adf74de56083c7aef25b",
+      "name": "configuration-reference-tests",
+      "layer": "reference-and-limited-native-probe"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "distribution/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 4184,
+      "seconds": 0.699,
+      "log_sha256": "062f7b66f0e3a659bd236c80c49e0e544deb56248f7e41548e8ab818f5bf989a",
+      "name": "distribution-tool-tests",
+      "layer": "actual-build-tool-tests"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/unified-audit.py"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 162018,
+      "seconds": 0.672,
+      "log_sha256": "6457be03e1bb28f577be20ad93b23237c0c0ebace330dbc41c3caebc58c87291",
+      "name": "unified-architecture-audit",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "-B",
+        "assurance/ci/engineering.py",
+        "lint"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 121559,
+      "seconds": 0.701,
+      "log_sha256": "84487442c2ad6c2e74740f2d4573598082c185ba81d0977b27e18f9208d9908f",
+      "name": "syntax-and-doc-links",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/assurance",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "assurance-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/pkgcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.014,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "pkgcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/statecore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.015,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "statecore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.016,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "controlcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/bin/sh",
+        "ci/check-contract.sh"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/configcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 3985,
+      "seconds": 0.017,
+      "log_sha256": "1c1e5969032e7dfd5c6376583462d0b68c10477cfa9917b038eaf3264501036b",
+      "name": "configcore-contract",
+      "layer": "source"
+    },
+    {
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "ci/manager-profile.py"
+      ],
+      "cwd": "/tmp/mission-suse-toolchain-4x3ot0oh/bundle/controlcore",
+      "result": "pass",
+      "returncode": 0,
+      "log_bytes": 129,
+      "seconds": 0.647,
+      "log_sha256": "74b21976046f2f119058122d9f76174892c0c0ec39e925252b2ff3c4bb1f6c35",
+      "name": "manager-implementation-profile",
+      "layer": "source"
+    },
+    {
+      "name": "assurance-ada-build",
+      "result": "not-run",
+      "layer": "ada-build",
+      "reason": "gprbuild unavailable"
+    },
+    {
+      "name": "pkgcore-ada-build",
+      "result": "not-run",
+      "layer": "ada-build",
+      "reason": "gprbuild unavailable"
+    },
+    {
+      "name": "statecore-ada-build",
+      "result": "not-run",
+      "layer": "ada-build",
+      "reason": "gprbuild unavailable"
+    },
+    {
+      "name": "controlcore-ada-build",
+      "result": "not-run",
+      "layer": "ada-build",
+      "reason": "gprbuild unavailable"
+    },
+    {
+      "name": "configcore-ada-build",
+      "result": "not-run",
+      "layer": "ada-build",
+      "reason": "gprbuild unavailable"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "kernel": "6.18.35",
+    "architecture": "x86_64",
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "source_subject_before": "faaaac3df60883d231956ec1a46e9b41db329f4302f45bfcbae32b807c8866fa",
+  "source_subject_after": "faaaac3df60883d231956ec1a46e9b41db329f4302f45bfcbae32b807c8866fa",
+  "result": "incomplete-or-failed",
+  "temporary_io_tree_removed": true,
+  "ended_utc": "2026-09-06T23:33:22.704421+00:00"
+}

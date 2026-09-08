@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mission-core-distro/work/pkgcore/ci/file-engine-test.sh
+
+exit=0

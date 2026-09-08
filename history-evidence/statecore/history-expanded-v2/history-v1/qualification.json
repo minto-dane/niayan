@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "release": "2026-09-05-unqualified-source",
+  "component": "statecore",
+  "created_utc": "2026-09-06T02:28:50.278541+00:00",
+  "production_qualified": false,
+  "production_installable": false,
+  "source_manifest_sha256": "120d0f37045704481b6f13bf764e755c3d97ca4e8ac69408ad134fba24a14381",
+  "compiler_environment": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "kernel": "6.18.35",
+    "ada_frontend": "ABSENT",
+    "gnatprove": "ABSENT"
+  },
+  "claim": "Source implementation and test/proof harness only; no claim of production completeness or formal proof completion.",
+  "actual_preparation_checks": {
+    "scope": "independent reference/native/source checks; NOT compiled Ada tests",
+    "report": "assurance/evidence/reference-checks.json",
+    "checks": 1139,
+    "passed": 1139,
+    "failed": 0,
+    "extracted_guard_combinations": 1024
+  },
+  "mandatory_gaps": {
+    "ada_compile": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "ada_unit_tests": "NOT_RUN_UNCOMPILED",
+    "ada_cross_repository_conformance": "NOT_RUN_UNCOMPILED",
+    "ada_integrated_state_tests": "NOT_RUN_UNCOMPILED",
+    "gnatprove_flow": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "gnatprove_runtime_safety": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "gnatprove_functional_contracts": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+    "complete_functional_specification": "INCOMPLETE",
+    "verified_compiler_chain": "NOT_PROVIDED",
+    "rpm_signature_repository_trust_integration": "NOT_IMPLEMENTED",
+    "full_rpm_semantics_normalizer": "NOT_IMPLEMENTED",
+    "rpm_host_install_executor": "NOT_IMPLEMENTED",
+    "host_filesystem_crash_recovery_executor": "NOT_IMPLEMENTED",
+    "live_cluster_systemd_connectors": "NOT_IMPLEMENTED",
+    "transport_and_operational_key_authority": "NOT_IMPLEMENTED",
+    "real_distribution_rpm_corpus": "NOT_RUN",
+    "physical_powercut_tests": "NOT_RUN",
+    "real_network_partition_fencing_tests": "NOT_RUN",
+    "secure_boot_firmware_integration": "NOT_IMPLEMENTED",
+    "business_data_backup_restore": "NOT_RUN",
+    "external_security_review": "NOT_RUN",
+    "operational_approval": "NOT_GRANTED"
+  }
+}

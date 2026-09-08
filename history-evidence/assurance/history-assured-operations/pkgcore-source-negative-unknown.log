@@ -1,0 +1,3 @@
+cmp: EOF on /tmp/mc-source-check.9Zx8Nuoy/expected after byte 2221, line 104
+
+exit=1

@@ -1,0 +1,11 @@
+$ make -n build test prove
+exit=0
+command -v gprbuild >/dev/null || { echo 'gprbuild is required; NOT QUALIFIED' >&2; exit 78; }
+cd vendor/contracts && sha256sum --check contracts.source.sha256
+gprbuild -p -P statecore.gpr
+gprbuild -p -P tests.gpr
+./build/test-bin/run_state_tests
+command -v gnatprove >/dev/null || { echo 'GNATprove missing; proof NOT RUN' >&2; exit 78; }
+mkdir -p build/proof-obj
+gnatprove -P proof.gpr -U --mode=all --level=4 --checks-as-errors=on --warnings=error --proof-warnings=on --report=statistics
+

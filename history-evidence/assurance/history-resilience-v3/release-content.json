@@ -1,0 +1,26 @@
+{
+  "edition": "resilience-source-2026-09-06",
+  "source_set_manifest_sha256": "ffa10d9ffa09a7903496659943051da92b570a11caacbfdcc092546aa7499bb3",
+  "runtime_source_profile": "49ef0f52ea9fcb8476d38dd3120ea5faa075f37f37072a934c3cbd3f44e02359",
+  "source_metrics": {
+    "pkgcore": {
+      "unique_ada_files": 63,
+      "lines_including_tests_comments_blank_generated": 3438
+    },
+    "statecore": {
+      "unique_ada_files": 71,
+      "lines_including_tests_comments_blank_generated": 4126
+    },
+    "assurance": {
+      "unique_ada_files": 102,
+      "lines_including_tests_comments_blank_generated": 4878
+    },
+    "total": {
+      "unique_ada_files": 236,
+      "lines_including_tests_comments_blank_generated": 12442
+    },
+    "shared_fixed_ada_files": 92
+  },
+  "qualification": "UNQUALIFIED_SOURCE",
+  "base_archive_sha256": "029ce42361c1993c2f7f105a55448a7673071eb6a128e7c98489433b462ee366"
+}

@@ -1,0 +1,121 @@
+{
+  "environment": {
+    "gcc": "/usr/bin/gcc",
+    "gnatmake": null,
+    "gnat1": null,
+    "gprbuild": null,
+    "gnatprove": null
+  },
+  "checks": [
+    {
+      "repository": "assurance",
+      "command": [
+        "make",
+        "compile-all"
+      ],
+      "result": "not-run",
+      "reason": "gprbuild unavailable",
+      "gate_returncode": 2,
+      "log": "assurance-compile-all.log",
+      "log_sha256": "c0aa84e8196ecea49f0bec1bbbed7f38acdd9a0891679754af87c91e2f31c872"
+    },
+    {
+      "repository": "assurance",
+      "command": [
+        "make",
+        "flow"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "assurance-flow.log",
+      "log_sha256": "f6d4da275ce042039009848734ec6167d865832e7a203060ce5b61886b8d99fb"
+    },
+    {
+      "repository": "assurance",
+      "command": [
+        "make",
+        "prove"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "assurance-prove.log",
+      "log_sha256": "4b071455fa7e5174017080137fe4e73a3136e145aa5c6b6b835d37bd0ef54078"
+    },
+    {
+      "repository": "pkgcore",
+      "command": [
+        "make",
+        "compile-all"
+      ],
+      "result": "not-run",
+      "reason": "gprbuild unavailable",
+      "gate_returncode": 2,
+      "log": "pkgcore-compile-all.log",
+      "log_sha256": "c0aa84e8196ecea49f0bec1bbbed7f38acdd9a0891679754af87c91e2f31c872"
+    },
+    {
+      "repository": "pkgcore",
+      "command": [
+        "make",
+        "flow"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "pkgcore-flow.log",
+      "log_sha256": "b0d907dc48eac538d9aaa6604e9a6efb15144103400dbc45b7da7ac7ce47048a"
+    },
+    {
+      "repository": "pkgcore",
+      "command": [
+        "make",
+        "prove"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "pkgcore-prove.log",
+      "log_sha256": "d22d3612e7b53ae8c6e2bd1a092889904caa28d05aac635cc3a8a069d8fa7701"
+    },
+    {
+      "repository": "statecore",
+      "command": [
+        "make",
+        "compile-all"
+      ],
+      "result": "not-run",
+      "reason": "gprbuild unavailable",
+      "gate_returncode": 2,
+      "log": "statecore-compile-all.log",
+      "log_sha256": "c0aa84e8196ecea49f0bec1bbbed7f38acdd9a0891679754af87c91e2f31c872"
+    },
+    {
+      "repository": "statecore",
+      "command": [
+        "make",
+        "flow"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "statecore-flow.log",
+      "log_sha256": "b0d907dc48eac538d9aaa6604e9a6efb15144103400dbc45b7da7ac7ce47048a"
+    },
+    {
+      "repository": "statecore",
+      "command": [
+        "make",
+        "prove"
+      ],
+      "result": "not-run",
+      "reason": "gnatprove unavailable",
+      "gate_returncode": 2,
+      "log": "statecore-prove.log",
+      "log_sha256": "d22d3612e7b53ae8c6e2bd1a092889904caa28d05aac635cc3a8a069d8fa7701"
+    }
+  ],
+  "ada_execution": false,
+  "formal_proof": false
+}

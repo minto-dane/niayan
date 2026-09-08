@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "edition": "suse-config-integrity-2026-09-06",
+  "source_subject": "faaaac3df60883d231956ec1a46e9b41db329f4302f45bfcbae32b807c8866fa",
+  "python_tests": {
+    "engineering": 74,
+    "manager": 44,
+    "config_reference_and_native_probe": 31,
+    "actual_distribution_tools": 47,
+    "total": 196
+  },
+  "ada_execution": false,
+  "formal_proof": false,
+  "suse_image_built": false,
+  "production_qualified": false,
+  "contracts_fixed_files": 150,
+  "traceability": {
+    "requirements": 52,
+    "decisions": 34,
+    "hazards": 38,
+    "fault_cases": 46,
+    "canonical_ada_files": 433,
+    "registered_ada_tests": 45
+  },
+  "source_delta": {
+    "canonical_ada_added": 39,
+    "canonical_ada_changed": 7,
+    "ada_added_with_tests": 43,
+    "ada_changed_with_tests": 7,
+    "ada_deleted": 0
+  },
+  "limitations": "See STATUS.ja.md and distribution/docs/qualification.ja.md"
+}

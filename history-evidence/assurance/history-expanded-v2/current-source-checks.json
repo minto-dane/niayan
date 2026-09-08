@@ -1,0 +1,288 @@
+{
+  "release": "expanded-v2",
+  "created_utc": "2026-09-06T04:03:46.592469+00:00",
+  "scope": "Static/source/shell checks; no Ada parser, compiler, tests or GNATprove was run.",
+  "checks": [
+    {
+      "name": "no-source-symlinks",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "no-build-products",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "runtime-language-ada-only",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-contract-check",
+      "status": "PASS",
+      "detail": "Command output in assurance-contract-check.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-build-dry-run",
+      "status": "PASS",
+      "detail": "Command output in assurance-build-dry-run.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-integration-main-run_integration_tests.adb",
+      "status": "PASS",
+      "detail": "run_integration_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-tests-main-run_contract_tests.adb",
+      "status": "PASS",
+      "detail": "run_contract_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-tests-main-run_ingress_tests.adb",
+      "status": "PASS",
+      "detail": "run_ingress_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-tests-main-run_v2_tests.adb",
+      "status": "PASS",
+      "detail": "run_v2_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-assurance-main-assure.adb",
+      "status": "PASS",
+      "detail": "assure.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "assurance-missing-tool-gate",
+      "status": "PASS",
+      "detail": "No Ada compiler or test was invoked",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-contract-check",
+      "status": "PASS",
+      "detail": "Command output in pkgcore-contract-check.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-build-dry-run",
+      "status": "PASS",
+      "detail": "Command output in pkgcore-build-dry-run.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-tests-main-run_pkg_tests.adb",
+      "status": "PASS",
+      "detail": "run_pkg_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-tests-main-run_rpm_tests.adb",
+      "status": "PASS",
+      "detail": "run_rpm_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-tests-main-run_journal_io_tests.adb",
+      "status": "PASS",
+      "detail": "run_journal_io_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-tests-main-run_v2_pkg_tests.adb",
+      "status": "PASS",
+      "detail": "run_v2_pkg_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-tests-main-run_file_engine_tests.adb",
+      "status": "PASS",
+      "detail": "run_file_engine_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-pkgcore-main-pkgctl.adb",
+      "status": "PASS",
+      "detail": "pkgctl.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-pkgcore-main-pkg_worker.adb",
+      "status": "PASS",
+      "detail": "pkg_worker.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-missing-tool-gate",
+      "status": "PASS",
+      "detail": "No Ada compiler or test was invoked",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-contract-check",
+      "status": "PASS",
+      "detail": "Command output in statecore-contract-check.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-build-dry-run",
+      "status": "PASS",
+      "detail": "Command output in statecore-build-dry-run.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-statecore-main-statectl.adb",
+      "status": "PASS",
+      "detail": "statectl.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-statecore-main-state_worker.adb",
+      "status": "PASS",
+      "detail": "state_worker.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-tests-main-run_state_tests.adb",
+      "status": "PASS",
+      "detail": "run_state_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-tests-main-run_v2_state_tests.adb",
+      "status": "PASS",
+      "detail": "run_v2_state_tests.adb",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-missing-tool-gate",
+      "status": "PASS",
+      "detail": "No Ada compiler or test was invoked",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-assurance-ci-cross-repository.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-assurance-ci-cross-repository.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-assurance-ci-verify.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-assurance-ci-verify.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-pkgcore-ci-file-engine-test.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-pkgcore-ci-file-engine-test.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-pkgcore-ci-journal-test.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-pkgcore-ci-journal-test.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-pkgcore-ci-verify.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-pkgcore-ci-verify.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "shell-statecore-ci-verify.sh",
+      "status": "PASS",
+      "detail": "Command output in shell-statecore-ci-verify.sh.log",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "all-json-parse",
+      "status": "PASS",
+      "detail": "15 JSON files including historical evidence",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "authoritative-contract-exact-set",
+      "status": "PASS",
+      "detail": 83,
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "pkgcore-vendored-exact-set",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "statecore-vendored-exact-set",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "contract-bundle-digest",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "generated-ada-lock-table",
+      "status": "PASS",
+      "detail": 83,
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "reference-lock-rejects-content-drift",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "reference-lock-rejects-unknown-entry",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "reference-lock-rejects-missing-entry",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "reference-lock-restored-tree",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    },
+    {
+      "name": "test-scripts-no-host-sudo",
+      "status": "PASS",
+      "detail": "",
+      "scope": "SOURCE_OR_SHELL_NOT_ADA"
+    }
+  ],
+  "summary": {
+    "passed": 45,
+    "failed": 0
+  },
+  "shell_scripts": 6,
+  "contract_files": 83,
+  "compiler_tools": {
+    "gprbuild": null,
+    "gnatprove": null,
+    "gnatmake": null
+  }
+}

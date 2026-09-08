@@ -1,0 +1,10 @@
+SOURCE RELEASE: expanded-v2 / wire 2.0
+IMPLEMENTATION: substantial real filesystem and service/cluster effect paths added
+ADA BUILD: NOT RUN for this expanded source set
+ADA TESTS: WRITTEN, NOT RUN
+GNATPROVE: NOT RUN
+NATIVE REFERENCE CHECKS: see assurance/evidence/current-reference-checks.json
+PRODUCTION / LIVE-CLUSTER QUALIFICATION: NOT ESTABLISHED
+RPMDB REPLACEMENT / ARBITRARY SCRIPTLET SUPPORT: NOT IMPLEMENTED
+RUNTIME SOURCE: Ada; pure SPARK and explicit SPARK_Mode=>Off native boundaries
+DO NOT equate unsigned source hashes, signed assertions, or a changed release flag with qualification.

@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "edition": "leap-solver-assurance-source-2026-09-06",
+  "source_test_counts": {
+    "engineering-unittests.log": 74,
+    "manager-reference-tests.log": 44,
+    "distribution-tool-tests.log": 50,
+    "resolution-reference-tests.log": 62,
+    "configuration-reference-tests.log": 31
+  },
+  "unique_python_test_methods": 261,
+  "ada_compile": "not-run-missing-toolchain",
+  "ada_execution": "not-run",
+  "formal_proof": "not-run",
+  "native_libsolv_execution": "not-run",
+  "native_cadical_execution": "not-run",
+  "production_qualified": false,
+  "source_delta_counts": {
+    "added": 25,
+    "changed": 2,
+    "removed": 0
+  },
+  "active_distribution": [
+    "openSUSE Leap 16.0"
+  ],
+  "subscribed_sles_profile_active": false,
+  "independent_runtime_repositories": [
+    "assurance",
+    "pkgcore",
+    "statecore",
+    "controlcore",
+    "configcore",
+    "resolvercore"
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "edition": "resilience-source-2026-09-06",
+  "ada_compiled": false,
+  "ada_tests_executed": false,
+  "gnatprove_executed": false,
+  "live_cluster_tested": false,
+  "power_loss_tested": false,
+  "formal_proof_established": false,
+  "checks": [
+    {
+      "name": "shared-canonical-source-manifest",
+      "status": "PASS",
+      "scope": "source bytes and set only",
+      "detail": {
+        "files": 92
+      }
+    },
+    {
+      "name": "compiled-source-profile-regeneration",
+      "status": "PASS",
+      "scope": "generated constants checked as text, NOT executed runtime gate",
+      "detail": "49ef0f52ea9fcb8476d38dd3120ea5faa075f37f37072a934c3cbd3f44e02359"
+    },
+    {
+      "name": "vendor-identical-pkgcore",
+      "status": "PASS",
+      "scope": "byte-for-byte fixed source copies",
+      "detail": {
+        "files": 92,
+        "repo": "pkgcore"
+      }
+    },
+    {
+      "name": "vendor-identical-statecore",
+      "status": "PASS",
+      "scope": "byte-for-byte fixed source copies",
+      "detail": {
+        "files": 92,
+        "repo": "statecore"
+      }
+    },
+    {
+      "name": "strict-source-gate-assurance",
+      "status": "PASS",
+      "scope": "actual POSIX checker execution; no Ada compiler",
+      "detail": {
+        "exit": 0
+      }
+    },
+    {
+      "name": "strict-source-gate-pkgcore",
+      "status": "PASS",
+      "scope": "actual POSIX checker execution; no Ada compiler",
+      "detail": {
+        "exit": 0
+      }
+    },
+    {
+      "name": "strict-source-gate-statecore",
+      "status": "PASS",
+      "scope": "actual POSIX checker execution; no Ada compiler",
+      "detail": {
+        "exit": 0
+      }
+    },
+    {
+      "name": "before-build-refuses-modified",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 1,
+        "kind": "modified"
+      }
+    },
+    {
+      "name": "before-build-refuses-missing",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 1,
+        "kind": "missing"
+      }
+    },
+    {
+      "name": "before-build-refuses-extra",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 1,
+        "kind": "extra"
+      }
+    },
+    {
+      "name": "before-build-refuses-symlink",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 78,
+        "kind": "symlink"
+      }
+    },
+    {
+      "name": "before-build-refuses-special-file",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 1,
+        "kind": "special-file"
+      }
+    },
+    {
+      "name": "before-build-refuses-manifest-duplicate",
+      "status": "PASS",
+      "scope": "actual shared-source checker negative test",
+      "detail": {
+        "exit": 1,
+        "kind": "manifest-duplicate"
+      }
+    },
+    {
+      "name": "shell-syntax:assurance/ci/check-contract.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:assurance/ci/cross-repository.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:assurance/ci/verify.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:pkgcore/ci/check-contract.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:pkgcore/ci/file-engine-test.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:pkgcore/ci/journal-test.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:pkgcore/ci/verify.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:statecore/ci/check-contract.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:statecore/ci/healing-io-test.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "shell-syntax:statecore/ci/verify.sh",
+      "status": "PASS",
+      "scope": "POSIX shell syntax check",
+      "detail": "syntax only, script not run"
+    },
+    {
+      "name": "gpr-paths:assurance/assurance.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:assurance/integration.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:assurance/proof.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:assurance/tests.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:pkgcore/pkgcore.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:pkgcore/proof.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:pkgcore/tests.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:statecore/proof.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:statecore/statecore.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "gpr-paths:statecore/tests.gpr",
+      "status": "PASS",
+      "scope": "static project entry checks",
+      "detail": "source directory and main file presence; not GPR parsing/compilation"
+    },
+    {
+      "name": "critical-connector-guard-presence",
+      "status": "PASS",
+      "scope": "textual structure inspection ONLY",
+      "detail": "guard references present, semantics not established by this static check"
+    },
+    {
+      "name": "no-private-generator-or-key-files",
+      "status": "PASS",
+      "scope": "distribution file inventory, not a comprehensive secret scanner",
+      "detail": "no Python generators or private-key artifacts in current tree"
+    }
+  ],
+  "passed": 35,
+  "failed": 0
+}

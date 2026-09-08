@@ -1,0 +1,3 @@
+$ sh -n /mnt/data/mcore-harden-work/pkgcore/ci/journal-test.sh
+
+exit=0

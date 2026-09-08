@@ -1,0 +1,113 @@
+{
+  "layer": "syntax-only",
+  "checks": [
+    {
+      "path": "assurance/ci/check-contract.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/control-io-test.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/cross-repository.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/engineering.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/recovery-storage-test.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/refresh-contract.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/regenerate-public-fixtures.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/run-engineering-checks.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/ci/verify.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/tests/engineering/test_engineering.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "assurance/tests/engineering/test_replay_model.py",
+      "type": "python-ast",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "pkgcore/ci/check-contract.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "pkgcore/ci/file-engine-test.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "pkgcore/ci/journal-test.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "pkgcore/ci/verify.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "statecore/ci/check-contract.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "statecore/ci/healing-io-test.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "path": "statecore/ci/verify.sh",
+      "type": "shell-parse",
+      "result": "pass",
+      "detail": ""
+    }
+  ]
+}

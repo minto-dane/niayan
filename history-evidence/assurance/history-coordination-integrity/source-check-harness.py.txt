@@ -1,0 +1,79 @@
+"""Source population/build-entry checks, not compilation or proof."""
+from pathlib import Path
+import hashlib,json,os,re,shutil,stat,subprocess,sys,tempfile
+root=Path(sys.argv[1]).resolve();out=root/'assurance/evidence';out.mkdir(exist_ok=True)
+checks=[];attempts=[]
+def record(name,fn):
+ try:fn();checks.append({'name':name,'status':'PASS'})
+ except Exception as e:checks.append({'name':name,'status':'FAIL','error':repr(e)})
+def must(v):
+ if not v:raise AssertionError('condition not met')
+def run(cmd,cwd,label,expected=0):
+ p=subprocess.run(cmd,cwd=cwd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
+ (out/(label+'.log')).write_text('$ '+' '.join(cmd)+'\n'+p.stdout+'\nexit='+str(p.returncode)+'\n')
+ must(p.returncode==expected);return p
+for repo in ('assurance','pkgcore','statecore'):
+ record(repo+'-shared-manifest',lambda repo=repo:run(['sh','ci/check-contract.sh'],root/repo,repo+'-contract-check'))
+ for target in ('compile-all','test','flow','prove'):
+  record(repo+'-dry-run-'+target,lambda repo=repo,target=target:run(['make','-n',target],root/repo,repo+'-'+target+'-dry-run'))
+  p=subprocess.run(['make',target],cwd=root/repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
+  (out/(repo+'-'+target+'-attempt.log')).write_text(p.stdout+'\nexit='+str(p.returncode)+'\n')
+  # Missing tools are NOT passed tests. Preserve separate NOT_RUN records.
+  attempts.append({'repo':repo,'target':target,'exit':p.returncode,'status':'NOT_RUN_TOOLCHAIN_UNAVAILABLE' if 'required' in p.stdout or 'missing' in p.stdout else 'UNASSESSED','log':repo+'-'+target+'-attempt.log'})
+ for kind in ('tamper','missing','extra','symlink','fifo','manifest-fifo','socket'):
+  def negative(repo=repo,kind=kind):
+   with tempfile.TemporaryDirectory(prefix='mc-source-negative-') as tmp:
+    copy=Path(tmp)/repo;shutil.copytree(root/repo,copy)
+    source=copy if repo=='assurance' else copy/'vendor/contracts'
+    p=source/'src/mc_stop_barrier.ads'
+    if kind=='tamper':p.write_bytes(p.read_bytes()+b'\n-- mutation test\n')
+    elif kind=='missing':p.unlink()
+    elif kind=='extra':(source/'src/unknown.ads').write_text('-- test\n')
+    elif kind=='symlink':p.unlink();p.symlink_to('/dev/null')
+    elif kind=='fifo':p.unlink();os.mkfifo(p)
+    elif kind=='manifest-fifo':
+     p=source/'contracts.source.sha256';p.unlink();os.mkfifo(p)
+    else:
+     import socket
+     p.unlink();sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM);sock.bind(str(p));sock.close()
+    res=subprocess.run(['sh','ci/check-contract.sh'],cwd=copy,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
+    (out/(repo+'-negative-'+kind+'.log')).write_text(res.stdout+'\nexit='+str(res.returncode)+'\n')
+    must(res.returncode!=0)
+  record(repo+'-reject-'+kind,negative)
+for script in sorted(root.rglob('*.sh')):
+ if 'evidence' in script.parts:continue
+ record('shell-'+script.relative_to(root).as_posix(),lambda s=script:run(['sh','-n',str(s)],root,'shell-'+s.relative_to(root).as_posix().replace('/','-')))
+for repo in ('assurance','pkgcore','statecore'):
+ def project(repo=repo):
+  for p in (root/repo).glob('*.gpr'):
+   text=p.read_text();matches=re.search(r'for Main use\s*\((.*?)\);',text,re.S|re.I)
+   if not matches:continue
+   dirs=re.search(r'for Source_Dirs use\s*\((.*?)\);',text,re.S|re.I)
+   must(dirs is not None)
+   search=re.findall('"([^"]+)"',dirs[1]);mains=re.findall('"([^"]+)"',matches[1])
+   for main in mains:must(any((p.parent/d/main).is_file() for d in search))
+ record(repo+'-gpr-main-files-present',project)
+profile=(root/'assurance/contract-profile.hex').read_text().strip()
+source=(root/'assurance/contract-profile.source.sha256').read_bytes()
+record('profile-hash-definition',lambda:must(hashlib.sha256(b'MISSION-CORE-SHARED-SOURCE-PROFILE-v1\n'+source).hexdigest()==profile))
+for repo in ('pkgcore','statecore'):
+ record(repo+'-same-profile',lambda repo=repo:must((root/repo/'vendor/contracts/contract-profile.hex').read_text().strip()==profile))
+# Trace checks: these establish source wiring, not semantic correctness.
+def contains(path,*parts):
+ text=(root/path).read_text();must(all(p in text for p in parts))
+record('actual-etcd-adapter-calls-strict-codec-and-builder',lambda:contains('statecore/runtime/state_etcd.adb','State_Etcd_Wire.Write_Request','State_Etcd_Wire.Write_Response','State_Etcd_Wire.Read_Response','--consistency=l','I.May_Have_External_Effects:=True'))
+record('guard-atomic-request-construction',lambda:contains('statecore/src/state_etcd_wire.adb','Guard_Revision','Guard_Value','Expected_Revision','MC_Paths.Safe_Relative','"value("""','"mod("""'))
+record('native-etcdctl-not-gateway-oneof',lambda:contains('statecore/src/state_etcd_wire.adb','Single_Member (R,"Response")','Single_Member (W,"ResponsePut")','Put_Revision /= HR'))
+record('barrier-store-live-signature-and-cas',lambda:contains('statecore/runtime/state_barrier_store.adb','MC_Stop_Barrier_Auth.Verify','State_Etcd.Compare_And_Swap','MC_Control.Contain','Expected_State','MC_Clock.Read_Boot_ID'))
+record('quiescent-package-wrapper-uses-real-engine',lambda:contains('pkgcore/runtime/pkg_quiescent_engine.ads','package Engine is new Pkg_File_Engine (Guard)'))
+record('quiescent-package-wrapper-rechecks-after-observation',lambda:must((root/'pkgcore/runtime/pkg_quiescent_engine.adb').read_text().count('Authorize (Root_ID,Transaction_ID,Plan,Evidence,Epoch,Fence,Phase,Status);')==2))
+record('old-unauthenticated-entry-remains-refused',lambda:contains('pkgcore/app/pkgctl.adb','78'))
+record('new-vector-mains-and-cross-executable-calls',lambda:(contains('assurance/Makefile','run_stop_vector_tests fixtures/stop-v1'),contains('assurance/ci/cross-repository.sh','verify-stop-evidence','evidence-reserved.bin','wrong-role.sig')))
+record('no-new-project-install-target',lambda:must(all(not re.search(r'^install\s*:',(root/repo/'Makefile').read_text(),re.M) for repo in ('assurance','pkgcore','statecore'))))
+# GCC failure evidence in an isolated workspace; not classified as a passing build.
+with tempfile.TemporaryDirectory(prefix='mc-gnat-attempt-') as tmp:
+ p=subprocess.run(['gcc','-c','-gnat2022','-x','ada',str(root/'assurance/src/mc_types.ads')],cwd=tmp,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
+ (out/'ada-frontend-attempt.log').write_text(p.stdout+'\nexit='+str(p.returncode)+'\n')
+ attempts.append({'target':'Ada frontend','exit':p.returncode,'status':'NOT_RUN_TOOLCHAIN_UNAVAILABLE' if 'gnat1' in p.stdout else 'UNASSESSED','log':'ada-frontend-attempt.log'})
+result={'kind':'SOURCE_AND_BUILD_ENTRY_CHECKS','compiler_passed':False,'proof_passed':False,'passed':sum(c['status']=='PASS' for c in checks),'failed':sum(c['status']=='FAIL' for c in checks),'checks':checks,'unexecuted_build_and_proof_attempts':attempts}
+(out/'source-checks.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('checks','unexecuted_build_and_proof_attempts')}));sys.exit(bool(result['failed']))

@@ -1,0 +1,3 @@
+$ /usr/bin/systemd-analyze --man=no --generators=no --root=/tmp/mc-offline-units-4amv47u3 verify /usr/lib/systemd/system/mission-host-observer.service /usr/lib/systemd/system/mission-host-observer.timer
+
+exit=0

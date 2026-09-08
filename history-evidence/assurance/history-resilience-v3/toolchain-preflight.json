@@ -1,0 +1,8 @@
+{
+  "gcc": "/usr/bin/gcc",
+  "gprbuild": null,
+  "gnatprove": null,
+  "gnatmake": null,
+  "gnat1": null,
+  "gcc_gnat1": "gnat1"
+}

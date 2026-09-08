@@ -1,0 +1,21 @@
+{
+  "edition": "coordination-integrity-source-2026-09-06",
+  "license": "MIT (per repository)",
+  "qualified": false,
+  "source_set_sha256": "a373123e1aee89c02b5b78e0d47a1e422e8db84067c4fa597c0daab7dac23ee8",
+  "source_profile_sha256": "28ea419b365a2df6df6a76e9922b139b14b7b1aeb6270f85e3d6d9ea2728479b",
+  "source_manifest_definition": "All .ads/.adb/.gpr/.sh and Makefiles outside evidence/history, including fixed vendor copies",
+  "independent_reference_checks": {
+    "passed": 50,
+    "failed": 0,
+    "ada_execution": false
+  },
+  "source_build_entry_checks": {
+    "passed": 62,
+    "failed": 0
+  },
+  "compiler": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "gnatprove": "NOT_RUN_TOOLCHAIN_UNAVAILABLE",
+  "live_cluster": "NOT_RUN",
+  "change_summary": "Pinned etcd response identity, guarded CAS, all-participant stop barrier, opt-in quiescent package engine, distinct restore-point retention, pre-hash special-file rejection"
+}

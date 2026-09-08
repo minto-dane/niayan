@@ -1,0 +1,134 @@
+[
+  {
+    "repo": "assurance",
+    "command": [
+      "make",
+      "-s",
+      "compile-all"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "assurance-compile-all-attempt.log"
+  },
+  {
+    "repo": "assurance",
+    "command": [
+      "make",
+      "-s",
+      "test"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "assurance-test-attempt.log"
+  },
+  {
+    "repo": "assurance",
+    "command": [
+      "make",
+      "-s",
+      "flow"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "assurance-flow-attempt.log"
+  },
+  {
+    "repo": "assurance",
+    "command": [
+      "make",
+      "-s",
+      "prove"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "assurance-prove-attempt.log"
+  },
+  {
+    "repo": "pkgcore",
+    "command": [
+      "make",
+      "-s",
+      "compile-all"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "pkgcore-compile-all-attempt.log"
+  },
+  {
+    "repo": "pkgcore",
+    "command": [
+      "make",
+      "-s",
+      "test"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "pkgcore-test-attempt.log"
+  },
+  {
+    "repo": "pkgcore",
+    "command": [
+      "make",
+      "-s",
+      "flow"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "pkgcore-flow-attempt.log"
+  },
+  {
+    "repo": "pkgcore",
+    "command": [
+      "make",
+      "-s",
+      "prove"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "pkgcore-prove-attempt.log"
+  },
+  {
+    "repo": "statecore",
+    "command": [
+      "make",
+      "-s",
+      "compile-all"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "statecore-compile-all-attempt.log"
+  },
+  {
+    "repo": "statecore",
+    "command": [
+      "make",
+      "-s",
+      "test"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "statecore-test-attempt.log"
+  },
+  {
+    "repo": "statecore",
+    "command": [
+      "make",
+      "-s",
+      "flow"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "statecore-flow-attempt.log"
+  },
+  {
+    "repo": "statecore",
+    "command": [
+      "make",
+      "-s",
+      "prove"
+    ],
+    "status": "NOT_RUN_MISSING_TOOLCHAIN",
+    "exit": 2,
+    "log": "statecore-prove-attempt.log"
+  }
+]

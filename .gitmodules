@@ -1,0 +1,24 @@
+[submodule "assurance"]
+	path = assurance
+	url = ../assurance
+[submodule "pkgcore"]
+	path = pkgcore
+	url = ../pkgcore
+[submodule "statecore"]
+	path = statecore
+	url = ../statecore
+[submodule "controlcore"]
+	path = controlcore
+	url = ../controlcore
+[submodule "configcore"]
+	path = configcore
+	url = ../configcore
+[submodule "resolvercore"]
+	path = resolvercore
+	url = ../resolvercore
+[submodule "capsulecore"]
+	path = capsulecore
+	url = ../capsulecore
+[submodule "distribution"]
+	path = distribution
+	url = ../distribution
