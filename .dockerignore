@@ -3,3 +3,9 @@
 dev/*
 !dev/packages.txt
 !dev/Containerfile
+!distribution/
+distribution/*
+!distribution/image/
+distribution/image/*
+!distribution/image/Containerfile
+!distribution/image/builder-packages.txt

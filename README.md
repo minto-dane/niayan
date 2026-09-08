@@ -2,7 +2,9 @@
 
 Nia OS is a Linux distribution under development. This workspace pins seven independent Ada/SPARK component repositories and the distribution specification repository as Git submodules. [日本語](README.ja.md).
 
-**Development sources; not production qualified.** All 499 canonical Ada files compile, all 58 Ada test mains and 555 Python tests pass across their required contexts, and all seven components pass strict SPARK flow and full level-4 proof for the units in each proof.gpr. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. Evidence and the remaining external integrations are listed in [STATUS.ja.md](STATUS.ja.md). This repository does not produce a bootable OS yet.
+**Bootable, installable Debian 13 KDE development image; not production qualified.** The actual ISO passed BIOS, UEFI, Secure Boot, Japanese input, offline/online installation and reboot, and signed APT metadata retrieval in bounded VMs. See the [distribution acceptance](distribution/evidence/debian13/accepted-09/README.ja.md) and [build instructions](distribution/image/README.ja.md).
+
+All 499 canonical Ada files compile, all 58 Ada test mains and 555 Python tests pass across their required contexts, and all seven components pass strict SPARK flow and full level-4 proof for the units in each proof.gpr. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. All 19 distribution DEBs match on rebuild. Evidence, hardware test limits and remaining Nia-specific integrations are listed in [STATUS.ja.md](STATUS.ja.md).
 
 ```sh
 git clone --recurse-submodules <workspace-url>
@@ -27,6 +29,6 @@ For a fixed build environment and byte-for-byte binary comparisons, see [develop
 | capsulecore | Application generations, consent, permissions and broker contracts |
 | distribution | Product specifications, layout and release gates |
 
-The target policy remains authenticated Debian 14 Forky DEB inputs, an authoritative Nia installed-state catalog, XFS persistent storage and a FAT32 ESP. Debian 13 is the development host. Historical imported evidence is retained and must not be cited as a current successful run.
+The distribution now targets Debian 13 Trixie, retaining upstream packages and APT/dpkg, live-build and Debian Installer. NiaOS additions are separate DEBs; component sources are not patched to make the image boot. See the [image build instructions](distribution/image/README.ja.md) and [decision](distribution/docs/decisions/0001-debian13.ja.md). The earlier Forky/catalog profiles and contracts remain a research model, not the deployed image's package authority. Historical evidence must not be cited as a current successful run.
 
-Licensed under [MIT](LICENSE); component repositories retain their license notices.
+Workspace-specific code is licensed under [MIT](LICENSE). Debian packages and vendored components retain their respective licenses.

@@ -2,7 +2,9 @@
 
 7つのAda/SPARKコンポーネントとdistributionを独立Gitリポジトリとして維持し、このworkspaceのsubmoduleで組合せを固定する。[English](README.md)。
 
-**開発ソース／本番未認定。** 全499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoのproof.gpr対象の厳格なflow・level 4証明を通過した。固定コンテナで18実行ファイルがデバッグ情報込みで再現し、各repo単独のビルド・試験も成功した。未接続の製品機能は別の受入条件であり、起動可能な完成OSではない。対象範囲と証跡は[STATUS.ja.md](STATUS.ja.md)。
+**Debian 13ベースの起動・導入可能なKDE開発版。本番未認定。** 実ISOでBIOS・UEFI・Secure Boot、日本語入力、オフライン／オンライン導入と再起動、署名付きAPT索引取得を確認した。[配布受入](distribution/evidence/debian13/accepted-09/README.ja.md)と[構築手順](distribution/image/README.ja.md)。
+
+既存コンポーネントは全499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoの厳格なSPARK flow・level 4証明を通過している。18実行ファイルの再現性と独立ビルドに加え、配布向け19 DEBも再ビルドで一致した。未接続の独自製品機能、実機試験と各証跡の対象範囲は[STATUS.ja.md](STATUS.ja.md)に記載する。
 
 ```sh
 make bootstrap       # Debian 13 Distroboxへ依存を導入
@@ -25,8 +27,8 @@ sh dev/run-limited.sh make proof         # 警告・未証明を失敗にするf
 | capsulecore | アプリ世代・同意・権限・broker契約 |
 | distribution | 製品仕様・配置・供給入力・出荷条件 |
 
-製品方針はDebian 14 Forkyの認証済み固定DEB入力、installed-stateの正本となるNiaカタログ、永続XFSとFAT32 ESPを維持する。開発環境のDebian 13とは区別する。
+実配布のベースはDebian 13 Trixie。上流ソースをパッチせず、APT/dpkg・live-build・Debian Installerを使い、Nia固有部分を独立DEBとして維持する。[配布構築](distribution/image/README.ja.md)と[設計判断](distribution/docs/decisions/0001-debian13.ja.md)を参照。
 
-製品の正本は[profile](distribution/profiles/nia-os.json)と[contracts](distribution/contracts/)。接続が必要な機能は[本番接続表](assurance/docs/engineering/specs/production-closure.ja.md)、[Capsule同意仕様](capsulecore/docs/consent.ja.md)、[継続条件](distribution/docs/continuation.ja.md)に記載する。
+配布ビルドの入力は[image](distribution/image/)と[packaging](distribution/packaging/)。従来の[profile](distribution/profiles/nia-os.json)と[contracts](distribution/contracts/)は独自カタログの研究モデルとして保存する。接続が必要な独自機能は[本番接続表](assurance/docs/engineering/specs/production-closure.ja.md)と[Capsule同意仕様](capsulecore/docs/consent.ja.md)に記載し、通常のDebianデスクトップが起動することと区別する。
 
-旧archiveの説明・hash・試験結果はhistory領域に保全する。過去の成功や未実行という記述を現在の証跡の代わりに使わない。ライセンスは[MIT](LICENSE)。
+旧archiveの説明・hash・試験結果はhistory領域に保全する。過去の成功や未実行という記述を現在の証跡の代わりに使わない。workspace固有コードのライセンスは[MIT](LICENSE)。Debianパッケージとvendorには、それぞれのライセンスが適用される。

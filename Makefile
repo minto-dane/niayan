@@ -11,6 +11,7 @@ help:
 	@echo 'private-dbus Run native protocol tests on a dedicated private bus'
 	@echo 'proof        Run strict SPARK flow and level-4 proof (no download)'
 	@echo 'generated    Check generated independent component CI/test runners'
+	@echo 'image-check  Check Debian image preparation tools without building an ISO'
 bootstrap:
 	sudo sh dev/setup-debian.sh
 toolchain:
@@ -35,3 +36,7 @@ rebind:
 .PHONY: reproducible
 reproducible:
 	python3 dev/reproducible-build.py
+
+.PHONY: image-check
+image-check:
+	$(MAKE) -C distribution image-check

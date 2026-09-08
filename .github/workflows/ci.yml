@@ -17,7 +17,7 @@ jobs:
         run: |
           docker run --rm --network=none --user "$(id -u):$(id -g)" \
             --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
-            -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus reproducible
+            -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus reproducible image-check
       - name: Verify that unprivileged helpers refuse root
         shell: bash
         run: |

@@ -1,0 +1,48 @@
+name: Debian 13 packages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  packages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Build the pinned Debian tool environment
+        run: docker build -f distribution/image/Containerfile -t niaos-image-builder .
+      - name: Prepare exact component sources
+        run: python3 distribution/image/prepare.py --output "$RUNNER_TEMP/niaos-packages" --desktop kde
+      - name: Build and test each package sequentially
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none --user "$(id -u):$(id -g)" \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -e HOME=/tmp -v "$RUNNER_TEMP/niaos-packages:/build" \
+            -v "$PWD/distribution/image:/source:ro" niaos-image-builder \
+            sh /source/build-packages.sh 2>&1 | tee "$RUNNER_TEMP/niaos-packages/build.log"
+      - name: Verify reversible distribution identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -v "$RUNNER_TEMP/niaos-packages:/build:ro" \
+            -v "$PWD/distribution/image:/source:ro" niaos-image-builder \
+            sh /source/test-release.sh 2>&1 | tee "$RUNNER_TEMP/niaos-packages/identity.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: niaos-debian-packages-and-source
+          path: |
+            ${{ runner.temp }}/niaos-packages/*.log
+            ${{ runner.temp }}/niaos-packages/input-manifest.json
+            ${{ runner.temp }}/niaos-packages/packages/*.deb
+            ${{ runner.temp }}/niaos-packages/packages/*.dsc
+            ${{ runner.temp }}/niaos-packages/packages/*.tar.xz
+            ${{ runner.temp }}/niaos-packages/packages/*.changes
+            ${{ runner.temp }}/niaos-packages/packages/*.buildinfo

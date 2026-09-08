@@ -1,4 +1,4 @@
-# Debian 13 is the development host. The target distribution remains Debian 14.
+# Debian 13 component development environment; image tooling is in distribution/image.
 FROM docker.io/library/debian:13.6-slim@sha256:abc9cb88a5587630d7f915f47b23b0668fe250fbfc6457aa4d52b534c1bbf73f
 ARG DEBIAN_FRONTEND=noninteractive
 # Immutable, signed package indexes. Expiry is disabled only for this historical

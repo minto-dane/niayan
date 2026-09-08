@@ -11,3 +11,9 @@
 *.pyc
 __pycache__/
 build/
+*.iso
+*.qcow2
+*.deb
+*.udeb
+*.buildinfo
+*.changes
