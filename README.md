@@ -2,7 +2,7 @@
 
 Nia OS is a Linux distribution under development. This workspace pins seven independent Ada/SPARK component repositories and the distribution specification repository as Git submodules. [日本語](README.ja.md).
 
-**Bootable, installable Debian 13 KDE development image; not production qualified.** The actual ISO passed BIOS, UEFI, Secure Boot, Japanese input, offline/online installation and reboot, and signed APT metadata retrieval in bounded VMs. See the [distribution acceptance](distribution/evidence/debian13/accepted-09/README.ja.md) and [build instructions](distribution/image/README.ja.md).
+**Bootable, installable Debian 13 KDE development image; not production qualified.** The actual ISO passed BIOS, UEFI, Secure Boot, Japanese input, offline/online installation and reboot, and signed APT metadata retrieval in bounded VMs. Two independent ISO builds match byte for byte, and the corresponding source archives have been collected and verified after copying. See the [distribution acceptance](distribution/evidence/debian13/accepted-09/README.ja.md) and [build instructions](distribution/image/README.ja.md).
 
 All 499 canonical Ada files compile, all 58 Ada test mains and 555 Python tests pass across their required contexts, and all seven components pass strict SPARK flow and full level-4 proof for the units in each proof.gpr. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. All 19 distribution DEBs match on rebuild. Evidence, hardware test limits and remaining Nia-specific integrations are listed in [STATUS.ja.md](STATUS.ja.md).
 

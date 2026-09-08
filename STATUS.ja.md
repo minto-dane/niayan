@@ -12,9 +12,11 @@
 
 上流kernel・systemd・KDE・live-build・Debian Installerと、既存7コンポーネントのソースは改変していない。独自DEB、正式なchroot hook、KConfig、APT/GRUB設定の追加で統合する。試作で見つかった識別情報、Wayland日本語入力、bootstrapのCA証明書、インストーラーのHTTPS親ミラーとミラー設定モジュールの問題を配布レシピで修正した。失敗・中断記録も[evidence/debian13](distribution/evidence/debian13/)に残す。
 
-独自DEBの構築で58 Ada mainを実行し、再ビルドした19 DEB（デバッグ情報を含む）と8組16ファイルのnative source packageが全件一致した。同一入力からの独立した2回のISO構築でも、SHA-256と実バイト列が一致した。[09/10比較](distribution/evidence/debian13/reproducibility-09-10/README.ja.md)。対応ソースの保管は別工程で確認する。GitHub ActionsのDEB構築workflowも用意したが、GitHub上では未実行。
+独自DEBの構築で58 Ada mainを実行し、再ビルドした19 DEB（デバッグ情報を含む）と8組16ファイルのnative source packageが全件一致した。同一入力からの独立した2回のISO構築でも、SHA-256と実バイト列が一致した。[09/10比較](distribution/evidence/debian13/reproducibility-09-10/README.ja.md)。対応ソース1,415組・4,667ファイル（8,524,077,623 bytes）を保管し、内蔵インストーラー用Linux本体の補完とホスト側での全ファイル照合も完了した。[ソース記録](distribution/evidence/debian13/accepted-09/source-collection/README.ja.md)。GitHub ActionsのDEB構築workflowも用意したが、GitHub上では未実行。
 
 オフライン導入で「ミラーを使わない」を選ぶとCDソースだけを保持する。オンライン導入は通常ミラーを設定する。実機のGPU・音声・無線・サスペンド、暗号化導入、対話GUIの全操作、GNOME/serverイメージは未受入。Live終了時の読み取り専用メディアのunmount警告も実ログに保持する。
+
+配布工程後の[ソース検査](distribution/evidence/debian13/accepted-09/source-check/README.ja.md)も全24工程が成功した。対象source subjectは`35f0072871a19fb269111dc4727428968b9bb0c3418a63a31840a4fbaa273acf`。既存コンポーネントのビルド・証明対象とは分けて記録する。
 
 ## 実コンパイル・実行試験・再現性
 

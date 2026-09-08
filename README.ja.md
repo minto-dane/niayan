@@ -2,7 +2,7 @@
 
 7つのAda/SPARKコンポーネントとdistributionを独立Gitリポジトリとして維持し、このworkspaceのsubmoduleで組合せを固定する。[English](README.md)。
 
-**Debian 13ベースの起動・導入可能なKDE開発版。本番未認定。** 実ISOでBIOS・UEFI・Secure Boot、日本語入力、オフライン／オンライン導入と再起動、署名付きAPT索引取得を確認した。[配布受入](distribution/evidence/debian13/accepted-09/README.ja.md)と[構築手順](distribution/image/README.ja.md)。
+**Debian 13ベースの起動・導入可能なKDE開発版。本番未認定。** 実ISOでBIOS・UEFI・Secure Boot、日本語入力、オフライン／オンライン導入と再起動、署名付きAPT索引取得を確認した。独立した2回のISO構築がバイト単位で一致し、対応ソースの収集とコピー後の照合も完了した。[配布受入](distribution/evidence/debian13/accepted-09/README.ja.md)と[構築手順](distribution/image/README.ja.md)。
 
 既存コンポーネントは全499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoの厳格なSPARK flow・level 4証明を通過している。18実行ファイルの再現性と独立ビルドに加え、配布向け19 DEBも再ビルドで一致した。未接続の独自製品機能、実機試験と各証跡の対象範囲は[STATUS.ja.md](STATUS.ja.md)に記載する。
 
