@@ -6,10 +6,10 @@
 
 ```sh
 make bootstrap       # Debian 13 Distroboxへ依存を導入
-make check           # 全単位コンパイル、CLIリンク、登録試験、契約検査
-make private-dbus    # 専用の私有バスによるプロトコル試験
+sh dev/run-limited.sh make check         # 資源制限付きの全ビルド・登録試験
+sh dev/run-limited.sh make private-dbus  # 専用の私有バスによるプロトコル試験
 make toolchain       # checksum固定のGNATproveを取得
-make proof           # 警告・未証明を失敗にするflow/prove
+sh dev/run-limited.sh make proof         # 警告・未証明を失敗にするflow/prove
 ```
 
 固定コンテナとバイナリ再現性は[開発手順](dev/README.ja.md)、変更と生成物の管理は[CONTRIBUTING](CONTRIBUTING.md)、独立repoの公開順は[GitHub公開手順](dev/PUBLISHING.ja.md)を参照。

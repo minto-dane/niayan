@@ -8,10 +8,10 @@ Nia OS is a Linux distribution under development. This workspace pins seven inde
 git clone --recurse-submodules <workspace-url>
 cd <workspace>
 make bootstrap       # Debian 13 development environment; installs dependencies
-make check           # compile all units, link applications, run registered tests
-make private-dbus    # dedicated test bus; no desktop UI required
+sh dev/run-limited.sh make check         # all native checks, bounded user scope
+sh dev/run-limited.sh make private-dbus  # dedicated test bus; no desktop UI required
 make toolchain       # checksum-pinned GNATprove download
-make proof           # strict flow and proof checks; failures remain failures
+sh dev/run-limited.sh make proof         # strict flow and proof; failures remain failures
 ```
 
 For a fixed build environment and byte-for-byte binary comparisons, see [development instructions](dev/README.ja.md). For changes and generated files, see [CONTRIBUTING.md](CONTRIBUTING.md). For publishing the independent repositories, see [publishing instructions](dev/PUBLISHING.ja.md).

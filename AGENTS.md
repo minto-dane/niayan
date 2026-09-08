@@ -11,6 +11,7 @@ Debian 14 Forkyの認証済み固定成果物をDEB入力として利用。Nia�
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+0. 2026-09-08に並列GNATproveで開発PCが高負荷となり、利用者が強制再起動した。重い検証を重ねない。このDistroboxでは`dev/run-limited.sh command ...`の一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限を適用する。flow/proveと選択unit診断はさらに各repoの`ci/proof-guard.py`経由で1件ずつ実行する。制限による失敗を理由に上限を増やす・guardを迂回する・生のGNATproveで再実行することは禁止。制限と残る範囲はADR-0054。通常ビルドも既定JOBS=1を使う。
 1. `dev/README.ja.md`に従い固定環境で`make check private-dbus reproducible proof`。既存の未証明条件を修正し、最新source hashへ証跡を束縛する。
 2. Capsule起動器のpidfd/cgroup/LSM本人確認から、`Capsule_Consent_Channel`→Engine→Store→Access_UIを接続。SDKの外部関数を「常にTrue/OK」で埋めない。
 3. 各資源のnative portal/brokerを実接続。Portalが資源を渡す前にintentを保存。返された資源をユーザー同意と正確に結び付け、取消・失効を実際の遮断まで試験。

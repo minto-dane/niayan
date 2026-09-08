@@ -16,6 +16,7 @@ jobs:
       - name: Compile, link and test as the checkout owner
         run: |
           docker run --rm --network=none --user "$(id -u):$(id -g)" \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
             -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus reproducible
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()

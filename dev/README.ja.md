@@ -7,14 +7,16 @@
 Debian 13 amd64でworkspace直下から`make bootstrap`を実行する。これは`dev/packages.txt`の依存だけをaptで導入し、Distroboxのapt供給元は変更しない。日常作業と試験は非rootで行う。ホスト側のCLI・共有ライブラリの版は変化しうるため、再現性の基準には次の固定コンテナを使う。
 
 ```sh
-make build
-make check
-make private-dbus
+sh dev/run-limited.sh make build
+sh dev/run-limited.sh make check
+sh dev/run-limited.sh make private-dbus
 make toolchain
-make proof
+sh dev/run-limited.sh make proof
 ```
 
 `make check`は全Adaソースのコンパイル、18本のアプリケーションのリンク、全登録Ada試験、Python参照試験、固定契約と文書台帳検査を実行する。read-only host observerを含む。root拒否試験は別context、私有D-Bus試験は`make private-dbus`で実行する。実GTK/KDE表示、実サービス変更、ディストリビューション起動は含まない。
+
+`run-limited.sh`はユーザーのsystemdへ一時scopeを作り、全子孫を合計してメモリ3 GiB・swapなし・CPU 1コア分・最大128プロセスへ制限する。このDistroboxでは実際のkernel設定値を読み戻して確認した。既存serviceの設定変更や恒久設定は行わない。ユーザーbusや対応controllerがない場合は失敗し、制限なしで再試行しない。固定コンテナではコンテナ自体の同等の制限を利用する。
 
 ## 固定コンテナ
 
@@ -23,8 +25,10 @@ make proof
 ```sh
 podman build -f dev/Containerfile -t niaos-dev .
 podman run --rm --network=none --userns=keep-id \
+  --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
   -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus
 podman run --rm --network=none --userns=keep-id \
+  --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
   -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make reproducible
 ```
 
@@ -44,6 +48,19 @@ make proof GNATPROVE=/absolute/path/to/bin/gnatprove
 ```
 
 flow成功は完全な形式証明ではない。`make proof`は警告・未証明を失敗にする。SPARK_Mode=>OffのFFI・Linux境界は別の実行試験とレビューが必要。実行結果は`assurance/evidence/engineering-*/report.json`、再現性結果は`assurance/evidence/reproducibility-*/report.json`にsource subject付きで保存される。これらの生成ディレクトリは通常Gitから除外される。公開する証跡は対象source hashとともに選別して保存する。
+
+2026-09-08の高負荷・強制再起動を受け、証明は各repoの`ci/proof-guard.py`経由に統一した。GNATwhy3を含む各プロセスの仮想アドレス空間を1536 MiBに制限し、並列数1、同一UID・同じ`/tmp`内の重複起動拒否、低いCPU優先度、実時間3600秒の上限を適用する。起動時に4096 MiB以上のMemAvailableを要求し、実行中は合計RSS 2048 MiB超過またはMemAvailable 2048 MiB未満で停止する。失敗後の自動再試行・上限引上げは行わない。通常ビルドも既定`JOBS=1`。
+
+選択unitの診断にも同じguardを使う。`-j`は指定しない。診断の成功を全体の受入結果にしない。
+
+```sh
+# 対象コンポーネント内で実行。proverの絶対パスを指定する。
+python3 ci/proof-guard.py --seconds 600 -- /absolute/path/to/bin/gnatprove \
+  -P proof.gpr --subdirs=diagnostic -u unit.adb --mode=all \
+  --level=1 --timeout=2 --checks-as-errors=on --warnings=error
+```
+
+guardの合計RSS監視とniceだけではkernelの総量・CPU quota制限にならないため、前述のscopeまたはコンテナの制限も併用する。[Podmanの資源設定](https://docs.podman.io/en/latest/markdown/podman-run.1.html#memory-m-number-unit)を参照。Distrobox内からの直接のPodman cgroup設定は失敗したが、ユーザーscopeの制限は適用できた。別UIDや別の`/tmp`名前空間を持つコンテナはロックを共有しないため、PC上の重い検証は1件ずつ実行する。背景と制約は[ADR-0054](../assurance/docs/engineering/adr/ADR-0054.ja.md)。
 
 ## 正本の更新
 
