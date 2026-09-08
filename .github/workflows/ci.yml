@@ -18,6 +18,16 @@ jobs:
           docker run --rm --network=none --user "$(id -u):$(id -g)" \
             --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
             -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus reproducible
+      - name: Verify that unprivileged helpers refuse root
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assurance/evidence
+          docker run --rm --network=none --user 0:0 \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -e HOME=/tmp -v "$PWD:/workspace" niaos-dev sh -ec \
+            'cd resolvercore/tests; python3 -B -m unittest test_resolution_reference.ToolTests.test_unprivileged_helpers_refuse_root -v' \
+            2>&1 | tee assurance/evidence/root-refusal.log
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
@@ -25,3 +35,4 @@ jobs:
           path: |
             assurance/evidence/engineering-*/
             assurance/evidence/reproducibility-*/
+            assurance/evidence/root-refusal.log

@@ -1,24 +1,44 @@
 # Nia OS コンポーネント検証状況
 
-2026-09-08。開発ソース／本番未認定。ディストリビューション本体の開発開始前に、既存コンポーネントの実コンパイル、試験、再現性、独立Git管理を整備している。
+2026-09-08。開発ソース／本番未認定。既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理を整備した。起動可能なOSの完成を意味しない。
 
-同日の並列GNATprove実行中にメモリが逼迫し、PCのフリーズと強制再起動が報告された。pkgcore・resolvercore・capsulecoreの全体証明は完了レポートがなく、[中断記録](assurance/evidence/native-development/resource-interruption-20260908/report.json)を保存した。[ADR-0054](assurance/docs/engineering/adr/ADR-0054.ja.md)の資源制限を追加し、小規模試験の後に1件ずつ証明を再開した。前処理を含むプロセスごとの上限に加え、別process groupのソルバーも監視・回収する。ローカルでは一時user scopeによるメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限も適用し、各実行前に読み戻す。全7コンポーネントの現行ソースの完全証明はまだ未完。
+現在のsource subjectは`2d5b48e6fa437795af02df4943ea1b365ddad62185a88a5d394d201a45958c3d`。固定コンテナでのnative受入と、全7コンポーネントの厳格なSPARK flow・全体証明を完了した。
 
-再起動後、workspaceと全8repoのGitオブジェクト・差分検査は異常なし。最新のDistrobox実行では全499正本Adaファイル・18 CLI・58 Ada試験を検証し、統合103項目が成功した。Python試験554件は543件が通常実行で成功し、root拒否1件・私有D-Bus10件も別実行で成功した。資源guardの15件、kernel設定読戻しの3件を含む。[実行前後のsource subjectが一致した記録](assurance/evidence/native-development/scoped-native-20260908/native/report.json)と[証跡manifest](assurance/evidence/native-development/scoped-native-20260908/manifest.json)を保存している。現行ソースの固定コンテナ再検証・再現性・全体証明は次の受入工程である。
+## 実コンパイル・実行試験・再現性
 
-## 修正と管理基盤
+固定したDebian 13.6 amd64 imageと2026-09-07の署名済みsnapshotで、全499正本Adaファイルをコンパイルし、18 CLIをリンク、全58登録Ada mainを実行した。統合103項目が成功し、実行前後のsource subjectは一致した。Python参照・工具・プロトコル試験555件は、通常実行の544件と、別contextのroot拒否1件・私有D-Bus10件を合わせて成功した。
 
-初回の全7repoのコンパイル失敗を修正した。Ada予約語・演算子可視性・型とFFI宣言・deferred constant・古い試験APIを修正。部分入力解析でOKが漏れる処理、巨大配列のスタック一括生成、相対パスと試験ディレクトリ準備、子PIDの改行処理を修正した。共有vendor・profile・公開人工fixtureは正本から再生成している。理由と互換性への影響はADR-0053。
+署名付きDEB人工fixtureのGPG依存不足を修正した。現在はgpg・gpg-agent・gpgconf・gpgv・dpkg-debを必須とし、不足時は統合検査を開始前に失敗させる。今回の固定コンテナでは当該fixtureの省略はない。root拒否試験はGitHub Actionsでも専用コンテナで実行する設定を加えた。GitHub上での実行自体はまだ行っていない。
 
-各repoの`make test`は中央台帳の全登録Ada mainを実行する生成runnerに統一した。コンパイラ設定変更も再コンパイルする。7コンポーネントとdistributionは独立Git履歴を持ち、workspaceがsubmoduleで固定する。GitHub Actions、固定Debianコンテナ、checksum固定GNATprove導入工具、異なるパスでのバイナリ比較を追加した。
+異なる長さの作業パス、入力mtime、JOBS=1/2、UTC0/HST10で2回ビルドし、18実行ファイルがデバッグ情報込みで完全一致した。また、各コンポーネントを兄弟repoなしで別々にmountし、全7repoのcompile-all・build・testを実行して成功した。以前のビルド生成物は持ち込んでいない。
 
-## 検証の区分
+[固定コンテナ受入の概要](assurance/evidence/native-development/current-fixed-container/report.json)、[全native検査](assurance/evidence/native-development/current-fixed-container/native/report.json)、[再現性](assurance/evidence/native-development/current-fixed-container/reproducibility/report.json)、[独立ビルドを含む実行一覧](assurance/evidence/native-development/current-fixed-container/pipeline-report.json)を保存している。CIとroot試験の説明だけを受入後に追加した差分は[別記録](assurance/evidence/native-development/current-fixed-container/post-run-workspace-changes.json)にある。コンポーネント・ビルド・工具・package入力は変更していない。
 
-取り込み時の全499正本Adaファイルと18 CLI、従来57本のAda試験はDistroboxと固定コンテナで検証した。実LinuxソケットをAdaから呼ぶ試験を追加し、現在の登録Ada mainは58本。送信した子プロセスの資格情報、短い／長いframe、受信FDの解放、誤ったsocket種別の拒否を確認している。最新の全58本のDistrobox実行結果は上記の証跡に束縛している。旧コンテナの成功を現行ソースの成功として流用しない。
+## SPARKの証明
 
-Python参照試験、私有D-Bus試験、Ada実行試験、SPARK flow、完全なproveは別の証拠である。GNATprove 16.1の厳格検査で初期化・終了性・契約条件の不足を修正中。未証明の残る状態を成功として扱わない。`make proof`は未証明・警告を失敗にする。
+GNATprove 16.1をchecksumで固定し、全unit対象の厳格なflowとlevel 4 proveを使う。未証明・警告は失敗にする。次の件数は各repoの固定vendorも含むため重複する。
 
-再現性は固定コンテナ・固定依存の下で、異なる作業パスの18実行ファイルをデバッグ情報込みで比較する。OSイメージや異なるarchitectureの再現性を意味しない。生の実行結果は`assurance/evidence/engineering-*/report.json`等にsource hash付きで保存される。旧`consent-integration`と`final-review`は取り込み時の履歴である。
+| コンポーネント | 全体証明 |
+| --- | ---: |
+| assurance | 1,809項目 成功 |
+| pkgcore | 3,943項目 成功 |
+| statecore | 3,592項目 成功 |
+| controlcore | 2,030項目 成功 |
+| configcore | 2,292項目 成功 |
+| resolvercore | 2,499項目 成功 |
+| capsulecore | 2,135項目 成功 |
+
+全7repoについて、現在の数学的入力集合と完了実行の集合が完全一致することを確認している。pkgcoreの実行時workspace subjectは`091ce3fc…`、assurance・statecore・controlcore・configcore・resolvercoreは`330e7a97…`、最後に修正したCapsuleは現在のsubjectである。文書や試験工具の依存変更だけを理由に、同じ証明を重複実行していない。[全7repoの照合結果と完全な実行証跡](assurance/evidence/native-development/current-component-proof/report.json)を保存した。中断したworkspaceコマンドを成功に置き換えず、完了した各repoの結果を照合している。
+
+Capsuleの前回の全体実行では、権限の積集合とpromptの書込位置に10件の未証明が残った。点ごとの積集合・Subsetの契約、容量とcursor進行の契約・不変条件を追加した。選択範囲61項目の厳格証明に続き、全能力の16組合せ、最小・最大長の独立digest基準値、高い配列添字、無効入力のAda試験を通過し、最後の全体証明も成功した。途中の[選択証明と実行試験](assurance/evidence/native-development/scoped-capsule-bounds-20260908/report.json)は、全体証明と分けて保存している。
+
+State_Cluster_Safetyの自動展開中のツール内部エラーも保存し、旧・新両構成の過半数を維持するループ不変条件を追加した。その後のstatecore全体証明は成功している。修正と互換性の理由は[ADR-0053](assurance/docs/engineering/adr/ADR-0053.ja.md)。
+
+## 開発環境とGit管理
+
+7コンポーネントとdistributionは独立Git履歴を持ち、workspaceがsubmoduleのcommitを固定する。固定vendor・profile・人工fixture・独立CI/test runnerは正本から再生成する。手順は[開発環境](dev/README.ja.md)と[公開手順](dev/PUBLISHING.ja.md)。
+
+高負荷による強制再起動を受け、重い検証は1件ずつ実行する。ローカルは一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスをkernelで制限し、実行前に読み戻す。固定コンテナ内部からも同じ値を確認した。証明はさらに単一起動lock、子孫監視・回収、プロセスごとの上限、実時間上限を適用する。上限到達を成功にしない。詳細は[ADR-0054](assurance/docs/engineering/adr/ADR-0054.ja.md)。
 
 ## 製品開発として残るもの
 

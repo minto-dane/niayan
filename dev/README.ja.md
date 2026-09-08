@@ -34,6 +34,15 @@ podman run --rm --network=none --userns=keep-id \
 
 Dockerなら`--userns=keep-id`を`--user "$(id -u):$(id -g)"`に置き換える。実行時にprivilegedやhost bus/deviceの共有は不要。Distrobox内で入れ子のrootlessコンテナが許可されない場合はホスト側でこのコマンドを実行できる。
 
+通常の非root試験で省略されるroot拒否試験は、専用コンテナ内で実行する。GitHub Actionsも同じ試験を別stepで実行し、終了値とログを保存する。
+
+```sh
+podman run --rm --network=none --user 0:0 \
+  --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+  -e HOME=/tmp -v "$PWD:/workspace" niaos-dev sh -ec \
+  'cd resolvercore/tests; python3 -B -m unittest test_resolution_reference.ToolTests.test_unprivileged_helpers_refuse_root -v'
+```
+
 `make reproducible`は異なる長さの2つの新規作業パスで、入力mtime・並列数・タイムゾーンも変えて全アプリケーションを作り、配布台帳にある実行ファイルのSHA-256を比較する。SOURCE_DATE_EPOCHは1788739200。ソースパスは`/usr/src/niaos/<repo>/`へ写像し、変動するコンパイラ一時ファイル引数をDWARF producer情報へ含めない。デバッグ行情報と実行時検査は維持する。コンパイラ設定変更時は`gprbuild -s`で再コンパイルする。異なるCPU/コンパイラ/libc間の同一性を主張する試験ではない。
 
 ## GNATprove

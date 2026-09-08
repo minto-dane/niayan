@@ -2,7 +2,7 @@
 
 Nia OS is a Linux distribution under development. This workspace pins seven independent Ada/SPARK component repositories and the distribution specification repository as Git submodules. [日本語](README.ja.md).
 
-**Development sources; not production qualified.** Native builds and tests are being validated; formal proof and the external integrations listed in [STATUS.ja.md](STATUS.ja.md) are separate acceptance gates. This repository does not produce a bootable OS yet.
+**Development sources; not production qualified.** All 499 canonical Ada files compile, all 58 Ada test mains and 555 Python tests pass across their required contexts, and all seven components pass strict SPARK flow and full level-4 proof for the units in each proof.gpr. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. Evidence and the remaining external integrations are listed in [STATUS.ja.md](STATUS.ja.md). This repository does not produce a bootable OS yet.
 
 ```sh
 git clone --recurse-submodules <workspace-url>

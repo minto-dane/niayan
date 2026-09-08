@@ -2,7 +2,7 @@
 
 7つのAda/SPARKコンポーネントとdistributionを独立Gitリポジトリとして維持し、このworkspaceのsubmoduleで組合せを固定する。[English](README.md)。
 
-**開発ソース／本番未認定。** 実コンパイルと実行試験を導入して不具合を修正している。形式証明と未接続の製品機能は独立した受入条件であり、起動可能な完成OSではない。現在の範囲と結果は[STATUS.ja.md](STATUS.ja.md)。
+**開発ソース／本番未認定。** 全499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoのproof.gpr対象の厳格なflow・level 4証明を通過した。固定コンテナで18実行ファイルがデバッグ情報込みで再現し、各repo単独のビルド・試験も成功した。未接続の製品機能は別の受入条件であり、起動可能な完成OSではない。対象範囲と証跡は[STATUS.ja.md](STATUS.ja.md)。
 
 ```sh
 make bootstrap       # Debian 13 Distroboxへ依存を導入
