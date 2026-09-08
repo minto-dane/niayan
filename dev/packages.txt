@@ -1,9 +1,14 @@
 ca-certificates
 curl
 dbus
+dpkg
 gcc
 git
 gnat
+gpg
+gpg-agent
+gpgconf
+gpgv
 gprbuild
 libarchive-dev
 libc6-dev

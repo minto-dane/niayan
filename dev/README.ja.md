@@ -14,7 +14,7 @@ make toolchain
 sh dev/run-limited.sh make proof
 ```
 
-`make check`は全Adaソースのコンパイル、18本のアプリケーションのリンク、全登録Ada試験、Python参照試験、固定契約と文書台帳検査を実行する。read-only host observerを含む。root拒否試験は別context、私有D-Bus試験は`make private-dbus`で実行する。実GTK/KDE表示、実サービス変更、ディストリビューション起動は含まない。
+`make check`は全Adaソースのコンパイル、18本のアプリケーションのリンク、全登録Ada試験、Python参照試験、固定契約と文書台帳検査を実行する。read-only host observerを含む。root拒否試験は別context、私有D-Bus試験は`make private-dbus`で実行する。実GTK/KDE表示、実サービス変更、ディストリビューション起動は含まない。署名付きDEB人工fixtureに必要なGPG・agent・gpgv・gpgconf・dpkg-debは必須依存とし、不足時は統合検査を開始前に失敗させる。
 
 `run-limited.sh`はユーザーのsystemdへ一時scopeを作り、全子孫を合計してメモリ3 GiB・swapなし・CPU 1コア分・最大128プロセスへ制限する。このDistroboxでは実際のkernel設定値を読み戻して確認した。既存serviceの設定変更や恒久設定は行わない。ユーザーbusや対応controllerがない場合は失敗し、制限なしで再試行しない。固定コンテナではコンテナ自体の同等の制限を利用する。
 
@@ -23,7 +23,7 @@ sh dev/run-limited.sh make proof
 `dev/Containerfile`はDebian 13.6 amd64のimage digestと2026-09-07の署名済みDebian snapshotを固定する。過去snapshotの有効期限だけを無効化し、署名検証は維持する。image構築時にネットワークを使用し、コンポーネントのbuild/test時は無効化できる。
 
 ```sh
-podman build -f dev/Containerfile -t niaos-dev .
+sh dev/run-limited.sh podman build -f dev/Containerfile -t niaos-dev .
 podman run --rm --network=none --userns=keep-id \
   --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
   -e HOME=/tmp -v "$PWD:/workspace" niaos-dev make check private-dbus
@@ -44,7 +44,7 @@ Dockerなら`--userns=keep-id`を`--user "$(id -u):$(id -g)"`に置き換える�
 python3 assurance/ci/install-gnatprove.py
 # 既に取得済みのarchiveをネットワークなしで検証する場合
 python3 assurance/ci/install-gnatprove.py --archive /absolute/path/gnatprove.tar.gz
-make proof GNATPROVE=/absolute/path/to/bin/gnatprove
+sh dev/run-limited.sh make proof GNATPROVE=/absolute/path/to/bin/gnatprove
 ```
 
 flow成功は完全な形式証明ではない。`make proof`は警告・未証明を失敗にする。SPARK_Mode=>OffのFFI・Linux境界は別の実行試験とレビューが必要。実行結果は`assurance/evidence/engineering-*/report.json`、再現性結果は`assurance/evidence/reproducibility-*/report.json`にsource subject付きで保存される。これらの生成ディレクトリは通常Gitから除外される。公開する証跡は対象source hashとともに選別して保存する。
@@ -55,7 +55,7 @@ flow成功は完全な形式証明ではない。`make proof`は警告・未証�
 
 ```sh
 # 対象コンポーネント内で実行。proverの絶対パスを指定する。
-python3 ci/proof-guard.py --seconds 600 -- /absolute/path/to/bin/gnatprove \
+sh ../dev/run-limited.sh python3 ci/proof-guard.py --seconds 600 -- /absolute/path/to/bin/gnatprove \
   -P proof.gpr --subdirs=diagnostic -u unit.adb --mode=all \
   --level=1 --timeout=2 --checks-as-errors=on --warnings=error
 ```
@@ -71,8 +71,8 @@ make rebind
 python3 assurance/ci/refresh-lineage.py --write --acknowledge-source-change \
   --adr ADR-0053 --reason '変更の具体的な理由'
 make generated
-make source-check
-make check
+sh dev/run-limited.sh make source-check
+sh dev/run-limited.sh make check
 ```
 
 ADR-0053は初回コンパイル修正の判断であり、将来の別設計変更には新しいADRを追加する。lineage工具は過去のdigestを変更せず、現在の後継を記録する。再生成する署名fixtureの鍵は公開された人工試験専用である。
