@@ -6,6 +6,25 @@
 
 ### 直近の検証
 
+全原本の属性・所有権主張を保持するnative索引を追加した。
+追加順に依存せず、原本digestとsource ordinalでhardlinkのinodeを区別する。
+共有pathの全ownerと属性差、暗黙parent、非directory祖先を保持し、実効ownerは選択しない。
+失敗時に候補全体をClearし、全体seal前の候補を公開しない。入力inventoryの破棄後も索引は変わらない。
+固定環境でpkgcore全source・4アプリ・21 Ada main、新449・既存payload814 assertionsが成功。
+14合成原本35 claim/28 path、13元DEBと大型合成原本の2904 claim/2493 pathを独立tar/CASとhash計算へ照合した。
+両集合とも逆順で同じfingerprint。元DEB集合の索引process最大RSSは20,624KiBだった。
+対象入力の測定であり、最大4096原本・524288 claim・256MiB名の実負荷受入ではない。
+25実行ファイルが二ビルドで一致し、503入力をcheckout・通常・独立・sanitizedコピーへ照合した。
+25 ELFの緩和設定、root拒否（新index6 assertions）、ASan/UBSanリンク下449 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。新runtimeはSPARK対象外で、全7repoのproof入力は不変。
+最終ソース24工程は成功し、その実行前後subjectは
+`d8d464830a283c50c37cfc7c907db77ed80c0a90d90c6f3bce7b20dddca1bd77`で一致した。
+索引の原本集合と認可されたresolver集合の一致、package identity/版/architecture、Replaces/Multi-Archとalias、
+実効所有権・全効果・CAS pin閉包・稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
+[実装境界](distribution/native/payload-index.ja.md)、[検証記録](distribution/evidence/native-transition/payload-index-01/README.ja.md)。
+
+### 直前のimage候補検証
+
 未改変の上流工具による世代image生成を調査した。
 固定erofs-utils 1.8.6-1のtar直接入力は19回中17回でimageを生成し、
 その17個のfsckと追加4組のbyte再現性は成功したが、独立読戻しでACL欠落・
