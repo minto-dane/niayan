@@ -4,6 +4,17 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+元DEBのar envelopeと圧縮メンバーを既存CASへ束縛するnative読取SDKを追加した。
+原本の全hash・header・順序・サイズを再検査し、保存前に呼出側の全envelopeを照合する。
+固定環境でpkgcore全ソース・4アプリ・15 Ada main、新読取器764 assertionsが成功した。
+二つの入口のroot拒否と実DEB 7個・全21メンバーの独立ar/CAS照合も成功した。
+別パス・入力mtime・TZの新規ビルドで19実行ファイルが一致し、346入力hashを照合した。
+ソース24工程の前後subjectは`a1fea042e264bffca34da1d85cac7fea9f495061edd22633009bdbcb72a37945`で一致した。
+全7repoのproof入力は不変で、新runtimeはSPARK証明の対象外。
+[SDKと残る範囲](distribution/native/deb-container.ja.md)、
+[検証記録](distribution/evidence/native-transition/deb-container-01/README.ja.md)。
+圧縮tar/control・全効果・稼働catalog・実root/boot・完全置換ISOは未完である。
+
 遅延トリガーの未処理・処理中・待機関係を扱う参照モデルを追加した。
 処理中の再発火は別の未処理項目として保持し、受信者が別のパッケージを待つ場合も
 待機者を早期解除しない。scope・開始revision・処理名に束縛したattemptで古い応答を拒否する。

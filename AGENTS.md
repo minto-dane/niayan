@@ -32,6 +32,17 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+元DEBのar envelopeと圧縮メンバーを既存CASへ束縛するnative読取SDKを追加した。
+原本の全hash・header・順序・サイズを再検査し、保存前に呼出側の全envelopeを照合する。
+固定環境でpkgcore全ソース・4アプリ・15 Ada main、新読取器764 assertionsが成功した。
+二つの入口のroot拒否と実DEB 7個・全21メンバーの独立ar/CAS照合も成功した。
+別パス・入力mtime・TZの新規ビルドで19実行ファイルが一致し、346入力hashを照合した。
+ソース24工程の前後subjectは`a1fea042e264bffca34da1d85cac7fea9f495061edd22633009bdbcb72a37945`で一致した。
+全7repoのproof入力は不変で、新runtimeはSPARK証明の対象外。
+詳細はdistribution/native/deb-container.ja.mdと
+distribution/evidence/native-transition/deb-container-01/README.ja.md。
+圧縮tar/control・全効果・稼働catalog・実root/boot・完全置換ISOは未完である。
+
 遅延トリガーの参照状態を`distribution/tools/debian_trigger_state.py`へ追加した。ADR-0059。
 処理中と未処理を分け、再発火を保持し、受信者自身の待機が解消してから待機解除を伝播する。
 scope/開始revision/受信者/名前からattemptを作り、古い応答と異なるcheckpointを拒否する。
