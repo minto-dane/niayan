@@ -6,6 +6,38 @@
 
 ### 直近の検証
 
+更新計画の標準全体検査を完了した。前工程では小さい人工プロセスに実証明用の合計RSS枠2048 MiBが
+適用され、利用可能メモリ4096 MiBを要求していた。人工試験の合計枠も128 MiBへ厳しく限定した。
+ホスト予備2048 MiB、実証明の既定枠2048 MiB/開始4096 MiB、guard実装と外側cgroupは変更しない。
+人工試験にも実際の予備メモリと全実行枠を要求し、起動可能と偽装していない。
+追加した二つの境界試験は、人工枠と既定の実証明枠それぞれについて、余裕不足なら子を起動しないことを検査する。
+guard試験17件、開発基盤134件が成功した。詳細はADR-0054、REQ-095、FAULT-092。
+
+新規workspaceの標準make check private-dbus JOBS=1で全116工程、18アプリ、71 Ada mainが成功。
+私有D-Bus32+10試験、ホストsource検査24工程も成功した。Python単体試験582件発見、
+source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1361、stage1193 assertions。
+全体検査とhost sourceの前後subjectは
+f6e883af2ab0a8b15ffaeb61f2cf2d8718b7513def47b3143fd131514e63d8abで一致した。
+
+異なるmtime/作業パス/TZの新規独立buildと、29実行ファイル・全18アプリが一致した。ELF検査も成功。
+workspace3346入力を3コピー、pkgcore729入力を4コピーで照合した。
+最初の全体runnerはTZ/SOURCE_DATE_EPOCHを子へ渡さず、独立buildには変更TZと固定epochを渡す。
+pkgcoreの全入力と29実行ファイルは前工程とも完全一致する。そのため単独CI25 main・独立oracle、
+root拒否8本、ASan/UBSanの既存証跡は同じ入力と成果物へ対応付け、今回の再実行とは数えない。
+今回の全体Ada実行は新たに記録した。sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
+全7repoの数学的入力、全guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
+証跡はdistribution/evidence/native-transition/current-transition-02/。
+前工程current-transition-01の失敗と部分検証は当時のsourceに束縛したまま保持する。
+
+Read_Current_Transitionは正確なdescriptor、候補catalog/保持閉包、architecture policyから
+同じpublication/root/CAS予約で通常更新を検査し、NIAUPD01へ束縛する。
+返却時に予約を解放するため本番admissionの許可ではない。仕様はdistribution/native/current-transition.ja.mdとADR-0075。
+次は本番認証/policyとBindingを同じwriter予約へ結び、全DEB phase・所有権・効果と版付き世代属性を進める。
+現在の公開の構造検査だけをnative適用認可にしない。保持中の同じlockを外部read APIで取り直す接続も避ける。
+実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
+
+### 前工程: 確定済み世代からの更新計画と部分検証
+
 確定済み世代に束縛した更新計画をRead_Current_Transitionへ実装した。
 正確なdescriptor hash、候補catalog/保持閉包、architecture policyを指定し、同じpublication/root/CAS予約で
 前後の原本・保持・通常更新を検査する。NIAUPD01へdescriptor、候補、保持、transition fingerprintを束縛する。

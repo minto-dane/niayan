@@ -33,40 +33,35 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
-確定済み世代に束縛した更新計画をRead_Current_Transitionへ実装した。
-正確なdescriptor hash、候補catalog/保持閉包、architecture policyを指定し、同じpublication/root/CAS予約で
-前後の原本・保持・通常更新を検査する。NIAUPD01へdescriptor、候補、保持、transition fingerprintを束縛する。
-失敗はdescriptor/plan/bindingの旧成功も消す。予約は返却時に解放し、本番admissionの許可とは扱わない。
-仕様はdistribution/native/current-transition.ja.md、判断はADR-0075。
+更新計画の標準全体検査を完了した。前工程では小さい人工プロセスに実証明用の合計RSS枠2048 MiBが
+適用され、利用可能メモリ4096 MiBを要求していた。人工試験の合計枠も128 MiBへ厳しく限定した。
+ホスト予備2048 MiB、実証明の既定枠2048 MiB/開始4096 MiB、guard実装と外側cgroupは変更しない。
+人工試験にも実際の予備メモリと全実行枠を要求し、起動可能と偽装していない。
+追加した二つの境界試験は、人工枠と既定の実証明枠それぞれについて、余裕不足なら子を起動しないことを検査する。
+guard試験17件、開発基盤134件が成功した。詳細はADR-0054、REQ-095、FAULT-092。
 
-今回の全体検査は未成功。標準make check private-dbusはengineering単体試験で安全ガードが
-insufficient-memory-before-startを返し、全体のAda実行前に停止した。開始条件はsession 2 GiB + reserve 2 GiB。
-上限・reserve・guardを変えず、利用者のアプリを停止していない。再実行には実際のメモリ余裕が必要。
-ホストsource検査も未完。前工程の全116工程/71 main成功を今回の入力へ流用しない。
+新規workspaceの標準make check private-dbus JOBS=1で全116工程、18アプリ、71 Ada mainが成功。
+私有D-Bus32+10試験、ホストsource検査24工程も成功した。Python単体試験582件発見、
+source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1361、stage1193 assertions。
+全体検査とhost sourceの前後subjectは
+f6e883af2ab0a8b15ffaeb61f2cf2d8718b7513def47b3143fd131514e63d8abで一致した。
 
-別に新規コピーから全sourceの通常コンパイルと18アプリ、pkgcore25 mainを構築した。
-独立側の単独pkgcore CIは全25 mainと独立oracle、898ケースの依存比較・44ケースの更新比較が成功。
-公開/復旧1361 assertions、stage1193 assertions。18更新観測・四Binding・候補保持8欠落を
-独立readerで照合した。基準保持欠落と既存復旧行列も維持する。root拒否8本の公開driverは40 assertions。
-ASan/UBSanリンク下の公開1361 assertionsが成功。Adaと上流library本体は非計測、leak検査は無効。
-29実行ファイルと全18アプリが独立buildで一致し、ELF検査も成功した。
-pkgcore729入力を4コピー、workspace3346入力を3コピーで照合。私有D-Busは32+10試験成功。
-最初の通常buildはTZ/SOURCE_DATE_EPOCHを明示的に外し、独立buildは変更mtime/TZと固定epochを使った。
-数学的入力は全7repoで不変。変更runtimeはSPARK対象外であり、新しい形式証明とは数えない。
-source subjectはafdb6163195025cb2c485c7450ee4894738ba2f51b6a767930753921023e2cb8。
-部分検証の証跡はdistribution/evidence/native-transition/current-transition-01/。
-再起動後の旧Podman runroot拒否とメモリ不足の全体検査も保存した。
-引き継ぎ文書だけの後続変更は別に記録し、ビルド時入力一覧を書き換えない。
+異なるmtime/作業パス/TZの新規独立buildと、29実行ファイル・全18アプリが一致した。ELF検査も成功。
+workspace3346入力を3コピー、pkgcore729入力を4コピーで照合した。
+最初の全体runnerはTZ/SOURCE_DATE_EPOCHを子へ渡さず、独立buildには変更TZと固定epochを渡す。
+pkgcoreの全入力と29実行ファイルは前工程とも完全一致する。そのため単独CI25 main・独立oracle、
+root拒否8本、ASan/UBSanの既存証跡は同じ入力と成果物へ対応付け、今回の再実行とは数えない。
+今回の全体Ada実行は新たに記録した。sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
+全7repoの数学的入力、全guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
+証跡はdistribution/evidence/native-transition/current-transition-02/。
+前工程current-transition-01の失敗と部分検証は当時のsourceに束縛したまま保持する。
 
-次はメモリ余裕を確保後、同じsourceの全体source/build/71 main検査とホストsource検査を完了する。
-scratchは/home/nia/devbox/niaos/.work/native-generation-transition-01/、固定container helperはrun-container.py。
-workspaceとworkspace-independent-long-pathのソースは変更していない。code変更時は新規build treeを作る。
-全体検査の失敗記録を上書きせず、再実行ログと成功したreportを別に保存する。証明入力不変なら再証明しない。
-その後、本番認証/policyと同一実行予約へのBinding接続、全phase・所有権・効果・世代属性を進める。
-全履歴の保持とGC、保護移行/初期構築、実root/boot、完全置換ISO、全言語翻訳は未完である。
-
-直前に全体検証を完了した入力は139a883e127a3d94aa964d0f2fc2883346a7277f83c40c4a54dcc076e9ca1384。
-NIAGEN02の保持束縛はgeneration-retention-01証跡とSTATUSの前工程を参照する。
+Read_Current_Transitionは正確なdescriptor、候補catalog/保持閉包、architecture policyから
+同じpublication/root/CAS予約で通常更新を検査し、NIAUPD01へ束縛する。
+返却時に予約を解放するため本番admissionの許可ではない。仕様はdistribution/native/current-transition.ja.mdとADR-0075。
+次は本番認証/policyとBindingを同じwriter予約へ結び、全DEB phase・所有権・効果と版付き世代属性を進める。
+現在の公開の構造検査だけをnative適用認可にしない。保持中の同じlockを外部read APIで取り直す接続も避ける。
+実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
 
 過去の数値とsource別証跡はSTATUS.ja.mdとdistribution/evidence/native-transition/へ保持する。
 以下の既存境界を保つ。
