@@ -32,6 +32,16 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+遅延トリガーの参照状態を`distribution/tools/debian_trigger_state.py`へ追加した。ADR-0059。
+処理中と未処理を分け、再発火を保持し、受信者自身の待機が解消してから待機解除を伝播する。
+scope/開始revision/受信者/名前からattemptを作り、古い応答と異なるcheckpointを拒否する。
+observe_successは別途検証した観測を与えた場合の参照遷移で、認証APIやhandler起動器ではない。
+既存CAS/WALに接続済みと誤認せず、Pythonの第二の導入済みDBを作らない。
+固定環境の配布工具158件（参照状態13件を含む）とソース24工程が成功。証跡は
+`distribution/evidence/native-transition/trigger-state-01/`、subjectは
+`30d4b667646dad5a8732fec8a78c109b634d7e319c08680a67834d5b832938d2`。
+通常構成・失敗・remove/purge・interest寿命、観測認証とnative実行、実電源断は未完。
+
 直近で`distribution/native/media.py`を追加し、inutocとinstallp/geninstallの媒体操作を接続した。
 元DEBから有界に索引を作り、毎回再検査する。directory fd/flock、原本と索引の前後確認、
 一時索引のfsync/renameを使う。媒体キャッシュは署名認証でも導入済みDBでもない。

@@ -4,6 +4,16 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+遅延トリガーの未処理・処理中・待機関係を扱う参照モデルを追加した。
+処理中の再発火は別の未処理項目として保持し、受信者が別のパッケージを待つ場合も
+待機者を早期解除しない。scope・開始revision・処理名に束縛したattemptで古い応答を拒否する。
+checkpointの復号だけでhandlerの再実行・完了を起こさない。
+固定環境の配布工具158件（参照状態13件を含む）とソース24工程が成功した。
+前後subjectは`30d4b667646dad5a8732fec8a78c109b634d7e319c08680a67834d5b832938d2`で一致した。
+[参照状態の範囲](distribution/native/trigger-state.ja.md)と
+[検証記録](distribution/evidence/native-transition/trigger-state-01/README.ja.md)。
+これは実行器ではなく、成功観測の認証・native CAS/WAL・全package lifecycleは未接続である。
+
 媒体操作を公開コマンドへ接続した。inutocは元DEBを検査して決定的な`.toc`を作り、
 installp -l/-Lとgeninstall -Lは原本を再検査して一覧を返す。古い索引や途中変更を拒否し、
 索引を導入済みDBや供給認証の代わりに使わない。原本の版・hashを保持する。
