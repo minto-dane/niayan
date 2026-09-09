@@ -4,13 +4,23 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+多言語対応を[設計判断](distribution/docs/decisions/0004-localized-interface.ja.md)に追加した。
+Debian 13のglibc全509 locale/encoding組とinstaller 78選択肢を対象として固定し、
+文字体系・地域の変種を保持して検索する。公開12コマンドの表示層はgettextを使用し、
+英語原文と日本語訳115件を実装した。固定コンテナの工具試験127件、実HTTPSの
+公開コマンド試験6項目とソース検査24工程が成功した。ソース検査前後のsubjectは
+`8d7624f4932cced4741fae446ceb6d1fc3fd7456be3892734bffdac345ddaef1`で一致した。
+全言語の訳文、TUI/GUI、font/shaping/入力とアクセシビリティは未完である。
+全言語release gateは未翻訳を検出して終了値1となる。fallbackを翻訳完了と数えない。
+[多言語の検証記録](distribution/evidence/management-interface/localization-01/README.ja.md)。
+
 公開操作は[管理コマンドの最新判断](distribution/docs/decisions/0003-management-interface.ja.md)へ変更した。
 外部のsystemd等は元の操作体系を維持する。Niaの12コマンドの引数解析と、
 原本DEBに対応するアップロード緊急度・DSA/CVEの修正ソース版識別を追加した。
 元DEBを改変しないnative緊急修正成果物の作成・読取をepkg/emgrへ接続した。
 共有の供給認証に上流TUFを採用し、`emgr_download_ifix`へ実HTTPS取得を接続した。
 署名・委譲・鍵交代・期限・metadata版と参照hashを検査し、信頼cacheを原子的に保存する。
-固定Debian 13コンテナの試験は111件成功（native 91、hardening 4、image 16）。
+前回の供給認証検証では固定Debian 13コンテナの試験が111件成功（native 91、hardening 4、image 16）。
 別の使い捨てrootコンテナで実公開コマンドの結合試験4項目も成功した。
 ソース検査24工程も成功し、前後のsource subjectは
 `05eefe705d9265ec11e71181f0b90ba5dfcb14ed0e55758b174f53394b0a7876`で一致した。

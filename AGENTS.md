@@ -18,6 +18,11 @@ hash付き過去証跡は改変しない。現在の12入口のうちepkgのテ�
 成果物表示、emgr_download_ifixの署名付きHTTPS取得は動作する。供給認証は上流TUFを使用し、
 信頼cacheを一つの原子的checkpointとして保存する。詳細はdistribution/native/repository.ja.md。
 本番の鍵・policy配備と独立trust floor、契約の意味検証は未完。稼働管理器への接続・対話作成・応答互換性の受入は未完。
+多言語インターフェイスはdistribution/docs/decisions/0004-localized-interface.ja.mdに従う。
+gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語・日本語のCLIを
+実装済み。製品の対象はDebian 13の全言語。distribution/native/debian-languages.jsonの全509 locale組と
+installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。i18n-release-checkは
+全言語翻訳が完了するまで失敗を維持する。TUI/GUIとRTL・幅・アクセシビリティは未受入。
 追加調査と各コマンドの採用境界は`distribution/native/command-review.ja.md`を参照。
 
 `STATUS.ja.md` → `capsulecore/docs/consent.ja.md` → `assurance/docs/engineering/specs/production-closure.ja.md`。

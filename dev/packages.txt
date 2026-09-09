@@ -4,6 +4,7 @@ dbus
 dpkg
 gcc
 git
+gettext
 gnat
 gpg
 gpg-agent
