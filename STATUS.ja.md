@@ -6,6 +6,27 @@
 
 ### 直近の検証
 
+既存世代からのnative変更集合と保護対象の検査を追加した。
+前後catalogの正確なname/architectureと原本を照合し、追加・削除・更新・降格・再梱包を区別する。
+target最終集合を内部で再検査し、旧Essential/Protectedの削除・architecture変更・flag消失を
+通常更新で拒否する。異名Provides/Replacesでの代替は保持とみなさない。保護移行の許可は別途必要。
+全体成功時だけ前後catalog/endpointと全deltaをhashへ束縛し、失敗では旧成功/部分計画を消す。
+前世代の依存破壊を修復でき、入力順と寿命に依存しない。非空catalog契約は変更していない。
+固定環境で全source・4アプリ・24 Ada main、新3045 assertionsが成功した。
+36合成原本・44ケース（通常23、保護拒否17、target拒否4）は独立した原本/control・delta/hash計算と一致。
+既存の最終集合898ケースと固定dpkg simulationも再度一致した。実phaseの受入ではない。
+28実行ファイルは独立二ビルドで一致し、720入力をcheckoutと全検証コピーへ照合した。
+28 ELF、7本のroot拒否driver（新transition5 assertions）、ASan/UBSanリンク下3045 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
+ソース24工程は成功し、前後subjectは
+`646d1c1d56d1adb351034dee09978af06516d47a531fdc11a0acfc2160888c65`で一致した。
+全OS/最大容量、認証済みbaselineのguard下照合、検証済み保護移行、bootstrap、rollback floor、
+実行phase・所有権/alias・全効果/CAS pin閉包・実root/boot・完全置換ISO・全言語翻訳は未完。
+次は現在の稼働世代との束縛と、実行phase・過去の構成版・所有権の条件を進める。
+詳細はADR-0070、distribution/native/transition-plan.ja.mdとtransition-plan-01証跡。
+
+以下は直前の最終集合検査工程の記録。
+
 sealed候補のnative最終集合検査を追加した。
 全Depends/Pre-Depends group、実名と全Providesの版/architecture、Conflicts/Breaks、同名Multi-Arch共存と版を検査する。
 成功時だけcandidate/architecture policy/rule versionのreceiptを返し、失敗時は旧成功hashを消す。
