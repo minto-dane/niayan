@@ -2,7 +2,7 @@
 
 **Debian 13 KDE開発ISOは起動・導入のVM受入済み。本番・実機は未認定。**
 実ISOの対象hashと6項目の受入は`distribution/evidence/debian13/accepted-09/README.ja.md`。BIOS/UEFI/Secure Boot、実日本語入力、オフライン／オンライン導入と再起動、通常ミラーの署名付きAPT索引取得を確認した。ISO 09/10の実バイト列一致、対応ソース1,415組・4,667ファイルの収集・Linux本体補完・コピー後の照合も完了した。`distribution/release/`のソース補完はイメージ構築とは別工程で、内蔵カーネルの本体を省略しない。未接続の独自機能まで完成扱いにしない。
-現在の既存コンポーネントは、固定コンテナでの全実コンパイル・58 Ada main・555 Python試験・18バイナリ再現性・独立ビルドと、全7repoの厳格なflow/proveを通過した。対象source subjectと証明範囲はSTATUSと実行証跡で確認する。Python試験や模擬D-Busの成功を形式証明・実デスクトップ試験に置き換えないでください。
+既存コンポーネントの基準実行では、固定コンテナでの全実コンパイル・58 Ada main・555 Python試験・18バイナリ再現性・独立ビルドと、全7repoの厳格なflow/proveを通過した。対象source subjectと証明範囲はSTATUSと実行証跡で確認する。Python試験や模擬D-Busの成功を形式証明・実デスクトップ試験に置き換えないでください。
 
 ## 固定した製品方針
 2026-09-08の最新指示は、Debian 13 Trixieを維持しながらAPT/dpkgを完全置換し、Niaを唯一のパッケージ管理主体にすること。Ubuntu・Kicksecure・公的ハードニング資料を参照し、操作性を維持する。現在のISO 09は旧APT経路の比較基準であり、完全置換は未完。最新判断は`distribution/docs/decisions/0002-native-package-authority.ja.md`、移行工程は`distribution/native/`、セキュリティ基準は`distribution/hardening/`。開発Distrobox/ビルダーのAPT使用は稼働NiaOSの管理主体と別。依存削除・偽Provides・常時成功callback・任意scriptのhost root実行で完成にしない。上流ソースへ独自パッチを当てず、7コンポーネントのAPI・永続形式・検査を強引に変更しない。7リポジトリは独立維持する。旧Forky供給lockや独自UKI等の未受入機能をTrixieで検証済みとしない。
@@ -29,12 +29,18 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
-非公開世代の組立てSDKは`pkgcore/runtime/pkg_generation_manifest.*`と
-`pkg_generation_stage.*`へ追加済み。設計はADR-0055、証跡は
-`distribution/evidence/native-transition/generation-01/`。独立pkgcoreビルドと13 Ada main、
-stageの1,170 assertions、root拒否、ソース24工程を確認した。再起動後の再開も記録済み。
-UID 0は拒否する。公開worker・root/catalog単一公開・本番認可・全DEB意味は未接続。
-非公開分割のcommitを稼働rootへ転用せず、全体検査を実行許可と扱わない。
+非公開世代の組立てSDKに続き、`pkgcore/runtime/pkg_generation_descriptor.*`と
+`pkg_generation_publisher.*`へ論理世代公開を追加済み。設計はADR-0056、証跡は
+`distribution/evidence/native-transition/publication-01/`。全stage予約を検査後も保持し、
+全Managed guardと既存CAS/WALでroot/catalogのdescriptorを一つに確定する。
+`generation.next`は未確定の作業ファイルで、起動器・読取器の権威ではない。
+現行世代はroot.stateのaccepted planとCAS descriptorから読み、Active要求があれば
+Indeterminateとなる。SDKのUID 0拒否を解除して稼働OSへ転用しない。
+独立pkgcoreビルドと14 Ada main、stageの1,180・公開の333 assertions、root拒否7入口、
+ソース24工程が成功。二つの新規ビルドで4アプリと14試験の18バイナリが一致した。
+343入力hash、source subject、全7repoの不変proof入力を証跡へ保存している。
+新runtimeはSPARK証明の対象外。本番認可、全DEB意味、catalog/holds、実mount/boot切替、
+容量・同期故障・実電源断、rescue、新ISOは未完として続ける。
 
 0. 2026-09-08に並列GNATproveで開発PCが高負荷となり、利用者が強制再起動した。重い検証を重ねない。このDistroboxでは`dev/run-limited.sh command ...`の一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限を適用する。flow/proveと選択unit診断はさらに各repoの`ci/proof-guard.py`経由で1件ずつ実行する。制限による失敗を理由に上限を増やす・guardを迂回する・生のGNATproveで再実行することは禁止。制限と残る範囲はADR-0054。通常ビルドも既定JOBS=1を使う。
 1. コンポーネント変更は`dev/README.ja.md`に従い固定環境で`make check private-dbus reproducible proof`。配布レシピの変更は`distribution/image/README.ja.md`に従い、`image-check`、影響するDEB/ISOの構築とVM受入を実行する。数学的入力が不変なら同じ証明を重複実行しない。変更時は新しい未証明条件を修正し、証跡を最新の実行入力へ束縛する。既に成功した証拠を更新後の異なる入力へ流用しない。

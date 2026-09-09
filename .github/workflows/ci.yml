@@ -28,7 +28,7 @@ jobs:
             -e HOME=/tmp -v "$PWD:/workspace" niaos-dev sh -ec \
             'cd resolvercore/tests; python3 -B -m unittest test_resolution_reference.ToolTests.test_unprivileged_helpers_refuse_root -v' \
             2>&1 | tee assurance/evidence/root-refusal.log
-      - name: Verify inactive staging refuses root
+      - name: Verify generation staging and publication refuse root
         shell: bash
         run: |
           set -euo pipefail

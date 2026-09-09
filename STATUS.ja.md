@@ -4,17 +4,26 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
-非公開世代の分割組立てと全体検査をpkgcoreの内部SDKへ追加した。
-既存CAS/WAL実行器を再利用し、全分割プランとcatalogを一つのマニフェストへ束縛する。
-独立した固定コンテナビルドでpkgcore全ソースのコンパイル・アプリのリンクと
-全13 Ada test mainが成功した。新規試験は1,054項目・2分割・1,170 assertions。
-root実行拒否は再起動後にも専用コンテナで確認した。ソース統合検査24工程が成功し、
-前後のsubjectは`4532df17d6c523bc12a9a6ac34c83fe9114b14e46cdc7d443d94fee0f474cbf0`で一致した。
-[設計と未完の公開経路](distribution/native/generation-stage.ja.md)、
-[実行証跡](distribution/evidence/native-transition/generation-01/README.ja.md)を参照。
-これは非特権の隔離組立てSDKで、稼働管理器やroot/catalogの公開commitではない。
-全DEB効果、特権属性、catalog意味、独立trust floor、実電源断・容量故障、新ISOは未完。
+検査済み世代とcatalogを一つの記録で確定する公開SDKをpkgcoreへ追加した。
+全体検査後もstageの二つのlockを保持し、既存CAS/WALと全Managed guardを使用する。
+未確定の候補ファイルは現行世代として読まず、進行中は結果不明を返す。
+認可・構成署名・barrier・解決証拠の拒否、二世代の更新、途中確定と再開、
+欠落・部分journal、候補とaccepted記録の分離を実行試験した。
+独立した固定コンテナビルドでpkgcore全ソースのコンパイル、4アプリのリンク、
+全14 Ada test mainが成功した。stage試験は1,180、公開試験は333 assertions。
+root拒否7入口も使い捨てコンテナで成功した。
+作業パス・入力mtime・タイムゾーンを変えた二つの新規ビルドで、4アプリと14試験の
+全18実行ファイルがバイト一致した。両ビルドと現行checkoutの343入力hashも一致する。
+ソース統合検査24工程が成功し、前後のsubjectは
+`16a43c7b1adc304efc51f665283e4de70bf674c915a887556ada5b69262b3253`で一致した。
+[設計と残る製品接続](distribution/native/generation-publication.ja.md)、
+[実行証跡](distribution/evidence/native-transition/publication-01/README.ja.md)を参照。
+これは非特権の論理世代公開SDKで、実mount/boot切替や稼働管理器への接続ではない。
+全DEB効果、特権属性、catalog/緊急修正holds意味、本番認可と独立trust floor、
+実電源断・容量故障、完全置換の新ISOは未完。
 全7コンポーネントの既存proof入力は不変で、新しいruntimeを証明済みとは扱わない。
+前段の[分割組立て証跡](distribution/evidence/native-transition/generation-01/README.ja.md)は
+元のsource subjectに束縛した記録として保持している。
 
 多言語対応を[設計判断](distribution/docs/decisions/0004-localized-interface.ja.md)に追加した。
 Debian 13のglibc全509 locale/encoding組とinstaller 78選択肢を対象として固定し、
