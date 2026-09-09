@@ -33,6 +33,29 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+正規catalogのCAS保存と元DEBからの再構築SDKを追加した。
+既存NIACSEL1のpreimageをそのまま保存し、fingerprintと同じCASアドレスを使う。第二の導入済みDBは作らない。
+読取時に正規長/版/件数/順序/全digestを検査し、全原本のcontrolとpayloadをnative readerで再観測する。
+期待control、payload index、最終catalog hashが完全一致してから両出力を返し、失敗は旧成功も消す。
+空payload原本が欠けてもcacheで代用しない。Save失敗は入力を保持し返却アドレスをzeroにする。
+固定環境で全source・4アプリ・25 Ada main、新320 assertionsが成功した。
+4合成原本の全identity・44関係項目/15atom・3claim、20形式不正、原本/catalog欠落、期限を検査した。
+独立ar/tar readerがpayload index・全metadataと保存CASの実byte列を通常CIで照合した。
+440 byteの正規catalogは`89a31cbefdb7297293dc8b7a7315adfadccc79dcaffc580e5ac254d9610ee44f`で、従来のfingerprintと一致。
+既存の最終集合898ケースと固定dpkg simulation、更新44ケースも再度成功した。
+29実行ファイルは独立二ビルドで一致し、724入力をcheckoutと全検証コピーへ照合した。
+29 ELF、8本のroot拒否driver（新7 assertions）、ASan/UBSanリンク下320 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
+ソース24工程は成功し、前後subjectは
+`cc7c7d9b771e5a9b784d0a926f52eb04ee5924eb73c82997c8fbd7ed98f364af`で一致した。
+全OS/最大容量、供給認証、accepted generationとの同一reservation下照合、CAS pin閉包、
+保護移行/初期構築、実行phase・所有権/alias・全効果・実root/boot・完全置換ISO・全言語翻訳は未完。
+次はこの永続原本を世代の観測・同一reservation下の照合へ結び、保持閉包と実行phaseの条件を進める。
+Publisher.Read_Currentは返却前に内部lockを解放するため、観測を長時間の更新許可として流用しない。
+詳細はADR-0071、distribution/native/catalog-store.ja.mdとcatalog-store-01証跡。
+
+以下は直前の更新計画工程の記録。
+
 既存世代からのnative変更集合と保護対象の検査を追加した。
 前後catalogの正確なname/architectureと原本を照合し、追加・削除・更新・降格・再梱包を区別する。
 target最終集合を内部で再検査し、旧Essential/Protectedの削除・architecture変更・flag消失を
