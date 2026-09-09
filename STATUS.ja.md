@@ -23,6 +23,11 @@ Adaと上流library本体は非計測、leak検査は無効。全7repoのproof�
 全OS/最大容量、認証済みbaselineのguard下照合、検証済み保護移行、bootstrap、rollback floor、
 実行phase・所有権/alias・全効果/CAS pin閉包・実root/boot・完全置換ISO・全言語翻訳は未完。
 次は現在の稼働世代との束縛と、実行phase・過去の構成版・所有権の条件を進める。
+接続調査では、generation manifestはcatalogのCAS原本を要求するが、selected catalogは
+現状fingerprintだけを計算し、その正規byte列の保存/原本からの再構築APIがないことを確認した。
+既存NIACSEL1のhashを変えずCASへ保存し、読取時に全原本/control/payloadを再観測する経路が先に必要。
+第二の導入済みDBを作らない。Publisher.Read_Currentは内部lockを返却前に解放するため、
+その観測だけを長時間の更新許可とみなさず、admissionの同一reservation下で再照合する。
 詳細はADR-0070、distribution/native/transition-plan.ja.mdとtransition-plan-01証跡。
 
 以下は直前の最終集合検査工程の記録。
