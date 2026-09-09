@@ -6,6 +6,26 @@
 
 ### 直近の検証
 
+選択原本・期待control・payload索引を完全照合するnative candidate catalogを追加した。
+公開Observationを信用せずCAS原本を再観測し、全identityと11関係項目のatom/groupをcompactに保持する。
+同一原本、同一name/architectureの二版・再梱包、空package欠落と同数の別原本混入を拒否する。
+失敗は全candidateをClearし、再Sealでも入力を照合する。入力順とpayload寿命に依存しない。
+固定環境でpkgcore全source・4アプリ・22 Ada main、新313・既存payload814/index449 assertionsが成功。
+4合成原本44関係項目/15 atom、13元DEBと大型合成原本154項目/146 atomを独立control読取と照合した。
+4原本のpayloadは今回独立tar/CAS照合済み。14原本のpayloadは新native scanで再観測し、前回の独立検査へ
+原本集合とhashを完全照合した。後者のscanは87.464秒・最大RSS36,760KiBで、全OS/最大容量の受入ではない。
+26実行ファイルが独立二ビルドで一致し、516入力をcheckout・通常・独立・sanitizedコピーへ照合した。
+26 ELF、root拒否（新catalog8 assertions）、ASan/UBSanリンク下313 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
+ソース24工程は成功し、前後subjectは
+`06761e213cb6194f7ce7f491719cd47fccfc72e6d3e213b2c0882caa329b198a`で一致した。
+選択リストを認証済みresolver/policyへ結ぶguard、全関係の成立・Multi-Arch共存/phase、実効所有権とalias、
+全効果・CAS pin閉包・稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
+次は、このprivate候補を使って最終集合のnative関係とphase/所有権の条件を実装する。
+[実装境界](distribution/native/selected-catalog.ja.md)、[検証記録](distribution/evidence/native-transition/selected-catalog-01/README.ja.md)。
+
+### 直前の原本claim索引検証
+
 全原本の属性・所有権主張を保持するnative索引を追加した。
 追加順に依存せず、原本digestとsource ordinalでhardlinkのinodeを区別する。
 共有pathの全ownerと属性差、暗黙parent、非directory祖先を保持し、実効ownerは選択しない。
