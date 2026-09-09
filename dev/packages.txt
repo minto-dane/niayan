@@ -3,8 +3,8 @@ curl
 dbus
 dpkg
 gcc
-git
 gettext
+git
 gnat
 gpg
 gpg-agent
@@ -14,9 +14,11 @@ gprbuild
 libarchive-dev
 libc6-dev
 libcurl4-openssl-dev
+liblzma-dev
 libsodium-dev
 libsystemd-dev
 libxml2-dev
+libzstd-dev
 make
 pkg-config
 python3
@@ -24,4 +26,5 @@ python3-cryptography
 python3-tuf
 ripgrep
 xz-utils
+zlib1g-dev
 zstd

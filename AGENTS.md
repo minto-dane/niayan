@@ -32,6 +32,20 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+元DEBの制御アーカイブを検査し、通常制御ファイルと属性を既存CASへ保持するSDKを追加した。
+未改変のzlib/liblzma/libzstdを使う小さなC境界でstream終端・完全消費・展開量を検査し、
+その後にlibarchiveでtarを読む。gzip CRC不正を通してしまう初期構成は試験で検出して修正した。
+scriptは元のbyte列として保持し、実行許可や稼働DBは作らない。Cもcanonical索引へ追加した。
+最終ソースで全コンパイル・4アプリ・16 Ada main、制御229・envelope764 assertionsが成功。
+35合成DEBの再生成、13元DEBの65制御entryの独立ar/Python/CAS照合、三入口のroot拒否も成功。
+独立二ビルドの20実行ファイルが一致し、387入力を照合した。C境界のASan/UBSan計測下でも
+229 assertionsが成功した。Adaと上流libraryは非計測、leak検査は無効。通常20 ELFの緩和設定も確認。
+ソース24工程の前後subjectは`0ac39bc66d1164eb438ac282509f0cd9c43f48ce7625828c3841f810f326c67e`で一致した。
+全7repoの既存proof入力は不変。新Ada/C runtimeの形式証明ではない。
+詳細はdistribution/native/deb-control.ja.mdと
+distribution/evidence/native-transition/deb-control-01/README.ja.md。
+制御field・data.tar・全効果・稼働catalogと認可・実boot・完全置換ISO・全言語翻訳は未完である。
+
 元DEBのar envelopeと圧縮メンバーを既存CASへ束縛するnative読取SDKを追加した。
 原本の全hash・header・順序・サイズを再検査し、保存前に呼出側の全envelopeを照合する。
 固定環境でpkgcore全ソース・4アプリ・15 Ada main、新読取器764 assertionsが成功した。
