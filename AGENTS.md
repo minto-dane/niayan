@@ -14,8 +14,10 @@ Niaが所有する管理機能はinstallp等の採用コマンド体系だけを
 代替入口を作らない。内部SDKとworkerは別。systemd等の独立した外部工具は元のコマンドを
 維持し、互換ラッパーを作らない。emgr/epkgのnative緊急修正を同じcatalog/writerへ接続する
 設計変更は許可済み。自作コードと説明は中立名称を使い、原本メタデータ・ライセンス・
-hash付き過去証跡は改変しない。現在の11入口のうちepkgのテンプレート作成とemgrの
-成果物表示は動作する。稼働管理器への接続・対話作成・応答互換性の受入は未完。
+hash付き過去証跡は改変しない。現在の12入口のうちepkgのテンプレート作成とemgrの
+成果物表示、emgr_download_ifixの署名付きHTTPS取得は動作する。供給認証は上流TUFを使用し、
+信頼cacheを一つの原子的checkpointとして保存する。詳細はdistribution/native/repository.ja.md。
+本番の鍵・policy配備と独立trust floor、契約の意味検証は未完。稼働管理器への接続・対話作成・応答互換性の受入は未完。
 追加調査と各コマンドの採用境界は`distribution/native/command-review.ja.md`を参照。
 
 `STATUS.ja.md` → `capsulecore/docs/consent.ja.md` → `assurance/docs/engineering/specs/production-closure.ja.md`。

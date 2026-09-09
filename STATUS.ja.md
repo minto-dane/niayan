@@ -1,17 +1,24 @@
 # Nia OS 開発・配布検証状況
 
-2026-09-08。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
+2026-09-09。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
 公開操作は[管理コマンドの最新判断](distribution/docs/decisions/0003-management-interface.ja.md)へ変更した。
-外部のsystemd等は元の操作体系を維持する。Niaの11コマンドの引数解析と、
+外部のsystemd等は元の操作体系を維持する。Niaの12コマンドの引数解析と、
 原本DEBに対応するアップロード緊急度・DSA/CVEの修正ソース版識別を追加した。
 元DEBを改変しないnative緊急修正成果物の作成・読取をepkg/emgrへ接続した。
-今回のimage/native/hardening試験は76件成功（native 56、hardening 4、image 16）。
+共有の供給認証に上流TUFを採用し、`emgr_download_ifix`へ実HTTPS取得を接続した。
+署名・委譲・鍵交代・期限・metadata版と参照hashを検査し、信頼cacheを原子的に保存する。
+固定Debian 13コンテナの試験は111件成功（native 91、hardening 4、image 16）。
+別の使い捨てrootコンテナで実公開コマンドの結合試験4項目も成功した。
+ソース検査24工程も成功し、前後のsource subjectは
+`05eefe705d9265ec11e71181f0b90ba5dfcb14ed0e55758b174f53394b0a7876`で一致した。
+[供給認証の設計](distribution/native/repository.ja.md)と
+[検証記録](distribution/evidence/management-interface/repository-01/README.ja.md)を参照。
 [追加調査](distribution/native/command-review.ja.md)では作成・比較・媒体コピー・検索・
 ライセンス・権限・診断等の抜けを整理した。台帳121名称は全コマンドの採用完了を意味しない。
-公開管理器、emgrの適用・削除・保留、署名検証、対話画面の実接続、
+公開管理器、emgrの適用・削除・保留、本番の鍵・信頼policy配備、契約の意味検証、対話画面の実接続、
 旧公開niaの配布廃止と新ISO受入は未完。名称の修正は自作ソース・説明が対象で、
 過去の原本メタデータや証跡は維持した。Adaの数学的入力は変更していない。
 
