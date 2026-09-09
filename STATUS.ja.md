@@ -6,6 +6,40 @@
 
 ### 直近の検証
 
+NIAGEN02へcatalog保持閉包のhashを束縛し、stage/publication/現世代native観測へ接続した。
+旧NIAGEN01の予約byteとtransaction導出、構造検査を維持する。native公開とnative観測は新版を必須とし、
+既存世代transaction pin → manifest → closure → 全掲載objectを検査する。第二の保持DBや重複pinは作らない。
+全掲載objectの欠落検査をcatalog再構築より先に行い、再生成で欠落を隠さない。
+Stageの四入口とPublishは有限BOOTTIME Deadlineを必須とし、認可callbackの前後にも検査する。
+期限切れの部分状態は保持し、未実行と読み替えない。CAS予約は実行器への移行時に解放するため、
+公開の全区間でCAS lockを保持しているとは主張しない。将来のGCは既存pinの参照と予約規則を守る必要がある。
+
+固定環境の新規workspaceで全source・18アプリ・71 Ada main、全116工程が成功した。
+私有D-Busは32+10試験成功。Python単体試験580件発見、source実行11件skipで、skipを成功実行に数えない。
+世代stageは1193、公開/復旧は1133 assertions。二世代の保持一覧は5/7 objects、240/304 byte。
+64通りの閉包自身/member欠落、五境界での状態不変と非再生成、期限・認可中の期限切れ、旧形式公開拒否を検査。
+独立readerが実root.stateから原本まで照合し、故障試験の実行集合も比較した。16回のnative観測を照合した。
+段階検証では期限検査後の不正hash拒否status回帰を既存試験が検出して修正した。
+遅延認可試験はManaged内部の再認可8回を許す正しい期待値へ修正し、Staleと状態不変を維持した。
+失敗した診断のsource入力一覧・該当source・ログも別に保持する。
+
+同じ全体buildの単独pkgcore CIは全25 mainと独立oracle、上流との898ケース比較が成功。
+pkgcore29実行ファイルと全18アプリは独立buildで一致し、ELF検査も成功。
+pkgcore729入力を4コピー、workspace3344入力を3コピーで照合した。
+全体runnerはSOURCE_DATE_EPOCH/TZを子へ渡さない。二回目は固定epoch・変更mtime/TZを渡し、環境差を証跡へ記録する。
+root拒否8本とASan/UBSanリンク下stage1193・publication1133 assertionsも成功。
+Ada・上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、変更runtimeはSPARK対象外。
+ソース24工程も成功し、全体検査と同じ前後subjectは
+`139a883e127a3d94aa964d0f2fc2883346a7277f83c40c4a54dcc076e9ca1384`で一致した。
+証跡はdistribution/evidence/native-transition/generation-retention-01/、判断はADR-0074、仕様はdistribution/native/generation-retention.ja.md。
+
+全OS/最大容量、全履歴・効果・認証・復旧rootの保持と安全なGC、本番の認証済み予約、保護移行/初期構築、
+実行phase・所有権/alias・全効果、実root/boot・完全置換ISO・全言語翻訳は未完。
+次はcatalog選択・transition・保持hashを本番admissionと同一予約へ結び、実行phaseと全属性の世代組立てを進める。
+旧file planへnative属性を切り捨てず、任意scriptをhost rootで実行しない。テスト用authorityとtree/versionを製品の実行器と混同しない。
+
+### 前工程: catalog由来のCAS保持閉包
+
 Native catalog由来のCAS保持閉包を実装した。Pkg_Catalog_Retentionが全原本・control内容・
 圧縮/展開data・payload内容とlink文字列・xattr/ACLの正確な集合を再観測し、NIACLOS1へ保存する。
 Prepareは明示的なcache再構築、Verifyは全掲載objectの存在/hashを先に検査してから正確な集合を比較する。
