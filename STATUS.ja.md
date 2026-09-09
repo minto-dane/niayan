@@ -6,6 +6,20 @@
 
 ### 直近の検証
 
+未改変の上流工具による世代image生成を調査した。
+固定erofs-utils 1.8.6-1のtar直接入力は19回中17回でimageを生成し、
+その17個のfsckと追加4組のbyte再現性は成功したが、独立読戻しでACL欠落・
+PAX小数時刻の不一致を確認した。前方hardlinkとGNU負時刻は構築失敗した。
+この経路を本番backendには採用せず、原本の属性要件を維持する。
+失敗した疎ファイルの証跡コピーは停止して部分出力を削除し、最終保存を有界にした。
+実験は合成入力のみで、runtime・共有contract・proof入力・ISOの変更はない。
+ソース整合性24工程は成功し、前後subjectは
+`8a6ce83352a1d8e86165e2af6428427b5b9e0b67909623ca66685aabd7c2e17d`で一致した。
+[判断と次の条件](distribution/native/generation-image.ja.md)、
+[実験証跡](distribution/evidence/native-transition/generation-image-01/README.ja.md)。
+
+### 直前のpayload実装検証
+
 元DEBのtar内容・属性・リンクを保持するnative SDKを追加した。
 独立framingと上流readerを照合し、全体成功後にprivate inventoryを返す。
 通常内容と属性blobは既存CASへ保持し、前方hardlink・全permission bit・UID/GID・

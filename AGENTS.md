@@ -33,6 +33,17 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+世代image候補として固定erofs-utils 1.8.6-1のtar直接入力を検証したが、
+ACL欠落・PAX小数時刻不一致、前方hardlinkとGNU負時刻の構築失敗により未採用。
+17 imageのfsck成功と4組のbyte一致を、属性保持の成功に読み替えない。
+runtime・共有contract・proof入力は変更していない。ADR-0066と
+distribution/native/generation-image.ja.md、generation-image-01証跡を参照。
+失敗出力は論理2TiBの疎ファイルを残す。再帰コピーで実体化しかけた処理を停止して
+部分コピーを削除した。失敗成果物はサイズ確認なしにコピー・全hash・圧縮しない。
+今回の実験readerは有限の合成image専用で、製品のimage検証器として転用しない。
+ソース24工程は成功し、前後subjectは
+`8a6ce83352a1d8e86165e2af6428427b5b9e0b67909623ca66685aabd7c2e17d`で一致した。
+
 元DEBのtar内容・属性・リンクを保持するnative SDKを追加した。
 独立framingと上流readerを照合し、全体成功後にprivate inventoryを返す。
 通常内容と属性blobは既存CASへ保持し、前方hardlink・全permission bit・UID/GID・
