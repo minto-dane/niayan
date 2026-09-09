@@ -32,6 +32,18 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+
+元DEBからraw controlと原本に束縛した制御項目・識別情報を読むnative SDKを追加した。
+未知項目と原本を保持し、単一stanza・UTF-8・重複・必須項目・Source・保護属性を検査する。
+通し試験で見つかったstack不足は中間recordをheapへ移して修正し、資源制限は維持した。
+固定環境の全コンパイル・4アプリ・17 Ada main、新読取109・制御229・envelope764 assertionsが成功。
+35合成DEBの再生成照合、最終binaryによる13元DEB・153項目の独立read-only oracle/CAS照合も成功した。
+二ビルドで21実行ファイルが一致し、392入力を照合した。新SDKのroot拒否と21 ELF緩和設定を確認した。
+ソース24工程の前後subjectは`156cccf117ef4612a3283ee58341e277889f4de452813df14e28a74152c374ff`で一致。全7repoのproof入力は不変である。
+新runtimeはSPARK対象外。依存・任意項目全体・data.tar・全効果・稼働catalogと認可・実boot・
+完全置換ISO・全言語翻訳は未完として続ける。
+詳細はdistribution/native/deb-metadata.ja.mdとdistribution/evidence/native-transition/deb-metadata-01/README.ja.md。
+
 元DEBの制御アーカイブを検査し、通常制御ファイルと属性を既存CASへ保持するSDKを追加した。
 未改変のzlib/liblzma/libzstdを使う小さなC境界でstream終端・完全消費・展開量を検査し、
 その後にlibarchiveでtarを読む。gzip CRC不正を通してしまう初期構成は試験で検出して修正した。
