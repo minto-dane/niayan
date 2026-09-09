@@ -43,7 +43,7 @@ podman run --rm --network=none --user 0:0 \
   'cd resolvercore/tests; python3 -B -m unittest test_resolution_reference.ToolTests.test_unprivileged_helpers_refuse_root -v'
 ```
 
-`make reproducible`は異なる長さの2つの新規作業パスで、入力mtime・並列数・タイムゾーンも変えて全アプリケーションを作り、配布台帳にある実行ファイルのSHA-256を比較する。SOURCE_DATE_EPOCHは1788739200。ソースパスは`/usr/src/niaos/<repo>/`へ写像し、変動するコンパイラ一時ファイル引数をDWARF producer情報へ含めない。デバッグ行情報と実行時検査は維持する。コンパイラ設定変更時は`gprbuild -s`で再コンパイルする。異なるCPU/コンパイラ/libc間の同一性を主張する試験ではない。
+`make reproducible`は異なる長さの2つの新規作業パスで、入力mtime・並列数・タイムゾーンも変えて全アプリケーションを作り、配布台帳にある実行ファイルのSHA-256を比較する。SOURCE_DATE_EPOCHは1788739200。ソースパスは`/usr/src/niaos/<repo>/`へ写像し、変動するコンパイラ一時ファイル引数をDWARF producer情報へ含めない。デバッグ行情報と実行時検査は維持する。コンパイラ設定変更時の再コンパイルには`gprbuild -s`を使う。ただし固定`SOURCE_DATE_EPOCH`下の診断では、再コンパイル後も既存の実行ファイルが再リンクされない挙動を観測した。qualificationと再現性試験は必ず`build`を含まない新規ソースコピーから始め、増分ビルドの終了値だけで更新済みバイナリと判断しない。異なるCPU/コンパイラ/libc間の同一性を主張する試験ではない。
 
 ## GNATprove
 

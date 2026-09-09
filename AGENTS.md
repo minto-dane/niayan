@@ -33,153 +33,44 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
-正規catalogのCAS保存と元DEBからの再構築SDKを追加した。
-既存NIACSEL1のpreimageをそのまま保存し、fingerprintと同じCASアドレスを使う。第二の導入済みDBは作らない。
-読取時に正規長/版/件数/順序/全digestを検査し、全原本のcontrolとpayloadをnative readerで再観測する。
-期待control、payload index、最終catalog hashが完全一致してから両出力を返し、失敗は旧成功も消す。
-空payload原本が欠けてもcacheで代用しない。Save失敗は入力を保持し返却アドレスをzeroにする。
-固定環境で全source・4アプリ・25 Ada main、新320 assertionsが成功した。
-4合成原本の全identity・44関係項目/15atom・3claim、20形式不正、原本/catalog欠落、期限を検査した。
-独立ar/tar readerがpayload index・全metadataと保存CASの実byte列を通常CIで照合した。
-440 byteの正規catalogは`89a31cbefdb7297293dc8b7a7315adfadccc79dcaffc580e5ac254d9610ee44f`で、従来のfingerprintと一致。
-既存の最終集合898ケースと固定dpkg simulation、更新44ケースも再度成功した。
-29実行ファイルは独立二ビルドで一致し、724入力をcheckoutと全検証コピーへ照合した。
-29 ELF、8本のroot拒否driver（新7 assertions）、ASan/UBSanリンク下320 assertionsも成功。
-Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
+受理済み世代のnative catalog観測をpublication/root/CASの同じ排他区間へ接続した。
+Read_Currentと共通の内部処理でaccepted plan・descriptor・manifest pin・journalを検査し、
+新しいRead_Current_Catalogが全元DEBからcatalog/payloadを再観測する。最後に状態と期限を再確認する。
+失敗はdescriptor/catalog/payloadの旧成功も消す。記録だけのRead_Currentをnative検査済みとは数えない。
+返却前に予約を解放するため、観測は長時間の更新許可ではない。Publishの正確なpredecessor比較とmanaged guardを維持する。
+固定環境で全source・4アプリ・25 Ada main、公開/復旧試験456 assertions（従来333）が成功した。
+二つの合成native catalogと16回の成功観測、既存の拒否/復旧、原本/catalog欠落、root/CAS競合、期限、別root、旧plan拒否を検査。
+独立readerが実際のroot.state→accepted plan→descriptor lineage→manifest→catalog→元DEBの関係を通常CIで照合した。
+29実行ファイルは独立二ビルドで一致し、725入力をcheckoutと全検証コピーへ照合した。
+29 ELF、8本のroot拒否driver（公開driver37 assertions）、ASan/UBSanリンク下456 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、変更runtimeはSPARK対象外。
 ソース24工程は成功し、前後subjectは
-`cc7c7d9b771e5a9b784d0a926f52eb04ee5924eb73c82997c8fbd7ed98f364af`で一致した。
-全OS/最大容量、供給認証、accepted generationとの同一reservation下照合、CAS pin閉包、
-保護移行/初期構築、実行phase・所有権/alias・全効果・実root/boot・完全置換ISO・全言語翻訳は未完。
-次はこの永続原本を世代の観測・同一reservation下の照合へ結び、保持閉包と実行phaseの条件を進める。
-Publisher.Read_Currentは返却前に内部lockを解放するため、観測を長時間の更新許可として流用しない。
-詳細はADR-0071、distribution/native/catalog-store.ja.mdとcatalog-store-01証跡。
+`4694cfb40880ec35fcb93b8c30fb94d2dbcab4121f091745462ea2aed78a9be7`で一致した。
+固定SOURCE_DATE_EPOCHで増分診断の実行ファイルが更新されない挙動を観測し、未採用の記録として保存した。
+新規ソースコピーの全build treeでやり直した。dev/READMEの新規build tree必須条件に従う。
+試験のauthorityとtree/versionは合成であり、DEB payloadの物理適用ではない。
+全OS/最大容量、本番の認証済み予約、CAS pin閉包、保護移行/初期構築、実行phase・所有権/alias・全効果、
+実root/boot・完全置換ISO・全言語翻訳は未完。次はcatalogと原本・生成物の保持閉包、実行phaseと本番admissionを進める。
+詳細はADR-0072、distribution/native/current-catalog.ja.mdとcurrent-catalog-01証跡。
 
-以下は直前の更新計画工程の記録。
+過去の数値とsource別証跡はSTATUS.ja.mdとdistribution/evidence/native-transition/へ保持する。
+以下の既存境界を保つ。
 
-既存世代からのnative変更集合と保護対象の検査を追加した。
-前後catalogの正確なname/architectureと原本を照合し、追加・削除・更新・降格・再梱包を区別する。
-target最終集合を内部で再検査し、旧Essential/Protectedの削除・architecture変更・flag消失を
-通常更新で拒否する。異名Provides/Replacesでの代替は保持とみなさない。保護移行の許可は別途必要。
-全体成功時だけ前後catalog/endpointと全deltaをhashへ束縛し、失敗では旧成功/部分計画を消す。
-前世代の依存破壊を修復でき、入力順と寿命に依存しない。非空catalog契約は変更していない。
-固定環境で全source・4アプリ・24 Ada main、新3045 assertionsが成功した。
-36合成原本・44ケース（通常23、保護拒否17、target拒否4）は独立した原本/control・delta/hash計算と一致。
-既存の最終集合898ケースと固定dpkg simulationも再度一致した。実phaseの受入ではない。
-28実行ファイルは独立二ビルドで一致し、720入力をcheckoutと全検証コピーへ照合した。
-28 ELF、7本のroot拒否driver（新transition5 assertions）、ASan/UBSanリンク下3045 assertionsも成功。
-Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
-ソース24工程は成功し、前後subjectは
-`646d1c1d56d1adb351034dee09978af06516d47a531fdc11a0acfc2160888c65`で一致した。
-全OS/最大容量、認証済みbaselineのguard下照合、検証済み保護移行、bootstrap、rollback floor、
-実行phase・所有権/alias・全効果/CAS pin閉包・実root/boot・完全置換ISO・全言語翻訳は未完。
-次は現在の稼働世代との束縛と、実行phase・過去の構成版・所有権の条件を進める。
-接続調査では、generation manifestはcatalogのCAS原本を要求するが、selected catalogは
-現状fingerprintだけを計算し、その正規byte列の保存/原本からの再構築APIがないことを確認した。
-既存NIACSEL1のhashを変えずCASへ保存し、読取時に全原本/control/payloadを再観測する経路が先に必要。
-第二の導入済みDBを作らない。Publisher.Read_Currentは内部lockを返却前に解放するため、
-その観測だけを長時間の更新許可とみなさず、admissionの同一reservation下で再照合する。
-詳細はADR-0070、distribution/native/transition-plan.ja.mdとtransition-plan-01証跡。
-
-以下は直前の最終集合検査工程の記録。
-
-sealed候補のnative最終集合検査を追加した。
-全Depends/Pre-Depends group、実名と全Providesの版/architecture、Conflicts/Breaks、同名Multi-Arch共存と版を検査する。
-成功時だけcandidate/architecture policy/rule versionのreceiptを返し、失敗時は旧成功hashを消す。
-初期610ケースで同名別architectureの自己Breaksが上流と異なり、instance単位の例外へ修正した。
-negative virtualのarchitecture指定も追加した898ケースは固定dpkg 1.22.22の個別configure/unpack simulationと一致。
-参照はprivate模擬statusと空payload/no-script合成DEBのみ。製品backendや実phase順序の証明ではない。
-固定環境でpkgcore全source・4アプリ・23 Ada main、新23038 assertionsが成功した。
-153原本の898ケースは原本/control・source index・catalog・policy/receipt hashの独立計算とも一致。
-fixture再生成・native matrix・独立hash・上流simulationを通常の生成CI runnerへ組み込んだ。
-27実行ファイルが独立二ビルドで一致し、677入力をcheckout・通常・独立・sanitizedコピーへ照合した。
-27 ELF、root拒否（新final-set5 assertions）、ASan/UBSanリンク下23038 assertionsも成功。
-Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
-ソース24工程は成功し、前後subjectは
-`0af8311a792c22aff260302f937ca135efe9a7b04162a70e2427efa7d6e8a34d`で一致した。
-全OS原本集合や最大capacityの受入は未実施。認証済みresolver/policyと同意への接続、実行phaseと既構成版、
-Essential/Protected削除、source保持/weak依存policy、実効所有権とalias、全効果・CAS pin閉包、
-稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
-次は既存世代・実行phase・実効所有権の条件と、認証済みresolver/管理器への接続を進める。
-詳細はADR-0069、distribution/native/final-set.ja.mdとfinal-set-01証跡。
-
-以下は直前の選択catalog工程の記録。
-
-選択原本・期待control・payload索引を完全照合するnative candidate catalogを追加した。
-公開Observationを信用せずCAS原本を再観測し、全identityと11関係項目のatom/groupをcompactに保持する。
-同一原本、同一name/architectureの二版・再梱包、空package欠落と同数の別原本混入を拒否する。
-失敗は全candidateをClearし、再Sealでも入力を照合する。入力順とpayload寿命に依存しない。
-固定環境でpkgcore全source・4アプリ・22 Ada main、新313・既存payload814/index449 assertionsが成功。
-4合成原本44関係項目/15 atom、13元DEBと大型合成原本154項目/146 atomを独立control読取と照合した。
-4原本のpayloadは今回独立tar/CAS照合済み。14原本のpayloadは新native scanで再観測し、前回の独立検査へ
-原本集合とhashを完全照合した。後者のscanは87.464秒・最大RSS36,760KiBで、全OS/最大容量の受入ではない。
-26実行ファイルが独立二ビルドで一致し、516入力をcheckout・通常・独立・sanitizedコピーへ照合した。
-26 ELF、root拒否（新catalog8 assertions）、ASan/UBSanリンク下313 assertionsも成功。
-Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
-ソース24工程は成功し、前後subjectは
-`06761e213cb6194f7ce7f491719cd47fccfc72e6d3e213b2c0882caa329b198a`で一致した。
-選択リストを認証済みresolver/policyへ結ぶguard、全関係の成立・Multi-Arch共存/phase、実効所有権とalias、
-全効果・CAS pin閉包・稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
-次は、このprivate候補を使って最終集合のnative関係とphase/所有権の条件を実装する。
-詳細はADR-0068、distribution/native/selected-catalog.ja.mdとselected-catalog-01証跡。
-
-以下は直前の索引工程の記録。
-
-全原本の属性・所有権主張を保持するnative索引を追加した。
-追加順に依存せず、原本digestとsource ordinalでhardlinkのinodeを区別する。
-共有pathの全ownerと属性差、暗黙parent、非directory祖先を保持し、実効ownerは選択しない。
-失敗時に候補全体をClearし、全体seal前の候補を公開しない。入力inventoryの破棄後も索引は変わらない。
-固定環境でpkgcore全source・4アプリ・21 Ada main、新449・既存payload814 assertionsが成功。
-14合成原本35 claim/28 path、13元DEBと大型合成原本の2904 claim/2493 pathを独立tar/CASとhash計算へ照合した。
-両集合とも逆順で同じfingerprint。元DEB集合の索引process最大RSSは20,624KiBだった。
-対象入力の測定であり、最大4096原本・524288 claim・256MiB名の実負荷受入ではない。
-25実行ファイルが二ビルドで一致し、503入力をcheckout・通常・独立・sanitizedコピーへ照合した。
-25 ELFの緩和設定、root拒否（新index6 assertions）、ASan/UBSanリンク下449 assertionsも成功。
-Adaと上流library本体は非計測、leak検査は無効。新runtimeはSPARK対象外で、全7repoのproof入力は不変。
-最終ソース24工程は成功し、その実行前後subjectは
-`d8d464830a283c50c37cfc7c907db77ed80c0a90d90c6f3bce7b20dddca1bd77`で一致した。
-索引の原本集合と認可されたresolver集合の一致、package identity/版/architecture、Replaces/Multi-Archとalias、
-実効所有権・全効果・CAS pin閉包・稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
-詳細はADR-0067、distribution/native/payload-index.ja.mdとpayload-index-01証跡を参照。
-次は選択集合・native関係と所有権の意味を、この全claim索引へ接続する。
-以下は先行工程の検証境界である。
-
-世代image候補として固定erofs-utils 1.8.6-1のtar直接入力を検証したが、
-ACL欠落・PAX小数時刻不一致、前方hardlinkとGNU負時刻の構築失敗により未採用。
-17 imageのfsck成功と4組のbyte一致を、属性保持の成功に読み替えない。
-runtime・共有contract・proof入力は変更していない。ADR-0066と
-distribution/native/generation-image.ja.md、generation-image-01証跡を参照。
-失敗出力は論理2TiBの疎ファイルを残す。再帰コピーで実体化しかけた処理を停止して
-部分コピーを削除した。失敗成果物はサイズ確認なしにコピー・全hash・圧縮しない。
-今回の実験readerは有限の合成image専用で、製品のimage検証器として転用しない。
-ソース24工程は成功し、前後subjectは
-`8a6ce83352a1d8e86165e2af6428427b5b9e0b67909623ca66685aabd7c2e17d`で一致した。
-
-元DEBのtar内容・属性・リンクを保持するnative SDKを追加した。
-独立framingと上流readerを照合し、全体成功後にprivate inventoryを返す。
-通常内容と属性blobは既存CASへ保持し、前方hardlink・全permission bit・UID/GID・
-正確なPAX時刻・多言語名を扱う。Unicode正規化で別名を同一化しない。
-固定環境で全ソース・4アプリ・20 Ada main、新payload814 assertionsが成功した。
-C.UTF-8とCのcaller locale、40合成DEBの再生成、11合成入力28 entryの独立oracleが成功。
-13元DEBと大型合成DEBの2,904 entry・計166,123,520 byteも独立tar/CAS照合に成功した。
-大型100,669,440 byteのnative子process最大RSSは16,640 KiB。当該入力の測定である。
-二ビルドの24実行ファイルが一致し、494入力をcheckout・各検証コピーへ照合した。
-root拒否3 assertions、24 ELF、ASan/UBSanリンク下814 assertionsも成功した。
-Adaと上流libraryのコードは非計測、leak検査は無効。新runtimeはSPARK対象外。
-ソース24工程の前後subjectは`32956b52274683d893c1d0c5824d22e45b4ea8f25daa1af78370666a37fa90bc`で一致し、全7repoのproof入力は不変。
-採用profile外のglobal PAX・sparse・ACL方言は拒否し、全対応済みとはしない。
-既存世代v1にはhardlink・setuid/setgid/sticky・全時刻等を渡せないため、
-versionを持つ世代形式・実行器と所有権管理の拡張が次の必要工程である。
-全DEB効果・稼働catalog/認可・実root/boot・完全置換ISO・全言語翻訳は未完。
-
-詳細はdistribution/native/deb-payload.ja.mdとdistribution/evidence/native-transition/deb-payload-01/README.ja.md。
-過去の検証範囲とhashはSTATUS.ja.mdに保持する。古い記録を現行sourceの成功として流用しない。
-
-元DEBのenvelope/control/metadata/relations/data-streamも読取SDKであり、単独では導入認可でない。
-UID 0拒否を解除して稼働OSへ転用しない。Pythonのtrigger参照状態や媒体/TUF cacheは
-第二の導入済みDBではなく、observe_success等を本番の成功callbackとして用いない。
-論理世代公開SDKはroot.stateのaccepted planとCAS descriptorが権威であり、
-generation.nextは未確定の作業ファイルである。Active要求があれば不確定として扱う。
-これらの既存SDKと稼働worker、全DEB効果、実mount/bootの接続は未完。
+- Catalogは既存NIACSEL1の正規CAS原本であり、Loadは全元DEB/control/payloadを再観測する。
+  最終集合receipt、通常更新delta、供給認証、同意、実行phase、所有権、保持閉包は別の検査である。
+- 通常更新ではEssential/Protectedのidentity・flag消失を拒否し、検証済みの保護移行経路が別途必要。
+  Provides/Replacesを保護identity保持や包括的な上書き権限にしない。
+- Payload/indexは全属性と全owner claimを保持するが、実効所有権を選んでいない。
+  global PAX、sparse、採用外ACL方言は未対応として拒否する。既存世代v1のfile planへ
+  hardlink・全permission bit・負/小数時刻等を切り捨てて渡さず、版付き実行形式で対応する。
+- EROFS直接tar入力の固定1.8.6-1実験はACL欠落・時刻不一致等で未採用。
+  `/home/nia/devbox/niaos/.work/native-generation-image-01/`には論理2TiBの失敗疎ファイルがある。
+  サイズ確認なしの再帰コピー・全hash・圧縮は禁止。以前の展開しかけた部分コピーは削除済み。
+- 元DEB SDKは読取/候補構築経路であり、UID0拒否を解除して稼働OSへ転用しない。
+  Pythonのtrigger参照状態や媒体/TUF cacheは第二の導入済みDBではない。
+  observe_success等を本番の成功callbackとして用いない。
+- 論理世代公開の正本はroot.stateのaccepted planとCAS descriptor。generation.nextは作業ファイル。
+  Active要求があれば不確定として扱い、欠けたlock/journal/CASを再初期化して正常にしない。
 
 0. 2026-09-08に並列GNATproveで開発PCが高負荷となり、利用者が強制再起動した。重い検証を重ねない。このDistroboxでは`dev/run-limited.sh command ...`の一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限を適用する。flow/proveと選択unit診断はさらに各repoの`ci/proof-guard.py`経由で1件ずつ実行する。制限による失敗を理由に上限を増やす・guardを迂回する・生のGNATproveで再実行することは禁止。制限と残る範囲はADR-0054。通常ビルドも既定JOBS=1を使う。
 1. コンポーネント変更は`dev/README.ja.md`に従い固定環境で`make check private-dbus reproducible proof`。配布レシピの変更は`distribution/image/README.ja.md`に従い、`image-check`、影響するDEB/ISOの構築とVM受入を実行する。数学的入力が不変なら同じ証明を重複実行しない。変更時は新しい未証明条件を修正し、証跡を最新の実行入力へ束縛する。既に成功した証拠を更新後の異なる入力へ流用しない。

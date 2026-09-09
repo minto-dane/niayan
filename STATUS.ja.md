@@ -6,6 +6,28 @@
 
 ### 直近の検証
 
+受理済み世代のnative catalog観測をpublication/root/CASの同じ排他区間へ接続した。
+Read_Currentと共通の内部処理でaccepted plan・descriptor・manifest pin・journalを検査し、
+新しいRead_Current_Catalogが全元DEBからcatalog/payloadを再観測する。最後に状態と期限を再確認する。
+失敗はdescriptor/catalog/payloadの旧成功も消す。記録だけのRead_Currentをnative検査済みとは数えない。
+返却前に予約を解放するため、観測は長時間の更新許可ではない。Publishの正確なpredecessor比較とmanaged guardを維持する。
+固定環境で全source・4アプリ・25 Ada main、公開/復旧試験456 assertions（従来333）が成功した。
+二つの合成native catalogと16回の成功観測、既存の拒否/復旧、原本/catalog欠落、root/CAS競合、期限、別root、旧plan拒否を検査。
+独立readerが実際のroot.state→accepted plan→descriptor lineage→manifest→catalog→元DEBの関係を通常CIで照合した。
+29実行ファイルは独立二ビルドで一致し、725入力をcheckoutと全検証コピーへ照合した。
+29 ELF、8本のroot拒否driver（公開driver37 assertions）、ASan/UBSanリンク下456 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、変更runtimeはSPARK対象外。
+ソース24工程は成功し、前後subjectは
+`4694cfb40880ec35fcb93b8c30fb94d2dbcab4121f091745462ea2aed78a9be7`で一致した。
+固定SOURCE_DATE_EPOCHで増分診断の実行ファイルが更新されない挙動を観測し、未採用の記録として保存した。
+新規ソースコピーの全build treeでやり直した。dev/READMEの新規build tree必須条件に従う。
+試験のauthorityとtree/versionは合成であり、DEB payloadの物理適用ではない。
+全OS/最大容量、本番の認証済み予約、CAS pin閉包、保護移行/初期構築、実行phase・所有権/alias・全効果、
+実root/boot・完全置換ISO・全言語翻訳は未完。次はcatalogと原本・生成物の保持閉包、実行phaseと本番admissionを進める。
+詳細はADR-0072、distribution/native/current-catalog.ja.mdとcurrent-catalog-01証跡。
+
+以下は直前のcatalog保存工程の記録。
+
 正規catalogのCAS保存と元DEBからの再構築SDKを追加した。
 既存NIACSEL1のpreimageをそのまま保存し、fingerprintと同じCASアドレスを使う。第二の導入済みDBは作らない。
 読取時に正規長/版/件数/順序/全digestを検査し、全原本のcontrolとpayloadをnative readerで再観測する。
