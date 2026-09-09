@@ -6,6 +6,39 @@
 
 ### 直近の検証
 
+Native catalog由来のCAS保持閉包を実装した。Pkg_Catalog_Retentionが全原本・control内容・
+圧縮/展開data・payload内容とlink文字列・xattr/ACLの正確な集合を再観測し、NIACLOS1へ保存する。
+Prepareは明示的なcache再構築、Verifyは全掲載objectの存在/hashを先に検査してから正確な集合を比較する。
+省略・余剰を認めず、欠落を再生成で隠さない。Pin/Verify_Pinは既存immutable CAS pinを使い、別用途のidentityを上書きしない。
+全APIのUID0拒否・期限・失敗出力zeroを維持。object/pin削除・accepted state更新・script実行はない。
+合成5原本の二catalog（21 objects/752 byte、15 objects/560 byte）を独立readerで原本から照合した。
+保存driverは320→550 assertions。35不正一覧、21 memberの個別欠落、破損byte、pin再open/衝突、明示再構築を検査。
+追加原本は圧縮control/data、script内容、七payload種、非空xattr/ACLを含む。rich catalogのpayload hashは
+保存catalogとの束縛確認であり、この追加oracleによる全payload index再計算とは数えない。
+
+全workspaceの新規build treeで全source・18アプリ・71 Ada main、全116工程が成功した。
+私有D-Busは32+10試験が成功。Python単体試験は580件発見、source実行時11件skipで、skipを成功実行に数えない。
+単独pkgcore CIの全25 mainと独立oracle、上流との898ケース比較も成功。既存の公開/復旧456 assertionsを維持した。
+全体検査で世代公開driverの相対媒体path処理を修正した。FS SDKのabsolute-only条件を弱めず、driverのFull_Nameで正規化する。
+最初の検証コピーで参照先の証跡文書6件が欠けていた記録と、媒体pathの失敗も別に保持した。
+新規treeで全体検査をやり直し、同じ実行ファイルで単独CIの絶対path経路も確認した。
+
+pkgcoreの29実行ファイルと全18アプリは、それぞれ独立buildで一致し、ELF検査も成功。
+pkgcoreの729入力を4コピー、workspaceの3342入力を3コピーで照合した。
+全体検査runnerはSOURCE_DATE_EPOCH/TZを子へ渡さない。二回目は固定epoch・変更mtime/TZを渡し、実際の環境差を証跡に記録する。
+root拒否8本（catalog driver11 assertions）とASan/UBSanリンク下550 assertionsも成功した。
+Ada・上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新規runtimeはSPARK対象外。
+ソース24工程も成功し、全体検査と同じ前後subjectは
+`b5d4d412c0d4f11d741f030cb08180d9d2e8534bf73883c8dad8323f2d38127c`で一致した。
+証跡はdistribution/evidence/native-transition/catalog-retention-01/、判断はADR-0073、仕様はdistribution/native/catalog-retention.ja.md。
+
+全OS/最大容量、世代・効果・認証・復旧rootを含む保持と安全なGC、本番の認証済み予約、保護移行/初期構築、
+実行phase・所有権/alias・全効果、実root/boot・完全置換ISO・全言語翻訳は未完。
+次は版付き世代manifestへ保持hashを束縛し、stage/publication/現世代native観測の同じ予約へ接続する。
+旧NIAGEN01の予約領域を無断転用せず、既存pinを別の型で上書きしない。欠落検査より先にcatalog Loadを呼んで再生成しない。
+
+### 前工程: 受理済みcatalogの同一予約での観測
+
 受理済み世代のnative catalog観測をpublication/root/CASの同じ排他区間へ接続した。
 Read_Currentと共通の内部処理でaccepted plan・descriptor・manifest pin・journalを検査し、
 新しいRead_Current_Catalogが全元DEBからcatalog/payloadを再観測する。最後に状態と期限を再確認する。
