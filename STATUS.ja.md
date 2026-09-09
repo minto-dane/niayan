@@ -6,6 +6,40 @@
 
 ### 直近の検証
 
+公開計画へnative検査記録を束縛し、Publisherで必須の再検査を行う経路を実装した。
+NIAGEN03はNIAGINT1のCAS hashを含み、正確な基準descriptor、候補catalog/保持閉包、
+architecture policy、最終集合又は通常更新の結果を既存の認可対象計画へ結び付ける。
+実root.stateから基準を照合し、元DEBから結果を再計算する。既存Managed guardも必須である。
+CAS予約は実行器への既存の受け渡しで解放するため、公開全区間で連続するとは主張しない。
+仕様はdistribution/native/publication-intent.ja.md、判断はADR-0076。
+
+新規workspaceの標準make check private-dbus JOBS=1で全116工程、18アプリ、71 Ada mainが成功。
+私有D-Bus32+10試験、ホストsource検査24工程も成功した。Python単体試験582件発見、
+source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1638、stage1202 assertions。
+全体検査とhost sourceの前後subjectは
+5c4bcdd2d488b40e6cf4a2582ca5171121ff281528febda7ccfd2f971ec42b9aで一致した。
+
+異なるmtime/作業パス/TZの新規独立buildと、29実行ファイル・全18アプリが一致した。ELF検査も成功。
+workspace3350入力を3コピー、pkgcore731入力を4コピーで照合した。
+単独CI25 main、root拒否8本、別の新規コピーのASan/UBSan stage/公開実行も今回の入力で成功した。
+sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
+全7repoの数学的入力、guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
+
+独立readerは二つの公開済み検査記録と結果を元DEBから照合した。保持欠落73、不正記録26ケースと、
+組立て完了済みの不正候補3種類の公開拒否を確認した。後者ではroot.stateとgeneration.nextの内容を維持する。
+二世代の16 catalog観測、18更新観測、四Binding、候補保持8欠落も維持した。
+保存snapshotはsanitizer実行の最終状態で、独立readerの結果は通常CIと完全一致する。
+新しいPublishはNIAGEN03だけを認め、旧版計画の再実行も拒否する。旧版の途中transactionは
+保持した旧実装で復旧を終えてから移行する必要がある。旧版の本番移行は未認定。
+証跡はdistribution/evidence/native-transition/publication-intent-01/。
+三回の診断失敗と追加試験前の第四診断成功も、当時の入力とともに保持した。
+
+次は本番供給認証/policy adapterを、正確な検査記録と同じ認可対象計画へ接続する。
+検査記録の存在だけで供給・同意・全DEB phase・所有権・効果の認可を置き換えない。
+現fixtureのtree/versionはcatalog bytesであり、物理DEB payloadの適用ではない。
+版付き世代属性、実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
+
+### 前工程: 更新計画の全体検査完了
 更新計画の標準全体検査を完了した。前工程では小さい人工プロセスに実証明用の合計RSS枠2048 MiBが
 適用され、利用可能メモリ4096 MiBを要求していた。人工試験の合計枠も128 MiBへ厳しく限定した。
 ホスト予備2048 MiB、実証明の既定枠2048 MiB/開始4096 MiB、guard実装と外側cgroupは変更しない。

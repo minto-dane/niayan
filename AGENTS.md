@@ -33,35 +33,38 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
-更新計画の標準全体検査を完了した。前工程では小さい人工プロセスに実証明用の合計RSS枠2048 MiBが
-適用され、利用可能メモリ4096 MiBを要求していた。人工試験の合計枠も128 MiBへ厳しく限定した。
-ホスト予備2048 MiB、実証明の既定枠2048 MiB/開始4096 MiB、guard実装と外側cgroupは変更しない。
-人工試験にも実際の予備メモリと全実行枠を要求し、起動可能と偽装していない。
-追加した二つの境界試験は、人工枠と既定の実証明枠それぞれについて、余裕不足なら子を起動しないことを検査する。
-guard試験17件、開発基盤134件が成功した。詳細はADR-0054、REQ-095、FAULT-092。
+公開計画へnative検査記録を束縛し、Publisherで必須の再検査を行う経路を実装した。
+NIAGEN03はNIAGINT1のCAS hashを含み、正確な基準descriptor、候補catalog/保持閉包、
+architecture policy、最終集合又は通常更新の結果を既存の認可対象計画へ結び付ける。
+実root.stateから基準を照合し、元DEBから結果を再計算する。既存Managed guardも必須である。
+CAS予約は実行器への既存の受け渡しで解放するため、公開全区間で連続するとは主張しない。
+仕様はdistribution/native/publication-intent.ja.md、判断はADR-0076。
 
 新規workspaceの標準make check private-dbus JOBS=1で全116工程、18アプリ、71 Ada mainが成功。
 私有D-Bus32+10試験、ホストsource検査24工程も成功した。Python単体試験582件発見、
-source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1361、stage1193 assertions。
+source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1638、stage1202 assertions。
 全体検査とhost sourceの前後subjectは
-f6e883af2ab0a8b15ffaeb61f2cf2d8718b7513def47b3143fd131514e63d8abで一致した。
+5c4bcdd2d488b40e6cf4a2582ca5171121ff281528febda7ccfd2f971ec42b9aで一致した。
 
 異なるmtime/作業パス/TZの新規独立buildと、29実行ファイル・全18アプリが一致した。ELF検査も成功。
-workspace3346入力を3コピー、pkgcore729入力を4コピーで照合した。
-最初の全体runnerはTZ/SOURCE_DATE_EPOCHを子へ渡さず、独立buildには変更TZと固定epochを渡す。
-pkgcoreの全入力と29実行ファイルは前工程とも完全一致する。そのため単独CI25 main・独立oracle、
-root拒否8本、ASan/UBSanの既存証跡は同じ入力と成果物へ対応付け、今回の再実行とは数えない。
-今回の全体Ada実行は新たに記録した。sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
-全7repoの数学的入力、全guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
-証跡はdistribution/evidence/native-transition/current-transition-02/。
-前工程current-transition-01の失敗と部分検証は当時のsourceに束縛したまま保持する。
+workspace3350入力を3コピー、pkgcore731入力を4コピーで照合した。
+単独CI25 main、root拒否8本、別の新規コピーのASan/UBSan stage/公開実行も今回の入力で成功した。
+sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
+全7repoの数学的入力、guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
 
-Read_Current_Transitionは正確なdescriptor、候補catalog/保持閉包、architecture policyから
-同じpublication/root/CAS予約で通常更新を検査し、NIAUPD01へ束縛する。
-返却時に予約を解放するため本番admissionの許可ではない。仕様はdistribution/native/current-transition.ja.mdとADR-0075。
-次は本番認証/policyとBindingを同じwriter予約へ結び、全DEB phase・所有権・効果と版付き世代属性を進める。
-現在の公開の構造検査だけをnative適用認可にしない。保持中の同じlockを外部read APIで取り直す接続も避ける。
-実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
+独立readerは二つの公開済み検査記録と結果を元DEBから照合した。保持欠落73、不正記録26ケースと、
+組立て完了済みの不正候補3種類の公開拒否を確認した。後者ではroot.stateとgeneration.nextの内容を維持する。
+二世代の16 catalog観測、18更新観測、四Binding、候補保持8欠落も維持した。
+保存snapshotはsanitizer実行の最終状態で、独立readerの結果は通常CIと完全一致する。
+新しいPublishはNIAGEN03だけを認め、旧版計画の再実行も拒否する。旧版の途中transactionは
+保持した旧実装で復旧を終えてから移行する必要がある。旧版の本番移行は未認定。
+証跡はdistribution/evidence/native-transition/publication-intent-01/。
+三回の診断失敗と追加試験前の第四診断成功も、当時の入力とともに保持した。
+
+次は本番供給認証/policy adapterを、正確な検査記録と同じ認可対象計画へ接続する。
+検査記録の存在だけで供給・同意・全DEB phase・所有権・効果の認可を置き換えない。
+現fixtureのtree/versionはcatalog bytesであり、物理DEB payloadの適用ではない。
+版付き世代属性、実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
 
 過去の数値とsource別証跡はSTATUS.ja.mdとdistribution/evidence/native-transition/へ保持する。
 以下の既存境界を保つ。
