@@ -4,6 +4,19 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+Niaを唯一のパッケージ管理主体とし、内部dpkgバックエンドも採用しない方針を再確認した。
+[機能ごとの担当](distribution/native/ownership.ja.md)に従い、systemd等の独立した基盤工具を維持する。
+元DEBの6種のトリガー宣言を候補catalogへ保持し、各段階とファイル変更による発火先・待機関係を
+有界なデータとして計算する処理を追加した。旧ISOの1,186原本ファイルをhash・サイズ照合して解析した。
+handler実行とnative lifecycle/WALは未接続であり、効果完了の判定を緩めていない。
+独・西・仏・韓・中国語簡体字・繁体字の訳文を追加し、英語原文115件と7翻訳catalogを検査した。
+固定コンテナで128件のnative/hardening/image試験と145件の配布工具試験が成功した。
+独立checkoutで失敗していた既存試験のパス参照も修正した。
+ソース24工程が成功し、前後のsubjectは
+`ef6012e2bbd64da55bc9b012abc15e80acb5b4b9d83564c0d32e36d836365fef`で一致した。
+[今回の証跡と残る範囲](distribution/evidence/native-transition/triggers-localization-01/README.ja.md)。
+全言語gateは未翻訳を検出して終了値1を維持する。第三者訳文レビュー、GUI・入力の受入も未完。
+
 検査済み世代とcatalogを一つの記録で確定する公開SDKをpkgcoreへ追加した。
 全体検査後もstageの二つのlockを保持し、既存CAS/WALと全Managed guardを使用する。
 未確定の候補ファイルは現行世代として読まず、進行中は結果不明を返す。
@@ -28,7 +41,7 @@ root拒否7入口も使い捨てコンテナで成功した。
 多言語対応を[設計判断](distribution/docs/decisions/0004-localized-interface.ja.md)に追加した。
 Debian 13のglibc全509 locale/encoding組とinstaller 78選択肢を対象として固定し、
 文字体系・地域の変種を保持して検索する。公開12コマンドの表示層はgettextを使用し、
-英語原文と日本語訳115件を実装した。固定コンテナの工具試験127件、実HTTPSの
+初回に英語原文と日本語訳115件を実装した。初回の固定コンテナの工具試験127件、実HTTPSの
 公開コマンド試験6項目とソース検査24工程が成功した。ソース検査前後のsubjectは
 `8d7624f4932cced4741fae446ceb6d1fc3fd7456be3892734bffdac345ddaef1`で一致した。
 全言語の訳文、TUI/GUI、font/shaping/入力とアクセシビリティは未完である。

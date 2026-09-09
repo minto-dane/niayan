@@ -19,8 +19,9 @@ hash付き過去証跡は改変しない。現在の12入口のうちepkgのテ�
 信頼cacheを一つの原子的checkpointとして保存する。詳細はdistribution/native/repository.ja.md。
 本番の鍵・policy配備と独立trust floor、契約の意味検証は未完。稼働管理器への接続・対話作成・応答互換性の受入は未完。
 多言語インターフェイスはdistribution/docs/decisions/0004-localized-interface.ja.mdに従う。
-gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語・日本語のCLIを
-実装済み。製品の対象はDebian 13の全言語。distribution/native/debian-languages.jsonの全509 locale組と
+gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文115件と
+日本語・独・西・仏・韓・中国語簡体字・繁体字の7翻訳catalogを実装済み。
+第三者訳文レビューは未実施。製品の対象はDebian 13の全言語。distribution/native/debian-languages.jsonの全509 locale組と
 installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。i18n-release-checkは
 全言語翻訳が完了するまで失敗を維持する。TUI/GUIとRTL・幅・アクセシビリティは未受入。
 追加調査と各コマンドの採用境界は`distribution/native/command-review.ja.md`を参照。
@@ -29,6 +30,17 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+最新の担当境界は`distribution/native/ownership.ja.md`。内部dpkgバックエンドも採用しない。
+`distribution/tools/debian_triggers.py`で6種の宣言と段階・ファイル変更の発火先、
+await関係を計算し、原本DEBの観測と候補catalogへ宣言を保持した。ADR-0057。
+別の導入済みDBや特権Python実行器は作っていない。nativeのpending状態、handler再発火、
+WAL・取消・再開は未接続で、候補catalogの効果完了flagは成立しない。
+追加翻訳とともに固定コンテナの128件と配布工具145件、ソース24工程が成功した。
+原本triggers 1,186ファイルのhash・サイズ照合と解析も成功した。今回の証跡は
+`distribution/evidence/native-transition/triggers-localization-01/`、subjectは
+`ef6012e2bbd64da55bc9b012abc15e80acb5b4b9d83564c0d32e36d836365fef`。
+全7repoのproof入力は不変。全言語gateは終了値1で、fallbackを訳文に数えない。
+
 非公開世代の組立てSDKに続き、`pkgcore/runtime/pkg_generation_descriptor.*`と
 `pkg_generation_publisher.*`へ論理世代公開を追加済み。設計はADR-0056、証跡は
 `distribution/evidence/native-transition/publication-01/`。全stage予約を検査後も保持し、
