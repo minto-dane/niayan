@@ -15,11 +15,13 @@ Niaが所有する管理機能はinstallp等の採用コマンド体系だけを
 維持し、互換ラッパーを作らない。emgr/epkgのnative緊急修正を同じcatalog/writerへ接続する
 設計変更は許可済み。自作コードと説明は中立名称を使い、原本メタデータ・ライセンス・
 hash付き過去証跡は改変しない。現在の12入口のうちepkgのテンプレート作成とemgrの
-成果物表示、emgr_download_ifixの署名付きHTTPS取得は動作する。供給認証は上流TUFを使用し、
-信頼cacheを一つの原子的checkpointとして保存する。詳細はdistribution/native/repository.ja.md。
+成果物表示、emgr_download_ifixの署名付きHTTPS取得は動作する。
+inutocの媒体索引とinstallp/geninstallの媒体一覧も実装した。詳細はdistribution/native/media.ja.md。
+供給認証は上流TUFを使用し、信頼cacheを一つの原子的checkpointとして保存する。
+詳細はdistribution/native/repository.ja.md。
 本番の鍵・policy配備と独立trust floor、契約の意味検証は未完。稼働管理器への接続・対話作成・応答互換性の受入は未完。
 多言語インターフェイスはdistribution/docs/decisions/0004-localized-interface.ja.mdに従う。
-gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文115件と
+gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文119件と
 日本語・独・西・仏・韓・中国語簡体字・繁体字の7翻訳catalogを実装済み。
 第三者訳文レビューは未実施。製品の対象はDebian 13の全言語。distribution/native/debian-languages.jsonの全509 locale組と
 installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。i18n-release-checkは
@@ -30,6 +32,14 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
 ## 次の作業順
+直近で`distribution/native/media.py`を追加し、inutocとinstallp/geninstallの媒体操作を接続した。
+元DEBから有界に索引を作り、毎回再検査する。directory fd/flock、原本と索引の前後確認、
+一時索引のfsync/renameを使う。媒体キャッシュは署名認証でも導入済みDBでもない。
+設計はADR-0058。142試験（媒体14件を含む）、保存済み7実DEBの公開コマンド試験、ソース24工程が成功。
+証跡は`distribution/evidence/management-interface/media-01/`、source subjectは
+`b2b9795aa6de090627c3e742be5dfabc9f408015a5430394dea3e0d871200f53`。
+全7repoのproof入力は不変。完全な応答互換性、稼働catalog・全効果・boot・新ISOは未完。
+
 最新の担当境界は`distribution/native/ownership.ja.md`。内部dpkgバックエンドも採用しない。
 `distribution/tools/debian_triggers.py`で6種の宣言と段階・ファイル変更の発火先、
 await関係を計算し、原本DEBの観測と候補catalogへ宣言を保持した。ADR-0057。

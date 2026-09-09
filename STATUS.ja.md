@@ -4,6 +4,18 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+媒体操作を公開コマンドへ接続した。inutocは元DEBを検査して決定的な`.toc`を作り、
+installp -l/-Lとgeninstall -Lは原本を再検査して一覧を返す。古い索引や途中変更を拒否し、
+索引を導入済みDBや供給認証の代わりに使わない。原本の版・hashを保持する。
+固定コンテナで媒体14件を含む142試験と構文検査が成功した。
+保存済みの実DEB 7個でも索引の再現性と原本不変を確認した。現在は119メッセージ・7翻訳catalog。
+ソース24工程の前後subjectは
+`b2b9795aa6de090627c3e742be5dfabc9f408015a5430394dea3e0d871200f53`で一致した。
+[媒体の実装範囲](distribution/native/media.ja.md)と
+[今回の証跡](distribution/evidence/management-interface/media-01/README.ja.md)。
+機械処理の列形式はnative DEB用の開発形式で、完全な応答互換性は未受入。
+稼働管理器への接続・全DEB効果・実起動切替・完全置換ISO・全言語翻訳は引き続き未完。
+
 Niaを唯一のパッケージ管理主体とし、内部dpkgバックエンドも採用しない方針を再確認した。
 [機能ごとの担当](distribution/native/ownership.ja.md)に従い、systemd等の独立した基盤工具を維持する。
 元DEBの6種のトリガー宣言を候補catalogへ保持し、各段階とファイル変更による発火先・待機関係を
