@@ -4,6 +4,21 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+採用11種類のbinary関係項目をnativeで解析し、元DEB観測SDKへ接続した。
+項目種別・選択肢group・順序・版条件・architecture labelをprivateな有界式へ保持する。
+Providesのarchitecture指定も保持し、ソース保持2項目は厳密な等号版を要求する。
+原本と異なるcontrol、不正なbinary折返し・版条件で部分的な観測成功を返さない。
+固定環境の全コンパイル・4アプリ・18 Ada main、関係176・メタデータ117・制御229・envelope764 assertionsが成功。
+37合成DEBの再生成照合、13元DEB・153項目の独立oracle/CAS照合も成功した。
+ISO 09由来statusの2,239パッケージ・4,388関係項目・20,234 atomsが独立Python参照と一致。
+これはstatusの関係値の検証で、2,239元DEBの再検査や全依存の充足判定ではない。
+二ビルドの22実行ファイルが一致し、397入力を照合した。新経路のroot拒否と22 ELFを確認した。
+引数なし試験のrunner末尾空白は共有generatorで修正し、最終runnerで18試験を再実行した。
+ソース24工程の前後subjectは`729fca47ca208b682ab2ed7012230f2906a7407eea4d302fd187f355677c5d19`で一致。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
+依存充足と全phase・data.tarと所有権・全効果・稼働catalogと認可・実boot・完全置換ISO・全言語翻訳は未完である。
+[実装範囲](distribution/native/deb-relations.ja.md)、[検証記録](distribution/evidence/native-transition/deb-relations-01/README.ja.md)。
+
+
 元DEBからraw controlと原本に束縛した制御項目・識別情報を読むnative SDKを追加した。
 未知項目と原本を保持し、単一stanza・UTF-8・重複・必須項目・Source・保護属性を検査する。
 通し試験で見つかったstack不足は中間recordをheapへ移して修正し、資源制限は維持した。
