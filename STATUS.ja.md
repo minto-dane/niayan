@@ -6,6 +6,28 @@
 
 ### 直近の検証
 
+sealed候補のnative最終集合検査を追加した。
+全Depends/Pre-Depends group、実名と全Providesの版/architecture、Conflicts/Breaks、同名Multi-Arch共存と版を検査する。
+成功時だけcandidate/architecture policy/rule versionのreceiptを返し、失敗時は旧成功hashを消す。
+初期610ケースで同名別architectureの自己Breaksが上流と異なり、instance単位の例外へ修正した。
+negative virtualのarchitecture指定も追加した898ケースは固定dpkg 1.22.22の個別configure/unpack simulationと一致。
+参照はprivate模擬statusと空payload/no-script合成DEBのみ。製品backendや実phase順序の証明ではない。
+固定環境でpkgcore全source・4アプリ・23 Ada main、新23038 assertionsが成功した。
+153原本の898ケースは原本/control・source index・catalog・policy/receipt hashの独立計算とも一致。
+fixture再生成・native matrix・独立hash・上流simulationを通常の生成CI runnerへ組み込んだ。
+27実行ファイルが独立二ビルドで一致し、677入力をcheckout・通常・独立・sanitizedコピーへ照合した。
+27 ELF、root拒否（新final-set5 assertions）、ASan/UBSanリンク下23038 assertionsも成功。
+Adaと上流library本体は非計測、leak検査は無効。全7repoのproof入力は不変、新runtimeはSPARK対象外。
+ソース24工程は成功し、前後subjectは
+`0af8311a792c22aff260302f937ca135efe9a7b04162a70e2427efa7d6e8a34d`で一致した。
+全OS原本集合や最大capacityの受入は未実施。認証済みresolver/policyと同意への接続、実行phaseと既構成版、
+Essential/Protected削除、source保持/weak依存policy、実効所有権とalias、全効果・CAS pin閉包、
+稼働catalog/guard・実root/boot・完全置換ISO・全言語翻訳は未完。
+次は既存世代・実行phase・実効所有権の条件と、認証済みresolver/管理器への接続を進める。
+[実装境界](distribution/native/final-set.ja.md)、[検証記録](distribution/evidence/native-transition/final-set-01/README.ja.md)。
+
+### 直前の選択catalog検証
+
 選択原本・期待control・payload索引を完全照合するnative candidate catalogを追加した。
 公開Observationを信用せずCAS原本を再観測し、全identityと11関係項目のatom/groupをcompactに保持する。
 同一原本、同一name/architectureの二版・再梱包、空package欠落と同数の別原本混入を拒否する。
