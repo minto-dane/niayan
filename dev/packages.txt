@@ -12,6 +12,7 @@ gpgconf
 gpgv
 gprbuild
 libarchive-dev
+libbz2-dev
 libc6-dev
 libcurl4-openssl-dev
 liblzma-dev

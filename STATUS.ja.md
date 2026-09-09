@@ -4,6 +4,21 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+元DEBのdataメンバーを64 KiBずつ展開し、原本・展開物を既存CASへ束縛するSDKを追加した。
+無圧縮・gzip・bzip2・LZMA-alone・xz・zstdの単一完全streamを扱う。
+二回の展開でhash・サイズを再照合し、全入力/出力を同時にメモリへ確保しない。
+固定環境の全コンパイル・4アプリ・19 Ada main、新stream389・関係176・メタデータ117・制御229・envelope764 assertionsが成功。
+43 fixtureファイル（30合成DEB）の再生成照合、13元DEBと大型合成DEBの独立ar/Debian読取工具/CAS照合も成功。
+計166,123,520 byteを比較し、大型100,669,440 byteの展開時のnative最大RSSは14,660 KiBだった。
+当該入力での測定であり、全形式のメモリ証明ではない。二ビルドの23実行ファイルが一致し、446入力を照合した。
+C境界のASan/UBSan下でも389 assertionsが成功。Adaと上流libraryは非計測、leak検査は無効。
+root拒否、23 ELFの緩和設定、ソース24工程が成功した。
+前後source subjectは`392ec4097c9ae170e18e32a6c70c040488855b8295bee8e311e73d51a8a7ed56`で一致。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
+展開byteはまだopaqueであり、tar entry・path・link・属性と所有権、全DEB効果、稼働catalogと認可、
+実root/boot・完全置換ISO・全言語翻訳は未完として続ける。
+[実装境界](distribution/native/deb-data-stream.ja.md)、[検証記録](distribution/evidence/native-transition/deb-data-stream-01/README.ja.md)。
+
+
 採用11種類のbinary関係項目をnativeで解析し、元DEB観測SDKへ接続した。
 項目種別・選択肢group・順序・版条件・architecture labelをprivateな有界式へ保持する。
 Providesのarchitecture指定も保持し、ソース保持2項目は厳密な等号版を要求する。
