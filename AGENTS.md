@@ -33,113 +33,32 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
-元DEBのdataメンバーを64 KiBずつ展開し、原本・展開物を既存CASへ束縛するSDKを追加した。
-無圧縮・gzip・bzip2・LZMA-alone・xz・zstdの単一完全streamを扱う。
-二回の展開でhash・サイズを再照合し、全入力/出力を同時にメモリへ確保しない。
-固定環境の全コンパイル・4アプリ・19 Ada main、新stream389・関係176・メタデータ117・制御229・envelope764 assertionsが成功。
-43 fixtureファイル（30合成DEB）の再生成照合、13元DEBと大型合成DEBの独立ar/Debian読取工具/CAS照合も成功。
-計166,123,520 byteを比較し、大型100,669,440 byteの展開時のnative最大RSSは14,660 KiBだった。
-当該入力での測定であり、全形式のメモリ証明ではない。二ビルドの23実行ファイルが一致し、446入力を照合した。
-C境界のASan/UBSan下でも389 assertionsが成功。Adaと上流libraryは非計測、leak検査は無効。
-root拒否、23 ELFの緩和設定、ソース24工程が成功した。
-前後source subjectは`392ec4097c9ae170e18e32a6c70c040488855b8295bee8e311e73d51a8a7ed56`で一致。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
-展開byteはまだopaqueであり、tar entry・path・link・属性と所有権、全DEB効果、稼働catalogと認可、
-実root/boot・完全置換ISO・全言語翻訳は未完として続ける。
-詳細はdistribution/native/deb-data-stream.ja.mdとdistribution/evidence/native-transition/deb-data-stream-01/README.ja.md。
+元DEBのtar内容・属性・リンクを保持するnative SDKを追加した。
+独立framingと上流readerを照合し、全体成功後にprivate inventoryを返す。
+通常内容と属性blobは既存CASへ保持し、前方hardlink・全permission bit・UID/GID・
+正確なPAX時刻・多言語名を扱う。Unicode正規化で別名を同一化しない。
+固定環境で全ソース・4アプリ・20 Ada main、新payload814 assertionsが成功した。
+C.UTF-8とCのcaller locale、40合成DEBの再生成、11合成入力28 entryの独立oracleが成功。
+13元DEBと大型合成DEBの2,904 entry・計166,123,520 byteも独立tar/CAS照合に成功した。
+大型100,669,440 byteのnative子process最大RSSは16,640 KiB。当該入力の測定である。
+二ビルドの24実行ファイルが一致し、494入力をcheckout・各検証コピーへ照合した。
+root拒否3 assertions、24 ELF、ASan/UBSanリンク下814 assertionsも成功した。
+Adaと上流libraryのコードは非計測、leak検査は無効。新runtimeはSPARK対象外。
+ソース24工程の前後subjectは`32956b52274683d893c1d0c5824d22e45b4ea8f25daa1af78370666a37fa90bc`で一致し、全7repoのproof入力は不変。
+採用profile外のglobal PAX・sparse・ACL方言は拒否し、全対応済みとはしない。
+既存世代v1にはhardlink・setuid/setgid/sticky・全時刻等を渡せないため、
+versionを持つ世代形式・実行器と所有権管理の拡張が次の必要工程である。
+全DEB効果・稼働catalog/認可・実root/boot・完全置換ISO・全言語翻訳は未完。
 
+詳細はdistribution/native/deb-payload.ja.mdとdistribution/evidence/native-transition/deb-payload-01/README.ja.md。
+過去の検証範囲とhashはSTATUS.ja.mdに保持する。古い記録を現行sourceの成功として流用しない。
 
-採用11種類のbinary関係項目をnativeで解析し、元DEB観測SDKへ接続した。
-項目種別・選択肢group・順序・版条件・architecture labelをprivateな有界式へ保持する。
-Providesのarchitecture指定も保持し、ソース保持2項目は厳密な等号版を要求する。
-原本と異なるcontrol、不正なbinary折返し・版条件で部分的な観測成功を返さない。
-固定環境の全コンパイル・4アプリ・18 Ada main、関係176・メタデータ117・制御229・envelope764 assertionsが成功。
-37合成DEBの再生成照合、13元DEB・153項目の独立oracle/CAS照合も成功した。
-ISO 09由来statusの2,239パッケージ・4,388関係項目・20,234 atomsが独立Python参照と一致。
-これはstatusの関係値の検証で、2,239元DEBの再検査や全依存の充足判定ではない。
-二ビルドの22実行ファイルが一致し、397入力を照合した。新経路のroot拒否と22 ELFを確認した。
-引数なし試験のrunner末尾空白は共有generatorで修正し、最終runnerで18試験を再実行した。
-ソース24工程の前後subjectは`729fca47ca208b682ab2ed7012230f2906a7407eea4d302fd187f355677c5d19`で一致。全7repoのproof入力は不変で、新runtimeはSPARK対象外。
-依存充足と全phase・data.tarと所有権・全効果・稼働catalogと認可・実boot・完全置換ISO・全言語翻訳は未完である。
-詳細はdistribution/native/deb-relations.ja.mdとdistribution/evidence/native-transition/deb-relations-01/README.ja.md。
-
-
-元DEBからraw controlと原本に束縛した制御項目・識別情報を読むnative SDKを追加した。
-未知項目と原本を保持し、単一stanza・UTF-8・重複・必須項目・Source・保護属性を検査する。
-通し試験で見つかったstack不足は中間recordをheapへ移して修正し、資源制限は維持した。
-固定環境の全コンパイル・4アプリ・17 Ada main、新読取109・制御229・envelope764 assertionsが成功。
-35合成DEBの再生成照合、最終binaryによる13元DEB・153項目の独立read-only oracle/CAS照合も成功した。
-二ビルドで21実行ファイルが一致し、392入力を照合した。新SDKのroot拒否と21 ELF緩和設定を確認した。
-ソース24工程の前後subjectは`156cccf117ef4612a3283ee58341e277889f4de452813df14e28a74152c374ff`で一致。全7repoのproof入力は不変である。
-新runtimeはSPARK対象外。依存・任意項目全体・data.tar・全効果・稼働catalogと認可・実boot・
-完全置換ISO・全言語翻訳は未完として続ける。
-詳細はdistribution/native/deb-metadata.ja.mdとdistribution/evidence/native-transition/deb-metadata-01/README.ja.md。
-
-元DEBの制御アーカイブを検査し、通常制御ファイルと属性を既存CASへ保持するSDKを追加した。
-未改変のzlib/liblzma/libzstdを使う小さなC境界でstream終端・完全消費・展開量を検査し、
-その後にlibarchiveでtarを読む。gzip CRC不正を通してしまう初期構成は試験で検出して修正した。
-scriptは元のbyte列として保持し、実行許可や稼働DBは作らない。Cもcanonical索引へ追加した。
-最終ソースで全コンパイル・4アプリ・16 Ada main、制御229・envelope764 assertionsが成功。
-35合成DEBの再生成、13元DEBの65制御entryの独立ar/Python/CAS照合、三入口のroot拒否も成功。
-独立二ビルドの20実行ファイルが一致し、387入力を照合した。C境界のASan/UBSan計測下でも
-229 assertionsが成功した。Adaと上流libraryは非計測、leak検査は無効。通常20 ELFの緩和設定も確認。
-ソース24工程の前後subjectは`0ac39bc66d1164eb438ac282509f0cd9c43f48ce7625828c3841f810f326c67e`で一致した。
-全7repoの既存proof入力は不変。新Ada/C runtimeの形式証明ではない。
-詳細はdistribution/native/deb-control.ja.mdと
-distribution/evidence/native-transition/deb-control-01/README.ja.md。
-制御field・data.tar・全効果・稼働catalogと認可・実boot・完全置換ISO・全言語翻訳は未完である。
-
-元DEBのar envelopeと圧縮メンバーを既存CASへ束縛するnative読取SDKを追加した。
-原本の全hash・header・順序・サイズを再検査し、保存前に呼出側の全envelopeを照合する。
-固定環境でpkgcore全ソース・4アプリ・15 Ada main、新読取器764 assertionsが成功した。
-二つの入口のroot拒否と実DEB 7個・全21メンバーの独立ar/CAS照合も成功した。
-別パス・入力mtime・TZの新規ビルドで19実行ファイルが一致し、346入力hashを照合した。
-ソース24工程の前後subjectは`a1fea042e264bffca34da1d85cac7fea9f495061edd22633009bdbcb72a37945`で一致した。
-全7repoのproof入力は不変で、新runtimeはSPARK証明の対象外。
-詳細はdistribution/native/deb-container.ja.mdと
-distribution/evidence/native-transition/deb-container-01/README.ja.md。
-圧縮tar/control・全効果・稼働catalog・実root/boot・完全置換ISOは未完である。
-
-遅延トリガーの参照状態を`distribution/tools/debian_trigger_state.py`へ追加した。ADR-0059。
-処理中と未処理を分け、再発火を保持し、受信者自身の待機が解消してから待機解除を伝播する。
-scope/開始revision/受信者/名前からattemptを作り、古い応答と異なるcheckpointを拒否する。
-observe_successは別途検証した観測を与えた場合の参照遷移で、認証APIやhandler起動器ではない。
-既存CAS/WALに接続済みと誤認せず、Pythonの第二の導入済みDBを作らない。
-固定環境の配布工具158件（参照状態13件を含む）とソース24工程が成功。証跡は
-`distribution/evidence/native-transition/trigger-state-01/`、subjectは
-`30d4b667646dad5a8732fec8a78c109b634d7e319c08680a67834d5b832938d2`。
-通常構成・失敗・remove/purge・interest寿命、観測認証とnative実行、実電源断は未完。
-
-直近で`distribution/native/media.py`を追加し、inutocとinstallp/geninstallの媒体操作を接続した。
-元DEBから有界に索引を作り、毎回再検査する。directory fd/flock、原本と索引の前後確認、
-一時索引のfsync/renameを使う。媒体キャッシュは署名認証でも導入済みDBでもない。
-設計はADR-0058。142試験（媒体14件を含む）、保存済み7実DEBの公開コマンド試験、ソース24工程が成功。
-証跡は`distribution/evidence/management-interface/media-01/`、source subjectは
-`b2b9795aa6de090627c3e742be5dfabc9f408015a5430394dea3e0d871200f53`。
-全7repoのproof入力は不変。完全な応答互換性、稼働catalog・全効果・boot・新ISOは未完。
-
-最新の担当境界は`distribution/native/ownership.ja.md`。内部dpkgバックエンドも採用しない。
-`distribution/tools/debian_triggers.py`で6種の宣言と段階・ファイル変更の発火先、
-await関係を計算し、原本DEBの観測と候補catalogへ宣言を保持した。ADR-0057。
-別の導入済みDBや特権Python実行器は作っていない。nativeのpending状態、handler再発火、
-WAL・取消・再開は未接続で、候補catalogの効果完了flagは成立しない。
-追加翻訳とともに固定コンテナの128件と配布工具145件、ソース24工程が成功した。
-原本triggers 1,186ファイルのhash・サイズ照合と解析も成功した。今回の証跡は
-`distribution/evidence/native-transition/triggers-localization-01/`、subjectは
-`ef6012e2bbd64da55bc9b012abc15e80acb5b4b9d83564c0d32e36d836365fef`。
-全7repoのproof入力は不変。全言語gateは終了値1で、fallbackを訳文に数えない。
-
-非公開世代の組立てSDKに続き、`pkgcore/runtime/pkg_generation_descriptor.*`と
-`pkg_generation_publisher.*`へ論理世代公開を追加済み。設計はADR-0056、証跡は
-`distribution/evidence/native-transition/publication-01/`。全stage予約を検査後も保持し、
-全Managed guardと既存CAS/WALでroot/catalogのdescriptorを一つに確定する。
-`generation.next`は未確定の作業ファイルで、起動器・読取器の権威ではない。
-現行世代はroot.stateのaccepted planとCAS descriptorから読み、Active要求があれば
-Indeterminateとなる。SDKのUID 0拒否を解除して稼働OSへ転用しない。
-独立pkgcoreビルドと14 Ada main、stageの1,180・公開の333 assertions、root拒否7入口、
-ソース24工程が成功。二つの新規ビルドで4アプリと14試験の18バイナリが一致した。
-343入力hash、source subject、全7repoの不変proof入力を証跡へ保存している。
-新runtimeはSPARK証明の対象外。本番認可、全DEB意味、catalog/holds、実mount/boot切替、
-容量・同期故障・実電源断、rescue、新ISOは未完として続ける。
+元DEBのenvelope/control/metadata/relations/data-streamも読取SDKであり、単独では導入認可でない。
+UID 0拒否を解除して稼働OSへ転用しない。Pythonのtrigger参照状態や媒体/TUF cacheは
+第二の導入済みDBではなく、observe_success等を本番の成功callbackとして用いない。
+論理世代公開SDKはroot.stateのaccepted planとCAS descriptorが権威であり、
+generation.nextは未確定の作業ファイルである。Active要求があれば不確定として扱う。
+これらの既存SDKと稼働worker、全DEB効果、実mount/bootの接続は未完。
 
 0. 2026-09-08に並列GNATproveで開発PCが高負荷となり、利用者が強制再起動した。重い検証を重ねない。このDistroboxでは`dev/run-limited.sh command ...`の一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限を適用する。flow/proveと選択unit診断はさらに各repoの`ci/proof-guard.py`経由で1件ずつ実行する。制限による失敗を理由に上限を増やす・guardを迂回する・生のGNATproveで再実行することは禁止。制限と残る範囲はADR-0054。通常ビルドも既定JOBS=1を使う。
 1. コンポーネント変更は`dev/README.ja.md`に従い固定環境で`make check private-dbus reproducible proof`。配布レシピの変更は`distribution/image/README.ja.md`に従い、`image-check`、影響するDEB/ISOの構築とVM受入を実行する。数学的入力が不変なら同じ証明を重複実行しない。変更時は新しい未証明条件を修正し、証跡を最新の実行入力へ束縛する。既に成功した証拠を更新後の異なる入力へ流用しない。

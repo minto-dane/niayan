@@ -4,6 +4,28 @@
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
+### 直近の検証
+
+元DEBのtar内容・属性・リンクを保持するnative SDKを追加した。
+独立framingと上流readerを照合し、全体成功後にprivate inventoryを返す。
+通常内容と属性blobは既存CASへ保持し、前方hardlink・全permission bit・UID/GID・
+正確なPAX時刻・多言語名を扱う。Unicode正規化で別名を同一化しない。
+固定環境で全ソース・4アプリ・20 Ada main、新payload814 assertionsが成功した。
+C.UTF-8とCのcaller locale、40合成DEBの再生成、11合成入力28 entryの独立oracleが成功。
+13元DEBと大型合成DEBの2,904 entry・計166,123,520 byteも独立tar/CAS照合に成功した。
+大型100,669,440 byteのnative子process最大RSSは16,640 KiB。当該入力の測定である。
+二ビルドの24実行ファイルが一致し、494入力をcheckout・各検証コピーへ照合した。
+root拒否3 assertions、24 ELF、ASan/UBSanリンク下814 assertionsも成功した。
+Adaと上流libraryのコードは非計測、leak検査は無効。新runtimeはSPARK対象外。
+ソース24工程の前後subjectは`32956b52274683d893c1d0c5824d22e45b4ea8f25daa1af78370666a37fa90bc`で一致し、全7repoのproof入力は不変。
+採用profile外のglobal PAX・sparse・ACL方言は拒否し、全対応済みとはしない。
+既存世代v1にはhardlink・setuid/setgid/sticky・全時刻等を渡せないため、
+versionを持つ世代形式・実行器と所有権管理の拡張が次の必要工程である。
+全DEB効果・稼働catalog/認可・実root/boot・完全置換ISO・全言語翻訳は未完。
+[実装境界](distribution/native/deb-payload.ja.md)、[検証記録](distribution/evidence/native-transition/deb-payload-01/README.ja.md)。
+
+### これまでの検証（各時点の範囲）
+
 元DEBのdataメンバーを64 KiBずつ展開し、原本・展開物を既存CASへ束縛するSDKを追加した。
 無圧縮・gzip・bzip2・LZMA-alone・xz・zstdの単一完全streamを扱う。
 二回の展開でhash・サイズを再照合し、全入力/出力を同時にメモリへ確保しない。
