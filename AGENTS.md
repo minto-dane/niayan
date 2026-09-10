@@ -41,6 +41,33 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。独立した現在site供給providerを実publisherへ接続した。
+Pkg_Site_Supplyがroot所有policyと独立floorから現在のscope/key/epoch/ageとOSのUTCを読む。
+全祖先保護、完全hash、root/serial/時刻、contextを確認し、変更・欠損時は出力を消してsessionを停止する。
+CASを開き直さず、既存公開側の予約/原本照合/全managed guardは維持する。
+内部read-only配備確認appを追加し、共有API/vendorや世代/供給recordの形式は変えない。
+
+Debian 13のcompile、248境界assertion、既存公開2023 assertionが成功。登録Ada mainは76、
+app在庫は20になったが、今回全体を実行したという意味ではない。
+clean pkgcore commit9de3fe6542f9cf497434855de17af602f998165eから全6 appをDEBへbuildし、
+別directoryの主DEB/dbgsymが一致した。主DEB hashは
+b1b850ecd20ecb411aaf98f7eb3708083855649578ccd463009d33e6a88f5d3c。
+DEB buildはnocheckと関連試験を分けて記録し、不変の全suite/証明/旧カオスを繰り返していない。
+
+使い捨てVMの実配布物とUID987で20 probe case、policy/floor変更・欠損の三session拒否が成功。
+実publisherの正常109 assertionではproviderを16回呼び、鍵/epoch不一致の各79 assertionでは
+公開を拒否して初期世代を維持した。他のmanaged/health/effect/署名はfixtureであり本番認可ではない。
+最終362 compile sourceとVM15入力は一致。subjectは4e9865f5ff59e92bf042d26ce22215f15c02190ca8c3abeebef43f410e0c55fe。
+証跡はdistribution/evidence/native-transition/site-supply-01/、判断ADR-0090。
+外側3 GiB/swap0/CPU1/pids128、VM2 GiB/1 vCPUを維持し、全VM/job終了済み。
+私有labはnative-site-supply-01。GitHub公開はまだ行っていない。
+
+次は認証済み供給recordのobserver/署名providerの実配備と全managed/世代認可adapterである。
+policy/floorのinstaller配備、世代rollbackからの分離、正しい時刻、全DEB効果、容量/再検証/回収、
+実boot切替/復旧、完全置換ISOと全言語翻訳は未完。root所有とhashをhardware rollback耐性にしない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。内部native storage bootstrapを配布物へ接続した。
 新しいpkg_store_bootstrapは非rootで正規MC_Store.Initialize/Openを呼ぶ。
 root側は固定path/policy/停止unitを検査し、排他的intentを永続化してからCAS/保護bankを作り、
