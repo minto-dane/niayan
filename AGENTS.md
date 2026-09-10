@@ -33,6 +33,34 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+2026-09-10 UTC。認証した原本をnative CASへ結ぶ、scope付き供給記録NIASUP01を実装した。
+発行器は実TUF/OpenPGP認証と独立署名provider/keyを必須とし、nativeは記録の署名と期限、
+必須6原本のCAS bytes、元DEBから再観測したcontrolを照合する。失敗時Bindingはzero。
+仕様はdistribution/native/archive-receipt.ja.md、ADR-0078。全計画の網羅性と実行認可はまだ別である。
+新規固定開発image 4ec0d3adaef0…で118標準工程・72 Ada main・18アプリを通過。
+native imageは359試験、host sourceは24工程成功。標準とhostは各597 Python発見・11skip。
+30 pkgcore実行ファイルと18アプリが独立buildで同一。C境界のASan/UBSan、実署名接続、実UID0拒否も成功。
+七つの数学的入力集合は不変で形式証明を重複実行していない。対象subjectは
+5727fd06deab52a4accf7bca5f48d61192df4936271b7e1a659ada887511bc27。
+証跡はdistribution/evidence/native-transition/archive-receipt-01/。
+
+最新依頼に従い、標準試験に加えて破壊的カオス試験を実施した。使い捨てCASに二つのseedで
+184場合のEIO/ENOSPC、SIGKILL、kill後破損、全必須原本の破損/欠損、read遅延、
+SIGSTOP/ロック競合/再開、構造欠損を注入し、実到達と拒否・再開を確認した。
+観測範囲で誤成功0。回復は小fixtureで中央値171/p95 214/最大446 ms。明示的lab隔離・復元を
+自動修復扱いしない。異常終了後の未参照incomingは残り得るため、有界な回収が必要。
+dump禁止を変更せず、隔離labの計測権限だけを追加した。未成立の初期3試行も保持。
+今後も重要な永続化経路には標準試験と有界な破壊的試験を併用する。物理電断・WAL全経路・
+実root/bootは未認定。ホストの共有データ・実ディスク・時計に破壊を加えない。
+
+次は公開計画が新規に必要とする全原本の供給記録を、保持閉包・検査記録・同じwriter予約へ束縛する。
+既存の不変packageに新しいmirror掲載を一律要求しない。製品observer/key/policy配備、
+rollback耐性のある時刻/floor、全DEB効果、実root/boot、完全置換ISO、全翻訳も未完。
+開発image再構築ではOOMとmirror障害を検出・保持し、同じ依存を逐次導入する固定recipeで成功した。
+制限は3 GiB/swap0/CPU1/pids128のまま。最終exportを含むピーク3 GiBを低い途中値で報告しない。
+
+以下は前工程の保持TUF再検証と原本供給の記録である。
+
 原本供給の返却前に、保持TUF checkpointを新しい上流Updaterで現在時刻に再検証する処理を追加した。
 使用したroleと全top-level roleの最短期限を観測へ適用し、checkpoint/identity/予約の変更、
 期限到達、時計逆行を拒否する。追加取得・第二の永続cache・初期rootへの復帰はない。

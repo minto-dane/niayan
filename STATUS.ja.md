@@ -1,10 +1,35 @@
 # Nia OS 開発・配布検証状況
 
-2026-09-09。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
+2026-09-10 UTC。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
 
 ## 最新依頼: Niaへの完全置換とハードニング
 
 ### 直近の検証
+
+認証した原本をnative CASへ結ぶscope付き署名記録NIASUP01を実装した。発行器が実TUF/OpenPGPを
+検証し、nativeは独立key/scope/epoch floor/期限と全必須CAS原本を照合して元DEBのcontrolを再観測する。
+完全成功時だけ記録のhashを返す。仕様はdistribution/native/archive-receipt.ja.md、ADR-0078。
+
+新規固定開発imageで標準118工程・72 Ada main・18アプリ、私有D-Bus32+10試験が成功した。
+固定native imageは工具173/native166/hardening4/image16の計359試験、skipなし。
+host source検査24工程も成功。標準内とhostは各597 Python試験発見・11skip。
+30 pkgcore実行ファイルと18アプリが別パス・mtime・TZ等で同一となり、C境界のASan/UBSan、
+実署名接続5場合と実UID0拒否も成功した。七つの数学的入力集合は不変で証明を重複実行していない。
+対象subjectは5727fd06deab52a4accf7bca5f48d61192df4936271b7e1a659ada887511bc27。
+
+標準試験とは別に、二つのseedで計184場合の破壊的カオス試験を実行した。実CASのwrite/fsync/renameに
+ENOSPC/EIOとSIGKILLを注入し、kill後の追加破損、必須原本の反転・切断・欠損、read遅延、
+SIGSTOP中のロック競合と再開、構造欠損も検査した。注入の実到達、ACK、障害後のhashと再開を記録し、
+誤った成功報告は観測していない。小fixtureでの再取り込み＋再検証は中央値171/p95 214/最大446 ms。
+明示的なlab隔離・構造復元を製品の自動修復と数えない。異常終了後の未参照incomingは残り得るため、
+有界な回収は今後必要。物理電断、WAL全経路、実起動切替のカオス受入は未完である。
+
+証跡はdistribution/evidence/native-transition/archive-receipt-01/。初期のコンパイル・古いimageの依存欠落・
+image buildのOOM/503・計測未成立も保持した。製品dump禁止とPCの3 GiB/swap0/CPU1/pids128制限は維持した。
+次は全公開計画に必要な原本の供給記録と保持閉包・writer予約の束縛。本番鍵/policy配備、
+全DEB効果、実root/boot、完全置換ISO、全言語翻訳も引き続き未完である。
+
+### 前工程: 保持TUF metadataの返却前再検証
 
 原本供給の返却直前に、保持TUF metadataを新しい上流Updaterで現在時刻に再検証する経路を追加した。
 使用した委譲roleと全top-level roleの最短期限を観測期限へ反映し、checkpoint/identity/予約の変更、

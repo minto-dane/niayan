@@ -10,9 +10,13 @@ RUN rm /etc/apt/sources.list.d/debian.sources && \
       'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260907T000000Z trixie-security main' \
       > /etc/apt/sources.list
 COPY dev/packages.txt /tmp/nia-build-packages.txt
-RUN apt-get update && \
-    xargs -r apt-get install -y --no-install-recommends < /tmp/nia-build-packages.txt && \
-    rm -rf /var/lib/apt/lists/* && \
+RUN set -eu; \
+    apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update; \
+    while IFS= read -r build_package; do \
+      apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 \
+        install -y --no-install-recommends "$build_package"; \
+    done < /tmp/nia-build-packages.txt; \
+    rm -rf /var/lib/apt/lists/*; \
     useradd --create-home --uid 1000 --shell /bin/sh builder
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PYTHONDONTWRITEBYTECODE=1
 USER builder
