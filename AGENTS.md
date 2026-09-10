@@ -33,6 +33,32 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+2026-09-10 UTC。新規に必要な元DEBの差集合と署名供給記録を完全一致させるNIASMAP1を実装した。
+root identity・基準descriptor/closure・候補catalog/closureを結び、独立authorityと期限、全原本を検査する。
+不変packageには新しいmirror掲載を要求しない。履歴保持の構造検査を新規認可として使わない。
+仕様はdistribution/native/supply-map.ja.md、ADR-0079。実manifest/accepted planへの接続は未完。
+
+最高添字の正規配列を誤拒否するoverflowを再現し、消費件数で位置を扱うよう修正した。
+修正後の固定検証は標準120工程・73 Ada main・18アプリ、map 730 assertion、実署名接続40 assertion成功。
+native 359試験、host source 24工程、標準/hostの各597 Python発見・11skip、私有D-Bus32+10も確認した。
+31 pkgcore実行ファイルと18アプリが独立buildで一致し、31 ELF検査、C境界ASan/UBSanを通過した。
+七つの数学的入力集合は不変で証明を重複実行していない。最終subjectは
+6c6fb59c99442dd2973c420403ee37a3dd9e1ac7a10fcecdeda340a1444a8b2d。
+
+新しいmap保存経路で二つのseedによる70件の破壊的カオス試験を完了した。
+EIO/ENOSPC 13、SIGKILL 13、map破損6、必須参照欠損18、構造欠損8、期限超過8、kill後破損4。
+実注入・失敗出力・同じmapへの再開を確認し、観測範囲で誤成功0。小fixtureの復旧中央値950/p95 1040/最大1121 ms。
+復元は明示的lab操作であり自動修復ではない。未参照incomingの回収と物理電断・実root/bootの受入は未完。
+製品dump禁止と3 GiB/swap0/CPU1/pids128制限を維持した。前の184件は別経路・別subjectの記録である。
+最終・修正前・回帰失敗と注入traceはdistribution/evidence/native-transition/supply-map-01/に保持した。
+
+次は実際に受理された基準とmapをmanifest/認可対象計画・保持rootへ同じwriter予約で束縛する。
+新規admissionと記録済みtransactionの復旧を区別し、古い供給記録だけで新規実行を許さない。
+共有索引の反復hash等の大規模性能は未認定で、実測と共有検査の設計が必要である。
+製品key/policy/独立時刻floor、全DEB効果、実root/boot、完全置換ISO、全言語翻訳も未完。
+
+以下は前工程の単一原本供給記録である。
+
 2026-09-10 UTC。認証した原本をnative CASへ結ぶ、scope付き供給記録NIASUP01を実装した。
 発行器は実TUF/OpenPGP認証と独立署名provider/keyを必須とし、nativeは記録の署名と期限、
 必須6原本のCAS bytes、元DEBから再観測したcontrolを照合する。失敗時Bindingはzero。
