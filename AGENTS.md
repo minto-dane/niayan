@@ -33,6 +33,16 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+原本供給の返却前に、保持TUF checkpointを新しい上流Updaterで現在時刻に再検証する処理を追加した。
+使用したroleと全top-level roleの最短期限を観測へ適用し、checkpoint/identity/予約の変更、
+期限到達、時計逆行を拒否する。追加取得・第二の永続cache・初期rootへの復帰はない。
+固定native imageで工具173/native153/hardening4/image16の計346試験が成功した。
+新しい再検証16試験と原本接続15試験を含む。host・固定開発containerのsource検査は各24工程成功、
+597試験発見・11skip。両実行の前後subjectは
+fc04dac35a5edcfeee2e9da0b654dece78c257557df5ef5b526a841c4f72a1c8で一致した。
+仕様はarchive-supply.ja.mdとrepository.ja.md、証跡はdistribution/evidence/native-transition/supply-revalidation-01/。
+Ada・数学的入力には変更がなくbuild/proofは重複実行していない。以下は前工程の原本供給受入記録である。
+
 Debian 13原本供給を共通TUF policyへ接続した。旧Forky固定の読取器をv2 policyで拡張し、
 正確なcodename/pocket、suite、architecture、component、InRelease pin、日付floor、期限を検査する。
 Trixie本体のValid-Until欠如にも独立の有限期限を要求し、期限付きmetadataは延命しない。

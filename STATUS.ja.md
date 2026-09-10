@@ -6,6 +6,19 @@
 
 ### 直近の検証
 
+原本供給の返却直前に、保持TUF metadataを新しい上流Updaterで現在時刻に再検証する経路を追加した。
+使用した委譲roleと全top-level roleの最短期限を観測期限へ反映し、checkpoint/identity/予約の変更、
+期限到達、時計逆行を拒否する。現在のrootと唯一のtrust cacheを使用し、追加ネットワーク取得はない。
+
+固定native imageの工具173/native153/hardening4/image16、計346試験が成功した。新しい再検証16試験と
+原本接続15試験を含む。hostと固定開発containerのsource検査は各24工程成功、597試験発見・11skip。
+両source実行の前後subjectはfc04dac35a5edcfeee2e9da0b654dece78c257557df5ef5b526a841c4f72a1c8で一致した。
+原本と新規workspaceの入力を照合した。Adaと数学的入力は変更せず、build/proofの重複実行はない。
+証跡はdistribution/evidence/native-transition/supply-revalidation-01/。供給認証とnative CAS・公開計画の
+実行時の束縛、全DEB効果、実root/boot、完全置換ISO、全言語翻訳は引き続き未完である。
+
+### 前工程: Debian 13原本供給の認証
+
 Debian 13原本供給を共通TUF policyへ接続した。旧Forky固定の読取器をv2 policyで拡張し、
 正確なcodename/pocket、suite、architecture、component、InRelease pin、日付floor、期限を検査する。
 Trixie本体のValid-Until欠如にも独立の有限期限を要求し、期限付きmetadataは延命しない。
