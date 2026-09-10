@@ -6,6 +6,32 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。独立供給observerを実サービス/内部client/DEBへ接続した。
+専用nia-supply UIDがnia-pkg peerの三原本FDを私有copyし、保護設定、既存TUF cache、標準HTTPS、
+OpenPGPとcredential署名を使う。sealed read-only FDのreceipt/policyを返し、clientは実sender、
+hash/署名/scope/時刻を検査する。公開管理コマンド、共有API/vendor、導入済みDBは変更しない。
+
+明示provisioningだけが初期stateを作る。通常serviceはStateDirectoryを使わず、既存stateの所有/modeと
+bootstrap履歴を要求する。package導入時は停止し、既定pin/seed/cacheや欠損lockを作らない。
+単体9試験と実DEBのVM11 caseが成功。二つの連続要求が実HTTPS/TUF/OpenPGP、systemd credential、
+実native CASの各31 assertionを通過した。state所有/権限、root peer、原本/config/key/TLS不一致、
+lock欠損を拒否し、元inodeと不正state属性の非自動修復を確認した。全VM/jobは停止済み。
+
+niaos-archive-observer 0.1.0 allのDEBと対応source tar/.dscが別directoryで一致した。
+主DEB hashは3d393d248edf558e4b6344e2dddc8db280d4cdd308a05a519396ea128bd32c6b。
+source subjectは036f81116950a4937a69e969152faae3043ecfbb159868533c036cff045dc38b。
+22 package入力、65 Python VM入力、全79 VM入力を照合した。Ada実装は不変で既存driverを使用し、
+全suite/証明/旧カオスは繰り返していない。source構成/link/lint/licenseも成功した。
+証跡はdistribution/evidence/native-transition/archive-observer-01/、判断ADR-0092。
+私有labはnative-archive-observer-01。GitHub公開は未実施。
+
+次は実native coreの保持原本をこのobserverへ渡し、返されたreceipt/policyを同じCAS予約と
+供給計画へ保存・検証する接続である。本番site設定・鍵更新/失効・floor/時刻とinstaller組込み、
+全managed/世代認可、全DEB効果、容量/再検証/回収、実boot切替/復旧、完全置換ISO、全言語翻訳も未完。
+実HTTPS/署名を使ったVMの人工root/key/DEBを、本番siteの認定や実行認可にしない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。認証済み供給recordのcredential署名providerを実装した。
 既存TUF/OpenPGP認証後だけFDから鍵を読み、独立scope/key/epoch/lifetimeを照合する。
 read-only credentialまたはsealed memfd、所有/mode/正確なservice ACL、非dumpable/core禁止を使い、
