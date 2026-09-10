@@ -41,6 +41,31 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。実設定のsnapshotを内部C/Ada SDKとして追加した。
+指定root FDからraw pathを読み、実内容と版付きmetadataを同じCAS予約で保存・再照合する。
+真の欠落と不明/未対応を区別し、失敗時のCurrentはOther、metadata hashはzeroになる。
+inode/namespace、mode/UID/GID/link数、可視xattr/ACL、flags、負/小数時刻を保持する。
+O_NOATIMEを要求し、読取権限不足をMissingにしない。共有API/vendor・公開コマンドは不変。
+
+Debian 13の強制compileとCAS連携41 assertion、ASan/UBSan付きC検査が成功した。
+内容・inode置換・削除・祖先作成・mode/xattr/実POSIX ACL/link数・raw名・時刻・権限不足・
+期限、空fileと複数chunkを確認した。ACL後に同じmodeを設定して変更を期待したfixtureを修正し、
+失敗ログを保存した。最後にopen失敗のerrno保持を修正し、最終sourceで再compile/両検査を通した。
+374 compile入力と3 C入力を照合。source構造/link/lint/licenseと生成CIも成功、Ada mainは79。
+数学的入力は不変で、全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+
+subjectはd639aed02b6583e79580f3a10e43094af0fd05b1088ac4b5333bc8ac6597a913。
+判断ADR-0096、証跡distribution/evidence/native-transition/conffile-snapshot-01/、
+私有lab native-conffile-snapshot-01、最終実行test-03.log。3 GiB/swap0/CPU1/pids128を維持した。
+GitHub公開は未実施。新SDKをcontrollerへ接続した、本番属性を完全観測したという意味ではない。
+
+次は利用者選択/退避名と保持閉包、snapshotと原本属性を全root組立てへ接続する工程である。
+一般userから隠れた属性とroot所有private設定には特権observerも必要である。
+観測は楽観的な再照合でfilesystem凍結ではなく、同じStoreの存続とroot/世代のcontroller束縛が前提。
+全managed認可、site鍵/floor/時刻/installer、全DEB効果、実boot/復旧、完全置換ISO、全言語翻訳も未完。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。元DEBのconffiles宣言と設定内容の三者比較を実装した。
 旧vendor/local/新vendorを区別し、編集・削除の保持、確認要求、退避、通常削除/purge/remove-on-upgradeを扱う。
 宣言hashと元payload全属性を保持し、空/不在/未知を同一視しない。raw filenameはbyte列のまま保持する。
