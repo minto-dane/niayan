@@ -6,6 +6,34 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。供給差集合と独立ポリシーを実公開計画へ束縛するNIASPOL1/NIAGEN04を実装した。
+実root.stateとWALから新規admissionと記録済み復旧を区別し、復旧でも現在の独立key/floor/ageを必須にする。
+Stage→Engineの予約受渡し後、実root/CAS予約の下で全状態・原本・intent・供給記録を再検査する。
+公開後の遅いI/OはSTALEを返す場合があり、非OKを未実行と解釈しない。仕様は
+distribution/native/publication-supply.ja.md、ADR-0080。旧形式のbytes/読取は維持し、公開はv4を必須とした。
+
+最終subjectはa260ae0b1dbe60ba7d88e9057b7edbb2bece78a74a9cc4a9162226d1b62f2a54。
+標準120工程・73 Ada main、map/policy 1029・stage 1211・publication 2023 assertionが成功した。
+実TUF/OpenPGP→map接続40 assertion、native 359試験、host source24工程、標準/host各597 Python発見・11skip、
+私有D-Bus32+10も成功した。31 pkgcore実行ファイルと18アプリの独立build一致、31 ELF検査、
+C境界ASan/UBSanを確認した。七つの数学的入力集合は不変で証明を重複実行していない。
+3374入力を新規・独立コピーと照合し、全11上位検査が成功した。
+
+実公開・復旧経路で2 seed・134件の破壊的カオス試験と別検査器による照合を完了した。
+EIO/ENOSPC40、SIGKILL40、必須参照欠損16、構造欠損14、反転/切断12、期限超過8、kill後欠損4。
+故障直後・復旧後のroot.state/WAL bytes、実注入trace、署名と全原本を保持し、観測範囲で誤成功0。
+復旧＋同じ計画の再実行＋読取検査は小fixtureで中央値2659/p95 2771/最大3137 ms。
+欠損・破損の明示的lab復元を自動修復と数えない。最初の未完了69件と計測器・oracleの失敗も保存し、
+修正後の134件とは分離した。製品dump禁止、3 GiB/swap0/CPU1/pids128、JOBS=1を維持した。
+証跡はdistribution/evidence/native-transition/publication-supply-01/。
+
+次は共有原本の反復hash・再観測の大規模性能を測定し、同じ予約内で共有検査できる範囲を実装する。
+今回のpublisherは実root.state/WALを使うが、stage効果と独立observerは人工fixtureである。
+本番供給/Managed provider、鍵/policy・独立時刻/floor、全DEB効果、実root/boot、typed GC、
+完全置換ISO、全言語翻訳は未完。実TUF→mapの試験と本番publisher接続を混同しない。
+
+### 前工程: 原本差集合mapと保存経路
+
 2026-09-10 UTC。新規に必要な元DEBの差集合と署名供給記録を完全一致させるNIASMAP1を実装した。
 root identity・基準descriptor/closure・候補catalog/closureを結び、独立authorityと期限、全原本を検査する。
 不変packageには新しいmirror掲載を要求しない。履歴保持の構造検査を新規認可として使わない。
