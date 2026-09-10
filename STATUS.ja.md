@@ -6,6 +6,33 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。NIACOBS1の検査付きAda readerを追加し、実snapshot保存側からも読戻しを行うようにした。
+元のraw path、namespace、全mode/UID/GID/link数、signed時刻、statx値/mask、flags、可視xattr/ACLを保持する。
+metadataと内容objectのhash/サイズ、component/欠落位置、順序・長さを検査し、欠損をhostから再生成しない。
+live C handleを閉じた後も読めるが、過去記録の読戻しは現在のroot/属性の真正性や復元許可ではない。
+
+Debian 13の対象2 main強制compile、属性読戻し69 assertionと既存選択154 assertionが成功した。
+実POSIX ACL/空・バイナリxattr/負・小数時刻、破損のCorrupt、期限のStale、全幅値と欠損拒否を確認した。
+追加testのByte演算可視性を修正し、途中ログも保持した。380 compile入力と22 fixture入力を照合した。
+source構造/link/lint/licenseと生成CIも成功、Ada mainは81。数学的入力/共有vendorは不変で、
+全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+
+保持済みdpkg 1.22.22 sourceのconfigure.c/file.cから、更新内容に既存owner/permissionをコピーする処理を
+確認した。上流コードは変更/取込みしていない。内容と属性の採用元を別に計画する必要がある。
+原本/member hashはupstream-source.jsonへ記録。新しいreaderはその適用方針や全root更新を実装していない。
+
+subjectは0ba58e153141ae24583f7c8b2f7e2105fc07a82349c65134f2c4f3dc94c8e64b。
+判断ADR-0098、証跡distribution/evidence/native-transition/conffile-observation-01/、
+私有lab native-conffile-observation-01、最終test-04.log。3 GiB/swap0/CPU1/pids128、強制-fを維持した。
+GitHub公開は未実施。
+
+次は全属性の採用方針と全namespace/root archiveへの反映である。
+特権属性observer、認証UIと全managed認可、世代保持/復旧・実root/boot、残る全DEB効果、
+完全置換ISO、全言語翻訳等も未完。inode/link関係・ctime/birthtime・filesystem固有flagを
+そのまま復元可能として扱わず、観測/適用値を明示的に区別する。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。元DEB・実snapshotから候補を固定し、内容選択と退避/保持一覧を結ぶ内部SDKを追加した。
 root/transaction/context・初期期限を候補へ束縛し、選択はその候補へ一回だけ受ける。
 必須確認未解決、別候補、途中編集、退避名衝突/後発作成を拒否する。
