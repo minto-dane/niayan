@@ -6,6 +6,34 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。NIAGEN05でNIAROOT1を世代manifest/pin・descriptor・既存公開計画へ接続した。
+全pathの採用元を含むroot manifestとenclosing catalog/closureを照合し、一つの三entry batchで
+catalog、tree、実tree/root.tarをstagingする。tar内属性を旧file-planへ切り詰めない。
+公開・Engineへの予約受渡し後・記録済み復旧・現在世代のnative観測で保持検査を必須にした。
+旧v1〜v4のbytesとtransaction導出を維持し、v4をroot成果物の認定としては使用しない。
+
+固定imageの3 GiB/swap0/CPU1/pids128、JOBS=1で変更に関係する三つのAda mainをcompileした。
+最終root組立て/実staging196 assertion、旧stage1211、旧publication2023、root公開/復旧142、
+実UID0拒否4が成功。三つの独立照合とCI登録関連43回帰検査も成功した。
+物理stagingの13 pathとaccepted stateから辿る10 pathについて、元DEBの全spanが一致した。
+root manifestとtarの欠損を公開前に拒否した。root manifestはcommit拒否後の復旧と
+accepted読取でも欠損を拒否し、明示復元後は供給期限を過ぎた記録済み公開を
+既存の現在policy/Managed guardの下で復旧した。
+
+最終subjectはeebfc077554d13fbc06738c47e2ca0711f9c428cb2c8c3b7a25dcc4bf491268a。
+仕様はdistribution/native/root-generation.ja.md、ADR-0082。
+証跡はdistribution/evidence/native-transition/root-generation-01/。
+初回のstrict compile警告、最終v5検査順調整前の実行と最終実行を分離した。
+変更のない全体suite・形式証明・C sanitizer・native image・旧カオスcampaignは繰り返していない。
+74 Ada mainは登録数であり今回の実行数ではない。
+
+この世代は実payload tarを保持するが、実OS rootへの展開・mount・bootではない。
+所有権/効果の本番認可と独立供給provider、特権分離した展開器、全DEB効果、実サービス、
+起動切替/復旧、全履歴typed GC、完全置換ISO、全言語翻訳を引き続き実装する必要がある。
+同じ検証を反復せず、本番デプロイの未実装へ進む。現在の私有labのjobはすべて終了済み。
+
+### 前工程: 元DEBからのrootアーカイブ組立て
+
 2026-09-10 UTC。本番root構築へ向けてPkg_Root_Archiveを実装した。全canonical pathの採用元を
 明示し、選択した祖先directoryと同一原本hardlink targetを検査して、元DEBのlocal PAX/GNU
 header・全属性・bodyを一つのtarへ保持する。NIAROOT1はcatalog/closure/payload/選択番号と
