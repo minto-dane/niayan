@@ -6,6 +6,29 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。非公開rootの永続準備bankを実装した。
+内部coreのpeer UIDと実CAS予約inodeを確認し、SCM_RIGHTSの同じOFDをworkerまで保持する。
+root所有の保護mountへintentをfsyncしてから展開し、結果を排他的に永続化する。
+workerの予約FDの操作を制限し、親死亡時に停止する。SDKのUID0拒否と公開状態の正本は変更しない。
+
+固定SDKで更新workerをcompileし、2 GiB/1 vCPUの使い捨てVMのext4で全7 inode kindと五つの
+拒否場合、実peer/FD/worker、別予約・重複拒否、callerの予約維持、再起動後の履歴を確認した。
+完全なintent bytesが見えた後にサービスをSIGKILLし、interruptedを確認した。worker実行中の
+停止や物理電断とは認定しない。外側3 GiB/swap0/CPU1/pids128を維持。VMとjobは終了済み。
+
+対象subjectはbbd17d3d2eca6f80f7a76970b324dc2c04800889e6205f884bb139f82a0479a5。
+仕様はdistribution/native/root-bank.ja.md、ADR-0085。証跡は
+ distribution/evidence/native-transition/root-bank-01/、最終実行はvm-bank-03/。
+初回二回の試験側の未許可peer切断処理の失敗も保存した。変更境界の確認は完了し、
+入力不変のAda suite・証明・旧カオス・性能campaignは繰り返していない。
+
+次は同じ世代admission/保持検査と予約からbankへ渡す本番SDK adapterと製品service配備である。
+準備権を世代認可と混同せず、inspectの履歴を物理再検証や公開/boot許可にしない。
+容量予約、再検証/回収、全DEB効果、実boot、完全置換ISOと全言語翻訳は引き続き未完。
+私有labはnative-root-bank-01、CONTINUE.jsonはこの工程の終了記録。
+
+### 前工程: 非公開root展開worker
+
 2026-09-10 UTC。非公開rootへ実ファイルを作成する内部workerを実装した。
 認可側が渡す読取専用tar FDとprivate親FD、空root、nodev/nosuid/noexecを必須とする。
 chrootと外側FD閉鎖、capability縮小、seccomp、512 MiB/有限期限を併用し、全入力hashと
