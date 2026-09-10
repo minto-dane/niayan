@@ -41,6 +41,31 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。既存NIAROOT1の原本/所有権検査へlive設定選択を接続し、最終path順の配置を作る
+Pkg_Root_Configurationを追加した。root/transaction/context、incoming原本と全incoming宣言の選択網羅を検査する。
+保持/更新/退避は完全な属性参照、削除はentry除外として扱う。退避と元payload/他設定の重複、
+親欠落/非directory、変更対象へのhardlink依存を拒否する。最後に全選択を再確認する。
+元rootのbinding、各entryの選択/閉包、fileを残さないものも含む全選択参照を保持する。
+
+Debian 13の対象2 main強制compile、最終の配置136 assertionと既存選択270 assertionが成功した。
+実原本からcatalog/保持閉包/root tarを作り、実private設定の保持/更新/削除/復元と各拒否を確認した。
+24 DEB fixtureの再現性、383 compile入力と25 fixture入力の同一性を確認した。
+初回3回のcompile失敗を修正し、途中133/270成功と最終136/270を区別して保存した。
+構造/link/lint/licenseと生成CIも成功。Ada mainは82、数学的入力/共有vendorは不変。
+全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+
+subjectはf28773a5a30a4129de0bd7746e6aff68397ef40f3e8bb18e3d45af604a0ce17e。
+判断ADR-0100、証跡distribution/evidence/native-transition/root-configuration-01/、
+私有lab native-root-configuration-01、最終test-05.log。3 GiB/swap0/CPU1/pids128、強制-fを維持した。
+GitHub公開は未実施。
+
+次はこの配置からの設定済みtar生成と全属性の実適用である。配置の検査を実root更新の完成とみなさない。
+全過去設定の列挙、inode/link効果、ACL/capability/chown/chmodとflags/時刻の適用、特権observer、
+認証UIと全managed認可、世代保持/復旧・実root/boot、残る全DEB効果、完全置換ISO、全言語翻訳等も未完。
+配置読出しは準備時のsnapshotであり、実行前の再確認を省略しない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。設定内容の選択へ対象/退避の全属性参照と数値permissionの採用元を追加した。
 localは完全NIACOBS1、vendorは元DEBと元pathを保持し、現在のregularがあればvendor内容/退避も
 localの全permission bit・UID/GIDを継承する。初回導入は元payloadの数値を使う。
