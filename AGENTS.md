@@ -41,6 +41,32 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。独立site trustから実observerと供給計画を結ぶPkg_Supply_Plannerを実装した。
+計画専用sessionは架空のplan/map/policyを持たず、現在のroot保護policy/floorをpinする。
+各原本認証とmap/保持policy作成の前後で同じtrustを再観測し、同じCAS予約を保持する。
+Bind_Publicationは実際のhashへ一方向に束縛し、元のpin/時計高水位/期限を維持する。
+計画用sessionの公開利用、設定の途中採用、失敗出力の残留を拒否する。
+
+Debian 13でAda/C compile、既存observer25/site248 assertionが成功した。
+実配布serviceのVM17 caseも成功。供給計画の正常二要求は各54 assertion、HTTPS中の
+policy/floor更新とfloor欠損は各48 assertionで三出力消去/session停止を確認した。
+既存原本認証二要求は各50 assertion。通信中のCAS競合排除は合計32回観測した。
+全VM/job終了済み。source構成/link/lint/licenseも成功した。
+
+subjectは08049713239be371a3f3da7e4a01feb043aa1e78f3af3686a69a7839ce62542c。
+364 compile入力、65 VM source、79 VM入力を照合した。serviceの22配布入力は不変で、
+前工程のDEB 3d393d248edf558e4b6344e2dddc8db280d4cdd308a05a519396ea128bd32c6bを再利用した。
+数学的入力は不変で証明/全suite/旧カオスは反復していない。新SDKを公開controllerへ配布したという意味ではない。
+判断ADR-0094、証跡distribution/evidence/native-transition/supply-planner-01/、私有lab native-supply-planner-01。
+外側3 GiB/swap0/CPU1/pids128、VM2 GiB/1vCPUを維持した。GitHub公開は未実施。
+
+次は実controllerのmanaged認可adapterと公開管理コマンドへの接続である。
+plannerのpredecessorと公開束縛はcaller contextであり、実root.stateのadmissionや世代公開を代替しない。
+本番site設定/鍵更新/失効、独立floor/時刻とinstaller配備、全DEB効果、容量/再検証/回収、
+実boot切替/復旧、完全置換ISO、全言語翻訳も未完。VMのCA/TUF/key/root contextは人工fixtureである。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。native coreの保持原本から独立供給observerを呼び、同じCAS予約で結果を保存する
 内部SDKを追加した。実sender/sealed FD/hash、独立署名と五原本、現在時刻を検査し、拒否時の二出力を消す。
 公開CLI、共有API/vendor、永続形式は不変。予約を開き直さず、原本のread FDだけを渡す。
