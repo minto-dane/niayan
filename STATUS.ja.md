@@ -6,6 +6,29 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。元DEBの論理所有権をNIAGEN05の保持検査へ接続した。
+共有directory、同名/versionのMulti-Arch:same共有inode、採用packageの直接Replacesを区別し、
+失う全claimを確認する。仮想名・逆向き・推移的な上書き許可を使わない。
+native architectureは同じcatalog/closureに束縛された保持intentから読む。
+既存root/世代のwire形式を変えず、staging・公開・予約受渡し後・復旧・現在世代観測で必須にした。
+
+固定imageと3 GiB/swap0/CPU1/pids128、JOBS=1で関連四つのAda mainをcompileした。
+所有権279、root/実staging199、旧stage1211、旧公開2023、root公開/復旧142、UID0拒否7 assertion、
+独立照合三つ、CI登録関連43検査が成功。登録75 main全体の再実行ではない。
+対象subjectはff7439ce30fecc5c5c16794c59fced58948429d44e8d48914c67fc1effd34738。
+仕様はdistribution/native/payload-ownership.ja.md、ADR-0083、証跡は
+ distribution/evidence/native-transition/payload-ownership-01/。
+768 pkgcore入力のbuildコピーとの差は再生成したCI登録だけで、全compile/test入力は一致した。
+初回テストdriverの構文拒否も保存。上流DEBを変えず、自作root fixtureに必要なReplacesを明記した。
+
+論理所有権はsite認可・全effectの実行ではない。conffile、diversions/alternatives、script/trigger、
+旧世代からの実効果、特権分離した展開器、本番認可/供給provider、実サービス、起動切替/復旧、
+typed GC、完全置換ISOと全言語翻訳は未完。次はこれら本番デプロイの未実装に集中する。
+変更のない全体suite・証明・C sanitizer・native image・旧カオスcampaign・性能比較は繰り返していない。
+私有labのjobは終了済み。
+
+### 前工程: rootアーカイブの世代保持・公開・復旧
+
 2026-09-10 UTC。NIAGEN05でNIAROOT1を世代manifest/pin・descriptor・既存公開計画へ接続した。
 全pathの採用元を含むroot manifestとenclosing catalog/closureを照合し、一つの三entry batchで
 catalog、tree、実tree/root.tarをstagingする。tar内属性を旧file-planへ切り詰めない。
