@@ -41,6 +41,29 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。認証済み供給recordのcredential署名providerを実装した。
+既存TUF/OpenPGP認証後だけFDから鍵を読み、独立scope/key/epoch/lifetimeを照合する。
+read-only credentialまたはsealed memfd、所有/mode/正確なservice ACL、非dumpable/core禁止を使い、
+既存の署名・保持policy・時刻の最終検査を維持する。任意message署名や本番既定鍵は作らない。
+
+最終Python10+既存receipt13試験、host/VMの実認証からnative CASへの五bridge判定が成功した。
+正常native31 assertion、実systemd LoadCredentialのroot所有ACL/read-only mountと、
+別鍵・短いcredential・欠損の三拒否を確認した。初回のumask、ACL想定、oneshotログ取得/後始末の
+不一致を修正し、失敗ログも保存した。service保護とPC負荷制限を維持し、全VM/job停止済み。
+
+subjectは16a437d7542d96cb88da48788bde060b9c4c20d8a45a4601efd52b6fb343eeee。
+358 compile入力、61 Python sourceと74 VM入力を照合した。Ada実装/共有API/vendorは不変で、
+不変の全suite/証明/旧カオスを繰り返していない。source構成/link/lint/licenseも成功した。
+証跡はdistribution/evidence/native-transition/archive-credential-01/、判断ADR-0091。
+私有labはnative-archive-credential-01。GitHub公開はまだ行っていない。
+
+次は本番observerの独立設定とjob/service packaging、既存TUF cacheの配備、実HTTPSとの統合、
+鍵更新/失効、publisher/controllerと全managed/世代認可adapterへの接続である。
+今回の一時鍵とTUF transportはfixtureで、APIの成功を本番serviceの配備完了にしない。
+site floor/時計、全DEB効果、容量/再検証/回収、実boot切替/復旧、完全置換ISOと全言語翻訳も未完。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。独立した現在site供給providerを実publisherへ接続した。
 Pkg_Site_Supplyがroot所有policyと独立floorから現在のscope/key/epoch/ageとOSのUTCを読む。
 全祖先保護、完全hash、root/serial/時刻、contextを確認し、変更・欠損時は出力を消してsessionを停止する。
