@@ -41,6 +41,28 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。非公開rootへ実ファイルを作成する内部workerを実装した。
+認可側が渡す読取専用tar FDとprivate親FD、空root、nodev/nosuid/noexecを必須とする。
+chrootと外側FD閉鎖、capability縮小、seccomp、512 MiB/有限期限を併用し、全入力hashと
+復元可能なinode属性・内容を読み戻す。全属性cloneを保持せずstreamで再読する。
+既存SDKのUID0拒否と世代wireは変更しない。結果は未公開のextractedまでである。
+
+固定SDKで実compile、2 GiB/1 vCPUの使い捨てVMで全7 entry kind・10 entryを確認した。
+ACL/xattr・数値所有者/権限・時刻・内容・hardlink・device番号、日本語とbinary名、
+root時刻と五つの拒否場合、最終binaryの非特権拒否が成功した。外側3 GiB/swap0/CPU1/pids128を維持。
+Distroboxのmknod拒否を全面的な制約解除で回避せず、read-only基準の新規VM差分で確認した。
+最終subjectは864a37fa0fae58b6254ad8aa52167f221b0bf8023b34a1c0568eee98edb41e2d。
+仕様はdistribution/native/root-extraction.ja.md、ADR-0084。証跡は
+ distribution/evidence/native-transition/root-extraction-01/。最終実行はvm-stream/。
+
+次は同じ世代認可/writer予約からworkerを起動する本番サービスと永続bankへ接続する。
+今回のtmpfs展開は電断・永続媒体・抽出rootの起動受入ではない。ctime/birthtimeは原本履歴として保持し、
+全Linux flags・全量容量まで認定しない。全DEB効果、controller復旧/回収、boot、完全置換ISO、
+全言語翻訳も未完。入力不変のAda suite・証明・旧カオス・性能campaignは繰り返していない。
+所有するVM/jobは終了済み。私有labはnative-root-extract-01、CONTINUE.jsonはこの工程の終了記録。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。元DEBの論理所有権をNIAGEN05の保持検査へ接続した。
 共有directory、同名/versionのMulti-Arch:same共有inode、採用packageの直接Replacesを区別し、
 失う全claimを確認する。仮想名・逆向き・推移的な上書き許可を使わない。
