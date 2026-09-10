@@ -6,6 +6,31 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。元DEBのconffiles宣言と設定内容の三者比較を実装した。
+旧vendor/local/新vendorを区別し、編集・削除の保持、確認要求、退避、通常削除/purge/remove-on-upgradeを扱う。
+宣言hashと元payload全属性を保持し、空/不在/未知を同一視しない。raw filenameはbyte列のまま保持する。
+同じASCII型制約を持っていた供給plannerのpathも修正し、共有API/vendorは不変である。
+
+Debian 13のcompile、原本宣言/拒否99 assertion、planner UTF-8を含む26 assertionが成功した。
+scriptなし・非root・私有root/DBでdpkg 1.22.22を実行し、最終126 caseの内容、確認、退避、baselineが一致した。
+初回ASCII path不一致と、metadata比較で見つけたremove flagの履歴保持/省略かつlocal欠落時の追跡解除を修正した。
+旧比較の成功をmetadata全比較へ読み替えず、途中の三不一致も保存した。
+供給plannerの実service VM17 caseも成功。計画二要求各52 assertion、trust変更/欠損各46 assertion、
+通信中のCAS競合排除32回を確認した。全VM/job終了済み。
+
+subjectは809073d3409ae92de9c31b3e5b03260065c32d572e00be97a8c82b8324576926。
+369 compile入力、19 conffile fixture、65 VM source、79 VM入力を照合した。service配布入力22は不変。
+source構成/link/lint/licenseも成功し、Ada main登録は78。数学的入力・全suite・旧カオスは反復していない。
+判断ADR-0095、証跡distribution/evidence/native-transition/conffiles-01/、私有lab native-conffiles-01。
+資源上限は3 GiB/swap0/CPU1/pids128、VM2 GiB/1vCPU。GitHub公開は未実施。
+
+次は実local inode/全属性の予約下観測、利用者選択/退避名と保持履歴、全root組立てへの設定反映である。
+新しい判断は内容と退避義務で、全managed認可や実適用ではない。リンク/複数所有者/生成scriptも未完。
+実controller/公開コマンド、site設定/鍵/floor/時刻/installer、全DEB効果、容量/再検証/回収、
+実boot切替/復旧、完全置換ISO、全言語翻訳も未完。上流dpkgは隔離比較にだけ使用し製品backendへ戻さない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。独立site trustから実observerと供給計画を結ぶPkg_Supply_Plannerを実装した。
 計画専用sessionは架空のplan/map/policyを持たず、現在のroot保護policy/floorをpinする。
 各原本認証とmap/保持policy作成の前後で同じtrustを再観測し、同じCAS予約を保持する。
