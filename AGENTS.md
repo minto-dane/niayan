@@ -41,6 +41,30 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。本番root構築へ向けてPkg_Root_Archiveを実装した。全canonical pathの採用元を
+明示し、選択した祖先directoryと同一原本hardlink targetを検査して、元DEBのlocal PAX/GNU
+header・全属性・bodyを一つのtarへ保持する。NIAROOT1はcatalog/closure/payload/選択番号と
+実tarを束縛する。旧file-plan、WAL、世代manifestの形式・認可条件は変更していない。
+
+固定開発image、3 GiB/swap0/CPU1/pids128、JOBS=1で新経路をコンパイルした。
+最終Ada131 assertion、実UID0拒否3 assertion、CI登録関連43回帰検査が成功した。
+三つの人工元DEBから13 path・全7 entry kindを組み立て、独立したPython tarfile読取で
+全選択spanと属性、hardlink targetの先行、manifestの全claim番号を照合した。
+容量/期限、共有所有元、非directory祖先、別原本hardlink、manifest不整合、
+実root tar/元DEB欠損と明示復元を確認した。初回の警告によるcompile失敗も保持した。
+
+変更のない標準全体・形式証明・C sanitizer・native image・旧カオスcampaign・性能比較を
+重複実行していない。74 Ada mainは登録数であり、今回全74本を実行した意味ではない。
+仕様はdistribution/native/root-archive.ja.md、ADR-0081。
+証跡はdistribution/evidence/native-transition/root-archive-01/。
+
+新SDKは非特権candidate組立てまでである。Replaces/共有所有/conffileを含む本番所有権・
+効果認可、世代pin/GCへの束縛、特権分離した実root展開、サービス接続とboot/復旧が次の実装対象。
+8 GiBの出力上限に全量OSが収まるとは未認定。完全置換ISO・全言語翻訳も引き続き未完。
+検証を主作業に戻さず、本番デプロイを阻む実装を進める。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。共有原本の前段検査を呼出し内の有界集合へまとめた。全固有原本の検査前には
 native再構築を開始しない。個別の署名・policy・期限・元DEB/control照合とcatalog再観測は維持する。
 API、永続形式、writer予約を変えず、検査結果のcacheを持ち越さない。
