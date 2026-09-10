@@ -41,6 +41,30 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。設定内容の選択へ対象/退避の全属性参照と数値permissionの採用元を追加した。
+localは完全NIACOBS1、vendorは元DEBと元pathを保持し、現在のregularがあればvendor内容/退避も
+localの全permission bit・UID/GIDを継承する。初回導入は元payloadの数値を使う。
+NIACCH02に保存し、Read_Effectsは全参照とlive namespaceを再確認してから返す。失敗時は両entryを消す。
+
+Debian 13の対象main強制compileと270 assertionが成功した。双方の退避、mode 0600/06740、
+数値owner、初回/欠落、保存byte列、選択後のmode変更/退避先作成/別閉包を確認した。
+初回testはfixtureのmode/owner期待値を誤認して失敗し、実原本の0640/1001/1002へ期待値を修正した。
+runtime変更による取り繕いはしていない。失敗logと原本確認記録も保持した。
+380 compile入力と22 fixture入力を照合、構造/link/lint/licenseと生成CIも成功。Ada mainは81。
+数学的入力/共有vendorは不変で、全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+
+subjectは097b5508227fd5dc012cc68d526bee88fe2873a38184bb1e1c47c7653e3bfba8。
+判断ADR-0099、証跡distribution/evidence/native-transition/conffile-attributes-01/、
+私有lab native-conffile-attributes-01、最終test-02.log。3 GiB/swap0/CPU1/pids128、強制-fを維持した。
+GitHub公開は未実施。
+
+次は残る属性適用方針と全namespace/link/root archiveへの反映である。
+元record参照を保つことはACL/capability/chown/chmod、flagsや時刻の適用完了ではない。
+特権observer、認証UIと全managed認可、世代保持/復旧・実root/boot、残る全DEB効果、
+完全置換ISO、全言語翻訳等も未完。観測値と復元可能な値を区別する。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。NIACOBS1の検査付きAda readerを追加し、実snapshot保存側からも読戻しを行うようにした。
 元のraw path、namespace、全mode/UID/GID/link数、signed時刻、statx値/mask、flags、可視xattr/ACLを保持する。
 metadataと内容objectのhash/サイズ、component/欠落位置、順序・長さを検査し、欠損をhostから再生成しない。
