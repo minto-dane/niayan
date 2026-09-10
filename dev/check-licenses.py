@@ -54,6 +54,8 @@ def inspect(root=ROOT):
                     failures.append(f'{repo}/{name}: unclassified imported material')
                     continue
             raw = path.read_bytes()
+            if len(parts) == 1 and path.name.startswith('README') and re.search(rb'\bMIT[- ]licensed\b', raw, re.I):
+                failures.append(f'{repo}/{name}: current introductory license differs')
             identifiers = re.findall(rb'SPDX-License-Identifier:\s*([A-Za-z0-9.+-]+)', raw)
             if any(value != b'BSD-3-Clause' for value in identifiers):
                 failures.append(f'{repo}/{name}: current source identifier differs')

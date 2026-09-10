@@ -6,6 +6,36 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。内部native storage bootstrapを配布物へ接続した。
+新しいpkg_store_bootstrapは非rootで正規MC_Store.Initialize/Openを呼ぶ。
+root側は固定path/policy/停止unitを検査し、排他的intentを永続化してからCAS/保護bankを作り、
+完了を別記録へ束縛する。途中・既存状態の上書きや通常起動からの自動初期化をしない。
+独立認可が未配備なのでbootstrap成功ではsocketを有効化しない。共有API/vendorは不変。
+
+Debian 13の実compile、配布ELFの18場合、通常root archiveの201 assertion、実VMの207 assertionが成功。
+二つの配布物それぞれ主DEB/dbgsymの別directory再現性を確認した。
+pkgcore主DEBは82c26c92b235a57a1b2aa8fddc506a914a24fcdff8d49e2997f9daebf45ee175、
+root準備0.2.0主DEBはa86a0ffd44854f33a455d16db51588cb30e501327aed05ba00a83cf7934f0667。
+実bootstrap後にfixture driverが既存CASを開き、以前のSIGSTOPによる調整を廃止した。
+七つの初期化拒否、再起動後の履歴、欠損拒否、初期記録/lockのinode保持と元入力hashを照合した。
+
+初回のbuild依存不足とKVM user権限の起動前失敗も保存した。ホスト権限を変えず既存一般userでVMを実行した。
+外側3 GiB/swap0/CPU1/pids128、VM2 GiB/1 vCPUを維持し、全job終了済み。
+全suite・不変の形式証明・旧カオスは再実行していない。pkgcoreのDEBはnocheckで関連試験と分けて記録した。
+四つのREADMEに残った旧MIT説明も訂正し、現行READMEのlicense検査を追加した。
+
+最終subjectはd0386ba03efcdc61a7055f40488ccbe565e647190345e1509f9e8a9f3ff5443c。初回全受入後の差はVM試験工具だけである。
+追加の永続記録照合は受入diskの新規差分から実行し、報告field名も意味を明確にした。
+製品19入力とcompile/test source358個は全一致。証跡は
+distribution/evidence/native-transition/storage-bootstrap-01/、判断はADR-0089。
+私有labはnative-storage-bootstrap-01、全VMは停止済み。
+
+次は独立した供給/世代認可providerと製品controllerへの接続である。
+導入先選択/保守環境、全DEB効果、容量/物理再検証/回収、実boot切替/復旧、完全置換ISO、
+全言語翻訳は未完。GitHub作成/Release利用は利用者が許可済みだが、まだ公開していない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。利用者指定により現在の自作コード・説明をBSD-3-Clauseへ統一した。
 9 repositoryのLICENSEと895個の正本fileのSPDXを変更し、copyrightと過去のMIT許諾を保持した。
 第三者原本・history・過去証跡は変更しない。共有vendor/profile/公開試験fixtureは正規工具で再生成し、
