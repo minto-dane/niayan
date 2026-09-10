@@ -41,6 +41,30 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。native coreの保持原本から独立供給observerを呼び、同じCAS予約で結果を保存する
+内部SDKを追加した。実sender/sealed FD/hash、独立署名と五原本、現在時刻を検査し、拒否時の二出力を消す。
+公開CLI、共有API/vendor、永続形式は不変。予約を開き直さず、原本のread FDだけを渡す。
+
+Debian 13でAda/Cをcompileし、境界25 assertion、UTF-8/JSON処理のASan/UBSan検査が成功した。
+実配布observerのVM13 caseが成功。正常二要求は各50 assertionで、実HTTPS/TUF/OpenPGP/credentialから
+native CAS、catalog/closure、供給mapと保持policyまでを同じStoreで検証した。
+HTTPS取得中に別writerの競合排除を20回観測し、別control/UID、state/config/key/TLSと原本不一致を拒否した。
+初回のAda visibilityとVM helper importを修正し、失敗ログも保持した。全VM/jobは終了済み。
+
+subjectはe14684a7a7a689fb3071ed2e0bd8ef55e26a9cf554e4aa4ec22213d041320917。
+362 compile入力、65 VM source、79 VM入力を照合した。既存serviceの22配布入力は不変で、
+主DEB 3d393d248edf558e4b6344e2dddc8db280d4cdd308a05a519396ea128bd32c6bを再使用した。
+新SDKの配布app/controller接続や再現性build完了を意味しない。source構成/link/lint/licenseも成功した。
+不変の数学的入力・全suite・旧カオスは再実行していない。判断ADR-0093、
+証跡distribution/evidence/native-transition/native-core-observer-01/、私有lab native-core-observer-01。
+外側3 GiB/swap0/CPU1/pids128とVM2 GiB/1vCPUを維持した。GitHub公開は未実施。
+
+次はこのSDKと現在site供給providerを実controllerの供給計画・全managed認可へ接続する。
+本番site設定/鍵更新/失効、独立floor/時刻とinstaller配備、全DEB効果、容量/再検証/回収、
+実boot切替/復旧、完全置換ISO、全言語翻訳は未完。fixtureの供給mapを実rootのadmissionや世代公開にしない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。独立供給observerを実サービス/内部client/DEBへ接続した。
 専用nia-supply UIDがnia-pkg peerの三原本FDを私有copyし、保護設定、既存TUF cache、標準HTTPS、
 OpenPGPとcredential署名を使う。sealed read-only FDのreceipt/policyを返し、clientは実sender、
