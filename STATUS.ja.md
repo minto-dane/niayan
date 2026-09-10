@@ -6,6 +6,33 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。元DEB・実snapshotから候補を固定し、内容選択と退避/保持一覧を結ぶ内部SDKを追加した。
+root/transaction/context・初期期限を候補へ束縛し、選択はその候補へ一回だけ受ける。
+必須確認未解決、別候補、途中編集、退避名衝突/後発作成を拒否する。
+両原本・元宣言・内容/属性参照・観測metadataと選択を既存CASの正規保持一覧へ保存する。
+keep-localでも次vendor原本はincomingへ進め、通常削除/purge/宣言付き削除/省略を区別する。
+通常payloadへの転換やlinkは別効果を要求する。公開コマンド・共有API/vendorは不変。
+
+Debian 13の強制compileと私有root/CASの154 assertion、21原本fixtureの再現性が成功した。
+選択/次vendor原本/保持一覧と、別候補/閉包、編集、退避先、期限、保持原本欠損と非再生成を確認した。
+初回test Byte visibilityと相対media指定を修正し、途中ログも残した。
+固定SOURCE_DATE_EPOCH=1788739200の再利用cacheでは更新がup-to-date扱いになったため、
+最終test-06.logは対象mainをgprbuild -fで再compileした。旧152を最終154の根拠にしない。
+この固定環境でcacheを再利用する今後の変更試験も対象mainを強制compileしてsourceを照合する。
+
+377 compile入力と22 fixture入力を照合した。source構造/link/lint/licenseと生成CIが成功、Ada mainは80。
+数学的入力は不変で、全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+subjectはada07d0d7094d368868fb7a829276f8bab6e8e5559306f49fb8066a05257d4b0。
+判断ADR-0097、証跡distribution/evidence/native-transition/conffile-choice-01/、私有lab native-conffile-choice-01。
+3 GiB/swap0/CPU1/pids128を維持した。GitHub公開は未実施。
+
+次はこの内容選択を、全属性/全namespaceの計画と実root archiveへ接続する工程である。
+認証UI、稼働root/intent/所有権の全managed認可、特権属性observer、独立durable reader/recovery、
+世代全体の保持とpin/GC、実root/boot公開は未完。session内の選択束縛を署名付き利用者同意にしない。
+site鍵/floor/時刻/installer、残る全DEB効果、完全置換ISO、全言語翻訳等の全体要件も継続する。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。実設定のsnapshotを内部C/Ada SDKとして追加した。
 指定root FDからraw pathを読み、実内容と版付きmetadataを同じCAS予約で保存・再照合する。
 真の欠落と不明/未対応を区別し、失敗時のCurrentはOther、metadata hashはzeroになる。
