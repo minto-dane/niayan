@@ -41,6 +41,31 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。既存native世代から内部root準備サービスへの実接続を追加した。
+Prepare_Rootは世代/rootを保持してCASを再予約し、全保持内容と専用認可phaseを送信前後に検査する。
+元tarと実予約FDをSCM_RIGHTSで渡し、サービスUIDと期待worker hashを照合する。
+展開後の認可拒否はIndeterminateであり、非公開rootの完成を公開/boot成功にしない。
+共有MC_Storeの借用予約FD APIは正本で追加し、正規工具でvendor・依存profile・公開fixtureを更新した。
+
+固定SDKで関連二つのAda mainとC境界をcompileし、新規checkoutから同じ二つのbinaryを再現した。
+同一binaryの旧世代処理1,211 assertion、実UID0拒否9場合を含む二つのmain、依存再生成17工程が成功。
+VMのext4で元人工DEBからv5世代を作り、13 entryを実サービスへ展開した。通常と展開後認可拒否の
+各207 assertionが成功し、保存intentと実native生成物も独立照合した。実行入力778個は全一致。
+初回は境界fixtureの復元できないsymlink modeを正しく拒否した。元fixtureは保持し、別の
+Linux復元可能なfixtureをgeneratorで作成。worker.jsonの有界診断を追加し、照合は緩めていない。
+
+対象subjectはc4fe763e91ee4f77ed90a625feb04d34d2f42079da7aa850876d90fb8d26d489。
+仕様はdistribution/native/root-preparation.ja.md、ADR-0086。証跡は
+ distribution/evidence/native-transition/root-preparation-01/、最終VMはvm-prepare-03/。
+外側3 GiB/swap0/CPU1/pids128、VM2 GiB/1 vCPUを維持。VM/jobは終了済み。
+全suite・旧カオス・性能campaignを繰り返さず、新たな全コンポーネント形式証明とは報告しない。
+
+次は本番service/account/mount/policy配置と独立認可/供給providerを接続する。
+内部SDKの接続成功は公開管理コマンドの稼働受入ではない。容量予約、物理再検証/回収、
+全DEB効果、実boot、完全置換ISOと全言語翻訳は未完。私有labはnative-root-preparation-01。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。非公開rootの永続準備bankを実装した。
 内部coreのpeer UIDと実CAS予約inodeを確認し、SCM_RIGHTSの同じOFDをworkerまで保持する。
 root所有の保護mountへintentをfsyncしてから展開し、結果を排他的に永続化する。
