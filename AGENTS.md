@@ -33,38 +33,39 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
-公開計画へnative検査記録を束縛し、Publisherで必須の再検査を行う経路を実装した。
-NIAGEN03はNIAGINT1のCAS hashを含み、正確な基準descriptor、候補catalog/保持閉包、
-architecture policy、最終集合又は通常更新の結果を既存の認可対象計画へ結び付ける。
-実root.stateから基準を照合し、元DEBから結果を再計算する。既存Managed guardも必須である。
-CAS予約は実行器への既存の受け渡しで解放するため、公開全区間で連続するとは主張しない。
-仕様はdistribution/native/publication-intent.ja.md、判断はADR-0076。
+Debian 13原本供給を共通TUF policyへ接続した。旧Forky固定の読取器をv2 policyで拡張し、
+正確なcodename/pocket、suite、architecture、component、InRelease pin、日付floor、期限を検査する。
+Trixie本体のValid-Until欠如にも独立の有限期限を要求し、期限付きmetadataは延命しない。
+securityのcomponent宣言とindex pathを正しく対応付け、未使用Contentsのサイズを実読取と混同しない。
+選択index、DEB、展開の容量上限は維持する。仕様はdistribution/native/archive-supply.ja.md、ADR-0077。
 
-新規workspaceの標準make check private-dbus JOBS=1で全116工程、18アプリ、71 Ada mainが成功。
-私有D-Bus32+10試験、ホストsource検査24工程も成功した。Python単体試験582件発見、
-source実行11件skipであり、skipを成功した実行に数えない。公開/復旧1638、stage1202 assertions。
-全体検査とhost sourceの前後subjectは
-5c4bcdd2d488b40e6cf4a2582ca5171121ff281528febda7ccfd2f971ec42b9aで一致した。
+archive_intake.pyは既存TUF Repositoryで認証したv2 policyから、Debian署名、Packages、元DEB/controlを
+照合し、native選択と比較する原本hashを返す。新規public CLI、第二DB、writer、署名鍵は追加していない。
+旧v1は比較工具用に残すが共通native入口では拒否する。観測JSONを実行許可として使わない。
+TUF再読取は同じ有界session内であり、最新remote policyのrefreshや実行時の認可ではない。
 
-異なるmtime/作業パス/TZの新規独立buildと、29実行ファイル・全18アプリが一致した。ELF検査も成功。
-workspace3350入力を3コピー、pkgcore731入力を4コピーで照合した。
-単独CI25 main、root拒否8本、別の新規コピーのASan/UBSan stage/公開実行も今回の入力で成功した。
-sanitizerはC境界等の検査で、Ada・上流library本体は非計測、leak検査は無効。
-全7repoの数学的入力、guardとscope工具は不変。形式証明の重複実行はなく、世代runtimeはSPARK対象外。
+固定native test imageのmake image-checkで、工具173、native134、hardening4、image16試験が成功した。
+新しい実OpenPGP試験15件と実TUF接続試験12件を含む。公開download CLIの実root検査6項目と
+archive intakeの実UID0拒否も成功。ホスト・固定開発コンテナのsource検査は各24工程成功した。
+Python単体試験597件発見、各source実行11件skipであり、skipを成功した実行に数えない。
+両source reportの前後subjectは
+aac58be4b71cb2356b1db2d5e55d371125483df1797d360882b4cd82076c3e5bで一致した。
+3355入力を元repoと新規コピーで照合。七コンポーネントのdocs/engineering以外の入力と七つの
+数学的入力集合は前工程c015455と不変であり、Ada build・71 main・再現性・証明を重複実行していない。
+これらの既存runtimeの受入結果はpublication-intent-01に保持し、今回の新しい実行とは数えない。
 
-独立readerは二つの公開済み検査記録と結果を元DEBから照合した。保持欠落73、不正記録26ケースと、
-組立て完了済みの不正候補3種類の公開拒否を確認した。後者ではroot.stateとgeneration.nextの内容を維持する。
-二世代の16 catalog観測、18更新観測、四Binding、候補保持8欠落も維持した。
-保存snapshotはsanitizer実行の最終状態で、独立readerの結果は通常CIと完全一致する。
-新しいPublishはNIAGEN03だけを認め、旧版計画の再実行も拒否する。旧版の途中transactionは
-保持した旧実装で復旧を終えてから移行する必要がある。旧版の本番移行は未認定。
-証跡はdistribution/evidence/native-transition/publication-intent-01/。
-三回の診断失敗と追加試験前の第四診断成功も、当時の入力とともに保持した。
+公式Trixie本体・updates・securityのInRelease、b43-fwcutter元DEBと対応Sourcesの全3ファイルを
+事前導入済みDebian keyringと明示したfingerprintで照合した。原本と公開鍵、対応ソースを保存し、
+固定native image/networkなしで当初の観測時刻を指定して全結果を完全再現した。
+公式原本のpinは検査時のローカル選択であり、本番Nia policy配備の認定ではない。実行・導入はしていない。
+初回最小imageの全工具検査ではzstd不足を検出した。検査依存を追加し、tool-checkを標準native-checkへ
+組み込んでからimageを再構築し、新規workspaceで最終検査した。初回失敗とその入力は保持する。
+証跡はdistribution/evidence/native-transition/archive-supply-01/。
 
-次は本番供給認証/policy adapterを、正確な検査記録と同じ認可対象計画へ接続する。
-検査記録の存在だけで供給・同意・全DEB phase・所有権・効果の認可を置き換えない。
-現fixtureのtree/versionはcatalog bytesであり、物理DEB payloadの適用ではない。
-版付き世代属性、実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
+次は認証したpolicy/原本hashをnative CAS・保持閉包・検査記録・公開計画へ同じwriter予約で束縛する。
+本番の鍵/policy配備、rollbackに耐える独立trust floor/時刻、全DEB phase・所有権・効果の認可も必要。
+現世代fixtureのtree/versionはcatalog bytesであり、物理DEB payloadの適用ではない。
+実root/boot、保護移行/初期構築、全履歴の保持とGC、完全置換ISO、全言語翻訳は未完である。
 
 過去の数値とsource別証跡はSTATUS.ja.mdとdistribution/evidence/native-transition/へ保持する。
 以下の既存境界を保つ。
