@@ -41,6 +41,35 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。内部root準備の配布パッケージを追加した。
+Debian標準のdebhelper/sysusers/systemdで専用nia-pkg account、root設定、保護mount、socket/serviceを
+管理する。account名から実UIDを解決し、通常起動やpackage導入でbank/CASを初期化しない。
+限定capability、読取専用device viewと一時領域、unit全体の資源上限と停止を実装した。
+
+Debian 13 builderの別directoryで主DEBとdbgsym DEBが一致した。配布18入力も現行repoと完全一致。
+最終レシピは対象をamd64へ限定し、vm-repackage-01で両DEBを再現してVM受入済みのbytesと同一と確認した。
+主DEBのSHA-256は6013c429320602e42c657dcee90345bd21af81636af38f07b83e13f92c7ec75c。
+vm-service-03で導入した実unitと専用UID 987から元人工DEBを展開し、207 assertionが成功した。
+/devの四つのdevice、空の読取専用tmp、bankの保護mount、資源設定と二重初期化拒否を確認した。
+同じ電源断済みdiskからの新規差分vm-resume-04では、後半だけを再実行して、再起動後の履歴、
+bank lock/CAS lock/設定の欠損拒否、元inodeの明示復元後の履歴を確認した。
+
+初回sysusers helper不足、/dev tmpfsとAPI mountの優先順位、欠損試験間のsocket停止持越しを修正した。
+socketのtrigger制限はreset-failedだけでは解除されないため、既定windowも経過させる。
+初回失敗も保存し、検査やrate limitを無効化していない。Ada driver/libraryは不変の同じbinaryを使い、
+無関係な全suite・証明・旧カオス・性能campaignを繰り返していない。
+
+対象subjectはa07ca45f3cc978710477f81e60e59403c1062e7fbdc6c4a5cb3b1facb2c5ee9a。
+仕様はdistribution/native/service-deployment.ja.md、ADR-0087。証跡は
+ distribution/evidence/native-transition/service-deployment-01/。外側3 GiB/swap0/CPU1/pids128、
+VM2 GiB/1 vCPUを維持し、全VM/jobは終了済み。私有labはnative-service-deployment-01。
+
+次は製品installer/controllerでのnative CAS初期化と、独立認可/供給providerを実サービスへ接続する。
+今回のfixture認可は本番providerではない。容量予約、物理再検証/回収、全DEB効果、実boot、
+完全置換ISOと全言語翻訳は未完。配布物の導入成功を公開コマンドや稼働rootの完成としない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。既存native世代から内部root準備サービスへの実接続を追加した。
 Prepare_Rootは世代/rootを保持してCASを再予約し、全保持内容と専用認可phaseを送信前後に検査する。
 元tarと実予約FDをSCM_RIGHTSで渡し、サービスUIDと期待worker hashを照合する。
