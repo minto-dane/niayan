@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: BSD-3-Clause
 """Read back the transient scope's kernel limits before starting validation."""
 import json
 import os

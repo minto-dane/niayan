@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: BSD-3-Clause
 # Local development: a transient user scope, removed after its processes exit.
 # Failure to create the scope is a failure; never retry without the limits.
 set -eu

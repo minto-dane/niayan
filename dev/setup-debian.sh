@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: BSD-3-Clause
 # Install development tools into the existing Debian Distrobox; not the target OS.
 set -eu
 [ "$(id -u)" -eq 0 ] || { echo 'Run this dependency installer with sudo' >&2; exit 78; }

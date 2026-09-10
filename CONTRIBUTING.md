@@ -2,6 +2,10 @@
 
 Start with [STATUS.ja.md](STATUS.ja.md) and [development instructions](dev/README.ja.md). Keep changes within the owning component; the workspace records the tested combination of commits.
 
+Project-authored contributions use BSD-3-Clause. Preserve existing copyright
+attribution and identify third-party imports with their original notices; see
+[LICENSING.md](LICENSING.md). Run `make license-check` before publishing.
+
 1. Create a branch in the component repository. Preserve its public contracts, bounded inputs and fail-closed behavior.
 2. Add a regression test for a behavioral fix. Register every Ada test main in `assurance/engineering/test-plan.json` and regenerate component runners with `python3 assurance/ci/sync-component-ci.py --write`.
 3. Update affected requirements, hazards, fault cases and the ADR when changing a contract. Shared source changes must use the documented vendor/profile regeneration tools.

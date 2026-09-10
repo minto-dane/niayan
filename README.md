@@ -27,7 +27,7 @@ For a fixed build environment and byte-for-byte binary comparisons, see [develop
 | assurance | Shared trust, authorization, evidence and verification tooling |
 | pkgcore | Catalog/file changes, recovery and package semantics |
 | statecore | Service/cluster state, health and recovery decisions |
-| controlcore | Unified management and the `nia` CLI |
+| controlcore | Unified management contracts and internal controller |
 | configcore | Configuration semantics, compatibility and generation |
 | resolvercore | Candidate/proof verification independent of the proposal solver |
 | capsulecore | Application generations, consent, permissions and broker contracts |
@@ -35,4 +35,4 @@ For a fixed build environment and byte-for-byte binary comparisons, see [develop
 
 The distribution targets Debian 13 Trixie with Nia as its sole package authority and without upstream source patches. This replacement remains under development; see the [current decision](distribution/docs/decisions/0002-native-package-authority.ja.md). The [earlier APT image recipe](distribution/image/README.ja.md) remains reproducible as a reference. Earlier Forky inputs and unconnected catalog/boot contracts must not be presented as accepted Trixie integrations. Historical evidence must not be cited as a current successful run.
 
-Workspace-specific code is licensed under [MIT](LICENSE). Debian packages and vendored components retain their respective licenses.
+Workspace-specific code is licensed under [BSD 3-Clause](LICENSE). Debian packages and vendored components retain their respective licenses.

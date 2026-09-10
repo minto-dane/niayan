@@ -25,7 +25,7 @@ sh dev/run-limited.sh make proof         # 警告・未証明を失敗にするf
 | assurance | 信頼・認可・証拠・共有コード・検証基盤 |
 | pkgcore | カタログとファイルの変更・復旧・パッケージ意味層 |
 | statecore | サービス・クラスタ・健全性・復旧判断 |
-| controlcore | 統一管理と公開CLI `nia` |
+| controlcore | 統一管理契約と内部controller |
 | configcore | 設定の意味・互換性・生成物 |
 | resolvercore | 提案器から独立した候補・証明検査 |
 | capsulecore | アプリ世代・同意・権限・broker契約 |
@@ -35,4 +35,4 @@ sh dev/run-limited.sh make proof         # 警告・未証明を失敗にするf
 
 配布ビルドの入力は[image](distribution/image/)と[packaging](distribution/packaging/)。従来の[profile](distribution/profiles/nia-os.json)と[contracts](distribution/contracts/)は独自カタログの研究モデルとして保存する。接続が必要な独自機能は[本番接続表](assurance/docs/engineering/specs/production-closure.ja.md)と[Capsule同意仕様](capsulecore/docs/consent.ja.md)に記載し、通常のDebianデスクトップが起動することと区別する。
 
-旧archiveの説明・hash・試験結果はhistory領域に保全する。過去の成功や未実行という記述を現在の証跡の代わりに使わない。workspace固有コードのライセンスは[MIT](LICENSE)。Debianパッケージとvendorには、それぞれのライセンスが適用される。
+旧archiveの説明・hash・試験結果はhistory領域に保全する。過去の成功や未実行という記述を現在の証跡の代わりに使わない。workspace固有コードのライセンスは[BSD 3-Clause](LICENSE)。Debianパッケージとvendorには、それぞれのライセンスが適用される。

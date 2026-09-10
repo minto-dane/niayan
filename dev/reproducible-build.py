@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: BSD-3-Clause
 """Compare all shipped CLI binaries from two fresh, differently named build trees."""
 from __future__ import annotations
 from datetime import datetime, timezone

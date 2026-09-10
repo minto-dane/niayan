@@ -6,6 +6,39 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。利用者指定により現在の自作コード・説明をBSD-3-Clauseへ統一した。
+9 repositoryのLICENSEと895個の正本fileのSPDXを変更し、copyrightと過去のMIT許諾を保持した。
+第三者原本・history・過去証跡は変更しない。共有vendor/profile/公開試験fixtureは正規工具で再生成し、
+工具にlicense noticeの同期を追加した。make license-checkで現在の表記と正本/vendorの一致を確認する。
+
+差分の分類では実行コードの860 fileがSPDX以外同一、三つが生成hash、三つが検査/同期工具の変更だった。
+新しいlicense checkerと説明は別に追加した。意図しないアルゴリズム変更や保護履歴の変更はない。
+root準備の予約FD、peer、権限制限と永続結果/公開/bootの分離も静的に見直した。
+この範囲の確認をrepo全体の欠陥不在や独立監査と呼ばない。
+
+固定SDKの新規exportで標準124工程、全75 Ada main、Python597発見/11skipが成功した。
+標準subjectはe8835db7da6440f4ce5a86cc72cc00215860c727fac76fb5bbaabd3c576e9c8a。
+その後の製品source差分はpackage copyrightの既存権利者一行だけで、全compile/testコードは同一。
+最終subjectは4267f3a6f8668bcfb1283c270fbeaa04b9e97d81bb2095b67bdc9aec32ed4643。
+初回二回は私有exportで参照文書を省略したためsource検査で停止。原本を補い、検査を緩めずに再開した。
+
+BSDの最終主DEBとdbgsymは別directoryから再現した。主DEBのSHA-256は
+538dda41e2357d74d9706626f9dc6ec721e82846fd54ec348a542bf8a62f54b9。
+VMの実unit経由207 assertion、再起動後の履歴、三つのlock/設定欠損拒否と元inode復元が成功。
+外側3 GiB/swap0/CPU1/pids128、VM2 GiB/1 vCPUで逐次実行し、全jobは終了済み。
+旧証明を新subjectの成功へ読み替えず、全証明・旧カオス・性能campaignは再実行していない。
+証跡はdistribution/evidence/licensing/bsd-01/、私有labはbsd-license-transition-01、判断はADR-0088。
+
+必要時にghでminto-dane名義のrepository作成とReleases利用を行うことは利用者が許可済み。
+ghの同名認証を確認した。改めて同じ許可を求めない。現時点ではremote作成・push・release公開は未実施。
+公開予定はminto-dane/niaosと同ownerの8子repo。公開前に履歴・成果物・対応source・署名/連絡先を確認し、
+既存repo/assetを上書きせず、未完成の成果物をstableと表示しない。詳細はdev/PUBLISHING.ja.md。
+
+次は製品installer/controllerによるnative CAS初期化と独立認可/供給providerの実接続である。
+全DEB効果、容量/物理再検証/回収、起動切替、完全置換ISOと全言語翻訳も引き続き未完。
+
+### 前工程: 内部root準備サービスの配布
+
 2026-09-10 UTC。内部root準備の配布パッケージを追加した。
 Debian標準のdebhelper/sysusers/systemdで専用nia-pkg account、root設定、保護mount、socket/serviceを
 管理する。account名から実UIDを解決し、通常起動やpackage導入でbank/CASを初期化しない。
