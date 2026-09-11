@@ -41,6 +41,38 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。展開済み実rootの非更新再検査を内部workerとBankサービスへ接続した。
+独立read-only/nodev/nosuid/noexec mountとbank/CAS予約を要求し、元intent・現在worker hashを照合する。
+保持tarを二回hashし、内容/owner/mode/宣言時刻/ACL/宣言flags/link/deviceに加え、xattr集合、
+全directoryのentry、正規path、子mountとinode hardlink groupを検査する。成功観測は実mount IDと
+device/inodeへ束縛し、応答後も現在path・予約・元記録・期限を確認する。元rootとintent/resultは更新しない。
+
+配布用内部サービス0.3.0のmain DEB・dbgsym・source .dsc/.tar.xzは別directoryの二重buildで完全一致した。
+実DEBを導入した使い捨てVMで正常と8種類の不一致、書込可能root/異なるgenerationの拒否、Bank再起動、
+実UID1000の二FD RPCが成功した。treeの内容・時刻を含む属性と元記録の前後一致、lease維持を確認した。
+従来の実展開・Bank peer/FD/worker/service中断も成功した。導入unitを検査し、socketは無効・非稼働を維持した。
+最終workerはb55000d2e21d96c8e75a9f36dda4bbcf5c77c9dbf42074fa39b1600b1c113322。
+23 export入力とsource package、4 VM工具入力、DEB内service/workerを正本・実結果へ照合した。
+構造/参照/lint/license/生成CI整合性も成功。Ada/数学的入力は不変で全suite/証明を反復していない。
+
+初回KVM権限拒否、旧時刻の二重build差分、guest /tmp消失による診断失敗も保持した。
+初回のpackage差分原因は確定していない。未来だったchangelog時刻を訂正し、新規exportと永続guest directoryで
+最終build/VMを通過した。古いmanifestは流用していない。初期VMのworkerと最終DEBのworkerは区別する。
+CI recipeへworker compileと依存を追加した。更新後native test imageの構築とremote CIは未実行である。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPUで順次実行した。全job終了済み。
+今回の未使用VM差分4個、88.53 MiBを削除し、base/受入VM/source/package/証跡は保持した。
+subjectは3c627db797f2bc7dd6366149800642d07e36b826d1b7ad34cecf4b0e6bc8a496。
+判断ADR-0110、証跡distribution/evidence/native-transition/root-reinspection-01/。
+私有labはnative-root-reinspection-01。0.3.0 packageと対応sourceはvm-package-05/packagesに保持する。
+GitHub公開は未実施。既存minto-dane/niaosは別projectなので上書きしない。公開許可は引き続き有効である。
+
+次はこの実root観測をnative SDKと本番freeze/認可providerへ接続し、予約を維持した実root/boot切替と
+段階別復旧を実装する。read-only bind viewだけでは別viewのwriterを止められず、今回の観測は継続的な起動許可ではない。
+旧workerで展開したrootは自動移行せず拒否する。ctime/birthtime、未宣言flagsの意味と全MAC policyは未認定。
+本番source/consent/quiescence provider、世代GC、全DEB効果、完全置換ISOと全言語翻訳も未完である。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。設定済み世代の論理的公開と、受理済み記録の復旧を接続した。
 NIAGEN06の新規公開と未受理の再開は、stage検査と公開engineの実CAS予約の両方で現在の設定元を照合する。
 Observe_Configuration_Sourceは既定拒否で、独立認可と操作全体のsource排他を要求する。
