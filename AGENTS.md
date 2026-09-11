@@ -41,6 +41,38 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。設定済み全rootのstream生成と保持記録を実装した。
+Pkg_Configured_Root.Buildは配置/所有権/全選択を再検証し、未変更の原本spanと設定prefix/contentを
+64 KiB bufferで完全tarへ出力する。root/親とhardlink依存を保ち、削除/退避と空fileを区別する。
+NIACRT01に元binding・root/transaction/context・architecture・全choice・prefix/content・出力を記録する。
+NIACRC01はcatalog/choice閉包と元/生成物のexactな和集合を保存し、返却前に全choiceをlive再確認する。
+Verifyは全保持memberを先に検査し、欠損を黙って再生成しない。明示Buildによる再構築とは区別する。
+
+固定環境で対象mainを強制compileし、既存配置を含む190 assertionが成功した。
+独立Pythonでローカル保持/vendor採用/普通のlink chain/削除/復元/空fileの6 rootについて、
+原本span・属性/内容・全選択binding・保持集合の過不足を照合した。保存root欠落、明示再構築の同一性、
+容量/期限/context/live変更の拒否も確認した。65,537 byteの原本本文でstream境界とpaddingを通した。
+使い捨てVMで同じ6 root（計26 entry）を専用ext4へ展開し、最終namespace、元/設定内容、
+mode/UID/GID/mtimeと明示atime、設定xattr/flags・hardlinkを照合した。拡張ACLは前工程の別受入である。
+
+初回174 assertion成功後に故障/境界caseを追加し、最終test-02.logで190 assertionが成功した。
+独立oracleを標準component CIと統合runnerへ接続した。固定環境でも同じ6 caseのoracleが成功。
+既存24 DEB fixtureはbyte不変、新しいlayout-streamだけを追加し、25 DEB+manifestを再生成照合した。
+395 compile入力・26 fixture入力・12 Python/worker入力を照合し、構造/link/lint/licenseと生成CIも成功。
+特権worker sourceは不変で、今回の固定buildも前工程の私有buildとbyte一致した。
+共有vendor/数学的入力は不変、全suite/証明/旧カオスは反復していない。Ada mainは83。
+
+subjectは77aeec4ab488bbcb6fcc0fd3e9e1becc45ed0376b5ec75b2fbd7faa46dee33d6。
+判断ADR-0105、証跡distribution/evidence/native-transition/configured-root-01/、私有lab native-configured-root-01。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。GitHub公開は未実施。
+
+次は新しい設定済みrecordを世代の保持・実root準備・公開経路へ明示的に接続する。
+Verifyはlive proposalを必要とし、durable復旧loader・世代pin/GCへの接続は未完。
+全過去設定、隠れた属性/全inode/DEB効果、本番provider/認証UI、実root/boot・復旧、完全置換ISO、
+全言語翻訳等の全体要件も未完。生成物の保存を本番認可・起動切替の成功に置き換えない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。保存済み設定属性を通常fileのtar prefixへ変換するPkg_Configuration_Entryを実装した。
 NIACOBS1/元DEBから内容・数値mode/UID/GID・ACL/xattr・flags・4時刻を再観測する。
 vendor permission overrideは元pathのローカル観測へ束縛し、named ACL権限を残してowner/group-class/otherを変更する。
