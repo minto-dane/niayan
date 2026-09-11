@@ -6,6 +6,35 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。通常設定fileのPAX/header出力codecを追加した。raw名、全permission bit/数値owner、
+全signed nanosecond時刻と拡張fieldを保持する。raw xattrはLIBARCHIVE形式に変換し、BINARY名、
+encoded key/base64、全signed端点をnative framingで検査する。拡張の予約field上書き・重複を拒否し、
+失敗時はbuilder/出力を消す。prefix出力であり、全rootの直列化・実属性適用は未接続。
+
+Debian 13の対象2 main強制compileで出力79 assertion、既存payload814 assertionが成功した。
+生成tar 2個を独立Pythonで読み、scriptなしDEBへ包んでnative payload各26 assertionと
+Pythonの内容/hash/全時刻/raw xattr/ACL/flags照合を通した。386 compile、41既存fixture、2interop入力が一致。
+初回compileのsigned演算可視性と、SCHILY encoded名の不一致を検出・修正し、途中ログも保存した。
+新規raw属性出力にLIBARCHIVE形式を使い、既存SCHILY入力の解釈は変更していない。
+構造/link/lint/licenseと生成CIも成功。Ada mainは83、数学的入力/共有vendorは不変。
+全suite/証明/旧カオス/VMは反復していない。全job終了済み。
+
+固定libarchive 3.7.4 writerで負の小数時刻の相違と指定birthtimeの省略を確認した。
+新codecは正しく出力する。一方、直接upstream readerの時刻値にも相違があり、native payloadは既存の
+framing補正で一致するが、root_extract.cは現在upstream entry時刻を直接使う。この実適用側の補正は未完。
+旧workerの自己読取/自己比較を負の小数時刻の正しさの証拠にしない。probeの原本/ログを保持した。
+
+subjectは74b1d80006cd2fb2638b165826ba4407a28a0a15cc6290742bc7dc3ab3933d22。
+判断ADR-0101、証跡distribution/evidence/native-transition/configured-tar-01/、
+私有lab native-configured-tar-01、最終test-04.log。3 GiB/swap0/CPU1/pids128、強制-fを維持した。
+GitHub公開は未実施。
+
+次は実展開workerのcanonical時刻補正と、元属性adapter/全root配置からのtar stream・CAS保存への接続。
+全属性とinode/link効果、全過去設定、特権observer、認証UIと全managed認可、世代保持/復旧・実root/boot、
+残る全DEB効果、完全置換ISO、全言語翻訳等の全体要件も未完。時刻を符号化できることを実FSの復元保証にしない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。既存NIAROOT1の原本/所有権検査へlive設定選択を接続し、最終path順の配置を作る
 Pkg_Root_Configurationを追加した。root/transaction/context、incoming原本と全incoming宣言の選択網羅を検査する。
 保持/更新/退避は完全な属性参照、削除はentry除外として扱う。退避と元payload/他設定の重複、
