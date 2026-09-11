@@ -41,6 +41,38 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。専用ext4 bankのfilesystem単位の書込排他を内部controller部品へ実装した。
+FrozenRootは独立期待mount/device/inode・元intent/worker・実CAS予約を照合し、共有subtree/子mountを
+拒否する。MS_BINDなしのread-only remountで全mount viewの通常writerをkernelに排除させる。
+bank.lockはO_RDONLYによる排他flockへ変更した。Close/失敗で暗黙thawせず、現在の標準bind bankや
+既存serviceのcapability/RPCを自動変更しない。専用bankを製品へ配備するinstallerは未完である。
+
+配布用内部部品0.4.0のmain DEB/dbgsym/source dsc/source tar.xzは二重buildで完全一致した。
+実DEB導入・module bytes・unitを確認し、socketはdisabled/inactiveを維持した。
+VMでは誤identity/subtree/子mount、書込FD/mmap、別mountのwriter、read-only Bank再起動/排他、
+Close後の非thawと特権remount後の拒否が成功した。Bankのpeer/FD/worker/service中断回帰も成功。
+実kernel排他/観測を使ったSDK結合は設定済み世代482・通常世代937 assertionが成功した。
+件数には時刻待ちを含む。5拒否条件、成功/期限切れの三予約保持、使用中handle拒否、Closeと元root/記録の不変を確認した。
+
+初回mmapが検査対象rootのatimeを変えた不一致を記録し、probeをrootの外へ分離した。検査は弱めていない。
+SDK結合の初期VMは最初の要求前にtimeoutとなり、live診断でext4 fsync/journal待ちを観測した。
+以前の受入と同じguest RAM上のloop backingで最終試験が成功した。永続ディスク性能/物理電断は未認定である。
+24 export入力とsource package、83 runtime file、401不変SDK入力・32 fixtureを照合した。
+workerはb55000d2e21d96c8e75a9f36dda4bbcf5c77c9dbf42074fa39b1600b1c113322で不変。
+構造/参照/lint/license/生成CIも成功し、Ada全suite/数学的証明は反復していない。
+
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。共有使い捨てVM差分1個511.33 MiBを
+削除し、base/受入VM/対応source/package/前工程の最終SDK buildは保持した。
+subjectはdf59c0171fd025fea8a5e4437847edb94a2361cbb63bbc880f69862a70c5a210。
+ADR-0112、証跡distribution/evidence/native-transition/bank-freeze-01/（78 file、SHA256SUMS込み）。
+私有labはnative-bank-freeze-01。GitHub公開/remote CIは未実施。許可は有効だが既存minto-dane/niaosは別projectである。
+
+次は専用bankのinstaller配備と永続device identity、本番controllerの認証/RPC・全寿命のmount/device排他を接続する。
+効果直前の現在性検査、実root/boot切替と段階別復旧も必要である。fixture bridgeを本番配備せず、
+read-only観測だけを起動許可にしない。本番source/consent/supply provider、全DEB効果、GC、完全置換ISOと全言語翻訳も未完。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。実rootの再検査をnative SDKと予約保持へ接続した。
 元展開期限からintent hashを再構成し、新しい期限と独立期待mount/device/inode・worker・archiveを
 canonical応答全体へ照合する。新generic Reinspect_Root_And_Holdは独立Observe_Rootを必須とする。
