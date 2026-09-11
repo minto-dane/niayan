@@ -41,6 +41,42 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。初回の空bankを準備するroot supervisor用controller sessionを実装した。
+接続元/各messageのkernel UID0・PIDとpeer pidfdを照合し、独立request/worker/device plan/boot/bank identity、
+実CAS/archive FDへ束縛する。永続O_EXCL attemptを同期してからRWへ変更し、7 capabilityへ縮小したchildで
+元Bank.prepare/verifyを実行する。RO全再検査後にBank/device/rootを保持し、受信CASコピーを閉じてreadinessを返す。
+observeは新CAS OFDで行い、close/切断/期限切れで自身の予約を解放する。使用済みbankをRWへ再利用しない。
+
+実packageと専用GPT/ext4 VMで通常準備/observe/close、非root・誤worker/mount/plan/FDの拒否、
+新CAS取得とBank保持、元tree/記録不変、使用済みbank拒否が成功した。再起動後ROと旧writer拒否も成功。
+切断・期限切れは別VMで成功した。SIGKILL試験では同じcgroupのExecStopPostまで巻き込まれる失敗を検出し、
+OnFailureによる別cgroupのseal serviceを追加した。最終VM 07では保持bankの試験用RW driftとcgroup全体のSIGKILL後に、
+独立serviceがROへ戻し、元tree/記録を維持した。正常完了記録を捏造していない。
+通常/切断/期限切れのcodeは最終buildと同一bytesで、新しい故障経路を最終unitで検査した。
+
+初回prepare/inspectの追加field比較不備を修正し、実extracted結果を読取保存した。
+診断globを非rootで展開した失敗とstop hook巻き添えの失敗も保持した。
+最終0.6.0のmain DEB/dbgsym/source dsc/source tar.xzは二重buildで完全一致した。
+31 export入力、38 runtime file、DEB内module/unitを正本へ照合した。workerは
+b55000d2e21d96c8e75a9f36dda4bbcf5c77c9dbf42074fa39b1600b1c113322で不変。
+実initializerは前工程の受入packageを再使用し、app/vendorの不変を照合した。構造/参照/lint/license/生成CIも成功。
+Ada全suite/証明とISO buildは反復していない。
+
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。VM差分7個と追加disk7個、352.71 MiBを削除し、
+base/受入VM/source/package/入力archive/既存SDKとinitializer buildは保持した。
+subjectはad96a946895f429ce1a8ba518a28097c41460e02eeacfd0dabb703348baad971。
+ADR-0114、証跡distribution/evidence/native-transition/root-session-01/（113 file、SHA256SUMS込み）。
+私有labはnative-root-session-01。最終packageはvm-package-07/packages。GitHub公開/remote CIは未実施。
+許可は有効だが既存minto-dane/niaosは別projectである。
+
+次はnative SDK adapterと独立root supervisorのsite認可/供給/同意・取消寿命を接続し、bank slotの割当て/保持/GCを実装する。
+このRPCはroot管理面を信頼し、site admissionや一般利用者consentを独立検証したものではない。
+controllerはhost mount権限を持つ信頼された部品で、外部特権writer全体を封じる完全sandboxではない。
+実root/boot切替・復旧、全DEB効果、完全置換ISOと全言語翻訳も未完。物理電断、RW展開の全位置でのSIGKILL、
+kernel I/Oの厳密な期限、全異常でのseal成功は未認定である。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。明示的storage bootstrapへ専用GPT/ext4 bankの配備と起動時device照合を接続した。
 root所有0600のplanでpartition UUID・filesystem UUID・容量を指定し、実block FDとcacheなしprobeへ照合する。
 intent/完了記録へplan hashを束縛し、mount drop-inを新規作成・同期する。通常mountはROとし、
