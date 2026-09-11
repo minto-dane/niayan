@@ -6,6 +6,34 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。root workerへ原本tarの時刻を読む独立cursorを接続した。
+負の小数/負zeroをPOSIX timespecへ正しく変換し、実展開前と照合前の両方へ適用する。
+rootの最終時刻も補正する。checksum、entry種別/size、拡張の長さ/重複、padding/終端と期限を検査する。
+元FDのoffsetを変えず、可変metadataの全entry保持や上流ソース変更は行わない。
+
+独立wire 34 caseと同じ34 caseのASan/UBSan検査が成功した。
+Debian 13の使い捨てVMで正/負のroot各10 entryと5拒否caseが成功し、root/dir/file/symlink/hardlinkの
+実mtime/atimeを独立した整数nanosecondと照合した。既存owner/mode/ACL/xattr/内容/raw名と全inode種別も確認した。
+新しい0.2.1ソースpackageへhelperと標準試験を含め、別directoryの主DEB/dbgsymがbyte一致した。
+導入したworkerでも同じ7 caseが成功し、socketの自動起動/有効化がないことを確認した。
+wireの全signed境界をFSの全範囲復元保証にせず、ctime/birthtimeの任意復元も主張しない。
+
+初回VMはDistroboxのUID0によるKVMアクセス拒否で停止し、通常userで起動した。
+初回package比較は試験器の古い0.1.0ファイル名で停止した。build自体は0.2.0で成功しており、
+最終0.2.1のbuild/比較/導入を別VMで完了した。途中ログを保存し、成功結果へ置換していない。
+7 worker入力と23 package入力を現行ソースと照合した。構造/link/lint/licenseと生成CIも成功。
+Ada/数学的入力・共有vendorは不変で、全suite/証明/旧カオスは反復していない。全job終了済み。
+
+subjectは4230d1d819551dc90354ad75318b0e962963e2659f29a4b9a5a00739311f6d1f。
+判断ADR-0102、証跡distribution/evidence/native-transition/root-clocks-01/、私有lab native-root-clocks-01。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPUを維持した。GitHub公開は未実施。
+
+次は元属性adapter/全root配置からのtar stream・CAS保存への接続である。
+全属性とinode/link効果、全過去設定、特権observer、認証UIと全managed認可、世代保持/復旧・実root/boot、
+残る全DEB効果、完全置換ISO、全言語翻訳等の全体要件も未完である。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。通常設定fileのPAX/header出力codecを追加した。raw名、全permission bit/数値owner、
 全signed nanosecond時刻と拡張fieldを保持する。raw xattrはLIBARCHIVE形式に変換し、BINARY名、
 encoded key/base64、全signed端点をnative framingで検査する。拡張の予約field上書き・重複を拒否し、
