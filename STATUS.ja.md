@@ -6,6 +6,42 @@
 
 ### 直近の検証
 
+2026-09-11 UTC。CAS予約を取り直した後の設定再観測と全root照合を実装した。
+Pkg_Conffile_Choice.Reobserveは保存memberを先に検査し、現在のrootから原本/宣言・inode/属性/内容・
+退避先を通常のPrepare/Resolveで再観測する。新規観測の期限とそのrecord参照だけを除いて全byteを比較し、
+保存choice閉包を現在のsourceから厳密に導出する。sourceとrecordの役割を区別して保持し、digestが同じでも
+必要なsourceを消さない。返すのは現在の予約に属する新sessionで、旧proposal/期限/hashを変更しない。
+
+Pkg_Configured_Root.Verify_Currentは保存閉包と独立期待bindingを検査し、全choiceを再観測して通常Buildへ渡す。
+元所有権・配置・prefix/content・完全tarとmanifestを照合し、最後に全新choiceをlive確認する。
+保存結果のarchiveだけを返す。新規観測/派生の未pin CAS objectは残り得る。
+観測期限は同意・失効・新規要求や復旧の許可を更新しない。root FD/scopeと保存選択の認可は別途必要である。
+
+固定環境で対象2 mainを強制compileし、設定選択297 assertion（9経路の新規再観測を追加）、全root192 assertionが成功。
+新プロセスで現在の空fileと過去5観測を区別し、構造上は読めるownership/prefix/root byteの不整合を
+全root照合では拒否した。旧期限1の再観測も、現在の条件が一致するときだけ成功した。計13 caseが成功。
+過去の全CAS memberは元hashを維持した。独立した元6 rootの原本span/閉包照合と保存参照35 caseも成功。
+同じmount namespaceでのプロセス再起動の受入であり、OS再起動時のidentity移行・適用後の復旧認定ではない。
+
+初回はテストhelperのFD型演算の可視性でcompile停止し、修正後test-02.logで全対象が成功した。
+API説明comment更新後にも対象を強制compileし、compile-03.logで実行済みroot binaryとのbyte一致を確認した。
+そのbinaryは44df0a7061e8c92dc381e4fb5f450a074f9e1dcf1e3b720c5dc7437a89a062a0。
+399 compile入力・26不変fixture・7 Python工具を照合し、構造/link/lint/licenseと生成CIも成功。
+新current oracleは標準component CI/統合runnerで元driverと同じmount namespace内に接続した。
+Ada mainは83。共有vendor/数学的入力、workerとfixtureは不変で、全suite/証明/旧カオス/VMを反復していない。
+3 GiB/swap0/CPU1/pids128。全job終了済み。GitHub公開は未実施。
+
+subjectは972bb968e5f4def48ad3496808add2ede374315cc2e6c1266fc82ab0661d9b19。
+判断ADR-0107、証跡distribution/evidence/native-transition/configured-current-01/、私有lab native-configured-current-01。
+
+次は世代形式へ設定済みmanifest/closureと期待scopeを明示的に束縛し、世代pinと各stage/公開phaseへ
+新規観測を接続する。既存NIAGEN05のroot欄を暗黙に新形式へ拡張しない。
+このAPIを呼べることを、本番の期待root FD/scope/同意の認可や、既存公開経路への接続完了にしない。
+mount/inode identity移行、accepted状態の復旧、世代GC、全DEB効果、本番provider/認証UI、実root/boot、
+完全置換ISOと全言語翻訳などは未完である。
+
+以下は完了済みの前工程である。
+
 2026-09-11 UTC。設定済みrootの保存参照loaderを実装し、live Verifyの先行検査へ接続した。
 Pkg_Configured_Root_Record.Loadは新プロセスから同じCASを読取専用で開き、全member/hash、
 元root/catalog/選択のbinding、件数・順序・サイズ、宣言閉包と生成物のexactな和集合を検査する。
