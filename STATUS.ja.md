@@ -6,6 +6,43 @@
 
 ### 直近の検証
 
+2026-09-11 UTC。設定済み世代の論理的公開と、受理済み記録の復旧を接続した。
+NIAGEN06の新規公開と未受理の再開は、stage検査と公開engineの実CAS予約の両方で現在の設定元を照合する。
+Observe_Configuration_Sourceは既定拒否で、独立認可と操作全体のsource排他を要求する。
+active transactionだけでは現在照合を省略しない。受理済みの同一state/plan/catalogと完全なjournalだけが、
+別型Retained_Generationを使ったfinish-terminal処理へ進める。全物理stage/保持閉包/pin/receiptと現在認可を維持する。
+古いsource FDがなくても元health receiptと全after-imageを確認して記録を修復し、新しい公開決定や設定適用を行わない。
+
+固定環境で3 mainを強制compileした。設定済み公開251、新規/activeの検査後source変更95/125 assertionが成功。
+新プロセスでのaccepted再開と、設定record/閉包/物理tar/stage journal/publication journal/pinの6欠落拒否も成功。
+旧v4公開2,023、v5公開142、stage1,211、設定済み世代358 assertionと、現在観測13 case、独立6 root、公開oracleも成功。
+最終のAPI説明comment訂正後にも3 mainを強制compileし、実行済みbinaryとの完全一致を確認した。
+最初のPython oracleのtar path表記とADR必須見出しの不足を修正し、失敗ログも保存した。
+401 compile入力、41 fixture、8 Python工具を正本へ照合し、構造/link/lint/license/生成CIが成功した。
+Ada mainは83。共有vendor/数学的入力とworker/serviceは不変で、全suite/証明/旧カオス/VMは反復していない。
+3 GiB/swap0/CPU1/pids128で順次実行し、全job終了済み。component/統合CIへ新wrapperを登録した。
+subjectはab72f448d25ce2e710d147ebb65a076f6062d2fa3d8298e898de7f7e0d30809f。
+判断ADR-0109、証跡distribution/evidence/native-transition/configured-publication-01/（65 file、SHA256SUMS込み）。
+私有labはnative-configured-publication-01。最新3 mainのbuild cacheはここに保持する。
+
+利用者の追加依頼で未使用VM/旧ISO等48 fileと過去build cache105 directoryを削除し、約12.16 GiBを解放した。
+空き容量は約4 GBから17 GB、使用率99%から93%。保持するqcow2のbacking関係とQEMU停止を確認した。
+Distroboxから一部host FDは列挙できず、可視FDと完了済み私有出力の範囲で確認した。完全なhost FD検査とはしない。
+最新ISO 09、二つの受入installed VM、builder/base、対応source、全sourceとsealed evidenceを保持した。
+過去labのbuild cacheと使い捨てVM差分は消えているため、過去のパスにbinaryがあると仮定しない。
+整理記録はdistribution/evidence/maintenance/storage-cleanup-20260911/。
+
+GitHubのminto-dane認証を確認したが、既存minto-dane/niaosは別の非公開kernel projectだった。
+上書きせず、workspace候補をniaos-distributionとしてdev/PUBLISHING.ja.mdへ記録した。
+repo作成/push/release/remote CIは未実施。利用者による実施許可は継続して有効である。
+
+次は抽出済みfilesystemの完全検査と、実root/boot切替へのbinding・段階別復旧を接続する。
+今回のacceptedは保持archiveを選ぶ論理的SDKのstateであり、稼働rootやbootの資格ではない。
+本番source/consent/quiescence provider、実物の検査とmount identity移行、世代GC、全DEB効果、
+本番認証UI、完全置換ISOと全言語翻訳も未完。fixture認可を本番へ配備せず、属性検査を緩めない。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。設定済みrootを世代保持・格納・実準備へ接続した。
 NIAGEN06は320 byte headerで元NIAROOT1/2に加えてNIACRT01/NIACRC01を明示的に束縛する。
 保存設定の元root/catalog/closure、intentのroot/architecture、世代transaction、Context=Intentを照合する。
