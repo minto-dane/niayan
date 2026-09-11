@@ -41,6 +41,34 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-10 UTC。root生成と実展開の親子順の不一致を修正した。
+BuildはNIAROOT2を生成し、directoryをcanonical raw path順でroot・親・子の順に出力する。
+その他の原本順とhardlink依存、元のheader/拡張/body/paddingは保持する。
+NIAROOT1のVerify/Verify_Targetは従来のbyteで照合する。Verify_Ownershipは旧形式にも実展開順を要求し、
+不適切な旧順をUnsupported・両digest zeroで拒否する。適切な旧順は受理し、暗黙移行や既存hash変更をしない。
+
+Debian 13で対象3 mainを強制compileし、root archive 831、設定配置136、root公開variant142 assertionが成功した。
+二つの逆順directory原本からroot/親/子の採用元を8通り選び、独立Pythonで全原本span・親/リンク順・
+旧byteを照合した。共有属性が同じなので8通りの出力tarは同一である。その同一性を検査して実展開を1回に絞り、
+VMで11 entryのroot/親先行、数値属性、内容、負nanosecond時刻、hardlink chainを確認した。
+既存13 pathの原本spanと、10 pathの実stage/論理公開状態の独立oracleも成功した。実bootではない。
+
+初回CAS directory権限、tar directory名の末尾slash期待値、再実行でのtest stage名衝突を検出した。
+試験器と実行先を修正し、途中ログを残した。最終root検査はtest-04.log、回帰はregression-01.log。
+390 compile入力・37 fixture入力・6 Python工具を照合し、二fixture集合各5 DEBの再現性も確認した。
+標準component CIと統合runnerへ新しい独立order oracleを接続した。構造/link/lint/licenseと生成CIが成功。
+Ada mainは83。数学的入力/共有vendorとworker本体は不変で、全suite/証明/旧カオス・worker再buildは反復していない。
+
+subjectはcbc8eb5c0fa7511cb5a17e7f593cb27f5d5c363e683d3203b174d621ca94c56e。
+判断ADR-0103、証跡distribution/evidence/native-transition/root-order-01/、私有lab native-root-order-01。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。GitHub公開は未実施。
+
+設定を含む全root直列化へ接続する前提の修正であり、元属性adapter/設定済みtar stream・CAS保存はまだ未完。
+全属性とinode/link効果、全過去設定、特権observer、認証UIと全managed認可、保持/復旧・実root/boot、
+残る全DEB効果、完全置換ISO、全言語翻訳等を引き続き実装する。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。root workerへ原本tarの時刻を読む独立cursorを接続した。
 負の小数/負zeroをPOSIX timespecへ正しく変換し、実展開前と照合前の両方へ適用する。
 rootの最終時刻も補正する。checksum、entry種別/size、拡張の長さ/重複、padding/終端と期限を検査する。
