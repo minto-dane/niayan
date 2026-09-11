@@ -41,6 +41,35 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。明示的storage bootstrapへ専用GPT/ext4 bankの配備と起動時device照合を接続した。
+root所有0600のplanでpartition UUID・filesystem UUID・容量を指定し、実block FDとcacheなしprobeへ照合する。
+intent/完了記録へplan hashを束縛し、mount drop-inを新規作成・同期する。通常mountはROとし、
+初期化区間だけRWで元bank provisionerを呼び、ROへ戻した現在照合後に完了記録を保存する。
+準備serviceの前に独立oneshot guardが現在device/mount・plan/記録を照合する。service本体の権限を拡大しない。
+
+配布用0.5.0のmain DEB/dbgsym/source dsc/source tar.xzは二重buildで完全一致した。
+最終VMでは実native initializerによる初期化、plan欠損/UUID/容量違いと既存状態の7拒否、再初期化拒否が成功。
+実再起動後の同じbank記録のinode/hash、RO mount、guard経由のservice開始、plan変更による開始拒否、
+lock欠損の非再生成と明示復元後の照合も成功した。mount IDは69から67へ変わり現在値を再観測した。
+初回のguard unit梱包漏れをinstall manifestで修正し、失敗入力とログも保持した。
+26 export入力とsource package、30 runtime file、DEB内module/unit/workerを照合した。
+workerはb55000d2e21d96c8e75a9f36dda4bbcf5c77c9dbf42074fa39b1600b1c113322で不変。
+実initializerは以前の受入package 0.1.0+gita3640276f48dを再使用し、app/vendorの不変を確認した。
+構造/参照/lint/license/生成CIも成功。全componentの最新buildや旧service fixture全体/証明の反復はしていない。
+
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。VM差分2個と追加disk2個、99.03 MiBを削除し、
+base/受入VM/対応source/package/既存SDKとinitializer buildは保持する。
+subjectは746a5a7d63171fb0666b3b9741596fc529ef7b8ebd39656ebe07c73e27311288。
+ADR-0113、証跡distribution/evidence/native-transition/bank-device-01/（51 file、SHA256SUMS込み）。
+私有labはnative-bank-device-01。GitHub公開/remote CIは未実施で許可は有効。既存minto-dane/niaosは別projectである。
+
+次は本番controllerの認証/RPC・全寿命のmount/device排他とbank slot管理を接続する。
+完全置換ISOのpartition recipe/UI、効果直前の現在性検査、実root/boot切替・復旧も必要である。
+UUIDは暗号学的認証ではなく、clone/hotplugや特権raw writerを単独防御しない。旧bind bank/旧完了記録は
+自動移行せず拒否する。LUKS/device-mapper/RAID等の別profile、全DEB効果、GC、全言語翻訳も未完である。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。専用ext4 bankのfilesystem単位の書込排他を内部controller部品へ実装した。
 FrozenRootは独立期待mount/device/inode・元intent/worker・実CAS予約を照合し、共有subtree/子mountを
 拒否する。MS_BINDなしのread-only remountで全mount viewの通常writerをkernelに排除させる。
