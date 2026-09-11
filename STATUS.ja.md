@@ -6,6 +6,38 @@
 
 ### 直近の検証
 
+2026-09-10 UTC。保存済み設定属性を通常fileのtar prefixへ変換するPkg_Configuration_Entryを実装した。
+NIACOBS1/元DEBから内容・数値mode/UID/GID・ACL/xattr・flags・4時刻を再観測する。
+vendor permission overrideは元pathのローカル観測へ束縛し、named ACL権限を残してowner/group-class/otherを変更する。
+未知active属性、範囲外named ACL ID、未解決のローカル複数link、原本/assertion不整合や期限切れは出力を消して拒否する。
+
+独立native読戻しでACL_GROUP_OBJとACL_MASKの混同によるmode差を検出した。
+SDKの数値modeと実展開workerのstat照合を修正し、元group-owner ACLを改変せずmaskと区別する。
+上流ソースは変更していない。誤ったmodeを含む旧派生metadataは再観測結果が変わるため、
+旧hash/原本の暗黙書換えは行わない。対象旧計画の移行・復旧受入は未認定である。
+
+対象Ada mainを強制compileし、設定観測/変換141、tar出力83、既存payload814、root archive831、設定配置136 assertionが成功。
+ローカル保持/backup/vendor/権限継承vendorの4経路を独立NIACOBS1/DEB読取とnative payload各26 assertionで照合した。
+同じ4経路のoracle起動を標準component CIと統合runnerへ接続した。
+root-preparation 0.2.2の2 build directoryで主DEB/dbgsymがbyte一致し、導入済みworkerで既存7 caseが成功した。
+隔離VMの専用ext4でも4経路の内容・権限/所有者・ACL/xattr・flags・実mtime/atimeが一致した。
+ctime/birthtimeの任意復元、全FS範囲、実bootの認定ではない。
+
+初回compile可視性・fixture相対path、独立観測decoderのtag幅、ACL mode差、VM工具PATH・再起動時/tmp消失を検出した。
+修正後の最終設定実行はtest-04.log/roundtrip-04.log、実FSはvm-entry-03。途中ログを保持した。
+393 compile入力・72 fixture・6 Python工具・23 package入力を照合し、構造/link/lint/licenseと生成CIも成功。
+Ada mainは83。共有vendor/数学的入力は不変で全suite/証明/旧カオスは反復していない。
+
+subjectは0333e6374ca54ea9e37b9c29f009b3cf78f7ee536668cb3af975248ecea1b115。
+判断ADR-0104、証跡distribution/evidence/native-transition/configuration-entry-01/、私有lab native-configuration-entry-01。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPU。全job終了済み。GitHub公開は未実施。
+
+次は設定済み全root stream/CAS保存と、全prefix/選択/原本の保持・live再検証への接続である。
+全過去設定、隠れた属性と全inode/DEB効果、特権observer、本番provider/認証UI、旧計画移行・保持/復旧・実root/boot、
+完全置換ISO、全言語翻訳などの全体要件は未完。prefix変換とVM fixtureを製品接続完了扱いしない。
+
+以下は完了済みの前工程である。
+
 2026-09-10 UTC。root生成と実展開の親子順の不一致を修正した。
 BuildはNIAROOT2を生成し、directoryをcanonical raw path順でroot・親・子の順に出力する。
 その他の原本順とhardlink依存、元のheader/拡張/body/paddingは保持する。
