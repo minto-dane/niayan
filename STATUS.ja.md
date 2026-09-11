@@ -6,6 +6,36 @@
 
 ### 直近の検証
 
+2026-09-11 UTC。実rootの再検査をnative SDKと予約保持へ接続した。
+元展開期限からintent hashを再構成し、新しい期限と独立期待mount/device/inode・worker・archiveを
+canonical応答全体へ照合する。新generic Reinspect_Root_And_Holdは独立Observe_Rootを必須とする。
+世代/root/CAS予約下で保持内容・現在設定元・認可を前後確認し、専用limited型に三予約とarchive FDを保持する。
+期限切れで観測を無効にしても予約は明示Closeまで維持する。使用中handleの再要求はConflictで置換しない。
+
+固定SDKで3 mainを強制compileした。実0.3.0サービス/workerを使ったVMでは設定済み世代477、
+通常世代933 assertionが成功した。各世代の観測拒否・誤mount/元期限・応答後観測変更/認可拒否、
+実treeと記録の不変、成功/期限切れでの三予約保持、使用中再要求拒否と明示Closeを確認した。
+旧世代処理1,211 assertionも成功した。時刻待ちassertionを含む件数は実行依存である。
+VM 01の応答/FD後片付け競合は失敗ログを保持し、新SDKが同じ期限でpeer終了まで待つよう修正した。
+VM 02では応答後のFD後片付けを100 ms遅らせて確認した。通信異常/期限切れ時の全FD解放を保証してはいない。
+旧展開Requestとサービス/workerのbytesは維持した。workerはb55000d2e21d96c8e75a9f36dda4bbcf5c77c9dbf42074fa39b1600b1c113322。
+
+401 compile入力、32 fixture、4 VM工具と梱包driver/工具/DEBを照合し、構造/参照/lint/license/生成CIも成功した。
+七つの数学的src/共通vendorは不変。全suite/証明/SDK binary二重buildは反復していない。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPUで順次実行した。全job終了済み。
+今回の使い捨てVM差分2個、57.14 MiBを削除した。base/受入VM/source/現行SDK buildは保持する。
+subjectは37634928f5bc298f03d256e58849c9204804ba2974a5cdcef00745ba994cb058。
+ADR-0111、証跡distribution/evidence/native-transition/root-reinspection-sdk-01/（53 file、SHA256SUMS込み）。
+私有labはnative-root-reinspection-sdk-01。GitHub公開/remote CIは未実施で、実施許可は引き続き有効。
+既存minto-dane/niaosは別projectなので上書きしない。
+
+次は本番の独立controllerがbank/全writer/mountを予約し、handleのClose後まで維持するproviderを接続する。
+Heldだけでprovider取消やmount変更を認定しない。効果直前の現在性検査と実root/boot切替・段階別復旧が必要である。
+この型を論理公開や起動許可へ流用せず、fixture bridgeを本番配備しない。本番source/consent/supply provider、
+世代GC、全DEB効果、完全置換ISOと全言語翻訳も未完である。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。展開済み実rootの非更新再検査を内部workerとBankサービスへ接続した。
 独立read-only/nodev/nosuid/noexec mountとbank/CAS予約を要求し、元intent・現在worker hashを照合する。
 保持tarを二回hashし、内容/owner/mode/宣言時刻/ACL/宣言flags/link/deviceに加え、xattr集合、
