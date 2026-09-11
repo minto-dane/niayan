@@ -41,6 +41,37 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-11 UTC。設定済みrootの保存参照loaderを実装し、live Verifyの先行検査へ接続した。
+Pkg_Configured_Root_Record.Loadは新プロセスから同じCASを読取専用で開き、全member/hash、
+元root/catalog/選択のbinding、件数・順序・サイズ、宣言閉包と生成物のexactな和集合を検査する。
+全binding/choice/設定entry/memberをViewから列挙でき、削除の選択も残す。失敗時はViewを消す。
+保存物を再生成せず、旧proposalをlive状態へ復活させない。新しい期限は読込だけに適用する。
+既存Verifyはその後もlive配置・所有権・全選択とBuild結果の完全一致を検査する。
+
+固定環境の対象main強制compileと既存190 assertionが成功した。独立Pythonによる元6 rootの
+原本span/選択/保持集合の照合も成功した。新プロセスの最終35 caseで、6 rootの全返却field、
+不整合・scope・件数/配置/サイズ・保持集合の過不足/順序と10種類の保存object欠落を検査した。
+旧期限1の記録も履歴として読めることを確認した。全読込前後でCAS object集合/内容が不変で、
+欠落は未修復のまま残る。有限期限とgetter/失敗時出力消去も確認した。
+プロセス再起動の試験であり、認証済み復旧適用や実bootの試験ではない。
+
+初回compileのByte演算可視性不足を修正し、test-02.logで成功した。
+保存記録34 case成功後に旧期限のcaseを追加し、最終oracle-02.logで35 caseが成功した。
+399 compile入力・26既存fixture・6 Python工具を現行ソースと照合した。
+標準component CIと統合runnerへ保存記録oracleを接続し、構造/link/lint/licenseと生成CIの検査も成功。
+共有vendor/数学的入力、特権workerとfixtureは不変。全suite/証明/旧カオス/VMは反復していない。
+Ada mainは83。3 GiB/swap0/CPU1/pids128を維持し、全job終了済み。GitHub公開は未実施。
+
+subjectは78bfa9040cd90d8374765d1fc20dd46224aad6792e60c11935e099537e45baa0。
+判断ADR-0106、証跡distribution/evidence/native-transition/configured-record-01/、私有lab native-configured-record-01。
+
+次は設定済み形式を世代の保持・実root準備・公開経路へ明示的に接続する。
+Loadの保存参照整合性だけを原本由来の閉包完全性・所有権/配置の意味検証・同意・GC/実行許可にしない。
+後段の期待digest/scope認証、live選択と本番admission、認証済み復旧、世代pin/GCは未完。
+全過去設定/隠れた属性/全inode/DEB効果、本番provider/認証UI、実root/boot、完全置換ISO、全言語翻訳も未完。
+
+以下は完了済みの前工程である。
+
 2026-09-11 UTC。設定済み全rootのstream生成と保持記録を実装した。
 Pkg_Configured_Root.Buildは配置/所有権/全選択を再検証し、未変更の原本spanと設定prefix/contentを
 64 KiB bufferで完全tarへ出力する。root/親とhardlink依存を保ち、削除/退避と空fileを区別する。
