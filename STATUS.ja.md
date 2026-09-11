@@ -6,6 +6,42 @@
 
 ### 直近の検証
 
+2026-09-11 UTC。設定済みrootを世代保持・格納・実準備へ接続した。
+NIAGEN06は320 byte headerで元NIAROOT1/2に加えてNIACRT01/NIACRC01を明示的に束縛する。
+保存設定の元root/catalog/closure、intentのroot/architecture、世代transaction、Context=Intentを照合する。
+既存pinを使用し、v1..v5のwire/transactionは維持した。GC走査の実装は別途必要である。
+
+Pkg_Generation_Stageへ既定拒否のObserve_Configurationを追加した。独立に認可された設定元FDを借用し、
+操作全体のsource排他をproviderへ要求する。通常Verify_Currentをprovision/advance/inspect/準備へ接続し、
+内側engineがCASを取得する二箇所でもCheck_Inputsから再観測する。元Authorizeも全effectで維持する。
+Prepare_Rootは設定済みtar FDと実CAS予約FDを既存サービスへ渡し、応答後も保存内容/source/認可を確認する。
+
+固定環境で4 mainを強制compileした。最終の設定済み世代358 assertion、現在観測13 case、独立6 rootが成功。
+元root831、既存stage 1,211、旧v5公開142 assertionと独立公開oracleも成功した。
+最初の旧root/stage実行後に追加したv6専用test helper差分はbefore-source-checkとtest-01-inputsに保持した。
+本体runtimeは全実行で同じ。最終helperを使う2 mainを再compileし、設定済み試験を実行した。
+
+使い捨てVMの実サービス/workerで2 case（各367 assertion）が成功した。空のlocal設定とvendor退避、
+世代wire/保存scope/送信tarを照合し、展開後認可拒否はIndeterminateで非公開のextracted rootを保持した。
+VM 01のfixture作成権限、VM 02の媒体directory権限を修正し、VM 03が成功した。媒体検査は維持した。
+追加試験のFD型取り違えと梱包用worker hashの取り違えもログを残して修正した。
+開発用workerの実hashはed188c4f23f9078ecaecfff829de6f4a53ba533f0a36a77c6189d5a09a9a123d。
+配布パッケージの別binary 6518709d…と混同しない。worker sourceとbytesは前の受入から不変である。
+
+401 compile入力、32 fixture、9 Python工具、4 worker sourceを照合し、構造/link/lint/license/生成CIも成功。
+Ada mainは83。共有vendor/数学的入力は不変。全suite/証明/旧カオス/性能campaignは反復していない。
+3 GiB/swap0/CPU1/pids128、VM 2 GiB/1CPUを維持し、全job終了済み。GitHub公開は未実施。
+subjectはd46d244395105b30d2571a84ed87524b39e3f94704efd9dcaae2a896ba00d267。
+判断ADR-0108、証跡distribution/evidence/native-transition/configured-generation-01/、私有lab native-configured-generation-01。
+
+次は設定済み世代の公開・accepted復旧を接続する。publisherの既存v4/v5制限は維持し、v6公開はUnsupported。
+適用前sourceの現在照合を、設定適用後やboot後の状態へ無条件に流用してはならない。
+実物の再検証と段階別の復旧根拠、本番source/authentication/quiescence provider、mount identity移行が必要である。
+このfixtureのsource providerや供給鍵を本番配備せず、稼働rootの属性チェックを緩めない。
+世代GC、全DEB効果、本番provider/認証UI、実root/boot、完全置換ISOと全言語翻訳は未完である。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。CAS予約を取り直した後の設定再観測と全root照合を実装した。
 Pkg_Conffile_Choice.Reobserveは保存memberを先に検査し、現在のrootから原本/宣言・inode/属性/内容・
 退避先を通常のPrepare/Resolveで再観測する。新規観測の期限とそのrecord参照だけを除いて全byteを比較し、
