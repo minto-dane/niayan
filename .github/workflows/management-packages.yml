@@ -16,7 +16,7 @@ jobs:
           submodules: recursive
           persist-credentials: false
       - name: Build pinned packaging environment
-        run: docker build -f distribution/image/Containerfile -t niayan-image-builder .
+        run: docker build --target package-builder -f distribution/image/Containerfile -t niayan-image-builder .
       - name: Export management and identity sources
         run: |
           mkdir -p "$RUNNER_TEMP/niayan/packages"
@@ -42,7 +42,7 @@ jobs:
             -e NIAYAN_DISPOSABLE_PACKAGE_TEST=1 \
             -v "$RUNNER_TEMP/niayan:/build:ro" -v "$PWD/distribution/image:/source:ro" \
             niayan-image-builder sh -ec \
-            'sh /source/test-management.sh /build/packages/niayan-management_0.1.0_all.deb; sh /source/test-release.sh' \
+            'sh /source/test-management.sh /build/packages/niayan-management_0.1.1_all.deb; sh /source/test-release.sh' \
             2>&1 | tee "$RUNNER_TEMP/niayan/acceptance.log"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
