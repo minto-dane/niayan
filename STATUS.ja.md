@@ -1,5 +1,15 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 非同期native管理者認証を実装（ADR-0125 / REQ-162）。
+既存polkit SDKを専用root子のpkg_operator_guardで動かし、root-preparation 0.11.0の親側APIが
+peer/子pidfdとpipeを非blockingで監視する。確認番号、元期限、返答の時刻/鮮度を固定し、
+古い初回返答、取消、子停止、失効後の再利用を拒否する。保存grantや自動再認証は追加しない。
+最終実DEBで11 polkitケース、3単体/有限制御検査、strict typing、対応ソース照合が成功。
+最初のVM試験は再起動過多でstart-limit-hitになり、harnessの不要な再起動を削減して解決した。
+その後の鮮度修正ではcontrollerだけ再buildし、同一pkgcore DEBを最終受入に再利用した。
+証跡はdistribution/evidence/native-transition/operator-guard-01/。本番認証dialog/計画同意、
+native世代guardと実効果遮断をつなぐ全supervisor、全Ada/Python/FFIの形式保証は未完。
+
 2026-09-12 保持rootの再検査handoffを実装（ADR-0124 / REQ-161）。
 準備用とは別の224 byte要求と応答を使い、元の展開期限、独立期待mount/inode/device、
 世代と原本/worker/stage、現在交換期限を固定する。送信試行後の別操作への変更も拒否する。

@@ -45,3 +45,7 @@ root-preparation 0.10.0は独立したpolicy/floor原本の明示的な初回配
 再検査handoffの跨UID通信SDKも追加した。元期限と独立期待rootを別operationへ束縛し、
 実Ada/C/Pythonの通信と純粋wire validatorを検査済み。実rootを再検査する保持controller、
 独立観測、現在認可/供給/同意をresponsive supervisorへ接続する工程1は引き続き未完である。
+
+root-preparation 0.11.0とpkg_operator_guardは、既存polkit SDKを専用子で実行する非同期観測を追加した。
+最終実DEBで11ケースを受入済み。元期限、順序と返答鮮度を検査し、失効後の再利用を拒否する。
+この点観測を計画同意/native guardと実効果の遮断へ結ぶsupervisor、および全runtime保証は残件である。

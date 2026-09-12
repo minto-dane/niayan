@@ -46,12 +46,22 @@ management 0.1.1/識別0.2.0。全体OSのCI/本番認定ではない。
 
 ## 次の作業順
 
+2026-09-12 非同期operator確認: ADR-0125 / REQ-162 / HAZ-149 / FAULT-162。
+pkg_operator_guardは既存native polkit SDKを専用root子で実行し、0.11.0のOperatorGuardが
+順序付きprivate pipe、peer/子pidfd、元期限と応答鮮度を非同期で検査する。保存grantではない。
+最終実DEBの11 polkit case、strict typing、3件の有限制御/FD/UID検査と対応ソース照合が成功。
+初回返答の滞留も拒否。証跡はdistribution/evidence/native-transition/operator-guard-01/。
+同じpkgcore DEBを再利用し、鮮度修正後はcontrollerだけ再buildした。試験の再起動過多は
+実journalのstart-limit-hitで確認してharnessを修正し、製品のpolkit制限は緩めていない。
+本番supervisorがこの非同期観測、計画同意、native供給/世代guard、保持root sessionの
+実効果遮断を一つのevent loopへ接続する作業が次。全Ada/Python/FFIの形式保証は未完。
+
 2026-09-12 再検査handoff: ADR-0124 / REQ-161 / HAZ-148 / FAULT-161。
 Pkg_Root_Handoff.ReinspectとPythonのReinspectionScopeを追加し、元期限と独立期待rootを
 224 byteの別要求/応答へ束縛した。一Sessionは準備/再検査いずれか一試行のみ。
 実Ada/C/Pythonとkernel credentials/FDの32通信case、strict typing、純粋wire validatorの
 CBMC 288 propertyが成功。証跡はdistribution/evidence/native-transition/root-reinspection-handoff-01/。
-全transport/FFIの証明ではない。package版は0.10.0のまま、実DEB/ISOの再構築は行っていない。
+全transport/FFIの証明ではない。この通信checkpointではpackage版を進めず、実DEB/ISOも再構築していない。
 次はこの要求を保持controllerのObserve、独立物理観測、現在認可/供給/計画同意へ結ぶ
 responsive supervisor。受信scope/ACKを独立期待値や実行許可へ転用しない。
 
@@ -100,7 +110,8 @@ SDKと人工fixtureの成功を製品接続完了にしない。
 0.8.0の移行受入と過去のsource-bound結果はSTATUS.ja.mdおよび
 `distribution/evidence/native-transition/root-service-retirement-01/`に保持する。
 0.9.0の取消受入はroot-worker-monitor-01を参照し、旧工程の件数を現行全体の保証にしない。
-現行0.10.0は上記初回供給配備を追加した。取消runtimeは不変であり同じ試験を反復していない。
+0.10.0は上記初回供給配備、現行0.11.0は非同期operator確認を追加した。
+取消runtimeは不変であり同じ試験を反復していない。
 
 2026-09-12 storage整理: 完了済みISO導入VM2台とbuilder guestの/build-03〜/build-09を削除し、
 約59.8 GBの実割当を回収。空き約59.7 GiB。現行/build、工具、元ISO、対応ソースと受入記録は維持した。
