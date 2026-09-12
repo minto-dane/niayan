@@ -6,6 +6,42 @@
 
 ### 直近の検証
 
+2026-09-12 UTC追補。旧root準備service/socket、専用C/Ada RPC、旧dev viewとVM bridgeを撤去した。
+ADR-0120、REQ-158、HAZ-144/145、FAULT-157/158。SDKのPrepare_Root/Reinspect_Root_And_Holdは
+必須transportへ統合し、独立observerと全認可/保持内容/現在設定/実FD/三予約を維持する。
+共通Root_IdentityはPkg_Root_Identityへ分離した。旧Using/socket直結APIとfixture引数は残さない。
+共有Bank、bootstrap、FrozenRoot、版付き復旧記録と必要なsource/licenseは維持した。
+重複した配備試験をdevice/bootstrapと後継session試験へ統合した。
+
+0.8.0 DEBは旧所有ファイルを除去し、制御面のlive更新をpreinstで拒否する。
+オフラインchroot unpackによる旧0.7.0からの除去と記録保持、新規VMの完全なpackage導入を確認した。
+旧版と後継listener稼働中の更新拒否で、unit/PID/コード/保存物は不変だった。
+chrootのconfigureと処理中workerへの更新はこの受入に含めない。
+main/debug DEBとDSC/source tarの独立2 buildはバイト一致。main DEBは
+ba88f35d97df513ee0c3a194944f407c312038eb225ce311a48057e32067473e。
+
+固定containerで5つの選択Ada mainをcompile/実行した。v5は1,631、v6は1,206 assertion。
+設定entry 141、通常世代stage 1,211、UID0拒否1,133 assertionも成功した。
+root sessionの実C/Ada/peer/FD境界は29項目成功。世代fixtureの認可/identityは人工である。
+v6の呼出元の選択誤りは実run_root_configuration_testsの追加実行で訂正し、途中の準備失敗も記録した。
+実VMで共通Bankのintent永続化後SIGKILL、物理再検査、欠損lock/policyの実要求拒否、
+専用device bootstrap、後継sessionのprepare/freeze/observe/close、二段階の再起動後ROを確認した。
+SIGKILLはworker開始前の所有processであり、全電断や本番取消の受入ではない。
+
+全jobは終了。重い処理は3 GiB/swap0/CPU1/pids128で逐次、VMは2 GiB/1 CPU。
+compile imageは76d5c00d…、QEMU工具imageは7f92f649…で、完全hashは証跡に記録した。
+今回の不要VM/旧SDK/試験cacheから215,363,584 byteの割当を削除した。共有builderと無関係のVMは維持した。
+subjectはdaac325557fae401f562333cb5cf1ff84c0bc5c7603736dc4d1ee5e3e4320ba8。
+構造/参照/lint/license/生成CIと現行source→配布物照合が成功。証跡は
+ distribution/evidence/native-transition/root-service-retirement-01/（63 file、SHA256SUMS込み）。
+私有labはroot-service-retirement-01。現在のworkspace/buildとpackage/sourceは次の接続用に保持した。
+
+本番認定/公開は行っていない。次は本番の現在供給/世代admission、正確な同意、
+root handoff/保持session/独立観測と物理遮断を非root世代SDKへ接続する。
+C全体/FFI/重要runtimeの形式検証と厳格規則適合、全writer排他/slot/保持/GC、
+実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳は未完である。
+既存minto-dane/niaosは別projectなので上書きしない。
+
 2026-09-12 UTC追補。root handoffの特権Pythonを厳格型検査と明示的な有限制御へ移行した。
 ADR-0119、REQ-157/HAZ-143/FAULT-156。受信/応答試行をI/O前に記録し、失敗/閉鎖後の再利用を拒否する。
 FD解放のOSErrorで残るFD/pidfd/socket解放が止まる経路を修正した。所有参照を取り外して一度だけcloseし、

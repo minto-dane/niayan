@@ -33,6 +33,13 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+2026-09-12の追加方針: 既存という理由だけで旧実装/互換入口/未使用資産を維持しない。
+将来の製品に必要な役割、現行利用箇所、代替可否と撤去条件を確認する。
+利用者は旧service以外も不要なコード/資産の廃止を許可済み。ACID/権限境界/性能/保守/採用コマンドの
+使用感を評価し、中立名称を使う。必要な永続記録/復旧材料を互換実装と同一視して消さない。
+必要な比較試験・対応ソース・ライセンス/検証履歴は、現行製品へ残す実行経路と区別する。
+無関係の稼働VMや利用者アプリを停止しない。不要と確認した試験cacheだけを明示的に削除する。
+
 2026-09-12の追加必須条件: C等の低水準コードは形式検証と航空宇宙の厳格なコード基準を要求する。
 C以外にも影響に応じた基準を適用する。規範はassurance/docs/engineering/specs/implementation-assurance.ja.md。
 通常試験/ASanの成功を形式証明とせず、SPARK対象外Ada、FFI、特権Python、シェル/配布/CIを含める。
@@ -48,34 +55,41 @@ C以外にも影響に応じた基準を適用する。規範はassurance/docs/e
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
-2026-09-12 UTC追補。root handoffの特権Pythonを厳格型検査と明示的な有限制御へ移行した。
-ADR-0119、REQ-157/HAZ-143/FAULT-156。受信/応答試行をI/O前に記録し、失敗/閉鎖後の再利用を拒否する。
-FD解放のOSErrorで残るFD/pidfd/socket解放が止まる経路を修正した。所有参照を取り外して一度だけcloseし、
-同じ番号の再試行を避ける。入力解放失敗後に成功応答を送らない。整数boottimeと有限poll予算も導入した。
+2026-09-12 UTC追補。旧root準備service/socket、専用C/Ada RPC、旧dev viewとVM bridgeを撤去した。
+ADR-0120、REQ-158、HAZ-144/145、FAULT-157/158。SDKのPrepare_Root/Reinspect_Root_And_Holdは
+必須transportへ統合し、独立observerと全認可/保持内容/現在設定/実FD/三予約を維持する。
+共通Root_IdentityはPkg_Root_Identityへ分離した。旧Using/socket直結APIとfixture引数は残さない。
+共有Bank、bootstrap、FrozenRoot、版付き復旧記録と必要なsource/licenseは維持した。
+重複した配備試験をdevice/bootstrapと後継session試験へ統合した。
 
-固定containerで10項目の制御/障害試験と、実root/非root・pidfd・SCM・Ada往復15項目が成功した。
-自分のFDを実closeした後のEIO注入と番号再利用を使い、別FDの誤解放と解放漏れを検査した。
-媒体/kernel故障や任意非同期中断の完全な検査ではない。実transition関数に独立履歴を組み合わせ、
-全到達15構成・29許可辺・76拒否辺を探索した。2つの負の対照を検出し、assert無効化も拒否する。
-深さ上限はないが、対象は有限制御/履歴だけ。Python/OS/I/O/全FD寿命の形式証明へ拡大しない。
-mypy 1.15.0-5 strict/Any/到達不能制約でruntimeと検査器の2ファイルが成功した。
-C/Adaの425入力は不変で、前回の実行物をhash照合して再利用した。今回再compile/ASanとは数えない。
+0.8.0 DEBは旧所有ファイルを除去し、制御面のlive更新をpreinstで拒否する。
+オフラインchroot unpackによる旧0.7.0からの除去と記録保持、新規VMの完全なpackage導入を確認した。
+旧版と後継listener稼働中の更新拒否で、unit/PID/コード/保存物は不変だった。
+chrootのconfigureと処理中workerへの更新はこの受入に含めない。
+main/debug DEBとDSC/source tarの独立2 buildはバイト一致。main DEBは
+ba88f35d97df513ee0c3a194944f407c312038eb225ce311a48057e32067473e。
 
-dev/Containerfileと固定snapshotからCBMC/mypy入り開発imageを実構築した。
-imageはsha256:76d5c00dfa833ce7ae67a192c5663d9bcd5c4104153f5933431dae88c097918c。
-約257秒、最小空き4,004,278,272 byte。3 GiB/swap0/CPU1/pids128、空き3 GiB/900秒の停止条件を維持した。
-新imageでnetworkなし非rootの型/有限制御検査と、限定wire関数のCBMC208条件が成功した。
-全工具package版と入力を保持した。remote CI、全suite、新ISOの構築/実起動は今回実行していない。
+固定containerで5つの選択Ada mainをcompile/実行した。v5は1,631、v6は1,206 assertion。
+設定entry 141、通常世代stage 1,211、UID0拒否1,133 assertionも成功した。
+root sessionの実C/Ada/peer/FD境界は29項目成功。世代fixtureの認可/identityは人工である。
+v6の呼出元の選択誤りは実run_root_configuration_testsの追加実行で訂正し、途中の準備失敗も記録した。
+実VMで共通Bankのintent永続化後SIGKILL、物理再検査、欠損lock/policyの実要求拒否、
+専用device bootstrap、後継sessionのprepare/freeze/observe/close、二段階の再起動後ROを確認した。
+SIGKILLはworker開始前の所有processであり、全電断や本番取消の受入ではない。
 
-subjectはce4255b5980cd2c280046757074c693e983ebbd211b8ac006d707037cc483ec8。
-構造/参照/lint/license/生成CIも成功。証跡distribution/evidence/native-transition/handoff-lifecycle-01/（45 file、SHA256SUMS込み）。
-全job終了、今回VM作成/ストレージ削除/公開は行っていない。私有labはroot-handoff-lifecycle-01。
-新imageはnew-dev-image.id、旧受入imageはdev-image.idで区別する。
-次は新基準へ残る重要runtimeを適合させ、本番の現在供給/世代admission、正確な同意、
-root session/独立観測と物理遮断を非root世代SDKへ接続する。handoff単体の成功を製品接続完了としない。
-C全体の厳格規則/形式検証、全writer排他、bank slot/保持/GC、実root/boot切替・復旧、
-全DEB効果、完全置換ISO、全言語翻訳は未完。既存minto-dane/niaosは別projectなので上書きしない。
-本番認定は行っていない。
+全jobは終了。重い処理は3 GiB/swap0/CPU1/pids128で逐次、VMは2 GiB/1 CPU。
+compile imageは76d5c00d…、QEMU工具imageは7f92f649…で、完全hashは証跡に記録した。
+今回の不要VM/旧SDK/試験cacheから215,363,584 byteの割当を削除した。共有builderと無関係のVMは維持した。
+subjectはdaac325557fae401f562333cb5cf1ff84c0bc5c7603736dc4d1ee5e3e4320ba8。
+構造/参照/lint/license/生成CIと現行source→配布物照合が成功。証跡は
+ distribution/evidence/native-transition/root-service-retirement-01/（63 file、SHA256SUMS込み）。
+私有labはroot-service-retirement-01。現在のworkspace/buildとpackage/sourceは次の接続用に保持した。
+
+本番認定/公開は行っていない。次は本番の現在供給/世代admission、正確な同意、
+root handoff/保持session/独立観測と物理遮断を非root世代SDKへ接続する。
+C全体/FFI/重要runtimeの形式検証と厳格規則適合、全writer排他/slot/保持/GC、
+実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳は未完である。
+既存minto-dane/niaosは別projectなので上書きしない。
 
 過去工程の詳しい記録はSTATUS.ja.mdに保持する。ここには現在の境界と作業規則だけを置く。
 
