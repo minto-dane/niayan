@@ -1,5 +1,15 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 実装をまとめる工程へ移行。Ada Pkg_Generation_Executionは初期化/全batch/
+準備/再検査/予約保持を結合し、厳格コンパイル済み。production provider/launcherは未接続。
+root-preparation 0.12.0 sourceは非blocking clientとSupervisorを追加し、root効果中も
+operator/worker/controller/元期限を監視する。通常の実DEB/native handoff/polkit/物理rootは成功。
+取消caseではworker終了/RO/記録保持を確認したが試験全体は失敗し、fixture FD継承等を修正した。
+証跡: distribution/evidence/native-transition/root-supervisor-01/。現行全体の受入ではない。
+利用者の追加指示で、その後のVM/挙動試験はリリース直前へ延期。形式保証も未完のまま維持する。
+Debian integration 0.3.0 sourceはroot/供給serviceを同梱し、開発package buildはnocheck、
+出荷前CIは--releaseを明示する。新しいISOの構築/受入とAPT/dpkg完全置換は未完。
+
 2026-09-12 非同期native管理者認証を実装（ADR-0125 / REQ-162）。
 既存polkit SDKを専用root子のpkg_operator_guardで動かし、root-preparation 0.11.0の親側APIが
 peer/子pidfdとpipeを非blockingで監視する。確認番号、元期限、返答の時刻/鮮度を固定し、

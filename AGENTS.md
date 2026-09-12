@@ -1,5 +1,14 @@
 # niayan — AIエージェントへの引き継ぎ
 
+**最新指示: 試験・全面レビューはリリース直前へ集約。現在はAdaとDebianの実装を優先する。**
+新たなVM試験や反復suiteを開始しない。必要なコンパイルは可。出荷時の形式保証/ACID要件は維持。
+Pkg_Generation_Execution（Ada）とroot_supervisor/root_session_clientを追加したが、本番の
+供給/世代/同意providerとlauncherは未接続。Debian recipeへroot/供給serviceを同梱し、
+開発buildはnocheck、手動配布CIは--releaseとした。サービスの暗黙起動はしない。
+root-supervisor-01の通常VMは成功、取消時のworker終了/RO/記録保持を観測したが試験全体は失敗。
+fixtureのfork FD継承/後片付けを修正し、再実行を延期した。当前sourceの全体PASSにしない。
+最新の実装範囲はPRODUCTION.ja.mdとSTATUS.ja.md。締切の回答は未受領、実装は続けてよい。
+
 **Debian 13 KDE開発ISOは起動・導入のVM受入済み。本番・実機は未認定。**
 実ISOの対象hashと6項目の受入は`distribution/evidence/debian13/accepted-09/README.ja.md`。BIOS/UEFI/Secure Boot、実日本語入力、オフライン／オンライン導入と再起動、通常ミラーの署名付きAPT索引取得を確認した。ISO 09/10の実バイト列一致、対応ソース1,415組・4,667ファイルの収集・Linux本体補完・コピー後の照合も完了した。`distribution/release/`のソース補完はイメージ構築とは別工程で、内蔵カーネルの本体を省略しない。未接続の独自機能まで完成扱いにしない。
 既存コンポーネントの基準実行では、固定コンテナでの全実コンパイル・58 Ada main・555 Python試験・18バイナリ再現性・独立ビルドと、全7repoの厳格なflow/proveを通過した。対象source subjectと証明範囲はSTATUSと実行証跡で確認する。Python試験や模擬D-Busの成功を形式証明・実デスクトップ試験に置き換えないでください。

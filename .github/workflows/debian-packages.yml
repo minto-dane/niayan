@@ -24,7 +24,7 @@ jobs:
             --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
             -e HOME=/tmp -v "$RUNNER_TEMP/niaos-packages:/build" \
             -v "$PWD/distribution/image:/source:ro" niaos-image-builder \
-            sh /source/build-packages.sh 2>&1 | tee "$RUNNER_TEMP/niaos-packages/build.log"
+            sh /source/build-packages.sh --release 2>&1 | tee "$RUNNER_TEMP/niaos-packages/build.log"
       - name: Verify reversible distribution identity
         shell: bash
         run: |
@@ -41,6 +41,7 @@ jobs:
           path: |
             ${{ runner.temp }}/niaos-packages/*.log
             ${{ runner.temp }}/niaos-packages/input-manifest.json
+            ${{ runner.temp }}/niaos-packages/package-build-mode
             ${{ runner.temp }}/niaos-packages/packages/*.deb
             ${{ runner.temp }}/niaos-packages/packages/*.dsc
             ${{ runner.temp }}/niaos-packages/packages/*.tar.xz
