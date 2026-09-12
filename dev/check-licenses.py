@@ -59,6 +59,14 @@ def inspect(root=ROOT):
             identifiers = re.findall(rb'SPDX-License-Identifier:\s*([A-Za-z0-9.+-]+)', raw)
             if any(value != b'BSD-3-Clause' for value in identifiers):
                 failures.append(f'{repo}/{name}: current source identifier differs')
+            if parts[:2] == ('packaging', 'rpm') and path.suffix == '.spec':
+                fields = re.findall(rb'^License:[ \t]*(.*?)[ \t]*$', raw, re.M)
+                if fields != [b'BSD-3-Clause']:
+                    failures.append(f'{repo}/{name}: current RPM license must be BSD-3-Clause')
+            if repo == 'distribution' and parts[0] == 'packaging' and parts[-2:] == ('debian', 'copyright'):
+                fields = re.findall(rb'^License:[ \t]*(.*?)[ \t]*$', raw, re.M)
+                if not fields or any(value != b'BSD-3-Clause' for value in fields):
+                    failures.append(f'{repo}/{name}: current first-party DEB license differs')
             checked += 1
         if repo not in ('.', 'assurance', 'distribution'):
             sources = [('contracts', 'assurance')]
@@ -69,10 +77,10 @@ def inspect(root=ROOT):
                     path = base / 'vendor' / vendor / name
                     if not path.is_file() or path.is_symlink() or path.read_bytes() != (root / source / name).read_bytes():
                         failures.append(f'{repo}/vendor/{vendor}/{name}: regenerate canonical notices')
-    copyright_path = root / 'distribution/packaging/root-preparation/debian/copyright'
-    text = copyright_path.read_text()
-    if '\nLicense: BSD-3-Clause\n' not in text or '\nLicense: MIT\n' in text:
-        failures.append('root-preparation package license differs')
+    for package in ('root-preparation', 'archive-observer'):
+        copyright_path = root / 'distribution/packaging' / package / 'debian/copyright'
+        if copyright_path.is_symlink() or not copyright_path.is_file():
+            failures.append(f'{package}: missing ordinary first-party DEB copyright')
     return {'format': 1, 'result': 'fail' if failures else 'pass', 'current_files_checked': checked,
             'historical_or_fixture_files_preserved': preserved, 'failures': failures,
             'scope': 'project-authored current tree and canonical sibling notices',

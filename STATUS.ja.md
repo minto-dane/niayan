@@ -6,6 +6,15 @@
 
 ### 直近の検証
 
+2026-09-12 UTC追補。自作6コンポーネントのRPM定義に残っていた旧MIT License fieldをBSD-3-Clauseへ修正した。
+現行LICENSING.mdと過去のMIT許諾文も同梱対象にした。dev/check-licenses.pyはRPM Licenseと自作DEB copyrightも照合する。
+修正前の実6定義の拒否と修正後の成功、構造/参照/lint/生成CIを確認した。runtime/数学的入力は不変で、重い検査を反復していない。
+RPM buildは未実施。第三者原本/過去証跡/既存許諾は保持した。ADR-0088追補、証跡は
+ distribution/evidence/licensing/package-metadata-01/（21 file、SHA256SUMS込み）。
+現在subjectは3946b76aa30756cd060789af6317816e36a75993684aa0d4d608829bebbb636a。
+rootの検査器はこのsubject外なので、別のroot-input.jsonへ最終hashを記録した。
+以下の認証SDK受入は固有subjectのまま保持し、配布metadata変更後に実行し直した件数にはしない。
+
 2026-09-12 UTC。実polkitへ照合するroot supervisor専用Pkg_Operator_Authorizationを実装した。
 accepted seqpacketのkernel peer pidfd/UIDと、独立のplan/requestを固定system busへ送る。
 元boottime期限は最大120秒で、retained認証を拒否する。Checkはcontext/peer/取消/期限とunique owner/Changedを確認し、
