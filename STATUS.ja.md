@@ -1,5 +1,15 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 独立供給方針の初回配備を実装（ADR-0123 / REQ-160）。
+root-preparation 0.10.0は管理者が独立に用意したpolicy/floorを既存native readerで検査し、
+耐久記録と上書き禁止で公開する。pkgcoreの--planningは架空の公開plan/mapを要求しない。
+正常、不一致、期限切れ、公開3境界のSIGKILLを最終実DEBで受入した。再試行拒否と非root拒否も成功。
+floor公開後・応答前の停止では有効な組が既に見える場合を確認し、完了不確定として扱う。
+6単体/有限制御検査、strict typing、構造/lint/license、原本→対応ソース→実DEB照合が成功。
+証跡はdistribution/evidence/native-transition/supply-initialization-01/。形式検査は有限制御のみ。
+本番鍵の由来・非rollback anchor・方針更新/復旧、認可/計画同意と世代管理への全体接続は未完。
+全体suite/不変C・SPARK証明は反復せず、独立再現build・実電断・本番OS認定は今回に含めない。
+
 2026-09-12 開発storage: 旧導入VM2台とbuilder内の/build-03〜/build-09を整理し、
 実割当59,774,562,304 byteを回収した。空きは約4.1 GiBから約59.7 GiBへ回復。
 最大の開発用単一file builder.qcow2は58.8 GBから18.5 GBへ減少した。元ISO・対応ソース・

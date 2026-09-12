@@ -36,3 +36,8 @@ OSの表示名変更だけを理由に内部ABI・保存形式・DEB所有者や
 root-preparation 0.9.0は実行中workerの取消監視を追加した。実packageの通常sessionと
 途中停止workerへの接続取消・RO化・記録保持を専用VMで受入済み。工程1の本番認可/供給/
 計画同意と非root SDKへの接続、全runtimeの形式保証は引き続き必要である。
+
+root-preparation 0.10.0は独立したpolicy/floor原本の明示的な初回配備を追加した。
+既存native readerで配備前後を検査し、中断記録を残して上書き/再初期化を拒否する。
+実DEBの正常・不正入力・公開途中停止を受入済み。署名や本番の供給authority、時計と
+非rollback anchor、方針の管理更新/復旧、認可/計画同意との接続は引き続き工程1の残件である。

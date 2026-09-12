@@ -24,7 +24,8 @@ hash付き過去証跡は改変しない。現在の12入口のうちepkgのテ�
 inutocの媒体索引とinstallp/geninstallの媒体一覧も実装した。詳細はdistribution/native/media.ja.md。
 供給認証は上流TUFを使用し、信頼cacheを一つの原子的checkpointとして保存する。
 詳細はdistribution/native/repository.ja.md。
-本番の鍵・policy配備と独立trust floor、契約の意味検証は未完。稼働管理器への接続・対話作成・応答互換性の受入は未完。
+独立に用意したpolicy/floorの初回配備とnative意味検査は実装・VM受入済み（下記0.10.0）。
+本番鍵の由来・非rollback anchor・更新運用、稼働管理器への接続・対話作成・応答互換性は未完。
 多言語インターフェイスはdistribution/docs/decisions/0004-localized-interface.ja.mdに従う。
 gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文119件と
 日本語・独・西・仏・韓・中国語簡体字・繁体字の7翻訳catalogを実装済み。
@@ -44,6 +45,14 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 management 0.1.1/識別0.2.0。全体OSのCI/本番認定ではない。
 
 ## 次の作業順
+
+2026-09-12 supply初回配備: ADR-0123 / REQ-160 / HAZ-147 / FAULT-160。
+root-preparation 0.10.0の内部supply_initialize.pyは独立した原本とroot/requestを要求し、
+nia-pkgとして既存native readerの--planningで配備前後を検査する。上書き/自動再試行は拒否。
+公開後応答前の停止は完了不確定であり、未実行と同一視しない。実DEBの6 VM case、
+非root拒否、6単体/有限制御検査、strict typingが成功。全runtime証明ではない。
+証跡: distribution/evidence/native-transition/supply-initialization-01/。
+本番の供給authority/独立anchor、認可/計画同意、世代guardとroot session接続を続ける。
 
 2026-09-12 root worker監視: ADR-0122 / REQ-159 / HAZ-146 / FAULT-159。
 root_sessionのprepare/verifyを型付きroot_worker_monitorへ接続した。実行中にpeer/pidfd/期限を
@@ -81,7 +90,8 @@ SDKと人工fixtureの成功を製品接続完了にしない。
 共有Bank・永続記録・元の認可/独立観測/実FD/三予約を維持し、制御面のlive更新は拒否する。
 0.8.0の移行受入と過去のsource-bound結果はSTATUS.ja.mdおよび
 `distribution/evidence/native-transition/root-service-retirement-01/`に保持する。
-現行0.9.0の取消受入はroot-worker-monitor-01を参照し、旧工程の件数を現行全体の保証にしない。
+0.9.0の取消受入はroot-worker-monitor-01を参照し、旧工程の件数を現行全体の保証にしない。
+現行0.10.0は上記初回供給配備を追加した。取消runtimeは不変であり同じ試験を反復していない。
 
 2026-09-12 storage整理: 完了済みISO導入VM2台とbuilder guestの/build-03〜/build-09を削除し、
 約59.8 GBの実割当を回収。空き約59.7 GiB。現行/build、工具、元ISO、対応ソースと受入記録は維持した。
@@ -92,8 +102,8 @@ SDKと人工fixtureの成功を製品接続完了にしない。
 証跡はdistribution/evidence/development-storage/reclaimed-01/。
 
 本番供給/世代admission、正確な計画同意、root handoff/保持session/独立観測と物理遮断を
-非root世代SDKへ接続する作業が次。site供給providerのreaderは実装済みだが、本番policyと
-独立floorのinstaller配備、署名/認可/保持寿命の接続は未完。許可済みだからと既定allowや
+非root世代SDKへ接続する作業が次。site供給providerのreaderと明示的な初回配備は実装済みだが、
+本番原本のauthority、非rollback floor、署名/認可/保持寿命の接続は未完。許可済みだからと既定allowや
 fixture keyで通過させない。C全体/FFI/重要runtimeの形式保証、全writer排他/slot/保持/GC、
 実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語はPRODUCTION.ja.mdに従い未完。
 
