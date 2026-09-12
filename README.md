@@ -1,6 +1,8 @@
-# Nia OS components
+# niayan
 
-Nia OS is a Linux distribution under development. This workspace pins seven independent Ada/SPARK component repositories and the distribution specification repository as Git submodules. [日本語](README.ja.md).
+Public OS name: **niayan**. Nia remains the internal component architecture. See [production work](PRODUCTION.ja.md) for the remaining release gates. Existing storage identifiers and historical evidence retain their original names.
+
+niayan is a Debian 13 Linux distribution under development, built around the Nia components. This workspace pins seven independent Ada/SPARK component repositories and the distribution specification repository as Git submodules. [日本語](README.ja.md).
 
 The active task is [complete replacement of APT/dpkg by Nia](distribution/native/README.ja.md),
 with [desktop-compatible hardening](distribution/hardening/README.ja.md).
@@ -8,11 +10,11 @@ The accepted image below remains the earlier APT-based reference, not a complete
 
 **Bootable, installable Debian 13 KDE development image; not production qualified.** The actual ISO passed BIOS, UEFI, Secure Boot, Japanese input, offline/online installation and reboot, and signed APT metadata retrieval in bounded VMs. Two independent ISO builds match byte for byte, and the corresponding source archives have been collected and verified after copying. See the [distribution acceptance](distribution/evidence/debian13/accepted-09/README.ja.md) and [build instructions](distribution/image/README.ja.md).
 
-All 499 canonical Ada files compile, all 58 Ada test mains and 555 Python tests pass across their required contexts, and all seven components pass strict SPARK flow and full level-4 proof for the units in each proof.gpr. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. All 19 distribution DEBs match on rebuild. Evidence, hardware test limits and remaining Nia-specific integrations are listed in [STATUS.ja.md](STATUS.ja.md).
+The recorded component baseline compiled 499 canonical Ada files, ran 58 Ada test mains and 555 Python tests, and passed strict SPARK flow and level-4 proof for the units in each proof.gpr. These results apply to the source hashes in the evidence, not every later revision or the whole OS. The pinned container produces 18 byte-identical debug ELF binaries across two varied builds; all seven components also build and test independently. All 19 distribution DEBs match on rebuild. Evidence, hardware test limits and remaining Nia-specific integrations are listed in [STATUS.ja.md](STATUS.ja.md).
 
 ```sh
-git clone --recurse-submodules <workspace-url>
-cd <workspace>
+git clone --recurse-submodules https://github.com/minto-dane/niayan.git
+cd niayan
 make bootstrap       # Debian 13 development environment; installs dependencies
 sh dev/run-limited.sh make check         # all native checks, bounded user scope
 sh dev/run-limited.sh make private-dbus  # dedicated test bus; no desktop UI required

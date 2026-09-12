@@ -1,0 +1,355 @@
+{
+  "date": "2026-09-12",
+  "scope": "initial publication of the existing main histories, before the branding and CI-only commits",
+  "scanner": "Debian gitleaks 8.16.0-1+b12, default rules, redacted reports",
+  "repositories": [
+    {
+      "repository": "workspace",
+      "commit": "686d712a4459c26ec1939de8ae7ad62ff00de8d3",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 560,
+      "largest_blobs": [
+        {
+          "oid": "87f558260489add8022c706f3f9cba55d234b990",
+          "size": 450141,
+          "path": "history-evidence/imported-consent/MANIFEST.sha256"
+        },
+        {
+          "oid": "156b40d347333416c083835de7de45f4b782d286",
+          "size": 232218,
+          "path": "history-evidence/imported-consent/SOURCE-SET.sha256"
+        },
+        {
+          "oid": "b8a4c360854b8b1cb6ca94ce86921fd57a2497d4",
+          "size": 177582,
+          "path": "history-evidence/assurance/engineering-nd2rbzi1/unified-architecture-audit.log"
+        },
+        {
+          "oid": "4c9891778bdddcd8d884f914a2d370c86e326467",
+          "size": 177582,
+          "path": "history-evidence/assurance/engineering-ows6ez3c/unified-architecture-audit.log"
+        },
+        {
+          "oid": "826ebe5167ca810d752b9d28c59401e810895c85",
+          "size": 177582,
+          "path": "history-evidence/assurance/engineering-uqo7mdau/unified-architecture-audit.log"
+        }
+      ]
+    },
+    {
+      "repository": "assurance",
+      "commit": "076c6c65cec04b23c4eb8bf400d022341720bd2f",
+      "scan_exit": 1,
+      "findings": 124,
+      "fsck_exit": 0,
+      "blobs": 2404,
+      "largest_blobs": [
+        {
+          "oid": "1b34c2aeb464c185d79618f1862355b6ede54940",
+          "size": 521293,
+          "path": "engineering/component-catalog.json"
+        },
+        {
+          "oid": "5512dae54908de598e45b2f3de93c02745bef4c0",
+          "size": 519239,
+          "path": "engineering/component-catalog.json"
+        },
+        {
+          "oid": "696907ccc1ff81b63acdb375ac0fb7eb31b46e51",
+          "size": 517286,
+          "path": "engineering/component-catalog.json"
+        },
+        {
+          "oid": "ab7d28738d24747e8badb325571e77358a97563e",
+          "size": 514083,
+          "path": "engineering/component-catalog.json"
+        },
+        {
+          "oid": "e98d1d8054858bebabe44cb6af92e2f49ef6a429",
+          "size": 510399,
+          "path": "engineering/component-catalog.json"
+        }
+      ]
+    },
+    {
+      "repository": "pkgcore",
+      "commit": "2a9a247ed577378b52993bb96b0d93ce33bf313f",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 1733,
+      "largest_blobs": [
+        {
+          "oid": "47012a0ad05bc40c35bad72c08b6f4949716bf9a",
+          "size": 1054913,
+          "path": "tests/fixtures/deb-final-set/cases.json"
+        },
+        {
+          "oid": "4c0d69f2dd1746f528695080984a121d44ec57f4",
+          "size": 283786,
+          "path": "tests/fixtures/deb-final-set/cases.txt"
+        },
+        {
+          "oid": "00ba819db1701c220c85a88a73a0fd742b2bad51",
+          "size": 153792,
+          "path": "tests/fixtures/deb-data/valid-plain.deb"
+        },
+        {
+          "oid": "c23ee73a3f45e016257c6dbe64140765f3b92152",
+          "size": 143360,
+          "path": "tests/fixtures/deb-data/payload.raw"
+        },
+        {
+          "oid": "81eeac89300480224e0e46d52a196230bf55e89a",
+          "size": 98264,
+          "path": "tests/run_generation_publication_tests.adb"
+        }
+      ]
+    },
+    {
+      "repository": "statecore",
+      "commit": "130e6f2f644ab0616df9d86a1311d151a5fd1501",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 822,
+      "largest_blobs": [
+        {
+          "oid": "2bbe11224a64bb4ebe7a562a25c986c4e084eacf",
+          "size": 30088,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "1def01de219491710b1d85cb12994f2c29bde00c",
+          "size": 30079,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "3f009da3d9c947b3185ace8f844dd6ae041b682f",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "51008fed3ab2e4b1915ea442cc219abc77126e6e",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "783df1c6b2512f3cbc08b0391d072df1aab947d7",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        }
+      ]
+    },
+    {
+      "repository": "controlcore",
+      "commit": "f10f0f82d02c67aef2d203d47754904084240383",
+      "scan_exit": 1,
+      "findings": 3,
+      "fsck_exit": 0,
+      "blobs": 606,
+      "largest_blobs": [
+        {
+          "oid": "bdf40a453d9077d54bd580644ca10524cdf2b93a",
+          "size": 131104,
+          "path": "tests/fixtures/routes.bin"
+        },
+        {
+          "oid": "cd023d3eb669e8c16ab0e92ef1ebfa7f53cc0d77",
+          "size": 131104,
+          "path": "tests/fixtures/routes.bin"
+        },
+        {
+          "oid": "b1ab2c6fcff32b60bad7f2c652256d3d2b230616",
+          "size": 131104,
+          "path": "tests/fixtures/routes.bin"
+        },
+        {
+          "oid": "790686c614706d3f3013cf4a7de10cbe9e180e49",
+          "size": 131104,
+          "path": "tests/fixtures/routes.bin"
+        },
+        {
+          "oid": "6040eae822a0a0eae5b4558ea3d627a4814c4833",
+          "size": 131104,
+          "path": "tests/fixtures/routes.bin"
+        }
+      ]
+    },
+    {
+      "repository": "configcore",
+      "commit": "bb6c36951d4a4630552cc2afb94cd7c7b7efc9b4",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 522,
+      "largest_blobs": [
+        {
+          "oid": "2bbe11224a64bb4ebe7a562a25c986c4e084eacf",
+          "size": 30088,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "1def01de219491710b1d85cb12994f2c29bde00c",
+          "size": 30079,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "3f009da3d9c947b3185ace8f844dd6ae041b682f",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "51008fed3ab2e4b1915ea442cc219abc77126e6e",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "783df1c6b2512f3cbc08b0391d072df1aab947d7",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        }
+      ]
+    },
+    {
+      "repository": "resolvercore",
+      "commit": "c44c34e6d08ae9d1220e91b823dff83110faa038",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 529,
+      "largest_blobs": [
+        {
+          "oid": "2bbe11224a64bb4ebe7a562a25c986c4e084eacf",
+          "size": 30088,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "1def01de219491710b1d85cb12994f2c29bde00c",
+          "size": 30079,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "3f009da3d9c947b3185ace8f844dd6ae041b682f",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "51008fed3ab2e4b1915ea442cc219abc77126e6e",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "783df1c6b2512f3cbc08b0391d072df1aab947d7",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        }
+      ]
+    },
+    {
+      "repository": "capsulecore",
+      "commit": "0f0f2c8886d26e0e3f6affb1b497a99d777ba8f4",
+      "scan_exit": 0,
+      "findings": 0,
+      "fsck_exit": 0,
+      "blobs": 538,
+      "largest_blobs": [
+        {
+          "oid": "2bbe11224a64bb4ebe7a562a25c986c4e084eacf",
+          "size": 30088,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "1def01de219491710b1d85cb12994f2c29bde00c",
+          "size": 30079,
+          "path": "vendor/contracts/runtime/mc_fs.adb"
+        },
+        {
+          "oid": "3f009da3d9c947b3185ace8f844dd6ae041b682f",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "51008fed3ab2e4b1915ea442cc219abc77126e6e",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        },
+        {
+          "oid": "783df1c6b2512f3cbc08b0391d072df1aab947d7",
+          "size": 21329,
+          "path": "vendor/contracts/contracts.lock.json"
+        }
+      ]
+    },
+    {
+      "repository": "distribution",
+      "commit": "56644399437c1c76093837cdeb3114fcea14fb0a",
+      "scan_exit": 1,
+      "findings": 2995,
+      "fsck_exit": 0,
+      "blobs": 5330,
+      "largest_blobs": [
+        {
+          "oid": "01e4a84a64b766bc879dcda4004515bc3324eeb0",
+          "size": 8749375,
+          "path": "evidence/native-transition/shared-preflight-01/comparison/baseline-reads.trace"
+        },
+        {
+          "oid": "4443526654501463aa1cb005cf17fd91ed7c6fe8",
+          "size": 4935608,
+          "path": "evidence/native-transition/shared-preflight-01/comparison/candidate-reads.trace"
+        },
+        {
+          "oid": "06d2d1c4c96ba51794e8ac52355e88c7f0fdd737",
+          "size": 2650903,
+          "path": "evidence/native-transition/initial-09/inventory.json"
+        },
+        {
+          "oid": "de9e1a60d9c43524a32ec1e0e72263679f88510d",
+          "size": 1645480,
+          "path": "evidence/native-transition/final-set-01/upstream-cases.jsonl"
+        },
+        {
+          "oid": "c26c436dc3e90dcbaf58c588a8d3d0cb0fba4c1b",
+          "size": 1591528,
+          "path": "evidence/debian13/accepted-09/source-collection/report.json"
+        }
+      ]
+    }
+  ],
+  "classification": {
+    "repositories": [
+      {
+        "repository": "assurance",
+        "classification": {
+          "file-digest": 124
+        }
+      },
+      {
+        "repository": "controlcore",
+        "classification": {
+          "fixture-public-key": 3
+        }
+      },
+      {
+        "repository": "distribution",
+        "classification": {
+          "file-digest": 2918
+        }
+      }
+    ],
+    "unresolved": [],
+    "additional_classification": {
+      "fixture-keyring-digest": 7,
+      "trigger-filename": 35,
+      "inventory-trigger-filename": 35
+    }
+  },
+  "limitations": [
+    "Heuristic credential scan; not proof of absence of secrets.",
+    "Public deterministic signing fixtures authorize no production operations.",
+    "No OS production qualification; historical evidence is bound to its original sources."
+  ]
+}

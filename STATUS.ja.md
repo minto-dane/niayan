@@ -1,5 +1,17 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12: 利用者は公開名niayanとGitHub公開を指定した。OS表示・GRUB・ISO設定・
+liveユーザーをniayanへ変更し、識別パッケージ版を0.2.0へ進めた。内部DEB名と保存形式は維持する。
+READMEの過去の試験数を現行全体の成功と誤読しないよう対象範囲を明記した。
+公開先はminto-dane/niayanとniayan-*の8子repo。公開前のmain履歴9repoのGit整合性と
+サイズを確認し、gitleaksの3,122候補はhash・trigger名・公開人工fixture鍵として分類した。
+詳細はdev/initial-publication-review.json。機密の完全不在を証明する検査ではない。
+変更した配布工具の既存16試験、ライセンス・構造・構文・参照確認は成功。
+C/Ada/特権runtimeは変更しておらず全体compile/proofの反復は行っていない。
+CIはPRと統合checkpointで起動し、独立componentの全証明は手動run_proof指定へ集約した。
+新しいniayan ISOの構築・起動受入と、本番全体の完成は未実施。PRODUCTION.ja.mdの順に進める。
+
+
 2026-09-10 UTC。Debian 13ベースの起動・導入可能なKDE開発版。実ISOのVM受入を完了し、既存コンポーネントの実コンパイル、実行試験、再現性、独立Git管理も整備した。本番認定・実機認定は行っていない。
 
 ## 最新依頼: Niaへの完全置換とハードニング

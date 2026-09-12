@@ -1,5 +1,10 @@
 name: Workspace validation
-on: [push, pull_request, workflow_dispatch]
+on:
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: workspace-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

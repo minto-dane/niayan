@@ -1,4 +1,6 @@
-# Nia OS 開発workspace
+# niayan 開発workspace
+
+OSの公開名は **niayan**。Niaは内部コンポーネント体系の名称として使う。[本番化の残作業](PRODUCTION.ja.md)を参照。保存形式の識別子と過去の証跡は維持する。
 
 7つのAda/SPARKコンポーネントとdistributionを独立Gitリポジトリとして維持し、このworkspaceのsubmoduleで組合せを固定する。[English](README.md)。
 
@@ -8,9 +10,11 @@
 
 **Debian 13ベースの起動・導入可能なKDE開発版。本番未認定。** 実ISOでBIOS・UEFI・Secure Boot、日本語入力、オフライン／オンライン導入と再起動、署名付きAPT索引取得を確認した。独立した2回のISO構築がバイト単位で一致し、対応ソースの収集とコピー後の照合も完了した。[配布受入](distribution/evidence/debian13/accepted-09/README.ja.md)と[構築手順](distribution/image/README.ja.md)。
 
-既存コンポーネントは全499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoの厳格なSPARK flow・level 4証明を通過している。18実行ファイルの再現性と独立ビルドに加え、配布向け19 DEBも再ビルドで一致した。未接続の独自製品機能、実機試験と各証跡の対象範囲は[STATUS.ja.md](STATUS.ja.md)に記載する。
+記録済みのコンポーネント基準実行では、499正本Adaファイルの実コンパイル、58 Ada main・555 Python試験、全7repoの厳格なSPARK flow・level 4証明を通過した。結果は証跡のsource hashに限定され、後続変更やOS全体の証明を意味しない。18実行ファイルの再現性と独立ビルドに加え、配布向け19 DEBも再ビルドで一致した。未接続の独自製品機能、実機試験と各証跡の対象範囲は[STATUS.ja.md](STATUS.ja.md)に記載する。
 
 ```sh
+git clone --recurse-submodules https://github.com/minto-dane/niayan.git
+cd niayan
 make bootstrap       # Debian 13 Distroboxへ依存を導入
 sh dev/run-limited.sh make check         # 資源制限付きの全ビルド・登録試験
 sh dev/run-limited.sh make private-dbus  # 専用の私有バスによるプロトコル試験

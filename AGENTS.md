@@ -1,10 +1,15 @@
-# Nia OS — AIエージェントへの引き継ぎ
+# niayan — AIエージェントへの引き継ぎ
 
 **Debian 13 KDE開発ISOは起動・導入のVM受入済み。本番・実機は未認定。**
 実ISOの対象hashと6項目の受入は`distribution/evidence/debian13/accepted-09/README.ja.md`。BIOS/UEFI/Secure Boot、実日本語入力、オフライン／オンライン導入と再起動、通常ミラーの署名付きAPT索引取得を確認した。ISO 09/10の実バイト列一致、対応ソース1,415組・4,667ファイルの収集・Linux本体補完・コピー後の照合も完了した。`distribution/release/`のソース補完はイメージ構築とは別工程で、内蔵カーネルの本体を省略しない。未接続の独自機能まで完成扱いにしない。
 既存コンポーネントの基準実行では、固定コンテナでの全実コンパイル・58 Ada main・555 Python試験・18バイナリ再現性・独立ビルドと、全7repoの厳格なflow/proveを通過した。対象source subjectと証明範囲はSTATUSと実行証跡で確認する。Python試験や模擬D-Busの成功を形式証明・実デスクトップ試験に置き換えないでください。
 
 ## 固定した製品方針
+2026-09-12: 公開名はniayan。minto-dane/niayanとniayan-*の8子repoへの公開が明示許可済み。
+Niaの内部名称・永続形式と過去の証跡を全面置換しない。既存minto-dane/niaosは別project。
+利用者は実装を優先し、検証は機能統合・出荷前の重要なcheckpointへ集約するよう再指示した。
+変更のない入力への反復試験や、小さい変更ごとの全体試験を行わない。PRODUCTION.ja.mdを参照。
+
 2026-09-08の最新指示は、Debian 13 Trixieを維持しながらAPT/dpkgを完全置換し、Niaを唯一のパッケージ管理主体にすること。Ubuntu・Kicksecure・公的ハードニング資料を参照し、操作性を維持する。現在のISO 09は旧APT経路の比較基準であり、完全置換は未完。最新判断は`distribution/docs/decisions/0002-native-package-authority.ja.md`、移行工程は`distribution/native/`、セキュリティ基準は`distribution/hardening/`。開発Distrobox/ビルダーのAPT使用は稼働NiaOSの管理主体と別。依存削除・偽Provides・常時成功callback・任意scriptのhost root実行で完成にしない。上流ソースへ独自パッチを当てず、7コンポーネントのAPI・永続形式・検査を強引に変更しない。7リポジトリは独立維持する。旧Forky供給lockや独自UKI等の未受入機能をTrixieで検証済みとしない。
 
 ## 最初に読むもの

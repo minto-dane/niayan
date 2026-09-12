@@ -1,24 +1,24 @@
 [submodule "assurance"]
 	path = assurance
-	url = ../assurance
+	url = ../niayan-assurance
 [submodule "pkgcore"]
 	path = pkgcore
-	url = ../pkgcore
+	url = ../niayan-pkgcore
 [submodule "statecore"]
 	path = statecore
-	url = ../statecore
+	url = ../niayan-statecore
 [submodule "controlcore"]
 	path = controlcore
-	url = ../controlcore
+	url = ../niayan-controlcore
 [submodule "configcore"]
 	path = configcore
-	url = ../configcore
+	url = ../niayan-configcore
 [submodule "resolvercore"]
 	path = resolvercore
-	url = ../resolvercore
+	url = ../niayan-resolvercore
 [submodule "capsulecore"]
 	path = capsulecore
-	url = ../capsulecore
+	url = ../niayan-capsulecore
 [submodule "distribution"]
 	path = distribution
-	url = ../distribution
+	url = ../niayan-distribution
