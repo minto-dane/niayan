@@ -1,5 +1,13 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 開発storage: 旧導入VM2台とbuilder内の/build-03〜/build-09を整理し、
+実割当59,774,562,304 byteを回収した。空きは約4.1 GiBから約59.7 GiBへ回復。
+最大の開発用単一file builder.qcow2は58.8 GBから18.5 GBへ減少した。元ISO・対応ソース・
+工具と受入記録は維持。旧build recordはguest内の/build/retired-build-records-20260912.tar.xzへ保存。
+ISO suiteは全項目成功後に導入diskだけを整理し、明示保持/失敗時は残すよう変更した。
+image工具20件と実QEMU lockの削除拒否/停止後削除が成功。新ISOの全起動試験は反復していない。
+証跡はdistribution/evidence/development-storage/reclaimed-01/。本番接続と出荷認定は引き続き未完。
+
 2026-09-12 root worker実行中の取消を実装（ADR-0122 / REQ-159）。
 展開/物理再検査中に依頼元socket/pidfdと元期限を監視し、取消時に専用process groupを
 未回収leaderへ束縛したまま停止する。pipe容量・event予算・回収待ちを有限化した。

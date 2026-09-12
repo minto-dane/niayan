@@ -75,73 +75,30 @@ C以外にも影響に応じた基準を適用する。規範はassurance/docs/e
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
-2026-09-12 UTC追補。旧root準備service/socket、専用C/Ada RPC、旧dev viewとVM bridgeを撤去した。
-ADR-0120、REQ-158、HAZ-144/145、FAULT-157/158。SDKのPrepare_Root/Reinspect_Root_And_Holdは
-必須transportへ統合し、独立observerと全認可/保持内容/現在設定/実FD/三予約を維持する。
-共通Root_IdentityはPkg_Root_Identityへ分離した。旧Using/socket直結APIとfixture引数は残さない。
-共有Bank、bootstrap、FrozenRoot、版付き復旧記録と必要なsource/licenseは維持した。
-重複した配備試験をdevice/bootstrapと後継session試験へ統合した。
+## 継続時の状態
 
-0.8.0 DEBは旧所有ファイルを除去し、制御面のlive更新をpreinstで拒否する。
-オフラインchroot unpackによる旧0.7.0からの除去と記録保持、新規VMの完全なpackage導入を確認した。
-旧版と後継listener稼働中の更新拒否で、unit/PID/コード/保存物は不変だった。
-chrootのconfigureと処理中workerへの更新はこの受入に含めない。
-main/debug DEBとDSC/source tarの独立2 buildはバイト一致。main DEBは
-ba88f35d97df513ee0c3a194944f407c312038eb225ce311a48057e32067473e。
+旧root準備service/socket/RPCの撤去はADR-0120 / REQ-158に従い完了した。
+共有Bank・永続記録・元の認可/独立観測/実FD/三予約を維持し、制御面のlive更新は拒否する。
+0.8.0の移行受入と過去のsource-bound結果はSTATUS.ja.mdおよび
+`distribution/evidence/native-transition/root-service-retirement-01/`に保持する。
+現行0.9.0の取消受入はroot-worker-monitor-01を参照し、旧工程の件数を現行全体の保証にしない。
 
-固定containerで5つの選択Ada mainをcompile/実行した。v5は1,631、v6は1,206 assertion。
-設定entry 141、通常世代stage 1,211、UID0拒否1,133 assertionも成功した。
-root sessionの実C/Ada/peer/FD境界は29項目成功。世代fixtureの認可/identityは人工である。
-v6の呼出元の選択誤りは実run_root_configuration_testsの追加実行で訂正し、途中の準備失敗も記録した。
-実VMで共通Bankのintent永続化後SIGKILL、物理再検査、欠損lock/policyの実要求拒否、
-専用device bootstrap、後継sessionのprepare/freeze/observe/close、二段階の再起動後ROを確認した。
-SIGKILLはworker開始前の所有processであり、全電断や本番取消の受入ではない。
+2026-09-12 storage整理: 完了済みISO導入VM2台とbuilder guestの/build-03〜/build-09を削除し、
+約59.8 GBの実割当を回収。空き約59.7 GiB。現行/build、工具、元ISO、対応ソースと受入記録は維持した。
+古いbuild recordはguestの/build/retired-build-records-20260912.tar.xzに保持する。
+共有builderの内容はcache整理で変化しているため、過去VMとの全内容同一性を仮定しない。
+今後test-suite.pyは全成功後に導入diskだけを自動整理する。明示的な追加調査は--retain-disks、
+失敗時はdiskを保持して原因修正後に整理する。一般的な自動cache削除は導入していない。
+証跡はdistribution/evidence/development-storage/reclaimed-01/。
 
-全jobは終了。重い処理は3 GiB/swap0/CPU1/pids128で逐次、VMは2 GiB/1 CPU。
-compile imageは76d5c00d…、QEMU工具imageは7f92f649…で、完全hashは証跡に記録した。
-今回の不要VM/旧SDK/試験cacheから215,363,584 byteの割当を削除した。共有builderと無関係のVMは維持した。
-subjectはdaac325557fae401f562333cb5cf1ff84c0bc5c7603736dc4d1ee5e3e4320ba8。
-構造/参照/lint/license/生成CIと現行source→配布物照合が成功。証跡は
- distribution/evidence/native-transition/root-service-retirement-01/（63 file、SHA256SUMS込み）。
-私有labはroot-service-retirement-01。現在のworkspace/buildとpackage/sourceは次の接続用に保持した。
+本番供給/世代admission、正確な計画同意、root handoff/保持session/独立観測と物理遮断を
+非root世代SDKへ接続する作業が次。site供給providerのreaderは実装済みだが、本番policyと
+独立floorのinstaller配備、署名/認可/保持寿命の接続は未完。許可済みだからと既定allowや
+fixture keyで通過させない。C全体/FFI/重要runtimeの形式保証、全writer排他/slot/保持/GC、
+実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語はPRODUCTION.ja.mdに従い未完。
 
-本番認定/公開は行っていない。次は本番の現在供給/世代admission、正確な同意、
-root handoff/保持session/独立観測と物理遮断を非root世代SDKへ接続する。
-C全体/FFI/重要runtimeの形式検証と厳格規則適合、全writer排他/slot/保持/GC、
-実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳は未完である。
+重い処理は3 GiB/swap0/CPU1/pids128で逐次。VMは2 GiB/1 CPU。
+compile imageは76d5c00d…、QEMU工具imageは7f92f649…で、完全hashと工具/入力は各証跡へ保存する。
+KVMは既存の非root VM runner identityを使う。host deviceの権限を変えて回避しない。
+無関係のVM/applicationを停止しない。現在の作業・private labは親.work/continuation-state.jsonも参照。
 既存minto-dane/niaosは別projectなので上書きしない。
-
-過去工程の詳しい記録はSTATUS.ja.mdに保持する。ここには現在の境界と作業規則だけを置く。
-
-過去の数値とsource別証跡はSTATUS.ja.mdとdistribution/evidence/native-transition/へ保持する。
-以下の既存境界を保つ。
-
-- Catalogは既存NIACSEL1の正規CAS原本であり、Loadは全元DEB/control/payloadを再観測する。
-  最終集合receipt、通常更新delta、供給認証、同意、実行phase、所有権、保持閉包は別の検査である。
-- 通常更新ではEssential/Protectedのidentity・flag消失を拒否し、検証済みの保護移行経路が別途必要。
-  Provides/Replacesを保護identity保持や包括的な上書き権限にしない。
-- Payload/indexは全属性と全owner claimを保持するが、実効所有権を選んでいない。
-  global PAX、sparse、採用外ACL方言は未対応として拒否する。既存世代v1のfile planへ
-  hardlink・全permission bit・負/小数時刻等を切り捨てて渡さず、版付き実行形式で対応する。
-- EROFS直接tar入力の固定1.8.6-1実験はACL欠落・時刻不一致等で未採用。
-  `/home/nia/devbox/niaos/.work/native-generation-image-01/`には論理2TiBの失敗疎ファイルがある。
-  サイズ確認なしの再帰コピー・全hash・圧縮は禁止。以前の展開しかけた部分コピーは削除済み。
-- 元DEB SDKは読取/候補構築経路であり、UID0拒否を解除して稼働OSへ転用しない。
-  Pythonのtrigger参照状態や媒体/TUF cacheは第二の導入済みDBではない。
-  observe_success等を本番の成功callbackとして用いない。
-- 論理世代公開の正本はroot.stateのaccepted planとCAS descriptor。generation.nextは作業ファイル。
-  Active要求があれば不確定として扱い、欠けたlock/journal/CASを再初期化して正常にしない。
-
-0. 2026-09-08に並列GNATproveで開発PCが高負荷となり、利用者が強制再起動した。重い検証を重ねない。このDistroboxでは`dev/run-limited.sh command ...`の一時user scopeでメモリ3 GiB・swapなし・CPU 1コア分・128プロセスのkernel制限を適用する。flow/proveと選択unit診断はさらに各repoの`ci/proof-guard.py`経由で1件ずつ実行する。制限による失敗を理由に上限を増やす・guardを迂回する・生のGNATproveで再実行することは禁止。制限と残る範囲はADR-0054。通常ビルドも既定JOBS=1を使う。
-1. コンポーネント変更は`dev/README.ja.md`に従い固定環境で`make check private-dbus reproducible proof`。配布レシピの変更は`distribution/image/README.ja.md`に従い、`image-check`、影響するDEB/ISOの構築とVM受入を実行する。数学的入力が不変なら同じ証明を重複実行しない。変更時は新しい未証明条件を修正し、証跡を最新の実行入力へ束縛する。既に成功した証拠を更新後の異なる入力へ流用しない。
-2. 最新依頼ではパッケージ管理の完全置換とハードニングを優先。native/READMEの未完経路を実装し、新規ISOで更新・障害復旧を受入する。Capsule起動器のpidfd/cgroup/LSM本人確認と`Capsule_Consent_Channel`→Engine→Store→Access_UIも別の未完として維持。SDKの外部関数を「常にTrue/OK」で埋めない。
-3. 各資源のnative portal/brokerを実接続。Portalが資源を渡す前にintentを保存。返された資源をユーザー同意と正確に結び付け、取消・失効を実際の遮断まで試験。
-4. 研究モデルのroot bootstrap/catalog-WAL、独自DEB意味層、独立復旧起動、独自署名鍵、遠隔HA/fencing、DB復元、独立trust anchor、安全なGCは別の未完として維持する。Debian InstallerのVM受入済みという事実と混同しない。Debian経路の実機・公開運用の確認は別途行う。
-
-## 守る境界
-アクセス失敗の監視を権限昇格にしない。生のhost HOME/bus/devicesを公開しない。署名、UI同意、診断、原本の再構成はいずれも単独では実行許可でない。結果不明を未実行にせず、履歴欠落を空の正常状態にしない。revocation完了には資源遮断の観測が必要。コアが疑わしい時は独立rescueへ移る。
-
-## 検査・引き継ぎ
-`python3 assurance/ci/engineering.py check`、`lint`、`run-engineering-checks.py --mode source`。
-私有D-Busプローブは`capsulecore/ci/test-consent.sh`（専用private D-Bus、実UIなし）。
-変更時はADR・要求・危険・故障・テスト台帳、code inventoryを更新。固定vendorは手編集せず確認付き工具を使う。秘密鍵をZIPへ入れない。未実装は未実装と記録し、完全性を宣言するために検査を弱めない。
