@@ -1,5 +1,13 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 保持rootの再検査handoffを実装（ADR-0124 / REQ-161）。
+準備用とは別の224 byte要求と応答を使い、元の展開期限、独立期待mount/inode/device、
+世代と原本/worker/stage、現在交換期限を固定する。送信試行後の別操作への変更も拒否する。
+実Ada/C/Pythonの32通信caseとstrict typingが成功。純粋C validatorのCBMC 288 propertyと
+厳格なGCC静的解析も成功した。証跡はdistribution/evidence/native-transition/root-reinspection-handoff-01/。
+これは通信SDKの受入であり、実物理再検査、本番supervisor/認可/計画同意への接続、全C/FFIの
+形式保証は未完。実DEB/ISOと不変componentの全体suiteは再実行していない。
+
 2026-09-12 独立供給方針の初回配備を実装（ADR-0123 / REQ-160）。
 root-preparation 0.10.0は管理者が独立に用意したpolicy/floorを既存native readerで検査し、
 耐久記録と上書き禁止で公開する。pkgcoreの--planningは架空の公開plan/mapを要求しない。

@@ -46,6 +46,15 @@ management 0.1.1/識別0.2.0。全体OSのCI/本番認定ではない。
 
 ## 次の作業順
 
+2026-09-12 再検査handoff: ADR-0124 / REQ-161 / HAZ-148 / FAULT-161。
+Pkg_Root_Handoff.ReinspectとPythonのReinspectionScopeを追加し、元期限と独立期待rootを
+224 byteの別要求/応答へ束縛した。一Sessionは準備/再検査いずれか一試行のみ。
+実Ada/C/Pythonとkernel credentials/FDの32通信case、strict typing、純粋wire validatorの
+CBMC 288 propertyが成功。証跡はdistribution/evidence/native-transition/root-reinspection-handoff-01/。
+全transport/FFIの証明ではない。package版は0.10.0のまま、実DEB/ISOの再構築は行っていない。
+次はこの要求を保持controllerのObserve、独立物理観測、現在認可/供給/計画同意へ結ぶ
+responsive supervisor。受信scope/ACKを独立期待値や実行許可へ転用しない。
+
 2026-09-12 supply初回配備: ADR-0123 / REQ-160 / HAZ-147 / FAULT-160。
 root-preparation 0.10.0の内部supply_initialize.pyは独立した原本とroot/requestを要求し、
 nia-pkgとして既存native readerの--planningで配備前後を検査する。上書き/自動再試行は拒否。

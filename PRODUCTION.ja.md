@@ -41,3 +41,7 @@ root-preparation 0.10.0は独立したpolicy/floor原本の明示的な初回配
 既存native readerで配備前後を検査し、中断記録を残して上書き/再初期化を拒否する。
 実DEBの正常・不正入力・公開途中停止を受入済み。署名や本番の供給authority、時計と
 非rollback anchor、方針の管理更新/復旧、認可/計画同意との接続は引き続き工程1の残件である。
+
+再検査handoffの跨UID通信SDKも追加した。元期限と独立期待rootを別operationへ束縛し、
+実Ada/C/Pythonの通信と純粋wire validatorを検査済み。実rootを再検査する保持controller、
+独立観測、現在認可/供給/同意をresponsive supervisorへ接続する工程1は引き続き未完である。

@@ -66,12 +66,12 @@ def main() -> int:
     args.output.mkdir(parents=True, exist_ok=False)
     before = {name: digest(ROOT / name) for name in INPUTS}
     command = [executable, INPUTS[0], INPUTS[2], '--function', 'proof_handoff_wire', '--64', '--c11',
-        '--unwind', '33', '--unwinding-assertions', '--bounds-check', '--pointer-check',
+        '--unwind', '177', '--unwinding-assertions', '--bounds-check', '--pointer-check',
         '--pointer-overflow-check', '--signed-overflow-check', '--unsigned-overflow-check',
         '--conversion-check', '--div-by-zero-check', '--undefined-shift-check', '--memory-leak-check', '--json-ui']
     result: dict[str, Any] = dict(result='fail', scope='canonical handoff wire validator and its reachable helpers only',
         inputs=before, cbmc_version=version, cbmc_sha256=CBMC_SHA256, command=command,
-        kernel_limits=budget, environment_assumptions=['amd64 C11 ABI', 'input pointer is NULL or an initialized readable 192-byte object'],
+        kernel_limits=budget, environment_assumptions=['amd64 C11 ABI', 'input pointer is NULL or an initialized readable object of 192 bytes (preparation) or 224 bytes (reinspection)'],
         input_restrictions=[], os_or_library_models=[], complete_transport_proof=False,
         coding_standard_compliance=False, production_qualified=False)
     try:
@@ -104,7 +104,8 @@ def main() -> int:
         ids = [item.get('property') for item in properties]
         if (run.returncode != 0 or not properties or len(ids) != len(set(ids))
                 or any(item.get('status') != 'SUCCESS' for item in properties)
-                or not {'proof_handoff_wire.assertion.1', 'proof_handoff_wire.assertion.2'} <= set(ids)
+                or not {'proof_handoff_wire.assertion.1', 'proof_handoff_wire.assertion.2',
+                        'proof_reinspection_wire.assertion.1', 'proof_reinspection_wire.assertion.2'} <= set(ids)
                 or [entry['cProverStatus'] for entry in data if 'cProverStatus' in entry] != ['success']
                 or any(entry.get('messageType') in ('WARNING', 'ERROR') for entry in data)
                 or (args.output / 'stderr.log').read_bytes()):
