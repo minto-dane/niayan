@@ -32,3 +32,7 @@ OSの表示名変更だけを理由に内部ABI・保存形式・DEB所有者や
 2026-09-12配布checkpoint: 9repo公開、niayan識別情報、12入口のmanagement package、
 旧public nia alias撤去、2回の対象を限定したGitHub配布CIは完了した。
 最新管理packageは0.1.1、識別packageは0.2.0。稼働管理器への接続完了ではない。
+
+root-preparation 0.9.0は実行中workerの取消監視を追加した。実packageの通常sessionと
+途中停止workerへの接続取消・RO化・記録保持を専用VMで受入済み。工程1の本番認可/供給/
+計画同意と非root SDKへの接続、全runtimeの形式保証は引き続き必要である。

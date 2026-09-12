@@ -1,5 +1,16 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 root worker実行中の取消を実装（ADR-0122 / REQ-159）。
+展開/物理再検査中に依頼元socket/pidfdと元期限を監視し、取消時に専用process groupを
+未回収leaderへ束縛したまま停止する。pipe容量・event予算・回収待ちを有限化した。
+root-preparation 0.9.0の実DEBを一度構築し、同じ成果物を二つの専用VMで受入した。
+通常のprepare/freeze/verify/observe/closeと、実native workerのSIGSTOP後接続断、
+worker終了・RO化・attempt保持・再要求拒否が成功。後者の観測値は約0.076秒であり時間保証ではない。
+8件の実プロセス/有限制御試験とstrict typing、構造/lint/license、配布ソース照合も成功。
+証跡: distribution/evidence/native-transition/root-worker-monitor-01/。
+全runtimeの形式証明、本番供給/認可/計画同意からの接続、全DEB効果・boot/復旧は未完。
+不変のC/SPARKの全証明や全体試験は反復していない。0.9.0の独立再現buildもこの区切りには含めない。
+
 2026-09-12 GitHub配布CI: run 34716536899（f1599f9）と34716711208（da62319）が成功。
 後者は同じ固定Debian入力の軽量package-builderを使用し、management 0.1.1と識別0.2.0をbuildした。
 submodule取得、実package配置、12入口、媒体索引/一覧、日本語表示、未接続更新の拒否、

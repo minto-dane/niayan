@@ -45,6 +45,14 @@ management 0.1.1/識別0.2.0。全体OSのCI/本番認定ではない。
 
 ## 次の作業順
 
+2026-09-12 root worker監視: ADR-0122 / REQ-159 / HAZ-146 / FAULT-159。
+root_sessionのprepare/verifyを型付きroot_worker_monitorへ接続した。実行中にpeer/pidfd/期限を
+監視し、未回収leaderを保持したgroup停止、有限pipe/event/回収待ちを行う。0.9.0 DEBへ配布済みsource。
+実native worker途中停止後の接続断→終了/RO/記録保持/再要求拒否と、同じDEBの通常sessionを
+専用VMで受入した。証跡はdistribution/evidence/native-transition/root-worker-monitor-01/。
+8件の試験とstrict typing成功。有限制御探索は全Python/OSの証明ではない。
+本番供給/認可/計画同意と非root SDKからこの寿命へ接続する作業が次。完成済みの区切りを反復しない。
+
 2026-09-12の追加方針: 既存という理由だけで旧実装/互換入口/未使用資産を維持しない。
 将来の製品に必要な役割、現行利用箇所、代替可否と撤去条件を確認する。
 利用者は旧service以外も不要なコード/資産の廃止を許可済み。ACID/権限境界/性能/保守/採用コマンドの
