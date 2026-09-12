@@ -40,7 +40,8 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 採用12コマンドをniayan-managementへ配布し、旧public nia aliasはsource/main/artifactから撤去。
 内部missionctl/mission_sign、ABI/永続形式は維持。実DEBと固定containerの配置受入が成功した。
 本番の認可/供給/計画同意・root session接続、全DEB効果・boot/復旧は未完。
-テストは機能統合checkpointと出荷前へ集約。management-packages.ymlが今回の配布CI。
+テストは機能統合checkpointと出荷前へ集約。management-packages.ymlが今回の配布CI。run 34716711208はda62319に対して成功。
+management 0.1.1/識別0.2.0。全体OSのCI/本番認定ではない。
 
 ## 次の作業順
 

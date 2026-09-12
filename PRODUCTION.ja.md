@@ -15,7 +15,7 @@ CIの全体実行と独立コンポーネントの証明は明示的に起動し
 2. 最終DEB集合の依存・所有権・属性・設定・script/trigger等の効果と復旧条件を実装し、
    実root組立てと単一catalogの原子的な確定へ接続する。
 3. 全writer排他、世代slot/保持/GC、容量不足、実boot切替、独立rescue、制御面自身の更新を完成する。
-4. installp等の採用コマンド、smit/smitty、緊急修正、GUIを同じ管理器へ接続し、
+4. 配布済みのinstallp等の採用コマンド、smit/smitty、緊急修正、GUIを同じ管理器へ接続し、
    APT/dpkg/PackageKit等の二重管理を解消したISOを構築する。
 5. Capsuleの実起動器・本人確認・portal・同意・資源付与/遮断を完成する。
 6. 全対象言語の翻訳とレビュー、入力・RTL・アクセシビリティを完成する。
@@ -28,3 +28,7 @@ CIの全体実行と独立コンポーネントの証明は明示的に起動し
 OSの表示名変更だけを理由に内部ABI・保存形式・DEB所有者や原本の履歴を書き換えない。
 作成済みの旧APT ISOは比較用であり、niayan名への変更後のISO受入ではない。
 自作部分のBSD 3-Clause適用は完了。第三者の許諾と対応ソース義務は別に維持する。
+
+2026-09-12配布checkpoint: 9repo公開、niayan識別情報、12入口のmanagement package、
+旧public nia alias撤去、2回の対象を限定したGitHub配布CIは完了した。
+最新管理packageは0.1.1、識別packageは0.2.0。稼働管理器への接続完了ではない。

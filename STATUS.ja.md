@@ -1,5 +1,13 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 GitHub配布CI: run 34716536899（f1599f9）と34716711208（da62319）が成功。
+後者は同じ固定Debian入力の軽量package-builderを使用し、management 0.1.1と識別0.2.0をbuildした。
+submodule取得、実package配置、12入口、媒体索引/一覧、日本語表示、未接続更新の拒否、
+識別情報の可逆install/reinstall/remove/purgeを確認した。全体OSの受入ではない。
+証跡はdistribution/evidence/management-interface/packaged-01/ci-*.json等。
+今回のjobはすべて終了。本番認可/同意・全DEB効果・実boot/復旧等は未完である。
+
+
 2026-09-12 niayan公開後の配布統合: 9repoの公開mainをGitHubへpushし、初回commitをAPI照合した。
 niayan-managementを追加し、採用12入口・必要な14 Python module・7翻訳catalogを明示exportする。
 配布manifestは全sourceへ束縛し、旧public nia aliasをsource/main/artifactから撤去した。
