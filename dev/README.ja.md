@@ -2,6 +2,16 @@
 
 このworkspaceは7コンポーネントとdistributionのGit commitをsubmoduleで固定する。各コンポーネントは兄弟repoがなくても通常のビルド・Ada試験が可能。台帳・profile・共有vendor・Python参照試験の統合検査には全submoduleが必要。
 
+実装には[言語と影響に応じた必須検証基準](../assurance/docs/engineering/specs/implementation-assurance.ja.md)を適用する。
+`make proof`はSPARK対象範囲の検証であり、C・FFI・特権Python全体の証明ではない。
+`sh dev/run-limited.sh make c-proof CBMC=/absolute/path/cbmc C_PROOF_OUTPUT=/new/output/directory`は、
+実192-byte handoff要求検査と到達する純粋helperをCBMCで検証する。全transportの証明ではない。
+Debian amd64のcbmc 6.6.0-4実行物をSHA-256で固定し、工具不在・別版・未証明・警告・入力変更で失敗する。
+必要な工具DEBは`cbmc_6.6.0-4_amd64.deb`、SHA-256は
+02560859a17049c976961c232c4fc58f0747b57f9b751a466b1f368a438b0e41。
+Debian依存を備えた隔離環境で取得・照合して使用し、既存検証のために工具制限を回避しない。
+出力先は新規directoryに限定し、過去の証跡を上書きしない。現在のC全体は新基準に未適合である。
+
 ## Distrobox
 
 Debian 13 amd64でworkspace直下から`make bootstrap`を実行する。これは`dev/packages.txt`の依存だけをaptで導入し、Distroboxのapt供給元は変更しない。日常作業と試験は非rootで行う。ホスト側のCLI・共有ライブラリの版は変化しうるため、再現性の基準には次の固定コンテナを使う。

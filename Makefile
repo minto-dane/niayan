@@ -42,3 +42,9 @@ reproducible:
 .PHONY: image-check
 image-check:
 	$(MAKE) -C distribution image-check
+
+CBMC ?= cbmc
+C_PROOF_OUTPUT ?= assurance/evidence/c-proof-current
+.PHONY: c-proof
+c-proof:
+	python3 dev/c-proof.py --cbmc "$(CBMC)" --output "$(C_PROOF_OUTPUT)"

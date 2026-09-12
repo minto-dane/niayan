@@ -6,6 +6,38 @@
 
 ### 直近の検証
 
+2026-09-12 UTC追補。利用者の追加条件を、言語と影響に応じた必須の実装保証基準へ反映した。
+規範はassurance/docs/engineering/specs/implementation-assurance.ja.md（ADR-0117）。
+CだけでなくAda/SPARK、SPARK対象外/FFI、特権Python、UI、シェル/配布/CIを対象とする。
+NASAの要求追跡・保証活動とJPLの具体的制約を参照するが、航空宇宙認証や全規格適合は宣言しない。
+自作C16unit（runtime11）のinventoryを保存し、全Cの形式検証・厳格規則適合は未完と明示した。
+
+実runtimeの純粋wire検査関数とhelperについて、CBMC 6.6.0の208条件が成功した。
+任意の192byte内容とlength/deadline、NULLを検査し、正規形式との同値性とメモリ/整数操作を扱う。
+反復上限不足の負の対照は期待どおり失敗。厳格警告とGCC analyzerは実compileを伴って診断なしを確認した。
+工具/仮定/入力hash/未証明範囲を保存した。通信/OS/FD寿命や全Cの証明へ拡大しない。
+CIへ限定証明を追加し、固定CBMC依存を7componentへ同期した。新dev imageの全buildとremote CIは未実行。
+証跡はdistribution/evidence/implementation-assurance/initial-01/（17 file、SHA256SUMS込み）。
+
+非root世代SDKに必須transport付きPrepare_Root_Usingを追加し、元の全認可/予約条件を保持した。
+root親子のprivate seqpacketとpidfd/各message資格情報/実archive・CAS FDを使うhandoffを実装した。
+独立scopeと元期限に束縛し、送信後不明をIndeterminateとして扱う。ADR-0118。
+15項目の実kernel境界検査とsanitizer runner、3 Ada mainとv5/v6回帰が成功した。
+sanitizer runner内のAda execは非instrumentedである。425個は照合したビルド入力数でありcompile件数ではない。
+最終型注釈付きPythonはsanitizer runnerで検査した。厳格型検査と形式的モデル対応は未完。
+初回fixtureの取消RST/ディレクトリ権限失敗も保持した。C transport全体の新基準適合は未完。
+証跡はdistribution/evidence/native-transition/root-handoff-01/（38 file、SHA256SUMS込み）。
+
+source subjectは462da7431ca1adb554a012199e26649b33bb3f3a0c785fe34590d345bbda53f6。
+構造/参照/lint/license/生成CIは成功。root工具は別のroot-inputs.jsonで照合した。
+全job終了、重工程3 GiB/swap0/CPU1/pids128。今回VM起動/ストレージ削除/公開は行っていない。
+次は新基準へ重要runtimeを適合させつつ、独立root supervisorの現在供給/世代admission、正確な同意、
+実root sessionと再観測、取消・遮断へこのhandoffを接続する。現時点では製品接続は未完。
+全writer排他、bank slot/保持/GC、実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳も未完。
+既存minto-dane/niaosは別projectで上書きしない。GitHub公開許可は有効。本番認定は行っていない。
+
+以下は前工程の記録であり、各subjectの検証結果として保持する。
+
 2026-09-12 UTC追補。自作6コンポーネントのRPM定義に残っていた旧MIT License fieldをBSD-3-Clauseへ修正した。
 現行LICENSING.mdと過去のMIT許諾文も同梱対象にした。dev/check-licenses.pyはRPM Licenseと自作DEB copyrightも照合する。
 修正前の実6定義の拒否と修正後の成功、構造/参照/lint/生成CIを確認した。runtime/数学的入力は不変で、重い検査を反復していない。

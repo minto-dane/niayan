@@ -28,6 +28,12 @@ jobs:
             -e HOME=/tmp -v "$PWD:/workspace" niaos-dev sh -ec \
             'cd resolvercore/tests; python3 -B -m unittest test_resolution_reference.ToolTests.test_unprivileged_helpers_refuse_root -v' \
             2>&1 | tee assurance/evidence/root-refusal.log
+      - name: Prove the handoff wire validator (partial C coverage)
+        run: |
+          docker run --rm --network=none --user "$(id -u):$(id -g)" \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -e HOME=/tmp -v "$PWD:/workspace" niaos-dev \
+            make c-proof C_PROOF_OUTPUT=assurance/evidence/c-proof-current
       - name: Verify generation staging and publication refuse root
         shell: bash
         run: |
@@ -46,3 +52,4 @@ jobs:
             assurance/evidence/reproducibility-*/
             assurance/evidence/root-refusal.log
             assurance/evidence/generation-root-refusal.log
+            assurance/evidence/c-proof-current/

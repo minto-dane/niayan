@@ -33,6 +33,13 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 
 ## 次の作業順
 
+2026-09-12の追加必須条件: C等の低水準コードは形式検証と航空宇宙の厳格なコード基準を要求する。
+C以外にも影響に応じた基準を適用する。規範はassurance/docs/engineering/specs/implementation-assurance.ja.md。
+通常試験/ASanの成功を形式証明とせず、SPARK対象外Ada、FFI、特権Python、シェル/配布/CIを含める。
+既存C全体の形式検証・規則適合は未完。本番条件を緩めたり言語変更で回避しない。
+小さい関数の証明をOS操作・外部ライブラリ・全実装の証明へ拡大解釈しない。工具不在/unknown/timeoutは未達。
+証明harness、環境仮定、実ソースのhashと全未証明条件を保持し、リソース制限を維持する。
+
 2026-09-10の最新指示: 着手済みの共有参照改善の比較・回帰確認を終えたら、本番デプロイを
 妨げる未実装部分に集中する。追加の性能研究、試験器の拡張、同じ入力の再検証だけを主作業にしない。
 試験は変更境界とリリース判定に必要な範囲へ絞り、検証済みで入力不変の工程は繰り返さない。
@@ -41,46 +48,35 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
-2026-09-12 UTC追補。自作6コンポーネントのRPM定義に残っていた旧MIT License fieldをBSD-3-Clauseへ修正した。
-現行LICENSING.mdと過去のMIT許諾文も同梱対象にした。dev/check-licenses.pyはRPM Licenseと自作DEB copyrightも照合する。
-修正前の実6定義の拒否と修正後の成功、構造/参照/lint/生成CIを確認した。runtime/数学的入力は不変で、重い検査を反復していない。
-RPM buildは未実施。第三者原本/過去証跡/既存許諾は保持した。ADR-0088追補、証跡は
- distribution/evidence/licensing/package-metadata-01/（21 file、SHA256SUMS込み）。
-現在subjectは3946b76aa30756cd060789af6317816e36a75993684aa0d4d608829bebbb636a。
-rootの検査器はこのsubject外なので、別のroot-input.jsonへ最終hashを記録した。
-以下の認証SDK受入は固有subjectのまま保持し、配布metadata変更後に実行し直した件数にはしない。
+2026-09-12 UTC追補。利用者の追加条件を、言語と影響に応じた必須の実装保証基準へ反映した。
+規範はassurance/docs/engineering/specs/implementation-assurance.ja.md（ADR-0117）。
+CだけでなくAda/SPARK、SPARK対象外/FFI、特権Python、UI、シェル/配布/CIを対象とする。
+NASAの要求追跡・保証活動とJPLの具体的制約を参照するが、航空宇宙認証や全規格適合は宣言しない。
+自作C16unit（runtime11）のinventoryを保存し、全Cの形式検証・厳格規則適合は未完と明示した。
 
-2026-09-12 UTC。実polkitへ照合するroot supervisor専用Pkg_Operator_Authorizationを実装した。
-accepted seqpacketのkernel peer pidfd/UIDと、独立のplan/requestを固定system busへ送る。
-元boottime期限は最大120秒で、retained認証を拒否する。Checkはcontext/peer/取消/期限とunique owner/Changedを確認し、
-失効後の再利用を拒否する。自身のFDだけを解放する。供給・正確な計画への同意・native admissionは別の必須検査である。
+実runtimeの純粋wire検査関数とhelperについて、CBMC 6.6.0の208条件が成功した。
+任意の192byte内容とlength/deadline、NULLを検査し、正規形式との同値性とメモリ/整数操作を扱う。
+反復上限不足の負の対照は期待どおり失敗。厳格警告とGCC analyzerは実compileを伴って診断なしを確認した。
+工具/仮定/入力hash/未証明範囲を保存した。通信/OS/FD寿命や全Cの証明へ拡大しない。
+CIへ限定証明を追加し、固定CBMC依存を7componentへ同期した。新dev imageの全buildとremote CIは未実行。
+証跡はdistribution/evidence/implementation-assurance/initial-01/（17 file、SHA256SUMS込み）。
 
-C/Adaと既存6アプリのcompile、選択Ada mainの独立directoryでの同一bytesを確認した。
-418個のビルド入力集合を照合した。全418unitのcompile件数ではない。private busの12項目、ASan/UBSanの12項目、
-実Debian polkit 126-2 VMの14項目が成功した。実pidfd、既定拒否、限定rule、実rule変更、owner再起動、
-取消/peer終了/期限、実Ada/C往復を確認した。実agent/PAM dialogは未検査。fixture ruleは削除済みで製品へ同梱しない。
-ASanのPython全体leak報告は無効で、address/UBは停止し、FD寿命は別に実数検査した。
+非root世代SDKに必須transport付きPrepare_Root_Usingを追加し、元の全認可/予約条件を保持した。
+root親子のprivate seqpacketとpidfd/各message資格情報/実archive・CAS FDを使うhandoffを実装した。
+独立scopeと元期限に束縛し、送信後不明をIndeterminateとして扱う。ADR-0118。
+15項目の実kernel境界検査とsanitizer runner、3 Ada mainとv5/v6回帰が成功した。
+sanitizer runner内のAda execは非instrumentedである。425個は照合したビルド入力数でありcompile件数ではない。
+最終型注釈付きPythonはsanitizer runnerで検査した。厳格型検査と形式的モデル対応は未完。
+初回fixtureの取消RST/ディレクトリ権限失敗も保持した。C transport全体の新基準適合は未完。
+証跡はdistribution/evidence/native-transition/root-handoff-01/（38 file、SHA256SUMS込み）。
 
-0.7.0 service packageはauth_admin（keepなし）のpolicyとpolkitd依存を追加し、main/dbgsym/dsc/sourceの二重buildが一致した。
-main DEBは56191f395fe77ac532dc6b7b4b7b78a31d0bc47436487fc01204d537e46d4346。
-32 export入力、runtime archiveの10 file、DEB内14 module/unit/policyを正本へ照合した。
-既存controller/worker/unitは不変で、今回root抽出を反復していない。C libraryは
-d87a19da393a7d5eb1add90a606e6dd3fd2a501058ac940bf7b47266c4b7588d、Adaは
-e62bfc563ed55e4b11813aed0332f4ff043a7f5a71465a21546874bb8accf404。
-初回fixture compileと依存版指定の失敗も保持した。構造/参照/lint/license/生成CIは成功し、全suite/数学的証明は反復しない。
-export後の非compile差は生成CIのmain登録とRPMのsystemd-devel依存。RPM buildは未実施。
-
-今回の全jobは終了した。重工程3 GiB/swap0/CPU1/pids128、VM2 GiB/1CPUを維持し、終了VM差分64.01 MiBを削除した。
-稼働中の別VM、base/受入VM/source/package/SDK/logは保持した。
-subjectは59811cc91ab37ecdd8140045803ffefd55e4ffe93d7cb9431fca64ce433e354a。
-ADR-0116、証跡distribution/evidence/native-transition/operator-authorization-01/（51 file、SHA256SUMS込み）。
-私有labはnative-operator-authorization-01、受入packageはvm-package-01/packages。
-GitHub公開/remote CIは未実施で許可は有効。既存minto-dane/niaosは別projectなので上書きしない。
-
-次は独立root supervisorの現在供給/世代admission、正確な利用者同意、取消・遮断と非root世代SDKへの認証済みhandoffを接続する。
-既存の必須callbackをpolkitのtrueへ置換せず、非root SDKのUID拒否を解除しない。SDKだけの成功を製品接続としない。
-全writer排他、bank slot/保持/GC、実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳は未完。
-policyの翻訳も英語/日本語のみである。実稼働・本番認定は行っていない。
+source subjectは462da7431ca1adb554a012199e26649b33bb3f3a0c785fe34590d345bbda53f6。
+構造/参照/lint/license/生成CIは成功。root工具は別のroot-inputs.jsonで照合した。
+全job終了、重工程3 GiB/swap0/CPU1/pids128。今回VM起動/ストレージ削除/公開は行っていない。
+次は新基準へ重要runtimeを適合させつつ、独立root supervisorの現在供給/世代admission、正確な同意、
+実root sessionと再観測、取消・遮断へこのhandoffを接続する。現時点では製品接続は未完。
+全writer排他、bank slot/保持/GC、実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳も未完。
+既存minto-dane/niaosは別projectで上書きしない。GitHub公開許可は有効。本番認定は行っていない。
 
 過去工程の詳しい記録はSTATUS.ja.mdに保持する。ここには現在の境界と作業規則だけを置く。
 
