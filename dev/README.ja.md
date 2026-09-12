@@ -24,7 +24,7 @@ make toolchain
 sh dev/run-limited.sh make proof
 ```
 
-`make check`は全Adaソースのコンパイル、18本のアプリケーションのリンク、全登録Ada試験、Python参照試験、固定契約と文書台帳検査を実行する。read-only host observerを含む。root拒否試験は別context、私有D-Bus試験は`make private-dbus`で実行する。実GTK/KDE表示、実サービス変更、ディストリビューション起動は含まない。署名付きDEB人工fixtureに必要なGPG・agent・gpgv・gpgconf・dpkg-debは必須依存とし、不足時は統合検査を開始前に失敗させる。
+`make check`は全Adaソースのコンパイル、全アプリケーションのリンク、全登録Ada試験、Python参照試験、固定契約と文書台帳検査を実行する。read-only host observerを含む。root拒否試験は別context、私有D-Bus試験は`make private-dbus`で実行する。実GTK/KDE表示、実サービス変更、ディストリビューション起動は含まない。署名付きDEB人工fixtureに必要なGPG・agent・gpgv・gpgconf・dpkg-debは必須依存とし、不足時は統合検査を開始前に失敗させる。
 
 `run-limited.sh`はユーザーのsystemdへ一時scopeを作り、全子孫を合計してメモリ3 GiB・swapなし・CPU 1コア分・最大128プロセスへ制限する。このDistroboxでは実際のkernel設定値を読み戻して確認した。既存serviceの設定変更や恒久設定は行わない。ユーザーbusや対応controllerがない場合は失敗し、制限なしで再試行しない。固定コンテナではコンテナ自体の同等の制限を利用する。
 

@@ -6,7 +6,7 @@ GNATPROVE ?= $(HOME)/.cache/niaos/toolchains/gnatprove-x86_64-linux-16.1.0-1/bin
 help:
 	@echo 'bootstrap    Install Debian 13 development dependencies in this Distrobox'
 	@echo 'toolchain    Download and verify the pinned GNATprove archive'
-	@echo 'build        Compile every unit and link all 18 application mains'
+	@echo 'build        Compile every unit and link all application mains'
 	@echo 'check        Source checks, all-unit builds, CLI links and all Ada tests'
 	@echo 'private-dbus Run native protocol tests on a dedicated private bus'
 	@echo 'proof        Run strict SPARK flow and level-4 proof (no download)'

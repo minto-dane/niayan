@@ -25,7 +25,7 @@ git push -u origin main
 
 CIはcommit SHAで固定したGitHub Actionsとchecksumで固定したproof toolchainを使う。native・proofの結果を別々に確認する。全workspaceはPRと手動、独立componentはPRと手動でnativeを実行し、全証明は手動の`run_proof`指定時に実行する。文書pushだけで全工程を再実行しない。本番資格の未完条件はSTATUSに残し、native成功だけを根拠にrelease認定しない。
 非公開repoとして配置する場合、子repoのcheckoutに必要な専用のread-only認証を配備してCIを受入する。
-開発端末の広い権限を持つ認証情報をCI secretへ転用しない。現在はremote CIの実行結果はない。
+開発端末の広い権限を持つ認証情報をCI secretへ転用しない。公開履歴はdev/initial-publication-review.jsonに記録する。remote CIの結果は対象commitとともに別途記録する。
 
 Debian配布物は[構築・記録・対応ソース収集の手順](../distribution/image/README.ja.md)に従う。Gitにはレシピと小さな検査記録を置き、ISO・DEB・対応ソースアーカイブは別の成果物保管先へ置く。公開前に実在する管理者連絡先、更新先、署名と保管責任、サポート範囲を設定する。現在は開発版であり、niayan独自の公開APT更新チャネルは提供していない。
 
@@ -40,3 +40,8 @@ review可能なdraftを作り、対象と添付内容を照合してから公開
 stable releaseやAPT完全置換済みという表示をしない。同一tag/版のassetを異なるbytesへ上書きしない。
 
 現在の`0.1.0+git<commit>`は初期開発スナップショットの識別子であり、Git hashの大小をリリース順に使わない。公開更新ではコンポーネントのパッケージ版とintegrationのchangelogに増加する版を割り当て、生成済みDEBの新旧Versionを`dpkg --compare-versions NEW gt OLD`で確認する。同じ公開済み版へ異なる内容を上書きせず、新しい版としてビルド・受入・ソース保管を行う。[Debian PolicyのVersion規則](https://www.debian.org/doc/debian-policy/ch-controlfields.html#version)。
+
+2026-09-12: niayanと8つのniayan-* repoを公開し、初回mainのcommitをGitHub APIで照合した。
+既存の別projectは変更していない。管理コマンドとOS識別情報の配布checkpointには
+`Management and identity packages` workflowを使用し、全componentの重複ビルドを避ける。
+本番更新経路を統合した時点でWorkspace validation、必要なcomponent proofを実行する。

@@ -1,0 +1,57 @@
+name: Management and identity packages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: management-packages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  packages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Build pinned packaging environment
+        run: docker build -f distribution/image/Containerfile -t niayan-image-builder .
+      - name: Export management and identity sources
+        run: |
+          mkdir -p "$RUNNER_TEMP/niayan/packages"
+          python3 distribution/native/prepare_service_package.py --component management --output "$RUNNER_TEMP/niayan/packages/niayan-management"
+          cp -a distribution/packaging/integration "$RUNNER_TEMP/niayan/packages/niaos-integration"
+          cp distribution/LICENSE "$RUNNER_TEMP/niayan/packages/niaos-integration/debian/copyright"
+      - name: Build the two changed source packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none --user "$(id -u):$(id -g)" \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -e HOME=/tmp -e DEB_BUILD_OPTIONS=parallel=1 -e SOURCE_DATE_EPOCH=1788739200 \
+            -v "$RUNNER_TEMP/niayan:/build" niayan-image-builder sh -ec \
+            'cd /build/packages/niayan-management; dpkg-buildpackage -us -uc; cd ../niaos-integration; dpkg-buildpackage -us -uc' \
+            2>&1 | tee "$RUNNER_TEMP/niayan/build.log"
+      - name: Exercise installed commands, translation and reversible OS identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none \
+            --memory=3g --memory-swap=3g --cpus=1 --pids-limit=128 \
+            -e NIAYAN_DISPOSABLE_PACKAGE_TEST=1 \
+            -v "$RUNNER_TEMP/niayan:/build:ro" -v "$PWD/distribution/image:/source:ro" \
+            niayan-image-builder sh -ec \
+            'sh /source/test-management.sh /build/packages/niayan-management_0.1.0_all.deb; sh /source/test-release.sh' \
+            2>&1 | tee "$RUNNER_TEMP/niayan/acceptance.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: niayan-management-and-identity
+          path: |
+            ${{ runner.temp }}/niayan/*.log
+            ${{ runner.temp }}/niayan/packages/*.deb
+            ${{ runner.temp }}/niayan/packages/*.dsc
+            ${{ runner.temp }}/niayan/packages/*.tar.xz
+            ${{ runner.temp }}/niayan/packages/*.buildinfo
+            ${{ runner.temp }}/niayan/packages/*.changes

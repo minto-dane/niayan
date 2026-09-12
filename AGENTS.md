@@ -36,6 +36,12 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 `STATUS.ja.md` → `capsulecore/docs/consent.ja.md` → `assurance/docs/engineering/specs/production-closure.ja.md`。
 実行結果はsource hashに束縛した`assurance/evidence/engineering-*/report.json`等。`consent-integration`は取り込み時の履歴。旧evidenceを現行のPASSとして引用しない。
 
+2026-09-12 niayan公開: minto-dane/niayanとniayan-*の8子repoを公開済み。
+採用12コマンドをniayan-managementへ配布し、旧public nia aliasはsource/main/artifactから撤去。
+内部missionctl/mission_sign、ABI/永続形式は維持。実DEBと固定containerの配置受入が成功した。
+本番の認可/供給/計画同意・root session接続、全DEB効果・boot/復旧は未完。
+テストは機能統合checkpointと出荷前へ集約。management-packages.ymlが今回の配布CI。
+
 ## 次の作業順
 
 2026-09-12の追加方針: 既存という理由だけで旧実装/互換入口/未使用資産を維持しない。

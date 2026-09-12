@@ -1,5 +1,17 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 niayan公開後の配布統合: 9repoの公開mainをGitHubへpushし、初回commitをAPI照合した。
+niayan-managementを追加し、採用12入口・必要な14 Python module・7翻訳catalogを明示exportする。
+配布manifestは全sourceへ束縛し、旧public nia aliasをsource/main/artifactから撤去した。
+管理器fingerprintと公開人工fixtureを正本工具で更新。共有契約とC/FFIは変更していない。
+識別packageは0.2.0、managementは0.1.0の開発版。全DEB効果・本番認可・実起動切替は未完。
+限定した配布checkpointで、実management DEB構築、固定containerへのinstall、全12入口help、
+非rootの実媒体索引/一覧・日本語表示・未接続操作の拒否とpurgeが成功した。
+旧aliasのない2つのcontrolcore mainも固定containerでbuild成功。全体proofの反復は行っていない。
+新しいManagement and identity packages CIは変更した2 source packageだけを構築・受入する。
+出荷条件全体、完全置換ISO、全言語・形式保証・実機認定はPRODUCTION.ja.mdで引き続き未完。
+
+
 2026-09-12: 利用者は公開名niayanとGitHub公開を指定した。OS表示・GRUB・ISO設定・
 liveユーザーをniayanへ変更し、識別パッケージ版を0.2.0へ進めた。内部DEB名と保存形式は維持する。
 READMEの過去の試験数を現行全体の成功と誤読しないよう対象範囲を明記した。
