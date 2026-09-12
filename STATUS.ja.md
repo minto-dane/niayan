@@ -6,6 +6,37 @@
 
 ### 直近の検証
 
+2026-09-12 UTC追補。root handoffの特権Pythonを厳格型検査と明示的な有限制御へ移行した。
+ADR-0119、REQ-157/HAZ-143/FAULT-156。受信/応答試行をI/O前に記録し、失敗/閉鎖後の再利用を拒否する。
+FD解放のOSErrorで残るFD/pidfd/socket解放が止まる経路を修正した。所有参照を取り外して一度だけcloseし、
+同じ番号の再試行を避ける。入力解放失敗後に成功応答を送らない。整数boottimeと有限poll予算も導入した。
+
+固定containerで10項目の制御/障害試験と、実root/非root・pidfd・SCM・Ada往復15項目が成功した。
+自分のFDを実closeした後のEIO注入と番号再利用を使い、別FDの誤解放と解放漏れを検査した。
+媒体/kernel故障や任意非同期中断の完全な検査ではない。実transition関数に独立履歴を組み合わせ、
+全到達15構成・29許可辺・76拒否辺を探索した。2つの負の対照を検出し、assert無効化も拒否する。
+深さ上限はないが、対象は有限制御/履歴だけ。Python/OS/I/O/全FD寿命の形式証明へ拡大しない。
+mypy 1.15.0-5 strict/Any/到達不能制約でruntimeと検査器の2ファイルが成功した。
+C/Adaの425入力は不変で、前回の実行物をhash照合して再利用した。今回再compile/ASanとは数えない。
+
+dev/Containerfileと固定snapshotからCBMC/mypy入り開発imageを実構築した。
+imageはsha256:76d5c00dfa833ce7ae67a192c5663d9bcd5c4104153f5933431dae88c097918c。
+約257秒、最小空き4,004,278,272 byte。3 GiB/swap0/CPU1/pids128、空き3 GiB/900秒の停止条件を維持した。
+新imageでnetworkなし非rootの型/有限制御検査と、限定wire関数のCBMC208条件が成功した。
+全工具package版と入力を保持した。remote CI、全suite、新ISOの構築/実起動は今回実行していない。
+
+subjectはce4255b5980cd2c280046757074c693e983ebbd211b8ac006d707037cc483ec8。
+構造/参照/lint/license/生成CIも成功。証跡distribution/evidence/native-transition/handoff-lifecycle-01/（45 file、SHA256SUMS込み）。
+全job終了、今回VM作成/ストレージ削除/公開は行っていない。私有labはroot-handoff-lifecycle-01。
+新imageはnew-dev-image.id、旧受入imageはdev-image.idで区別する。
+次は新基準へ残る重要runtimeを適合させ、本番の現在供給/世代admission、正確な同意、
+root session/独立観測と物理遮断を非root世代SDKへ接続する。handoff単体の成功を製品接続完了としない。
+C全体の厳格規則/形式検証、全writer排他、bank slot/保持/GC、実root/boot切替・復旧、
+全DEB効果、完全置換ISO、全言語翻訳は未完。既存minto-dane/niaosは別projectなので上書きしない。
+本番認定は行っていない。
+
+以下は前工程の記録であり、各subjectに対する結果として保持する。
+
 2026-09-12 UTC追補。利用者の追加条件を、言語と影響に応じた必須の実装保証基準へ反映した。
 規範はassurance/docs/engineering/specs/implementation-assurance.ja.md（ADR-0117）。
 CだけでなくAda/SPARK、SPARK対象外/FFI、特権Python、UI、シェル/配布/CIを対象とする。

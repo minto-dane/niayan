@@ -81,6 +81,14 @@ sh ../dev/run-limited.sh python3 ci/proof-guard.py --seconds 600 -- /absolute/pa
 
 guardの合計RSS監視とniceだけではkernelの総量・CPU quota制限にならないため、前述のscopeまたはコンテナの制限も併用する。[Podmanの資源設定](https://docs.podman.io/en/latest/markdown/podman-run.1.html#memory-m-number-unit)を参照。Distrobox内からの直接のPodman cgroup設定は失敗したが、ユーザーscopeの制限は適用できた。別UIDや別の`/tmp`名前空間を持つコンテナはロックを共有しないため、PC上の重い検証は1件ずつ実行する。背景と制約は[ADR-0054](../assurance/docs/engineering/adr/ADR-0054.ja.md)。
 
+## 特権Pythonの限定検証
+
+`make -C distribution handoff-check`はroot handoffとその有限制御検査器に対して
+固定mypy 1.15.0-5のstrict/Any制約を適用し、実transition関数の全到達状態を検査する。
+`distribution/native/handoff-mypy.ini`で対象と条件を明示する。通常のnative-checkからも呼ぶ。
+失敗/閉鎖後の再利用、受信と応答の順序/回数を扱い、全Python/OS/FD実装の証明とはしない。
+詳細と未達条件はADR-0119。依存はdev/packages.txtと生成した各component CIで固定する。
+
 ## 正本の更新
 
 共有src/runtimeはassuranceだけを編集する。vendorを直接編集しない。変更後に以下を実行し、diffを確認する。
