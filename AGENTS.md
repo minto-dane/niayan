@@ -41,6 +41,39 @@ installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。
 接続、起動切替と復旧、完全置換ISOである。全言語翻訳等の既存製品要件も取り消されていない。
 SDKと人工fixtureの成功を製品接続完了にしない。
 
+2026-09-12 UTC。root supervisor専用のnative session SDKを追加した。Pkg_Root_Sessionのlimited controlled型が
+root_session.cの接続を保持し、明示scope/pin/実FDと全正規応答、root peer/message UID/PID、元期限を照合する。
+Open/Observe/Close、使用中handle拒否、観測失効後の接続保持、Ada Finalizeによる切断を実装した。
+既存非root世代SDKのUID/API/永続形式は不変。返却inodeを独立観測やsite認可・起動許可へ変換しない。
+
+固定containerで選択Ada mainと必要C/Ada unitをcompileした。root peerの29項目とCのASan/UBSan 28項目が成功。
+scope/identity/期限、非正規/過大/切断、余分FD/control切詰めと解放、UID/PID/fork、観測失効、Close/Finalizeを確認した。
+ASanのPython全体leak報告は無効で、address/UB errorは停止する。FD寿命は別に検査した。
+独立directoryの選択Ada実行物が同一bytesで、hashはb72206be3a5177b62255cd47750957db06a43de122895b6104708096483032aa。
+413個のビルド入力集合を照合した。全413unitのcompile件数ではない。新mainは標準台帳/生成CIへ登録した。
+構造/参照/lint/license/生成CIは成功し、Ada全suite/数学的証明は反復していない。
+
+実GPT/ext4 VMでは受入0.6.0 package/initializerと新C libraryでprepare/observe/Closeが成功した。
+実展開/RO全再検査、独立root FDのmount/device/inode/RO、新CAS OFD取得とBank保持、EOF、元tree/記録の不変を確認した。
+service packageは変更・再buildせず、DEB内13module/unitを正本へ照合した。新C libraryは
+7fdea19c1aaf352fa8c9d1615c6f120fa86bfdc445a2a2ca435b662ab35f4aae。Adaの実FFI往復はcontainer peerで検査した。
+初回compileの異なる整数型のothers aggregateを修正した。初回入力snapshotは未保存で失敗logを診断として保持する。
+thread/fork warningはpeerを別processへ変更して解消した。ADR見出しと生成CIの初期不一致も保持した。
+
+今回の全jobは終了した。重工程3 GiB/swap0/CPU1/pids128、VM2 GiB/1CPUを維持した。
+終了済みVM差分と追加diskの計47.60 MiBを削除した。稼働中の別VM、base/受入VM/source/package/SDK/logは保持した。
+subjectはd7d795ce6286962f21fbfd61df1c851cc3c98fb939c705b4d103d0e14569dbbc。
+ADR-0115、証跡distribution/evidence/native-transition/root-session-sdk-01/（47 file、SHA256SUMS込み）。
+私有labはnative-root-session-sdk-01。SDK buildはworkspace/pkgcore/build、実0.6.0 packageは前labのvm-package-07/packages。
+GitHub公開/remote CIは未実施で許可は有効。既存minto-dane/niaosは別projectなので上書きしない。
+
+次は独立root supervisorのsite認可/供給/利用者同意・取消寿命と、非root世代SDKへの認証済みhandoff/observerを接続する。
+root専用transportを非rootで呼ぶためにUID拒否を解除せず、返却inodeから独立期待値を捏造しない。
+外部特権writer排他、bank slot/保持/GC、実root/boot切替・復旧、全DEB効果、完全置換ISOと全言語翻訳も未完。
+人工scope/peerと実RPC接続を本番admissionや実稼働世代への接続完了とは扱わない。
+
+以下は前工程の記録である。
+
 2026-09-11 UTC。初回の空bankを準備するroot supervisor用controller sessionを実装した。
 接続元/各messageのkernel UID0・PIDとpeer pidfdを照合し、独立request/worker/device plan/boot/bank identity、
 実CAS/archive FDへ束縛する。永続O_EXCL attemptを同期してからRWへ変更し、7 capabilityへ縮小したchildで
