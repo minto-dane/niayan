@@ -6,6 +6,40 @@
 
 ### 直近の検証
 
+2026-09-12 UTC。実polkitへ照合するroot supervisor専用Pkg_Operator_Authorizationを実装した。
+accepted seqpacketのkernel peer pidfd/UIDと、独立のplan/requestを固定system busへ送る。
+元boottime期限は最大120秒で、retained認証を拒否する。Checkはcontext/peer/取消/期限とunique owner/Changedを確認し、
+失効後の再利用を拒否する。自身のFDだけを解放する。供給・正確な計画への同意・native admissionは別の必須検査である。
+
+C/Adaと既存6アプリのcompile、選択Ada mainの独立directoryでの同一bytesを確認した。
+418個のビルド入力集合を照合した。全418unitのcompile件数ではない。private busの12項目、ASan/UBSanの12項目、
+実Debian polkit 126-2 VMの14項目が成功した。実pidfd、既定拒否、限定rule、実rule変更、owner再起動、
+取消/peer終了/期限、実Ada/C往復を確認した。実agent/PAM dialogは未検査。fixture ruleは削除済みで製品へ同梱しない。
+ASanのPython全体leak報告は無効で、address/UBは停止し、FD寿命は別に実数検査した。
+
+0.7.0 service packageはauth_admin（keepなし）のpolicyとpolkitd依存を追加し、main/dbgsym/dsc/sourceの二重buildが一致した。
+main DEBは56191f395fe77ac532dc6b7b4b7b78a31d0bc47436487fc01204d537e46d4346。
+32 export入力、runtime archiveの10 file、DEB内14 module/unit/policyを正本へ照合した。
+既存controller/worker/unitは不変で、今回root抽出を反復していない。C libraryは
+d87a19da393a7d5eb1add90a606e6dd3fd2a501058ac940bf7b47266c4b7588d、Adaは
+e62bfc563ed55e4b11813aed0332f4ff043a7f5a71465a21546874bb8accf404。
+初回fixture compileと依存版指定の失敗も保持した。構造/参照/lint/license/生成CIは成功し、全suite/数学的証明は反復しない。
+export後の非compile差は生成CIのmain登録とRPMのsystemd-devel依存。RPM buildは未実施。
+
+今回の全jobは終了した。重工程3 GiB/swap0/CPU1/pids128、VM2 GiB/1CPUを維持し、終了VM差分64.01 MiBを削除した。
+稼働中の別VM、base/受入VM/source/package/SDK/logは保持した。
+subjectは59811cc91ab37ecdd8140045803ffefd55e4ffe93d7cb9431fca64ce433e354a。
+ADR-0116、証跡distribution/evidence/native-transition/operator-authorization-01/（51 file、SHA256SUMS込み）。
+私有labはnative-operator-authorization-01、受入packageはvm-package-01/packages。
+GitHub公開/remote CIは未実施で許可は有効。既存minto-dane/niaosは別projectなので上書きしない。
+
+次は独立root supervisorの現在供給/世代admission、正確な利用者同意、取消・遮断と非root世代SDKへの認証済みhandoffを接続する。
+既存の必須callbackをpolkitのtrueへ置換せず、非root SDKのUID拒否を解除しない。SDKだけの成功を製品接続としない。
+全writer排他、bank slot/保持/GC、実root/boot切替・復旧、全DEB効果、完全置換ISO、全言語翻訳は未完。
+policyの翻訳も英語/日本語のみである。実稼働・本番認定は行っていない。
+
+以下は前工程の記録である。
+
 2026-09-12 UTC。root supervisor専用のnative session SDKを追加した。Pkg_Root_Sessionのlimited controlled型が
 root_session.cの接続を保持し、明示scope/pin/実FDと全正規応答、root peer/message UID/PID、元期限を照合する。
 Open/Observe/Close、使用中handle拒否、観測失効後の接続保持、Ada Finalizeによる切断を実装した。
