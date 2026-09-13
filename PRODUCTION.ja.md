@@ -1,5 +1,13 @@
 # niayan 本番化の実装順
 
+2026-09-12 追加実装（未検証）: 確定世代readerを書込実行器から分離し、
+実publication/root/CAS予約の下でnative intentと供給認証を作るPkg_Update_Plannerを追加した。
+lslpp -l/-L → 同じ管理socket → 非root native catalog reader → 完全sealed応答を接続した。
+root-preparation 0.15.0 / management 0.3.0 source。service/socketは配布するが自動起動しない。
+新規試験コード・コンパイル・型検査・CIは実行していない。7言語PO原稿を更新し、POT/MO生成も延期。
+全managed認可と変更dispatcher、全DEB効果/実boot等は残件。全体完成ではない。
+詳細: distribution/native/accepted-catalog.ja.md、ADR-0130。照会の成功をboot/実行の許可にしない。
+
 2026-09-12 追加実装（未検証）: native供給readerの計画時hash/UTCを保持し、
 専用非root子pkg_supply_guardによる継続観測をSupervisorの必須経路へ接続した。
 同じ計画/世代/元期限と供給bindingを照合し、設定変更・子停止・遅延時はroot効果を遮断する。
