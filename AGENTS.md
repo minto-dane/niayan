@@ -1,5 +1,24 @@
 # niayan — AIエージェントへの引き継ぎ
 
+2026-09-12 現行実装: 採用要求のgrammarをCLIから分離し、rootで独立解析するtransport、
+sealed表示FDを使う計画同意、Supervisorの同一peer必須条件、Ada同意codecを追加した。
+management 0.2.0/root-preparation 0.13.0 sourceへ含めたが、本番planner/launcherは未接続。
+123原文/7言語assetと対象6 Python moduleのstrict typing、対象Adaコンパイルを完了した。
+挙動/VM/形式証明は実行していない。試験コードの量産を止め、意味のあるリリース前CIとレビューへ集約する。
+
+追加指示を反映し、自動Trial/健康失敗による自動旧版復帰を標準経路から外した。
+State_Bootは現在の独立anchor、既知の禁止下限、明示的な一回の切替と別の確定認可、限定rescueを要求する。
+下限以上でも未知の脆弱性不在を保証しない。健康不足は安定期間の再評価とし、旧版復帰の権限にしない。
+カーネルはCVE未掲載を安全とせず、認証済みstable修正/backport対応がなければ判断を保留する。
+機関の実環境悪用報告と端末の侵害を分離し、出典付きAuthority_Reports_Wild_Exploitationへ置換した。
+
+インストーラー起動→導入→初回起動→更新→復旧までMicrosoft署名shimのSecure Bootを維持する。
+kernelだけでなくinitrd/cmdline/root/設定/modulesまで使用前検証することが必須。
+NVIDIA用module-only MOKの暗号化鍵準備工具を追加したが、実鍵生成/登録/署名/ロードは未受入。
+実anchor、製品署名、完全検証boot、MOK/native driver、KEV取得providerは未接続。
+詳細: distribution/native/plan-consent.ja.md、distribution/boot/README.ja.md、
+distribution/native/threat-reporting.ja.md、ADR-0127/0128。全体本番完成ではない。
+
 **最新指示: 試験・全面レビューはリリース直前へ集約。現在はAdaとDebianの実装を優先する。**
 新たなVM試験や反復suiteを開始しない。必要なコンパイルは可。出荷時の形式保証/ACID要件は維持。
 Pkg_Generation_Execution（Ada）とroot_supervisor/root_session_clientを追加したが、本番の
@@ -36,7 +55,7 @@ inutocの媒体索引とinstallp/geninstallの媒体一覧も実装した。詳�
 独立に用意したpolicy/floorの初回配備とnative意味検査は実装・VM受入済み（下記0.10.0）。
 本番鍵の由来・非rollback anchor・更新運用、稼働管理器への接続・対話作成・応答互換性は未完。
 多言語インターフェイスはdistribution/docs/decisions/0004-localized-interface.ja.mdに従う。
-gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文119件と
+gettextの実行別UIを使い、操作・署名・catalogと表示言語を分離する。英語原文123件と
 日本語・独・西・仏・韓・中国語簡体字・繁体字の7翻訳catalogを実装済み。
 第三者訳文レビューは未実施。製品の対象はDebian 13の全言語。distribution/native/debian-languages.jsonの全509 locale組と
 installer 78選択肢を扱い、英語fallbackを翻訳完了と数えない。i18n-release-checkは
