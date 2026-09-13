@@ -1,5 +1,12 @@
 # niayan — AIエージェントへの引き継ぎ
 
+2026-09-12 追加実装（未検証）: native供給readerの計画時hash/UTCを保持し、
+専用非root子pkg_supply_guardによる継続観測をSupervisorの必須経路へ接続した。
+同じ計画/世代/元期限と供給bindingを照合し、設定変更・子停止・遅延時はroot効果を遮断する。
+root-preparation 0.14.0 sourceへ専用identityと配布構成を追加した。
+最新の利用者指示に従いコンパイル/型検査もリリース前へ延期し、新規試験コードは追加していない。
+詳細: distribution/native/supply-guard.ja.md。実planner/世代認可/launcherと全体本番化は未完。
+
 2026-09-12 現行実装: 採用要求のgrammarをCLIから分離し、rootで独立解析するtransport、
 sealed表示FDを使う計画同意、Supervisorの同一peer必須条件、Ada同意codecを追加した。
 management 0.2.0/root-preparation 0.13.0 sourceへ含めたが、本番planner/launcherは未接続。
@@ -20,7 +27,7 @@ NVIDIA用module-only MOKの暗号化鍵準備工具を追加したが、実鍵�
 distribution/native/threat-reporting.ja.md、ADR-0127/0128。全体本番完成ではない。
 
 **最新指示: 試験・全面レビューはリリース直前へ集約。現在はAdaとDebianの実装を優先する。**
-新たなVM試験や反復suiteを開始しない。必要なコンパイルは可。出荷時の形式保証/ACID要件は維持。
+新たなVM試験や反復suiteを開始しない。最新の利用者指示によりコンパイル・型検査もリリース前へ延期する。出荷時の形式保証/ACID要件は維持。
 Pkg_Generation_Execution（Ada）とroot_supervisor/root_session_clientを追加したが、本番の
 供給/世代/同意providerとlauncherは未接続。Debian recipeへroot/供給serviceを同梱し、
 開発buildはnocheck、手動配布CIは--releaseとした。サービスの暗黙起動はしない。

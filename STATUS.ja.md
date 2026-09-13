@@ -1,5 +1,12 @@
 # Nia OS 開発・配布検証状況
 
+2026-09-12 追加実装（未検証）: native供給readerの計画時hash/UTCを保持し、
+専用非root子pkg_supply_guardによる継続観測をSupervisorの必須経路へ接続した。
+同じ計画/世代/元期限と供給bindingを照合し、設定変更・子停止・遅延時はroot効果を遮断する。
+root-preparation 0.14.0 sourceへ専用identityと配布構成を追加した。
+最新の利用者指示に従いコンパイル/型検査もリリース前へ延期し、新規試験コードは追加していない。
+詳細: distribution/native/supply-guard.ja.md。実planner/世代認可/launcherと全体本番化は未完。
+
 2026-09-12 現行実装: 採用要求のgrammarをCLIから分離し、rootで独立解析するtransport、
 sealed表示FDを使う計画同意、Supervisorの同一peer必須条件、Ada同意codecを追加した。
 management 0.2.0/root-preparation 0.13.0 sourceへ含めたが、本番planner/launcherは未接続。

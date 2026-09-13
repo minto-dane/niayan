@@ -1,5 +1,12 @@
 # niayan 本番化の実装順
 
+2026-09-12 追加実装（未検証）: native供給readerの計画時hash/UTCを保持し、
+専用非root子pkg_supply_guardによる継続観測をSupervisorの必須経路へ接続した。
+同じ計画/世代/元期限と供給bindingを照合し、設定変更・子停止・遅延時はroot効果を遮断する。
+root-preparation 0.14.0 sourceへ専用identityと配布構成を追加した。
+最新の利用者指示に従いコンパイル/型検査もリリース前へ延期し、新規試験コードは追加していない。
+詳細: distribution/native/supply-guard.ja.md。実planner/世代認可/launcherと全体本番化は未完。
+
 2026-09-12 現行実装: 採用要求のgrammarをCLIから分離し、rootで独立解析するtransport、
 sealed表示FDを使う計画同意、Supervisorの同一peer必須条件、Ada同意codecを追加した。
 management 0.2.0/root-preparation 0.13.0 sourceへ含めたが、本番planner/launcherは未接続。
@@ -29,8 +36,8 @@ distribution/native/threat-reporting.ja.md、ADR-0127/0128。全体本番完成�
 重要な機能統合と出荷前を検証の区切りとし、必要な静的検査・形式検証・受入はその区切りで行う。
 CIの全体実行と独立コンポーネントの証明は明示的に起動し、文書pushだけで重複実行しない。
 
-最新の利用者指示: 挙動試験・障害試験・全面レビューはリリース直前にまとめる。
-いまはAda実行経路とDebian配布構成の実装を優先し、コンパイル等の構築上必要な確認に限定する。
+最新の利用者指示: コンパイル・型検査も含め、挙動試験・障害試験・全面レビューはリリース直前にまとめる。
+いまはAda実行経路とDebian配布構成の実装を優先する。
 既存の安全性/ACID/形式保証要件は出荷条件として維持する。新しい未検証実装は本番認定しない。
 締切の日付と必要な成果物は問い合わせ中で、実装を止める前提条件ではない。
 
